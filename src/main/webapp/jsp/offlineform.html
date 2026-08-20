@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Required meta tags -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>FAQ</title>
+    <!-- Bootstrap CSS -->
+
+    <link rel="stylesheet" href="../pmegphome/css/bootstrap.min.css" />
+    <link href="../pmegphome/css/style.css" rel="stylesheet" />
+    <link href="../pmegphome/Media Query/media.css" rel="stylesheet" />
+    <style type="text/css">
+      ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #8c4906;
+      }
+      li {
+        float: left;
+        border-right: 1px solid #bbb;
+      }
+      li:last-child {
+        border-right: none;
+      }
+      li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+      }
+      li a:hover:not(.active) {
+        background-color: #111;
+      }
+      .active {
+        background-color: #6e3904;
+      }
+      .row {
+        display: flex;
+        justify-content: center;
+        margin: 0 !important;
+      }
+      .card {
+        margin: 0 auto;
+        padding: 0 !important;
+        width: 100%;
+        box-shadow: 2px 2px 3px 2px rgb(0, 0, 0);
+      }
+      .card-body {
+        text-align: center;
+      } /* .card :hover { background-color:
+      #fac5a8; cursor: pointer; } */
+      .card-body .btn:hover {
+        background-color: #7606d1;
+        color: rgb(255, 255, 255);
+        box-shadow: 1px 1px 1px 1px rgb(70, 57, 129);
+      }
+      .card-body a {
+        text-decoration: none;
+        font-weight: 600;
+      }
+      .card-body .card-text {
+        font-weight: 600;
+      } /* Card for English */
+      .card-english {
+        background-color: #ffe7e2; /* Light red background */
+        color: #d96852;
+      }
+      .card-english .btn {
+        border: 2px solid rgb(255, 255, 255);
+        background-color: #d96852;
+        color: rgb(255, 255, 255);
+        box-shadow: 1px 1px 1px 1px rgb(0, 0, 0);
+      } /* Card for Hindi */
+      .card-hindi {
+        background-color: #daebff; /* Light green background */
+        color: #1594ee;
+      }
+      .card-hindi .btn {
+        border: 2px solid rgb(255, 255, 255);
+        background-color: #1594ee;
+        color: rgb(255, 255, 255);
+        box-shadow: 1px 1px 1px 1px rgb(0, 0, 0);
+      } /* Card for Assamese */
+      .card-assamese {
+        background-color: #ffc3c3;
+        /* Light blue background */
+        color: #ff4a4a;
+      }
+      .card-assamese .btn {
+        border: 2px solid rgb(255, 255, 255);
+        background-color: #ff4a4a;
+        color: rgb(255, 255, 255);
+        box-shadow: 1px 1px 1px 1px rgb(0, 0, 0);
+      } /* Card for Bengali
+      */
+      .card-bengali {
+        background-color: #ded4f4; /* Light yellow background
+      */
+        color: #6d2cfa;
+      }
+      .card-bengali .btn {
+        border: 2px solid rgb(255, 255, 255);
+        background-color: #6d2cfa;
+        color: rgb(255, 255, 255);
+        box-shadow: 1px 1px 1px 1px rgb(0, 0, 0);
+      } /* Card for Gujarati */
+      .card-gujarati {
+        background-color: #d2edcf; /* Light cyan background */
+        color: #0d6303;
+      }
+      .card-gujarati .btn {
+        border: 2px solid rgb(255, 255, 255);
+        background-color: #0d6303;
+        color: rgb(255, 255, 255);
+        box-shadow: 1px 1px 1px 1px rgb(0, 0, 0);
+      } /* Card for Kannada */
+      .card-kannada {
+        background-color: #fefbdf; /* Light gray background */
+        color: #968705;
+      }
+      .card-kannada .btn {
+        border: 2px solid rgb(255, 255, 255);
+        background-color: #968705;
+        color: rgb(255, 255, 255);
+        box-shadow: 1px 1px 1px 1px rgb(0, 0, 0);
+      } /* Card for Malayalam */
+      .card-malayalam {
+        background-color: #ecdffe; /* Light red background */
+        color: #410e83;
+      }
+      .card-malayalam .btn {
+        border: 2px solid rgb(255, 255, 255);
+        background-color: #410e83;
+        color: rgb(255, 255, 255);
+        box-shadow: 1px 1px 1px 1px rgb(0, 0, 0);
+      } /* Card for Marathi */
+      .card-marathi {
+        background-color: #dfedfe; /* Light pink background */
+        color: #04418b;
+      }
+      .card-marathi .btn {
+        border: 2px solid rgb(255, 255, 255);
+        background-color: #04418b;
+        color: rgb(255, 255, 255);
+        box-shadow: 1px 1px 1px 1px rgb(0, 0, 0);
+      } /* Card for Odiya */
+      .card-odiya {
+        background-color: #fef4db; /* Light green background */
+        color: #995404;
+      }
+      .card-odiya .btn {
+        border: 2px solid rgb(255, 255, 255);
+        background-color: #995404;
+        color: rgb(255, 255, 255);
+        box-shadow: 1px 1px 1px 1px rgb(0, 0, 0);
+      } /* Card for Punjabi */
+      .card-punjabi {
+        background-color: #fedff7; /*
+      Light blue background */
+        color: #ba389c;
+      }
+      .card-punjabi .btn {
+        border: 2px solid rgb(255, 255, 255);
+        background-color: #995404;
+        color: rgb(255, 255, 255);
+        box-shadow: 1px 1px 1px 1px rgb(0, 0, 0);
+      } /* Card for Tamil */
+      .card-tamil {
+        background-color: #e3fedf; /* Light yellow background */
+        color: #1a8509;
+      }
+      .card-tamil .btn {
+        border: 2px solid rgb(255, 255, 255);
+        background-color: #1a8509;
+        color: rgb(255, 255, 255);
+        box-shadow: 1px 1px 1px 1px rgb(0, 0, 0);
+      } /* Card for Telugu */
+      .card-telugu {
+        background-color: #ffe7e2; /* Light cyan background */
+        color: #9e3520;
+      }
+      .card-telugu .btn {
+        border: 2px solid rgb(255, 255, 255);
+        background-color: #9e3520;
+        color: rgb(255, 255, 255);
+        box-shadow: 1px 1px 1px 1px rgb(0, 0, 0);
+      }
+      @media (max-width: 768px) {
+        .card {
+          width: 100%;
+        }
+        .card-body .btn {
+          width: 100%;
+          font-size: 13px;
+        }
+        .card-body .card-text {
+          font-size: 1rem;
+        }
+        .top-header h3 {
+          font-size: 1.5rem;
+        }
+      }
+	  
+	  
+	  
+	  @font-face {
+  font-family: 'Noto';
+ src: url(languageimg/font/EPAOMAYEK.TTF);
+ 
+}
+ .M {
+font-family: 'Noto',sans-serif;
+
+      }
+    </style>
+  </head>
+
+  <body>
+    <style type="text/css">
+      <!-- .style1 {
+        color: #ffffff;
+      }
+      -- > ul.newmenucss {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #8c4906;
+      }
+      li.newmenucss {
+        float: left;
+        border-right: 1px solid #bbb;
+      }
+      li.newmenucss:last-child {
+        border-right: none;
+      }
+      li.newmenucss a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+      }
+      li.newmenucss a:hover:not(.active) {
+        background-color: #111;
+      }
+    </style>
+    <img src="../pmegphome/img/pmegp_banner_v2.jpg" width="100%" height="150" />
+
+    <ul class="newmenucss">
+      <li class="newmenucss">
+        <a class="active" href="../pmegphome/index.jsp">Home</a>
+      </li>
+      <li class="newmenucss">
+        <a href="pmegponline.jsp">Online Application</a>
+      </li>
+      <li class="newmenucss">
+        <a href="../dpr/DPRPACKAGE.xls" download>DPR</a>
+      </li>
+      <li class="newmenucss">
+        <a href="eligibility_criteria.jsp">Eligibility Criteria</a>
+      </li>
+      <li class="newmenucss">
+        <a
+          href="https://www.kviconline.gov.in/pmegp/pmegpweb/docs/jsp/newprojectReports.jsp"
+          target="_blank"
+          >Model Projects</a
+        >
+      </li>
+      <li class="newmenucss">
+        <a
+          href="https://www.kviconline.gov.in/pmegpeportal/PMEGPONLINETUTORIAL/pmegponline.swf.html"
+          >Video Tutorial</a
+        >
+      </li>
+      <li class="newmenucss"><a href="FAQ.jsp">FAQ</a></li>
+      <li class="newmenucss">
+        <a
+          href="https://my.msme.gov.in/MyMsme/List_of_AspirationalDistricts.aspx"
+          >Aspirational District</a
+        >
+      </li>
+      <li class="newmenucss">
+        <a href="offlineform.jsp">Offline Application in Regional Language</a>
+      </li>
+      <li class="newmenucss" style="float: right">
+        <a href="emiCalculator.jsp" style="background-color: #d14211"
+          >EMI/Interest Calculator</a
+        >
+      </li>
+    </ul>
+    <br />
+    <center><h3>Application Form in Regional Language</h3></center>
+  
+
+    <div class="container-fluid">
+      <section class="languages">
+        <div class="row">
+          <div class="col-md-4 mb-5">
+            <div class="card w-75 card-english">
+              <div class="card-body">
+                <!-- <h5 class="card-title">Card title</h5> -->
+                <p class="card-text">Offline Application</p>
+                <a
+                  href="RegionalLanguageforms/Final English_Version.pdf"
+                  download="RegionalLanguageforms/Final English_Version.pdf"
+                  class="btn"
+                  >English</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4 gx-5 mb-5">
+            <div class="card w-75 card-hindi">
+              <div class="card-body">
+                <!-- <h5 class="card-title">Card title</h5> -->
+                <p class="card-text">ऑफलाइन आवेदन</p>
+                <a
+                  href="RegionalLanguageforms/Final_Hindi_Version.pdf"
+                  download="RegionalLanguageforms/Final_Hindi_Version.pdf"
+                  class="btn"
+                  >हिन्दी /Hindi</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4 mb-5">
+            <div class="card w-75 card-assamese">
+              <div class="card-body">
+                <!-- <h5 class="card-title">Card title</h5> -->
+                <p class="card-text">অফলাইন এপ্লিকেচন</p>
+                <a
+                  href="RegionalLanguageforms/Final Assamese_Version.pdf"
+                  download="RegionalLanguageforms/Final Assamese_Version.pdf"
+                  class="btn"
+                  >অসমীয়া / Assamese</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-4 gx-5 mb-5">
+            <div class="card w-75 card-gujarati">
+              <div class="card-body">
+                <!-- <h5 class="card-title">Card title</h5> -->
+                <p class="card-text">ઑફલાઇન એપ્લિકેશન</p>
+                <a
+                  href="RegionalLanguageforms/Regional Language form_Gujarat.pdf"
+                  download="RegionalLanguageforms/Regional Language form_Gujarat.pdf"
+                  class="btn"
+                  >ગુજરાતી / Gujarati</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4 gx-5 mb-5">
+            <div class="card w-75 card-bengali">
+              <div class="card-body">
+                <!-- <h5 class="card-title">Card title</h5> -->
+                <p class="card-text">অফলাইন আবেদন</p>
+                <a
+                  href="RegionalLanguageforms/Regional Language form_West Bengal.pdf"
+                  download="RegionalLanguageforms/Regional Language form_West Bengal.pdf"
+                  class="btn"
+                  >বাংলা / Bangla</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4 gx-5 mb-5">
+            <div class="card w-75 card-kannada">
+              <div class="card-body">
+                <!-- <h5 class="card-title">Card title</h5> -->
+                <p class="card-text">ಆಫ್ಲೈನ್ ​​ಅಪ್ಲಿಕೇಶನ್</p>
+                <a
+                  href="RegionalLanguageforms/RegionalLanguageforms_Karnataka.pdf"
+                  download="RegionalLanguageforms/RegionalLanguageforms_Karnataka.pdf"
+                  class="btn"
+                  >ಕನ್ನಡ / Kannada</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-4 gx-5 mb-5">
+            <div class="card w-75 card-malayalam">
+              <div class="card-body">
+                <!-- <h5 class="card-title">Card title</h5> -->
+                <p class="card-text">ഓഫ്‌ലൈൻ ആപ്ലിക്കേഷൻ</p>
+                <a
+                  href="RegionalLanguageforms/Final Malyalam language.pdf"
+                  download="RegionalLanguageforms/Final Malyalam language.pdf"
+                  class="btn"
+                  >മലയാളം / Malayalam</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4 gx-5 mb-5">
+            <div class="card w-75 card-marathi">
+              <div class="card-body">
+                <!-- <h5 class="card-title">Card title</h5> -->
+                <p class="card-text">ऑफलाइन अर्ज</p>
+                <a
+                  href="RegionalLanguageforms/Regional Language form_Maharashtra.pdf"
+                  download="RegionalLanguageforms/Regional Language form_Maharashtra.pdf"
+                  class="btn"
+                  >मराठी / Marathi</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4 gx-5 mb-5">
+            <div class="card w-75 card-odiya">
+              <div class="card-body">
+                <!-- <h5 class="card-title">Card title</h5> -->
+                <p class="card-text">ଅଫଲାଇନ୍ ଆବେଦନ |</p>
+                <a
+                  href="RegionalLanguageforms/odiaoffline.pdf"
+                  download="RegionalLanguageforms/odiaoffline.pdf"
+                  class="btn"
+                  >ଓଡିଆ / Odiya</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-4 mb-5">
+            <div class="card w-75 card-punjabi">
+              <div class="card-body">
+                <!-- <h5 class="card-title">Card title</h5> -->
+                <p class="card-text">ਔਫਲਾਈਨ ਐਪਲੀਕੇਸ਼ਨ</p>
+                <a
+                  href="RegionalLanguageforms/Final Punjabi language.pdf"
+                  download="RegionalLanguageforms/odiaoffline.pdf"
+                  class="btn"
+                  >ਪੰਜਾਬੀ /Punjabi</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4 mb-5">
+            <div class="card w-75 card-tamil">
+              <div class="card-body">
+                <!-- <h5 class="card-title">Card title</h5> -->
+                <p class="card-text">ஆஃப்லைன் விண்ணப்பம்</p>
+                <a
+                  href="RegionalLanguageforms/Regional Language form_Tamil Nadu.pdf"
+                  download="RegionalLanguageforms/Regional Language form_Tamil Nadu.pdf"
+                  class="btn"
+                  >தமிழ் / Tamil</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4 gx-5 mb-5">
+            <div class="card w-75 card-telugu">
+              <div class="card-body">
+                <!-- <h5 class="card-title">Card title</h5> -->
+                <p class="card-text">ఆఫ్‌లైన్ అప్లికేషన్</p>
+                <a
+                  href="RegionalLanguageforms/Regional Language form_Andhra Pradesh.pdf"
+                  download="RegionalLanguageforms/Regional Language form_Andhra Pradesh.pdf"
+                  class="btn"
+                  >తెలుగు / Telugu</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+		
+		
+		
+		
+		
+		  <div class="row">
+          <div class="col-md-4 mb-5 mb-5">
+            <div class="card w-75 card-malayalam">
+              <div class="card-body">
+                <!-- <h5 class="card-title">Card title</h5> -->
+                <p class="card-text"><h4><p class="M">offline Application</p></h4>
+                 <a
+                  href="RegionalLanguageforms/Regional Language form_Manipuri.pdf"
+                  download="RegionalLanguageforms/Regional Language form_Manipuri.pdf"
+                  class="btn"
+                  ><h4><p class="M">Manipuri</p></h4>/Manipuri</a
+                >
+              </div>
+            </div>
+          </div>
+		  
+	    <div class="col-md-4 gx-5 mb-5">
+            <div class="card w-75 card-marathi">
+              <div class="card-body">
+                <!-- <h5 class="card-title">Card title</h5> -->
+                <p class="card-text">अफलाइन  आरज</p>
+                <a
+                  href="RegionalLanguageforms/BODO.pdf"
+                  download="RegionalLanguageforms/BODO.pdf"
+                  class="btn"
+                  >बड़ो / Bodo</a
+                >
+              </div>
+            </div>
+          </div>
+                    <div class="col-md-4 gx-5 mb-5">
+            <div class="card w-75 card-bengali">
+              <div class="card-body">
+                <!-- <h5 class="card-title">Card title</h5> -->
+                <p class="card-text">ऑफलाइन  दरखास्त</p>
+                <a
+                  href="RegionalLanguageforms/DOGRI.pdf"
+                  download="RegionalLanguageforms/DOGRI.pdf"
+                  class="btn"
+                  >डोगरी  / Dogri</a
+                >
+              </div>
+            </div>
+          </div>
+		  </div>
+
+       <div class="row">
+
+		  	    <div class="col-md-4 gx-5 mb-5">
+            <div class="card w-75 card-marathi">
+              <div class="card-body">
+                <!-- <h5 class="card-title">Card title</h5> -->
+                <p class="card-text">آف لائن درخواست</p>
+                <a
+                  href="RegionalLanguageforms/KASHMIRI.pdf"
+                  download="RegionalLanguageforms/KASHMIRI.pdf"
+                  class="btn"
+                  >کشمیرى  / Kashmiri</a
+                >
+              </div>
+            </div>
+          </div>
+	    <div class="col-md-4 gx-5 mb-5">
+            <div class="card w-75 card-tamil">
+              <div class="card-body">
+                <!-- <h5 class="card-title">Card title</h5> -->
+                <p class="card-text">ऑफलायन  अर्ज</p>
+                <a
+                  href="RegionalLanguageforms/KONKANI.pdf"
+                  download="RegionalLanguageforms/KONKANI.pdf"
+                  class="btn"
+                  >कोंकणी /  Konkani</a
+                >
+              </div>
+            </div>
+          </div>
+                    <div class="col-md-4 gx-5 mb-5">
+            <div class="card w-75 card-telugu">
+              <div class="card-body">
+                <!-- <h5 class="card-title">Card title</h5> -->
+                <p class="card-text">ऑफलाइन  आवेदन</p>
+                <a
+                  href="RegionalLanguageforms/MAITHALI.pdf"
+                  download="RegionalLanguageforms/MAITHALI.pdf"
+                  class="btn"
+                  >मैथिली  / Maithili</a
+                >
+              </div>
+            </div>
+          </div>
+		  </div>
+           <div class="row">
+
+		  	    <div class="col-md-4 gx-5 mb-5">
+            <div class="card w-75 card-hindi">
+              <div class="card-body">
+                <!-- <h5 class="card-title">Card title</h5> -->
+                <p class="card-text">अफलाइन  आवेदन</p>
+                <a
+                  href="RegionalLanguageforms/NEPALI.pdf"
+                  download="RegionalLanguageforms/NEPALI.pdf"
+                  class="btn"
+                  >नेपाली  / Nepali</a
+                >
+              </div>
+            </div>
+          </div>
+	    <div class="col-md-4 gx-5 mb-5">
+            <div class="card w-75 card-assamese">
+              <div class="card-body">
+                <!-- <h5 class="card-title">Card title</h5> -->
+                <p class="card-text">آف لائن درخواست</p>
+                <a
+                  href="RegionalLanguageforms/SINDHI.pdf"
+                  download="RegionalLanguageforms/SINDHI.pdf"
+                  class="btn"
+                  >سنڌي  / Sindhi</a
+                >
+              </div>
+            </div>
+          </div>
+                    <div class="col-md-4 gx-5 mb-5">
+            <div class="card w-75 card-gujarati">
+              <div class="card-body">
+                <!-- <h5 class="card-title">Card title</h5> -->
+                <p class="card-text">آف لائن درخواست</p>
+                <a
+                  href="RegionalLanguageforms/URDU.pdf"
+                  download="RegionalLanguageforms/URDU.pdf"
+                  class="btn"
+                  >اردو  / Urdu</a
+                >
+              </div>
+            </div>
+          </div>
+		  </div>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+      </section>
+    </div>
+
+    <script src="../pmegphome/js/popper.min.js"></script>
+    <script src="../pmegphome/js/jquery.min.js"></script>
+    <script src="../pmegphome/js/bootstrap.min.js"></script>
+  </body>
+</html>

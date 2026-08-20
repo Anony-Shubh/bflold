@@ -1,0 +1,119 @@
+<HTML>
+<HEAD>
+<META CHARSET="ISO-8859-1">
+<TITLE>Insert title here</TITLE>
+<SCRIPT language="javascript" src="js/Words.js"></SCRIPT>
+<SCRIPT language="javascript" src="js/sweetalert2.all.min.js"></SCRIPT>
+
+<SCRIPT src='js/emi.js'> </SCRIPT>
+
+<SCRIPT language="javascript">
+
+function callcalc() {
+var vamt=document.getElementById('amount').value;
+if ( Number(vamt) <1 ) {
+Swal.fire("Please enter Loan Amount...");
+
+return false;
+ 
+}else if ( Number(vamt) >2500000 ) {
+
+Swal.fire("Maximum Loan Amount is 25 lakhs");
+return false;
+}else{
+calculator();
+return false;
+}
+}
+</SCRIPT>
+<SCRIPT>
+function inte(){
+var vinte=document.getElementById('apr').value;
+if ( Number(vinte) == '' ) {
+	Swal.fire("Please enter annual Rate of Interest...");
+return false;
+}else{
+		 calculator();
+		 return false;
+	 }
+}
+
+</SCRIPT>
+
+
+<LINK rel="stylesheet" href="css/emi1.css">
+<LINK rel="stylesheet" href="css/sweetalert2.min.css">
+<LINK rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</HEAD>
+<BODY>
+<DIV class="calculator1" align="center" >
+  <H1>EMI Calculator for PMEGP Loan </H1>
+  <FORM name="loan-form"  oninput="callcalc(); inte();">
+  
+  
+  
+  
+     <DIV class="form1">  
+
+  <TABLE width="80%">
+  
+  <TR>
+    <TD><DIV align="center">Loan Amount</DIV></TD>
+    <TD><DIV align="center">Annual Rate of Interest</DIV></TD>
+    <TD><DIV align="center">Loan Tenure(In Years)</DIV></TD>
+  </TR>
+  <TR>
+  <TD><DIV align="center">
+    <INPUT type=number id="amount" style="border-radius:10px"  size="" PATTERN="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==7) return false;"  value="10000" onKeyUp="word.innerHTML=convertNumberToWords(this.value)" onBlur="callcalc(); inte();"/>
+  </DIV></TD>
+  <TD>
+     <DIV align="center">
+       <INPUT type="number" STEP="any"  name="apr" id="apr" PATTERN="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==4) return false;" value="10" onBlur="callcalc(); inte();" style="border-radius:5px">
+     </DIV></TD>
+  <TD>
+
+		<DIV align="center">
+		  <SELECT  id="tenure"  value="10" onBlur="callcalc(); "  >
+		    <OPTION value="1">1</OPTION>
+		    <OPTION value="2">2</OPTION>
+		    <OPTION value="3">3</OPTION>
+		    <OPTION value="4">4</OPTION>
+		    <OPTION value="5" selected>5</OPTION>
+		    <OPTION value="6">6</OPTION>
+		    <OPTION value="7">7</OPTION>
+		    <OPTION value="8">8</OPTION>
+		    <OPTION value="9">9</OPTION>
+		    <OPTION value="10">10</OPTION>
+		    </SELECT>
+		  </DIV></TD>
+  </TR>
+  </TABLE>       
+         
+     <H2 align="center"><DIV id="word"></DIV></H2>    
+         
+	</DIV>	
+
+    <BR>
+   <DIV class="form2" >
+   <DIV class='right'><DIV><B>Loan EMI : <BR>Rs. </B><P id="EMICapt" > </P></DIV></DIV>
+   <DIV class='middle'><DIV><B> Total interest Payable: <BR>Rs. </B><P id="EMICapts"></P></DIV></DIV>
+   <DIV class='left'><DIV><B> Total Payment <BR>(Principal+Interest): <BR>Rs. </B><P id="EMICaptss" > </P></DIV></DIV>
+   </DIV>
+   
+   
+  
+   <BR> 
+   <DIV align="center" class="note" >
+    <H4>Note:</H4>
+    <P><I ARIA-HIDDEN="true" class="fa fa-star fa-lg star-color"></I>Calculator is provided only as general self-help Planning Tools.</P>
+    <p1><I class="fa fa-star fa-lg star-color"></I> Calculated EMI Result is indicative only.</p>
+   </DIV>
+</FORM >
+</DIV>
+</BODY>
+</HTML>
+     
+    
+
+	
+   

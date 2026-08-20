@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>LOGIN</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link href="css/style.css" rel="stylesheet">
+  <link href="Media Query/media.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/font-awesome.css">
+  <link rel="stylesheet" href="css/font-awesome.min.css">
+</head>
+
+<body>
+  <section class="main" id="main">
+    <header class="top-banner mt-1 mb-1" style="width: 100%;" id="myDiv1">
+      <div class="container-fluid">
+        <img src="img/chairman_dashboard (9).jpg" style="margin: 0; width: 100%;">
+      </div>
+    </header>
+
+    <div class="limiter">
+      <div class="container-login100">
+        <div class="wrap-login100">
+          <!-- <div class="login100-form-title">
+                <img src="images/title-1.jpg">
+            </div> -->
+          <div class="login_head">
+            <h5>LOGIN</h5>
+          </div>
+          <form class="login100-form validate-form">
+            <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
+              <span class="label-input100">Username&nbsp;:</span>
+              <input class="input100" type="text" name="username" placeholder="Enter username">
+              <span class="focus-input100"></span>
+            </div>
+            <div class="wrap-input100 validate-input m-b-18" data-validate="Password is required">
+              <span class="label-input100">Password&nbsp;:</span>
+              <input class="input100" type="password" name="pass" placeholder="Enter password">
+              <span class="focus-input100"></span>
+            </div>
+            <div class="check-100">
+              <div class="contact100-form-checkbox">
+                <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
+                <label class="label-checkbox100" for="ckb1">
+                  Remember me
+                </label>
+              </div>
+
+            </div>
+            <div class="container-login100-form-btn">
+              <a href="index.html" class="login100-form-btn">
+                Login
+              </a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-------------------------------------------------Footer Section  start  ---------------------------------------------->
+
+    <Footer>
+      <div class="container-fluid">
+        <div class="footer-content py-2">
+          <p>DESIGNED AND MAINTAINED
+            BY DIRECTORATE OF INFORMATION TECHNOLOGY, KVIC, MUMBAI
+          </p>
+        </div>
+      </div>
+    </Footer>
+
+  </section>
+
+  <!-------------------------------------------------Footer Section End  ---------------------------------------------->
+
+  <div class="alert kircs-alert" role="alert">
+    <div class="login-links">
+      <a href="#" class="alert-link">ON TOUR</a>
+      <a href="#" class="alert-link">ON LEAVE</a>
+    </div>
+  </div>
+
+
+
+
+  <script src="js/popper.min.js"></script>
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $('#login-alert').click(function () {
+        $('.alert').show()
+      })
+    });
+
+    function readonlyFunction() {
+      document.getElementById("main").disabled = true;
+      document.getElementById("main").style.filter = 'blur(10px)';
+    }
+  </script>
+
+</body>
+
+</html>

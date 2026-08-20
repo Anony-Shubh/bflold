@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="samadhan" language="groovy" pageWidth="1050" pageHeight="842" columnWidth="1010" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d1341742-b40b-41a5-9965-10bf77090f6e">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="Table Dataset 1" uuid="458c6401-5346-4570-a307-21ffca8a6757">
+		<parameter name="PSINVNO" class="java.lang.String">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="PSTATECD" class="java.lang.String">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[SELECT
+    mom.agency_type,
+     ms.state_nm     AS state,
+    mom.off_name2   AS off_name1,
+    md.district_name,
+    ad.app_id,
+    ad.app_name,
+    TO_CHAR(last_day(bsa.inv_date), 'DD-MON-RRRR') AS invoice_dt,
+    TO_CHAR(BSA.cert_dt, 'DD-MON-RRRR') AS edp_cert_dt
+FROM
+    app_detail                  ad,
+    mas_off_mast                mom,
+    m_state                     ms,
+    zone_mast                   zm,
+    m_district                  md,
+    bnf_samadhanedp_appdetail   bsa
+WHERE
+    ad.app_id = bsa.app_id
+    AND ad.off_cd = mom.off_cd
+    AND ms.zone_cd = zm.zone_cd
+    AND md.district_cd = mom.district_cd
+    AND ms.state_cd = md.state_cd
+    AND last_day(trunc(bsa.inv_date)) = $P{PSINVNO}
+    AND mom.off_type_cd IN (
+        2,
+        3,
+        22,
+        5,
+        27
+    )
+and mom.mis_off_cd2=$P{PSTATECD}]]>
+		</queryString>
+		<field name="AGENCY_TYPE" class="java.lang.String"/>
+		<field name="STATE" class="java.lang.String"/>
+		<field name="OFF_NAME1" class="java.lang.String"/>
+		<field name="DISTRICT_NAME" class="java.lang.String"/>
+		<field name="APP_ID" class="java.lang.String"/>
+		<field name="APP_NAME" class="java.lang.String"/>
+		<field name="INVOICE_DT" class="java.lang.String"/>
+		<field name="EDP_CERT_DT" class="java.lang.String"/>
+	</subDataset>
+	<parameter name="PINVMONTH" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PSTATECD" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select 1 from dual]]>
+	</queryString>
+	<field name="1" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="3" splitType="Stretch"/>
+	</title>
+	<summary>
+		<band height="188" splitType="Stretch">
+			<componentElement>
+				<reportElement key="table 4" style="table 4" stretchType="RelativeToBandHeight" x="0" y="0" width="1010" height="183" isPrintInFirstWholeBand="true" uuid="9e0150f1-129d-414f-8027-66900c87e4c3"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" whenNoDataType="AllSectionsNoDetail">
+					<datasetRun subDataset="Table Dataset 1" uuid="7c8ad2f4-c8df-4c31-bbeb-2d76dcf11694">
+						<datasetParameter name="PSINVNO">
+							<datasetParameterExpression><![CDATA[$P{PINVMONTH}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="PSTATECD">
+							<datasetParameterExpression><![CDATA[$P{PSTATECD}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="90" uuid="0fcd306a-dd64-41eb-8fa1-6cb03b38a42a">
+						<jr:tableHeader height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table 4_CH" x="0" y="0" width="90" height="30" uuid="f69a7bb2-e653-48f7-9e11-3e77f45d47a5"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="12" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Sr No]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell style="table 4_TD" height="30" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="30" uuid="ac87b3de-51fd-4706-8b5f-5105a4d354c3"/>
+								<textElement textAlignment="Center">
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="980f33f1-1484-4c45-b504-76ba10f924ce">
+						<jr:tableHeader height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table 4_CH" x="0" y="0" width="90" height="30" uuid="d886760e-1d8e-45be-8d0f-94a9f0fa0315"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="12" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Agency Type]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell style="table 4_TD" height="30" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="30" uuid="4a3467fa-c2e3-472c-beff-1db2d822f02a"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{AGENCY_TYPE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="8a31ca48-024b-47f7-bb41-4e761dcb5d4e">
+						<jr:tableHeader height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table 4_CH" x="0" y="0" width="90" height="30" uuid="0e780954-3fab-4a10-8aba-ca72c1caeea3"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="12" isBold="true"/>
+								</textElement>
+								<text><![CDATA[State]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell style="table 4_TD" height="30" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="30" uuid="90821fc9-b520-4918-b1c8-feb0c0c506d7"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{STATE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="125" uuid="ba5eaf11-67bc-4ca6-948c-0ae5cbec73fa">
+						<jr:tableHeader height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table 4_CH" x="0" y="0" width="125" height="30" uuid="de5f71b1-86c2-4f07-b084-7bdf6ac8a07e"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="12" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Office Name]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell style="table 4_TD" height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true">
+								<reportElement x="0" y="0" width="125" height="30" uuid="c7b2145c-3a69-4258-b604-e2dabb474c14"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{OFF_NAME1}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="104" uuid="a83cd671-ff55-4e7d-b0b7-b116b1a9ed72">
+						<jr:tableHeader height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table 4_CH" x="0" y="0" width="104" height="30" uuid="15202c71-a0c6-425a-a80f-4f210b1e195d"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="12" isBold="true"/>
+								</textElement>
+								<text><![CDATA[District]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell style="table 4_TD" height="30" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="104" height="30" uuid="a36be4da-d6e1-4666-9aa0-2bd2327f3f5f"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{DISTRICT_NAME}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="129" uuid="9a6b279b-30a6-4c66-a64e-e387b1cbcbce">
+						<jr:tableHeader height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table 4_CH" x="0" y="0" width="129" height="30" uuid="179c8d9b-806b-47b1-bb98-dc1456262b0f"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="12" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Applicant ID]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell style="table 4_TD" height="30" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="129" height="30" uuid="4d6b4686-d775-4ca6-a15f-02c280fb727d"/>
+								<box leftPadding="4"/>
+								<textElement verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{APP_ID}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="118" uuid="22a69166-33c0-425e-bfb1-33d260fd26e3">
+						<jr:tableHeader height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table 4_CH" x="0" y="0" width="118" height="30" uuid="6b3247fc-f811-4930-ba21-10bc384781f6"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="12" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Applicant Name]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell style="table 4_TD" height="30" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="118" height="30" uuid="ae606aa8-57f0-40bb-83b8-8c8432fe07de"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{APP_NAME}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="113" uuid="7e775d8c-7808-4740-ba00-3bb1b63f1ee1">
+						<jr:tableHeader height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table 4_CH" x="0" y="0" width="113" height="30" uuid="fb17f607-a208-4af8-98c4-b743233b14ff"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="12" isBold="true"/>
+								</textElement>
+								<text><![CDATA[ Date]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell style="table 4_TD" height="30" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="113" height="30" uuid="b16d4ea3-e801-4d23-be42-5eb344f73af4"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{INVOICE_DT}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="137" uuid="250922f9-3958-43b1-bbe9-c69d0db3bd75">
+						<jr:tableHeader height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table 4_CH" x="0" y="0" width="137" height="30" uuid="ce2e9d8f-ed0e-4ab0-b892-a34cf493137a"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="12" isBold="true"/>
+								</textElement>
+								<text><![CDATA[EDP Certificate Date]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell style="table 4_TD" height="30" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="137" height="30" uuid="379b6eb8-89e6-46d4-b9bc-56ef0f744abf"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{EDP_CERT_DT}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+	</summary>
+</jasperReport>

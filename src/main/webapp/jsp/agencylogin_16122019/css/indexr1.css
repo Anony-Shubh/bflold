@@ -1,0 +1,37 @@
+body{font-family:Verdana, Arial, Helvetica, sans-serif;font-size:x-small;color:#000;line-height:150%;margin:1px;}
+td{font-family:Arial;font-size:small;color:#000;font-weight:700;line-height:150%;background:#FFF;}
+.lastyn{ bgcolor:#00FF66;}
+th{font-family:Verdana, Arial, Helvetica, sans-serif;font-size:10px;color:#FFF;background:#CC6600;}
+input[type=text]{color:#000;padding-left:1px;text-decoration:none;font-size:small;font-weight:700;background:#E1FFFF;}
+input[type=password]{color:#000;padding-left:1px;text-decoration:none;font-size:small;font-weight:700;background:#E1FFFF;}
+.button{color: #990000; font-weight: bold; font-size: 14;BACKGROUND-COLOR:#CC6600; BORDER-BOTTOM-COLOR: #000099; BORDER-LEFT-COLOR: #000099; BORDER-RIGHT-COLOR: #000099 BORDER-TOP-COLOR: #000099; COLOR: white; HEIGHT: 25px; LEFT: 344px; POSITION: bottom; TOP: 99px; WIDTH: 130px; Z-INDEX: 101;}
+.button:hover{background:rgba(255,204,0,0.8);}
+.headings{font-size:large;}
+a:hover{color:#000066;text-decoration:none;}
+a:link,a:visited{color:#0000CC;}
+.dwlink A:link {text-decoration: underline overline}
+.dwlink A:visited {text-decoration: underline overline}
+.dwlink A:active {text-decoration: underline overline}
+.dwlink A:hover {text-decoration: underline; color: green;}
+
+div.header
+{
+    position:fixed;
+    top:0px;
+    width:98%;
+    display:block;
+}
+
+div.footer 
+{
+    width:98%;
+    position:fixed;
+    bottom:0px;
+}
+div.pageBreak
+{
+    page-break-after: always;
+}
+thead { display: table-header-group; }
+tfoot { display: table-footer-group; }
+.noprint {display:none;}

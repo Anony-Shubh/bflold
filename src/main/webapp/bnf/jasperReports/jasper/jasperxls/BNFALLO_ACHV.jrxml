@@ -1,0 +1,657 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="BNFALLO_ACHV" language="groovy" pageWidth="2736" pageHeight="595" orientation="Landscape" columnWidth="2696" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3cc08cc1-d747-408d-bc24-de283fd3fe65">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Crosstab Data Text" hAlign="Center"/>
+	<queryString>
+		<![CDATA[SELECT OFF_CD,BNF_HDID
+,OFF_NAME1,ZONE_NM,CASE WHEN BNF_HDID=17 THEN 'DEO' ELSE BNF_MAIN_HEAD_SH_DESC END AS BNF_MAIN_HEAD_SH_DESC,SUM(NO_OF_PRJ) AS NO_OF_PRJ,
+SUM(MM_AMT) AS MM_AMT,SUM(NO_OF_PRJ_B) AS NO_OF_PRJ_B,
+SUM(MM_AMT_B) AS MM_AMT_B
+FROM (
+(SELECT  OFF_CD,BNF_HDID
+,OFF_NAME1,ZONE_NM,BNF_MAIN_HEAD_SH_DESC,
+NO_OF_PRJ,
+ROUND(MM_AMT/100000,2) AS MM_AMT,
+0 AS NO_OF_PRJ_B,
+0 AS MM_AMT_B
+FROM (SELECT OFF_CD,OFF_NAME1,ZONE_NM,BNF_MAIN_HEAD_SH_DESC,BNF_HDID,
+SUM(NVL(CASE WHEN BNF_HDID BETWEEN 3 AND 10 THEN 1
+ ELSE PH_KVIC+PH_KVIB+PH_DIC END ,0)) AS  NO_OF_PRJ,
+SUM(FIN_KVIC+FIN_KVIB+FIN_DIC) AS MM_AMT
+FROM(
+SELECT BOM.OFF_CD,BHM.BNF_HDID,
+  BOM.OFF_NAME1,BOM.ZONE_NM,
+  BHM.BNF_MAIN_HEAD_SH_DESC,
+  NVL(BFT.PH_KVIC,0)AS PH_KVIC,
+   NVL(BFT.FIN_KVIC,0)AS FIN_KVIC,
+   NVL(BFT.PH_KVIB,0)AS PH_KVIB,
+   NVL(BFT.FIN_KVIB,0)AS FIN_KVIB,
+   NVL(BFT.PH_DIC,0)AS PH_DIC,
+   NVL(BFT.FIN_DIC,0)AS FIN_DIC
+FROM BNF_FO_TRANS BFT,
+  BNF_OFF_MAST BOM,
+  BNF_HEAD_MAST BHM
+WHERE BFT.OFF_CD(+)=BOM.OFF_CD
+AND BHM.BNF_HDID= BFT.BUD_ID
+) group by OFF_CD, OFF_NAME1, ZONE_NM, BNF_MAIN_HEAD_SH_DESC,BNF_HDID))
+UNION ALL
+( SELECT
+ OFF_CD,BNF_HDID,OFF_NAME1,ZONE_NM,BNF_MAIN_HEAD_SH_DESC,0 AS NO_OF_PRJ,0 AS MM_AMT,
+ (PHY_NO_KVIC_B+PHY_NO_KVIB_B+PHY_NO_DIC_B) AS NO_OF_PRJ_B,
+ (FIN_AMT_KVIC_B+FIN_AMT_KVIB_B+FIN_AMT_DIC_B) AS MM_AMT_B FROM (
+ select
+  BBM.OFF_CD,BHM.BNF_HDID,
+  BOM.OFF_NAME1,BOM.ZONE_NM,
+  BHM.BNF_MAIN_HEAD_SH_DESC,
+  NVL(PHY_NO_KVIC,0)AS PHY_NO_KVIC_B,
+   NVL(PHY_NO_KVIB,0)AS PHY_NO_KVIB_B,
+   NVL(PHY_NO_DIC,0)AS PHY_NO_DIC_B,
+   NVL(FIN_AMT_KVIC,0)AS FIN_AMT_KVIC_B,
+   NVL(FIN_AMT_KVIB,0)AS FIN_AMT_KVIB_B,
+   NVL(FIN_AMT_DIC,0)AS FIN_AMT_DIC_B
+FROM BNF_BUDGET_MAST BBM,
+  BNF_OFF_MAST BOM,
+  BNF_HEAD_MAST BHM
+WHERE BBM.OFF_CD=BOM.OFF_CD
+AND BHM.BNF_HDID= BBM.BNF_HDID))) group by OFF_CD, BNF_HDID, OFF_NAME1, ZONE_NM, BNF_MAIN_HEAD_SH_DESC]]>
+	</queryString>
+	<field name="OFF_CD" class="java.math.BigDecimal"/>
+	<field name="BNF_HDID" class="java.math.BigDecimal"/>
+	<field name="OFF_NAME1" class="java.lang.String"/>
+	<field name="ZONE_NM" class="java.lang.String"/>
+	<field name="BNF_MAIN_HEAD_SH_DESC" class="java.lang.String"/>
+	<field name="NO_OF_PRJ" class="java.math.BigDecimal"/>
+	<field name="MM_AMT" class="java.math.BigDecimal"/>
+	<field name="NO_OF_PRJ_B" class="java.math.BigDecimal"/>
+	<field name="MM_AMT_B" class="java.math.BigDecimal"/>
+	<variable name="MM_ACHV" class="java.math.BigDecimal" calculation="Average">
+		<variableExpression><![CDATA[]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="10" y="10" width="2686" height="20" uuid="d331385a-0976-4d68-9ecd-3d06597d1196"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CONSOLIDATED STATEMENT SHOWING STATE/DIVISIONAL OFFICE WISE EVENT-WISE ALLOCATION AND UTILISITION OF FUND OF BFL UNDER PMEGP FOR THE YEAR 2018-19]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="143" splitType="Stretch">
+			<crosstab isRepeatColumnHeaders="false" isRepeatRowHeaders="false">
+				<reportElement style="Crosstab Data Text" x="15" y="0" width="2681" height="143" uuid="1e898096-2955-481d-808e-be8cdf3e22e5"/>
+				<crosstabHeaderCell>
+					<cellContents>
+						<staticText>
+							<reportElement style="Crosstab Data Text" x="0" y="0" width="38" height="30" uuid="14759f30-b079-4e2d-aad6-76b86af7a947"/>
+							<box>
+								<pen lineWidth="0.25"/>
+								<topPen lineWidth="0.25"/>
+								<leftPen lineWidth="0.25"/>
+								<bottomPen lineWidth="0.25"/>
+								<rightPen lineWidth="0.25"/>
+							</box>
+							<textElement verticalAlignment="Middle"/>
+							<text><![CDATA[Zone]]></text>
+						</staticText>
+						<staticText>
+							<reportElement style="Crosstab Data Text" x="38" y="0" width="51" height="30" uuid="267591e5-a3c7-4d09-ab9a-79804e9693cd"/>
+							<box>
+								<pen lineWidth="0.25"/>
+								<topPen lineWidth="0.25"/>
+								<leftPen lineWidth="0.25"/>
+								<bottomPen lineWidth="0.25"/>
+								<rightPen lineWidth="0.25"/>
+							</box>
+							<textElement verticalAlignment="Middle"/>
+							<text><![CDATA[Office]]></text>
+						</staticText>
+					</cellContents>
+				</crosstabHeaderCell>
+				<rowGroup name="ZONE_NM" width="38" totalPosition="End">
+					<bucket class="java.lang.String">
+						<bucketExpression><![CDATA[$F{ZONE_NM}]]></bucketExpression>
+					</bucket>
+					<crosstabRowHeader>
+						<cellContents backcolor="#F0F8FF" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textField>
+								<reportElement style="Crosstab Data Text" x="0" y="0" width="38" height="25" uuid="dda4ec58-0f49-42e8-b86f-08f70537c06e"/>
+								<box>
+									<pen lineWidth="0.25"/>
+									<topPen lineWidth="0.25"/>
+									<leftPen lineWidth="0.25"/>
+									<bottomPen lineWidth="0.25"/>
+									<rightPen lineWidth="0.25"/>
+								</box>
+								<textFieldExpression><![CDATA[$V{ZONE_NM}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabRowHeader>
+					<crosstabTotalRowHeader>
+						<cellContents backcolor="#005FB3" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="89" height="25" forecolor="#FFFFFF" uuid="62545512-b0d0-4792-8a0e-85ed0a6490b1"/>
+								<box>
+									<pen lineWidth="0.25"/>
+									<topPen lineWidth="0.25"/>
+									<leftPen lineWidth="0.25"/>
+									<bottomPen lineWidth="0.25"/>
+									<rightPen lineWidth="0.25"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<text><![CDATA[Total ZONE_NM]]></text>
+							</staticText>
+						</cellContents>
+					</crosstabTotalRowHeader>
+				</rowGroup>
+				<rowGroup name="OFF_NAME1" width="51" totalPosition="End">
+					<bucket class="java.lang.String">
+						<bucketExpression><![CDATA[$F{OFF_NAME1}]]></bucketExpression>
+					</bucket>
+					<crosstabRowHeader>
+						<cellContents backcolor="#F0F8FF" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textField>
+								<reportElement style="Crosstab Data Text" x="0" y="0" width="51" height="25" uuid="12e3413d-9751-439d-9fe0-38a449e47b26"/>
+								<box>
+									<pen lineWidth="0.25"/>
+									<topPen lineWidth="0.25"/>
+									<leftPen lineWidth="0.25"/>
+									<bottomPen lineWidth="0.25"/>
+									<rightPen lineWidth="0.25"/>
+								</box>
+								<textElement>
+									<font size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{OFF_NAME1}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabRowHeader>
+					<crosstabTotalRowHeader>
+						<cellContents backcolor="#BFE1FF" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="51" height="25" uuid="03d59b46-93b7-495c-93dc-0ee0e5d028aa"/>
+								<box>
+									<pen lineWidth="0.25"/>
+									<topPen lineWidth="0.25"/>
+									<leftPen lineWidth="0.25"/>
+									<bottomPen lineWidth="0.25"/>
+									<rightPen lineWidth="0.25"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<text><![CDATA[Total OFF_NAME1]]></text>
+							</staticText>
+						</cellContents>
+					</crosstabTotalRowHeader>
+				</rowGroup>
+				<columnGroup name="BNF_MAIN_HEAD_SH_DESC" height="30" totalPosition="End">
+					<bucket class="java.lang.String">
+						<bucketExpression><![CDATA[$F{BNF_MAIN_HEAD_SH_DESC}]]></bucketExpression>
+					</bucket>
+					<crosstabColumnHeader>
+						<cellContents backcolor="#F0F8FF" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textField>
+								<reportElement style="Crosstab Data Text" x="0" y="0" width="90" height="11" uuid="460992f7-d950-4994-8007-c1a80c4ca9ee"/>
+								<box>
+									<pen lineWidth="0.25"/>
+									<topPen lineWidth="0.25"/>
+									<leftPen lineWidth="0.25"/>
+									<bottomPen lineWidth="0.25"/>
+									<rightPen lineWidth="0.25"/>
+								</box>
+								<textElement>
+									<font size="6"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{BNF_MAIN_HEAD_SH_DESC}]]></textFieldExpression>
+							</textField>
+							<staticText>
+								<reportElement style="Crosstab Data Text" x="0" y="11" width="45" height="9" uuid="94c7ffea-eb6b-45f9-9238-812c99cb078d"/>
+								<box>
+									<pen lineWidth="0.25"/>
+									<topPen lineWidth="0.25"/>
+									<leftPen lineWidth="0.25"/>
+									<bottomPen lineWidth="0.25"/>
+									<rightPen lineWidth="0.25"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font size="7" isBold="true"/>
+								</textElement>
+								<text><![CDATA[ALLOCATED]]></text>
+							</staticText>
+							<staticText>
+								<reportElement style="Crosstab Data Text" x="45" y="11" width="45" height="9" uuid="6c689769-1020-4301-abba-c9cae24e26e6"/>
+								<box>
+									<pen lineWidth="0.25"/>
+									<topPen lineWidth="0.25"/>
+									<leftPen lineWidth="0.25"/>
+									<bottomPen lineWidth="0.25"/>
+									<rightPen lineWidth="0.25"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font size="7" isBold="true"/>
+								</textElement>
+								<text><![CDATA[UTILIZED]]></text>
+							</staticText>
+							<staticText>
+								<reportElement style="Crosstab Data Text" x="66" y="20" width="24" height="10" uuid="bb020603-9b9c-4961-9240-bdc375448395"/>
+								<box>
+									<pen lineWidth="0.25"/>
+									<topPen lineWidth="0.25"/>
+									<leftPen lineWidth="0.25"/>
+									<bottomPen lineWidth="0.25"/>
+									<rightPen lineWidth="0.25"/>
+								</box>
+								<textElement>
+									<font size="5"/>
+								</textElement>
+								<text><![CDATA[Amt]]></text>
+							</staticText>
+							<staticText>
+								<reportElement style="Crosstab Data Text" x="45" y="20" width="21" height="10" uuid="b11b9e1a-f690-4aa4-b13a-c471f7e0a516"/>
+								<box>
+									<pen lineWidth="0.25"/>
+									<topPen lineWidth="0.25"/>
+									<leftPen lineWidth="0.25"/>
+									<bottomPen lineWidth="0.25"/>
+									<rightPen lineWidth="0.25"/>
+								</box>
+								<textElement>
+									<font size="5"/>
+								</textElement>
+								<text><![CDATA[No.Of Prj]]></text>
+							</staticText>
+							<staticText>
+								<reportElement style="Crosstab Data Text" x="0" y="20" width="23" height="10" uuid="44bee490-1979-4b61-b9a8-b790d0bd7f3d"/>
+								<box>
+									<pen lineWidth="0.25"/>
+									<topPen lineWidth="0.25"/>
+									<leftPen lineWidth="0.25"/>
+									<bottomPen lineWidth="0.25"/>
+									<rightPen lineWidth="0.25"/>
+								</box>
+								<textElement>
+									<font size="5"/>
+								</textElement>
+								<text><![CDATA[No.Of Prj]]></text>
+							</staticText>
+							<staticText>
+								<reportElement style="Crosstab Data Text" x="23" y="20" width="22" height="10" uuid="cb40e5d7-4c5a-4702-bd65-4a1e8e48e6fa"/>
+								<box>
+									<pen lineWidth="0.25"/>
+									<topPen lineWidth="0.25"/>
+									<leftPen lineWidth="0.25"/>
+									<bottomPen lineWidth="0.25"/>
+									<rightPen lineWidth="0.25"/>
+								</box>
+								<textElement>
+									<font size="5"/>
+								</textElement>
+								<text><![CDATA[Amt]]></text>
+							</staticText>
+						</cellContents>
+					</crosstabColumnHeader>
+					<crosstabTotalColumnHeader>
+						<cellContents backcolor="#BFE1FF" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="27" height="30" uuid="47ca1894-1f0e-4329-9ffd-ee187f0b22f4"/>
+								<box>
+									<pen lineWidth="0.25"/>
+									<topPen lineWidth="0.25"/>
+									<leftPen lineWidth="0.25"/>
+									<bottomPen lineWidth="0.25"/>
+									<rightPen lineWidth="0.25"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="7"/>
+								</textElement>
+								<text><![CDATA[Total Budget]]></text>
+							</staticText>
+							<staticText>
+								<reportElement style="Crosstab Data Text" x="27" y="0" width="26" height="30" uuid="3c1ca2dc-4433-4f3b-b30f-f755c1c7379f"/>
+								<textElement verticalAlignment="Middle">
+									<font size="5" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Total Utilization in
+ %]]></text>
+							</staticText>
+						</cellContents>
+					</crosstabTotalColumnHeader>
+				</columnGroup>
+				<measure name="MM_AMTMeasure" class="java.math.BigDecimal" calculation="Sum">
+					<measureExpression><![CDATA[$F{MM_AMT}]]></measureExpression>
+				</measure>
+				<measure name="MM_AMT_BMeasure" class="java.math.BigDecimal" calculation="Sum">
+					<measureExpression><![CDATA[$F{MM_AMT_B}]]></measureExpression>
+				</measure>
+				<measure name="ACHV_PER" class="java.math.BigDecimal" percentageOf="GrandTotal">
+					<measureExpression><![CDATA[]]></measureExpression>
+				</measure>
+				<measure name="NO_OF_PRJ" class="java.math.BigDecimal" calculation="Sum">
+					<measureExpression><![CDATA[$F{NO_OF_PRJ}]]></measureExpression>
+				</measure>
+				<measure name="NO_OF_PRJ_B" class="java.math.BigDecimal" calculation="Sum">
+					<measureExpression><![CDATA[$F{NO_OF_PRJ_B}]]></measureExpression>
+				</measure>
+				<crosstabCell width="90" height="25">
+					<cellContents>
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField>
+							<reportElement style="Crosstab Data Text" x="66" y="0" width="24" height="25" uuid="f3106c0a-54d4-4aa1-8867-519bc4dec056"/>
+							<box>
+								<pen lineWidth="0.25"/>
+								<topPen lineWidth="0.25"/>
+								<leftPen lineWidth="0.25"/>
+								<bottomPen lineWidth="0.25"/>
+								<rightPen lineWidth="0.25"/>
+							</box>
+							<textElement>
+								<font size="7"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{MM_AMTMeasure}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement style="Crosstab Data Text" x="23" y="0" width="22" height="25" uuid="503afee7-9e09-47c6-96a3-daad1c593736"/>
+							<box>
+								<pen lineWidth="0.25"/>
+								<topPen lineWidth="0.25"/>
+								<leftPen lineWidth="0.25"/>
+								<bottomPen lineWidth="0.25"/>
+								<rightPen lineWidth="0.25"/>
+							</box>
+							<textElement>
+								<font size="7"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{MM_AMT_BMeasure}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement style="Crosstab Data Text" x="45" y="0" width="21" height="25" uuid="60dd4f9a-feb5-423a-8a7e-367190beaaf3"/>
+							<box>
+								<pen lineWidth="0.25"/>
+								<topPen lineWidth="0.25"/>
+								<leftPen lineWidth="0.25"/>
+								<bottomPen lineWidth="0.25"/>
+								<rightPen lineWidth="0.25"/>
+							</box>
+							<textElement>
+								<font size="7"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{NO_OF_PRJ}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement style="Crosstab Data Text" x="0" y="0" width="23" height="25" uuid="1a5fb873-6dd8-4b56-8321-57c312c6c94d"/>
+							<box>
+								<pen lineWidth="0.25"/>
+								<topPen lineWidth="0.25"/>
+								<leftPen lineWidth="0.25"/>
+								<bottomPen lineWidth="0.25"/>
+								<rightPen lineWidth="0.25"/>
+							</box>
+							<textElement>
+								<font size="7"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{NO_OF_PRJ_B}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="90" height="25" rowTotalGroup="ZONE_NM">
+					<cellContents backcolor="#005FB3" mode="Opaque">
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField>
+							<reportElement style="Crosstab Data Text" x="66" y="0" width="24" height="25" forecolor="#FFFFFF" uuid="63939418-a6b1-4db6-a53a-9b228225c560"/>
+							<box>
+								<pen lineWidth="0.25"/>
+								<topPen lineWidth="0.25"/>
+								<leftPen lineWidth="0.25"/>
+								<bottomPen lineWidth="0.25"/>
+								<rightPen lineWidth="0.25"/>
+							</box>
+							<textElement>
+								<font size="7"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{MM_AMTMeasure}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement style="Crosstab Data Text" x="23" y="0" width="22" height="25" forecolor="#FFFFFF" uuid="a27fa82f-fbc2-457a-88c9-0d1bad8af233"/>
+							<box>
+								<pen lineWidth="0.25"/>
+								<topPen lineWidth="0.25"/>
+								<leftPen lineWidth="0.25"/>
+								<bottomPen lineWidth="0.25"/>
+								<rightPen lineWidth="0.25"/>
+							</box>
+							<textElement>
+								<font size="7"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{MM_AMT_BMeasure}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement style="Crosstab Data Text" x="0" y="0" width="23" height="25" forecolor="#FFFFFF" uuid="cefe4cf6-56fd-45a3-a317-8cbe76ade738"/>
+							<box>
+								<pen lineWidth="0.25"/>
+								<topPen lineWidth="0.25"/>
+								<leftPen lineWidth="0.25"/>
+								<bottomPen lineWidth="0.25"/>
+								<rightPen lineWidth="0.25"/>
+							</box>
+							<textElement>
+								<font size="7"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{NO_OF_PRJ_B}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement style="Crosstab Data Text" x="45" y="0" width="21" height="25" forecolor="#FFFFFF" uuid="2e776462-4f2c-46a4-9ad2-b0285b712693"/>
+							<box>
+								<pen lineWidth="0.25"/>
+								<topPen lineWidth="0.25"/>
+								<leftPen lineWidth="0.25"/>
+								<bottomPen lineWidth="0.25"/>
+								<rightPen lineWidth="0.25"/>
+							</box>
+							<textElement>
+								<font size="7"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{NO_OF_PRJ}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="53" height="25" columnTotalGroup="BNF_MAIN_HEAD_SH_DESC">
+					<cellContents backcolor="#BFE1FF" mode="Opaque">
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField>
+							<reportElement style="Crosstab Data Text" x="0" y="0" width="27" height="25" uuid="306bff5b-5155-4d6a-afd2-6b63fcde0858"/>
+							<box>
+								<pen lineWidth="0.25"/>
+								<topPen lineWidth="0.25"/>
+								<leftPen lineWidth="0.25"/>
+								<bottomPen lineWidth="0.25"/>
+								<rightPen lineWidth="0.25"/>
+							</box>
+							<textElement verticalAlignment="Middle">
+								<font size="8"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{MM_AMT_BMeasure}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###0.00;-###0.00">
+							<reportElement x="27" y="0" width="26" height="25" uuid="223931a1-767c-4c08-ae60-f7e276b67e66"/>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font size="8"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{MM_AMTMeasure}/$V{MM_AMT_BMeasure}*100]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="53" height="25" rowTotalGroup="ZONE_NM" columnTotalGroup="BNF_MAIN_HEAD_SH_DESC">
+					<cellContents backcolor="#005FB3" mode="Opaque">
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField pattern="###0.00;-###0.00">
+							<reportElement x="27" y="0" width="26" height="25" forecolor="#FFFFFF" uuid="51021ddb-2728-406f-b041-5e464f0594ea"/>
+							<box>
+								<pen lineWidth="0.25"/>
+								<topPen lineWidth="0.25"/>
+								<leftPen lineWidth="0.25"/>
+								<bottomPen lineWidth="0.25"/>
+								<rightPen lineWidth="0.25"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font size="8"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{MM_AMTMeasure_ZONE_NM_ALL}/$V{MM_AMT_BMeasure_ZONE_NM_ALL}*100]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement style="Crosstab Data Text" x="0" y="0" width="27" height="25" forecolor="#FFFFFF" uuid="30fbeda4-c1be-495d-b620-03b08f9c7d50"/>
+							<box>
+								<pen lineWidth="0.25"/>
+								<topPen lineWidth="0.25"/>
+								<leftPen lineWidth="0.25"/>
+								<bottomPen lineWidth="0.25"/>
+								<rightPen lineWidth="0.25"/>
+							</box>
+							<textElement verticalAlignment="Middle">
+								<font size="8"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{MM_AMT_BMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="90" height="25" rowTotalGroup="OFF_NAME1">
+					<cellContents backcolor="#BFE1FF" mode="Opaque">
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField>
+							<reportElement style="Crosstab Data Text" x="66" y="0" width="24" height="25" uuid="0c2847ea-65bb-41f0-8ee9-2e874771f0f6"/>
+							<box>
+								<pen lineWidth="0.25"/>
+								<topPen lineWidth="0.25"/>
+								<leftPen lineWidth="0.25"/>
+								<bottomPen lineWidth="0.25"/>
+								<rightPen lineWidth="0.25"/>
+							</box>
+							<textElement>
+								<font size="7"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{MM_AMTMeasure}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement style="Crosstab Data Text" x="23" y="0" width="22" height="25" uuid="e2dc3cf7-d510-4d50-b09e-b606856956d0"/>
+							<box>
+								<pen lineWidth="0.25"/>
+								<topPen lineWidth="0.25"/>
+								<leftPen lineWidth="0.25"/>
+								<bottomPen lineWidth="0.25"/>
+								<rightPen lineWidth="0.25"/>
+							</box>
+							<textElement>
+								<font size="7"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{MM_AMT_BMeasure}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement style="Crosstab Data Text" x="0" y="0" width="23" height="25" uuid="b3db1229-c9bf-428c-8d33-f83cf2e12856"/>
+							<box>
+								<pen lineWidth="0.25"/>
+								<topPen lineWidth="0.25"/>
+								<leftPen lineWidth="0.25"/>
+								<bottomPen lineWidth="0.25"/>
+								<rightPen lineWidth="0.25"/>
+							</box>
+							<textElement>
+								<font size="7"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{NO_OF_PRJ_B}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement style="Crosstab Data Text" x="45" y="0" width="21" height="25" uuid="da894d0b-8cf8-4f66-8c33-d5c58e236c4e"/>
+							<box>
+								<pen lineWidth="0.25"/>
+								<topPen lineWidth="0.25"/>
+								<leftPen lineWidth="0.25"/>
+								<bottomPen lineWidth="0.25"/>
+								<rightPen lineWidth="0.25"/>
+							</box>
+							<textElement>
+								<font size="7"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{NO_OF_PRJ}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="53" height="25" rowTotalGroup="OFF_NAME1" columnTotalGroup="BNF_MAIN_HEAD_SH_DESC">
+					<cellContents backcolor="#BFE1FF" mode="Opaque">
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField>
+							<reportElement style="Crosstab Data Text" x="0" y="0" width="27" height="25" uuid="4b695423-01bb-40dd-95c1-225cbf1652a4"/>
+							<box>
+								<pen lineWidth="0.25"/>
+								<topPen lineWidth="0.25"/>
+								<leftPen lineWidth="0.25"/>
+								<bottomPen lineWidth="0.25"/>
+								<rightPen lineWidth="0.25"/>
+							</box>
+							<textElement verticalAlignment="Middle">
+								<font size="8"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{MM_AMT_BMeasure}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###0.00;-###0.00">
+							<reportElement x="27" y="0" width="26" height="24" uuid="c6c232a0-ddf9-4963-8f79-bcd7d592d426"/>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font size="8"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{MM_AMTMeasure_OFF_NAME1_ALL}/$V{MM_AMT_BMeasure_OFF_NAME1_ALL}*100]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+			</crosstab>
+		</band>
+	</summary>
+</jasperReport>

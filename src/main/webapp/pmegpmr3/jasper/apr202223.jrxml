@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="apr202223" language="groovy" pageWidth="936" pageHeight="842" columnWidth="896" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="907e1191-f130-4228-a1c0-ab7ee6f1f7b8">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="57"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT
+    MAX(ord_no) AS ORDNO,
+     nvl(zone_nm,'zGrand Total') as zone_nm,
+    nvl(state_nm,'Total') as state_nm,
+    SUM(prj_no_tgt) AS PRJ_TGT,
+     SUM(mm_tgt) AS MM_TGT,
+     SUM(emp) AS EMP_TGT,
+      SUM(no_of_prj) AS PRJ_NO,
+    SUM(mm_rel) AS MM_REL,
+     SUM(emp_estimate) AS EMP_EST
+  ----   SUM(emp_ach) AS EMP_ACH,
+  -----   SUM(loan_sanc) AS LOAN_SAN
+FROM
+    (
+        SELECT
+            pmo.ord_no,
+            pmo.mis_off_cd,
+            zm.zone_nm,
+            ms.state_nm,
+            pmo.off_name,
+            nvl(pmo.prj_no_tgt, 0) + nvl(pmo.prj_no_tgt_ii, 0) AS prj_no_tgt,
+             nvl(pmo.mm_tgt, 0) + nvl(pmo.mm_tgt_ii, 0) AS mm_tgt,
+            nvl(pmo.emp, 0) + nvl(pmo.emp_ii, 0) AS emp,
+             0 AS mm_rel,
+            0 AS no_of_prj,
+            0 AS emp_estimate,
+            0 AS emp_ach,
+            0 AS loan_sanc
+        FROM
+            mmtarget_online_2223   pmo,
+            m_state                ms,
+            zone_mast              zm
+        WHERE
+            pmo.state_cd = ms.state_cd
+            AND ms.zone_cd = zm.zone_cd
+        UNION ALL
+        SELECT
+            MAX(0) AS ord_no,
+            mom.mis_off_cd,
+            zm.zone_nm,
+            ms.state_nm,
+            mom.off_name1,
+            0 AS mm_tgt,
+            0 AS prj_tgt,
+            0 AS emp_tgt,
+            round(SUM(bd.mm_rel_amt) / 100000, 2) mm_rel,
+            COUNT(*) AS no_of_prj,
+            COUNT(bd.app_id) * 8 AS emp_estimate,
+            SUM(ad.emp_env) AS emp,
+            round(SUM(nvl(bd.wc_sanc_fb, 0) + nvl(bd.ce_sanc_fb, 0)) / 100000, 2) AS loan_sanc
+        FROM
+            bank_dataentry   bd,
+            app_detail       ad,
+            m_district       md,
+            m_state          ms,
+            zone_mast        zm,
+            mas_off_mast     mom
+        WHERE
+            bd.app_id = ad.app_id
+            AND ad.unit_dist_cd = md.district_cd
+            AND md.state_cd = ms.state_cd
+            AND ms.zone_cd = zm.zone_cd
+            AND ad.off_cd = mom.off_cd
+            AND bd.pact_id = 34
+            AND trunc(bd.mm_rel_dt) BETWEEN '01-APR-2022' AND '31-MAR-2023'
+        GROUP BY
+            mom.mis_off_cd,
+            zm.zone_nm,
+            ms.state_nm,
+            mom.off_name1
+            UNION ALL
+
+             SELECT
+            MAX(0) AS ord_no,
+            mom.mis_off_cd,
+            zm.zone_nm,
+            ms.state_nm,
+            mom.off_name1,
+            0 AS mm_tgt,
+            0 AS prj_tgt,
+            0 AS emp_tgt,
+            round(SUM(bd.mm_rel_amt) / 100000, 2) mm_rel,
+            COUNT(*) AS no_of_prj,
+            COUNT(bd.app_id) * 8 AS emp_estimate,
+            SUM(ad.emp_env) AS emp,
+            round(SUM(nvl(bd.wc_sanc_fb, 0) + nvl(bd.ce_sanc_fb, 0)) / 100000, 2) AS loan_sanc
+        FROM
+            bank_dataentry_SECOND   bd,
+            app_detail_SECOND       ad,
+            m_district       md,
+            m_state          ms,
+            zone_mast        zm,
+            mas_off_mast     mom
+        WHERE
+            bd.app_id = ad.app_id
+            AND ad.unit_dist_cd = md.district_cd
+            AND md.state_cd = ms.state_cd
+            AND ms.zone_cd = zm.zone_cd
+            AND ad.off_cd = mom.off_cd
+            AND bd.pact_id = 34
+            AND trunc(bd.mm_rel_dt) BETWEEN '01-APR-2022' AND '31-MAR-2023'
+        GROUP BY
+            mom.mis_off_cd,
+            zm.zone_nm,
+            ms.state_nm,
+            mom.off_name1
+    )
+    GROUP BY
+    ROLLUP(zone_nm,
+    state_nm)
+    ORDER BY   MAX(ord_no),zone_nm]]>
+	</queryString>
+	<field name="ORDNO" class="java.math.BigDecimal"/>
+	<field name="ZONE_NM" class="java.lang.String"/>
+	<field name="STATE_NM" class="java.lang.String"/>
+	<field name="PRJ_TGT" class="java.math.BigDecimal"/>
+	<field name="MM_TGT" class="java.math.BigDecimal"/>
+	<field name="EMP_TGT" class="java.math.BigDecimal"/>
+	<field name="PRJ_NO" class="java.math.BigDecimal"/>
+	<field name="MM_REL" class="java.math.BigDecimal"/>
+	<field name="EMP_EST" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="39" width="44" height="40" uuid="7f4b1f1d-5a29-4317-bf86-f501a4845fd9"/>
+				<box leftPadding="3">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ORDNO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="44" y="39" width="100" height="40" uuid="70ac4d59-abf6-4cf8-a1e6-bba45b4d9bd4"/>
+				<box leftPadding="3">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ZONE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="144" y="39" width="124" height="40" uuid="3b1e2898-3833-4ba7-8715-2a430ae4af2b"/>
+				<box leftPadding="3">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[STATE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="268" y="59" width="100" height="20" uuid="c3843488-4dfb-489e-94e0-2425cbf97304"/>
+				<box leftPadding="3">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[PRJ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="368" y="59" width="100" height="20" uuid="5a7f1eb5-07cb-4c62-86e5-cca297a2e287"/>
+				<box leftPadding="3">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[MM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="468" y="59" width="100" height="20" uuid="eb079090-e55a-46b9-8ce2-1293f8d553b2"/>
+				<box leftPadding="3">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[EMP]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="268" y="39" width="300" height="20" uuid="b7545a76-94a8-445e-906b-e9e99fee0c14"/>
+				<box leftPadding="3">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Target]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="568" y="39" width="300" height="20" uuid="c362081a-77a0-414e-8d56-3318443e8c7e"/>
+				<box leftPadding="3">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[MM Release]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="568" y="59" width="100" height="20" uuid="d54b1338-cbc5-4dd0-ba71-1f8b40bb0bdc"/>
+				<box leftPadding="3">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[PRJ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="668" y="59" width="100" height="20" uuid="cb879fb0-2c33-43c6-a6d3-0e28607909d2"/>
+				<box leftPadding="3">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[MM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="768" y="59" width="100" height="20" uuid="37e31ec9-e5ec-4cca-ba9c-191fe7520db3"/>
+				<box leftPadding="3">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[EMP]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="868" height="20" uuid="7687b3ab-cc5a-462c-a43a-d58732f7dadf"/>
+				<box leftPadding="3">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[APR FOR THE YEAR 2022-23]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="44" height="20" uuid="76f05388-32bc-4c7b-b320-1f6e14220af8"/>
+				<box leftPadding="3">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ORDNO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="44" y="0" width="100" height="20" uuid="f4e2c196-e5f9-476c-8cf9-8e1f1db70a0b"/>
+				<box leftPadding="3">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ZONE_NM}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="144" y="0" width="124" height="20" uuid="2dcebb7b-58e2-451e-aac9-f6e4039db2d4"/>
+				<box leftPadding="3">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{STATE_NM}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="268" y="0" width="100" height="20" uuid="31857215-be19-402e-a0a1-1987c6d19f16"/>
+				<box leftPadding="3">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PRJ_TGT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="368" y="0" width="100" height="20" uuid="63a7a0b0-4ea8-4bea-9a1d-1b8123121908"/>
+				<box leftPadding="3">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MM_TGT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="468" y="0" width="100" height="20" uuid="a497981d-7556-4f52-b358-fe38a3c58eb7"/>
+				<box leftPadding="3">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{EMP_TGT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="568" y="0" width="100" height="20" uuid="053d740e-f685-4e38-b504-66b5315d1593"/>
+				<box leftPadding="3">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PRJ_NO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="668" y="0" width="100" height="20" uuid="367984cf-03da-4efe-b489-e7b9611031fc"/>
+				<box leftPadding="3">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MM_REL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="768" y="0" width="100" height="20" uuid="4ff90f66-61b9-428c-a0f4-31788d290fa6"/>
+				<box leftPadding="3">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{EMP_EST}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

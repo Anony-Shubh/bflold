@@ -1,0 +1,87 @@
+
+.dimScreen{
+    position:absolute;
+    padding:0;
+    margin:0;
+	z-index: 999;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+  background-color: rgba(43, 45, 65, 0.8); 
+  filter: blur(10px);
+}
+.container {
+	z-index: 9999999;
+	position: absolute;
+    left: 50%;
+	top: 50%;
+    transform: translate(-50%, -50%);
+	/* width: fit-content; */
+	background-color: #faefcf;
+	margin: 6rem auto;
+	border-radius: 20px;
+	padding: 20px;
+	max-width: 569px;
+	width: 100%;
+	box-shadow: 30px 30px #414863;
+	@media (max-width: 590px) {
+	  width: 90%;
+  } 
+}
+.headTitle h2{
+    text-align: center;  
+}
+
+.btnOk {background-image: linear-gradient(to right, #1A2980 0%, #26D0CE  51%, #1A2980  100%)}
+         .btnOk {
+            margin: 0px auto;
+            padding: 5px 15px;
+            text-align: center;
+            text-transform: uppercase;
+            transition: 0.5s;
+            background-size: 200% auto;
+            color: white;            
+            box-shadow: 0 0 20px #eee;
+            border-radius: 10px;
+            display: block;
+            box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+            border: none;
+            font-weight: 700;
+            cursor: pointer;
+          
+          }
+
+          .btnOk:hover {
+            background-position: right center; /* change the direction of the change here */
+            color: #fff;
+            text-decoration: none;
+          }
+          .dot {
+  height: 10px;
+  width: 10px;
+  background-color: #000;
+  border-radius: 50%;
+  margin-right: 5px;
+  display: inline-block;
+}
+.seven h1 {
+text-align: center;
+    font-size:30px; font-weight:300; color:#222; letter-spacing:1px;
+    text-transform: uppercase;
+
+    display: grid;
+    grid-template-columns: 1fr max-content 1fr;
+    grid-template-rows: 27px 0;
+    grid-gap: 20px;
+    align-items: center;
+}
+
+.seven h1:after,.seven h1:before {
+    content: " ";
+    display: block;
+    border-bottom: 1px solid #c50000;
+    border-top: 1px solid #c50000;
+    height: 5px;
+  background-color:#f8f8f8;
+}

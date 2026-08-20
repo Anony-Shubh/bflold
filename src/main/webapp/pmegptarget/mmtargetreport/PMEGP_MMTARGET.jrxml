@@ -1,0 +1,488 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="PMEGP_MMTAGET" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2c13ed90-5822-4aeb-ba0f-8777b8c9831f">
+	<property name="ireport.zoom" value="2.593742460100008"/>
+	<property name="ireport.x" value="23"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Crosstab Data Text" hAlign="Center"/>
+	<parameter name="OFF_NM" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT ZM.ZONE_NM,
+  MS.STATE_NM,
+  MOM.OFF_NAME1,
+  MD.DISTRICT_NAME,
+  MOM.OFF_TYPE_CD,
+  MOM.AGENCY_TYPE,
+  MOM.OFF_CD,
+  MOM.OFF_NAME,
+  NVL(PMT.PRJ_NO_TGT,0) AS PRJ_NO_TGT,
+  NVL(PMT.MM_TGT,0) AS MM_TGT
+FROM MAS_OFF_MAST MOM,
+  M_DISTRICT MD,
+  M_STATE MS,
+  ZONE_MAST ZM,
+  PMEGP_MMTARGET PMT
+WHERE MOM.DISTRICT_CD = MD.DISTRICT_CD
+AND MD.STATE_CD       = MS.STATE_CD
+AND MS.ZONE_CD        = ZM.ZONE_CD
+AND MOM.OFF_CD        = PMT.OFF_CD(+)
+AND MOM.OFF_TYPE_CD  IN (2, 3, 5, 22)
+AND MOM.ACT_YN        = 'Y'
+AND UPPER(MOM.OFF_NAME1)= UPPER($P{OFF_NM})]]>
+	</queryString>
+	<field name="ZONE_NM" class="java.lang.String"/>
+	<field name="STATE_NM" class="java.lang.String"/>
+	<field name="OFF_NAME1" class="java.lang.String"/>
+	<field name="DISTRICT_NAME" class="java.lang.String"/>
+	<field name="OFF_TYPE_CD" class="java.math.BigDecimal"/>
+	<field name="AGENCY_TYPE" class="java.lang.String"/>
+	<field name="OFF_CD" class="java.math.BigDecimal"/>
+	<field name="OFF_NAME" class="java.lang.String"/>
+	<field name="PRJ_NO_TGT" class="java.math.BigDecimal"/>
+	<field name="MM_TGT" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement x="436" y="0" width="80" height="20" uuid="5d9025bf-9f0b-4a7b-a745-4a70ed66fa76"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="516" y="0" width="40" height="20" uuid="4ab4a3a1-a174-4e93-8718-d55deb3fa6cc"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="0" width="436" height="20" uuid="d9d3e13f-1e3c-42fe-bcac-37c420eda23a"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch">
+			<crosstab>
+				<reportElement x="0" y="0" width="555" height="42" backcolor="#F0F0F0" uuid="fb61286a-6f4c-47eb-bfe6-a58a1b35fbe5"/>
+				<crosstabHeaderCell>
+					<cellContents>
+						<staticText>
+							<reportElement style="Crosstab Data Text" x="0" y="0" width="154" height="30" uuid="101e09b8-cef3-492a-bb5b-9471f84cf3eb"/>
+							<box>
+								<pen lineWidth="0.5"/>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement verticalAlignment="Middle">
+								<font isBold="true" isItalic="false"/>
+							</textElement>
+							<text><![CDATA[DISTRICT AND OFFICE NAME]]></text>
+						</staticText>
+					</cellContents>
+				</crosstabHeaderCell>
+				<rowGroup name="OFF_NAME1" width="59" totalPosition="End">
+					<bucket class="java.lang.String">
+						<bucketExpression><![CDATA[$F{OFF_NAME1}]]></bucketExpression>
+					</bucket>
+					<crosstabRowHeader>
+						<cellContents backcolor="#F0F8FF" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textField>
+								<reportElement style="Crosstab Data Text" x="0" y="0" width="59" height="55" uuid="78c3ef62-46d0-4fb7-a115-5e60eea72769"/>
+								<textElement>
+									<font size="8" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{OFF_NAME1}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabRowHeader>
+					<crosstabTotalRowHeader>
+						<cellContents backcolor="#005FB3" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="154" height="12" forecolor="#FFFFFF" uuid="88bb933e-c8aa-4d17-8429-28fcb9a3bf1e"/>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font size="9"/>
+								</textElement>
+								<text><![CDATA[Grand Total]]></text>
+							</staticText>
+						</cellContents>
+					</crosstabTotalRowHeader>
+				</rowGroup>
+				<rowGroup name="DISTRICT_NAME" width="95" totalPosition="End">
+					<bucket class="java.lang.String">
+						<bucketExpression><![CDATA[$F{DISTRICT_NAME}]]></bucketExpression>
+					</bucket>
+					<crosstabRowHeader>
+						<cellContents backcolor="#F0F8FF" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textField>
+								<reportElement style="Crosstab Data Text" x="0" y="0" width="95" height="28" uuid="636c58a5-bcef-4672-9ab5-0951ad44a5b2"/>
+								<box leftPadding="4"/>
+								<textElement textAlignment="Left" verticalAlignment="Middle">
+									<font size="8" isBold="true" isItalic="false" isStrikeThrough="false"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{DISTRICT_NAME}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabRowHeader>
+					<crosstabTotalRowHeader>
+						<cellContents backcolor="#BFE1FF" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="95" height="27" uuid="9c554ab0-5866-4481-8790-0a6283e797af"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Total]]></text>
+							</staticText>
+						</cellContents>
+					</crosstabTotalRowHeader>
+				</rowGroup>
+				<columnGroup name="AGENCY_TYPE" height="30" totalPosition="End">
+					<bucket class="java.lang.String">
+						<bucketExpression><![CDATA[$F{AGENCY_TYPE}]]></bucketExpression>
+					</bucket>
+					<crosstabColumnHeader>
+						<cellContents backcolor="#F0F8FF" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textField>
+								<reportElement style="Crosstab Data Text" x="0" y="0" width="94" height="15" uuid="5971c12b-5951-4de1-b268-08b1af4cfb13"/>
+								<box>
+									<pen lineWidth="0.5"/>
+									<topPen lineWidth="0.5"/>
+									<leftPen lineWidth="0.5"/>
+									<bottomPen lineWidth="0.5"/>
+									<rightPen lineWidth="0.5"/>
+								</box>
+								<textElement>
+									<font size="10" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{AGENCY_TYPE}]]></textFieldExpression>
+							</textField>
+							<staticText>
+								<reportElement style="Crosstab Data Text" mode="Transparent" x="0" y="15" width="50" height="15" backcolor="#FFFF33" uuid="4bebdd9b-d428-4502-841f-e3b87cbc2fe4"/>
+								<box>
+									<pen lineWidth="0.5"/>
+									<topPen lineWidth="0.5"/>
+									<leftPen lineWidth="0.5"/>
+									<bottomPen lineWidth="0.5"/>
+									<rightPen lineWidth="0.5"/>
+								</box>
+								<textElement>
+									<font size="8" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Prj_No.]]></text>
+							</staticText>
+							<staticText>
+								<reportElement style="Crosstab Data Text" mode="Transparent" x="50" y="15" width="44" height="15" backcolor="#CCCCFF" uuid="614c9cdd-df99-470a-9156-ec40a8e7fed8"/>
+								<box>
+									<pen lineWidth="0.5"/>
+									<topPen lineWidth="0.5"/>
+									<leftPen lineWidth="0.5"/>
+									<bottomPen lineWidth="0.5"/>
+									<rightPen lineWidth="0.5"/>
+								</box>
+								<textElement>
+									<font size="8" isBold="true"/>
+								</textElement>
+								<text><![CDATA[MM]]></text>
+							</staticText>
+						</cellContents>
+					</crosstabColumnHeader>
+					<crosstabTotalColumnHeader>
+						<cellContents backcolor="#BFE1FF" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="97" height="15" uuid="a8755497-8695-4ffc-93df-04ddda3492d5"/>
+								<box>
+									<pen lineWidth="0.5"/>
+									<topPen lineWidth="0.5"/>
+									<leftPen lineWidth="0.5"/>
+									<bottomPen lineWidth="0.5"/>
+									<rightPen lineWidth="0.5"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Total]]></text>
+							</staticText>
+							<staticText>
+								<reportElement style="Crosstab Data Text" mode="Opaque" x="43" y="15" width="54" height="15" uuid="38d15257-82bb-4e97-b0e6-fd6b6b5da8c6"/>
+								<box>
+									<pen lineWidth="0.5"/>
+									<topPen lineWidth="0.5"/>
+									<leftPen lineWidth="0.5"/>
+									<bottomPen lineWidth="0.5"/>
+									<rightPen lineWidth="0.5"/>
+								</box>
+								<textElement>
+									<font size="8" isBold="true"/>
+								</textElement>
+								<text><![CDATA[MM]]></text>
+							</staticText>
+							<staticText>
+								<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="15" width="43" height="15" uuid="aa28233e-17d5-49db-97c1-dbf0bfb27d11"/>
+								<box>
+									<pen lineWidth="0.5"/>
+									<topPen lineWidth="0.5"/>
+									<leftPen lineWidth="0.5"/>
+									<bottomPen lineWidth="0.5"/>
+									<rightPen lineWidth="0.5"/>
+								</box>
+								<textElement>
+									<font size="8" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Prj_No.]]></text>
+							</staticText>
+						</cellContents>
+					</crosstabTotalColumnHeader>
+				</columnGroup>
+				<measure name="PRJ_NO_TGTMeasure" class="java.math.BigDecimal" calculation="Sum">
+					<measureExpression><![CDATA[$F{PRJ_NO_TGT}]]></measureExpression>
+				</measure>
+				<measure name="MM_TGTMeasure" class="java.math.BigDecimal" calculation="Sum">
+					<measureExpression><![CDATA[$F{MM_TGT}]]></measureExpression>
+				</measure>
+				<crosstabCell width="94" height="28">
+					<cellContents>
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField>
+							<reportElement style="Crosstab Data Text" mode="Transparent" x="0" y="0" width="50" height="28" backcolor="#FFFF33" uuid="39672080-1b9e-48e7-8940-9d4d8327da15"/>
+							<box>
+								<pen lineWidth="0.5"/>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement>
+								<font size="8"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{PRJ_NO_TGTMeasure}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###0.00;-###0.00">
+							<reportElement style="Crosstab Data Text" mode="Transparent" x="50" y="0" width="44" height="28" backcolor="#FFCCCC" uuid="8ce0b6e3-41d2-4279-9b13-6bd3364fb9e2"/>
+							<box>
+								<pen lineWidth="0.5"/>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement>
+								<font size="8"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{MM_TGTMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="94" height="24" rowTotalGroup="OFF_NAME1">
+					<cellContents backcolor="#005FB3" mode="Opaque">
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField>
+							<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="50" height="24" forecolor="#000000" uuid="30a6e10e-eb93-4b30-8c17-46ff2e23fbb6"/>
+							<box>
+								<pen lineWidth="0.5" lineColor="#330033"/>
+								<topPen lineWidth="0.5" lineColor="#330033"/>
+								<leftPen lineWidth="0.5" lineColor="#330033"/>
+								<bottomPen lineWidth="0.5" lineColor="#330033"/>
+								<rightPen lineWidth="0.5" lineColor="#330033"/>
+							</box>
+							<textElement>
+								<font size="8"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{PRJ_NO_TGTMeasure}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement style="Crosstab Data Text" mode="Opaque" x="50" y="0" width="44" height="24" uuid="fda0f4b9-69f7-4487-b17c-bb43f42d9068"/>
+							<box>
+								<pen lineWidth="0.5"/>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement>
+								<font size="8"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{MM_TGTMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="97" height="28" columnTotalGroup="AGENCY_TYPE">
+					<cellContents backcolor="#BFE1FF" mode="Opaque">
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField>
+							<reportElement style="Crosstab Data Text" mode="Transparent" x="0" y="0" width="43" height="28" backcolor="#FFFF33" uuid="bbd6d19e-72b9-41ac-806d-7c5228874d2f"/>
+							<box>
+								<pen lineWidth="0.5"/>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement>
+								<font size="8"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{PRJ_NO_TGTMeasure}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###0.00">
+							<reportElement style="Crosstab Data Text" mode="Opaque" x="43" y="0" width="54" height="28" backcolor="#FFCCCC" uuid="76448f49-766d-43f8-a6e8-a7286f00f07e"/>
+							<box>
+								<pen lineWidth="0.5"/>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement>
+								<font size="8"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{MM_TGTMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="97" height="24" rowTotalGroup="OFF_NAME1" columnTotalGroup="AGENCY_TYPE">
+					<cellContents backcolor="#005FB3" mode="Opaque">
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField>
+							<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="43" height="24" forecolor="#000000" uuid="e9f5b73a-e42b-444e-96c5-480667d33773"/>
+							<box>
+								<pen lineWidth="0.5" lineColor="#330033"/>
+								<topPen lineWidth="0.5" lineColor="#330033"/>
+								<leftPen lineWidth="0.5" lineColor="#330033"/>
+								<bottomPen lineWidth="0.5" lineColor="#330033"/>
+								<rightPen lineWidth="0.5" lineColor="#330033"/>
+							</box>
+							<textElement>
+								<font size="8" isBold="false"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{PRJ_NO_TGTMeasure}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement style="Crosstab Data Text" mode="Opaque" x="43" y="0" width="54" height="24" uuid="835c0ce4-0f2e-43fc-bfc1-ef4ee890b4cd"/>
+							<box>
+								<pen lineWidth="0.5"/>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement>
+								<font size="8"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{MM_TGTMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="94" height="29" rowTotalGroup="DISTRICT_NAME">
+					<cellContents backcolor="#BFE1FF" mode="Opaque">
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField>
+							<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="50" height="29" uuid="4bed3c8b-8f69-4195-b686-bc77b67c70fc"/>
+							<box>
+								<pen lineWidth="0.5"/>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement>
+								<font size="8" isBold="true"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{PRJ_NO_TGTMeasure}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###0.00">
+							<reportElement style="Crosstab Data Text" mode="Opaque" x="50" y="0" width="44" height="29" uuid="54f88d31-30fc-4eb4-af40-b3f6d271d316"/>
+							<box>
+								<pen lineWidth="0.5"/>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement>
+								<font size="9" isBold="true"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{MM_TGTMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="97" height="29" rowTotalGroup="DISTRICT_NAME" columnTotalGroup="AGENCY_TYPE">
+					<cellContents backcolor="#BFE1FF" mode="Opaque">
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField>
+							<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="43" height="29" uuid="70cc0d18-056e-413a-bb85-84ccb9123956"/>
+							<box>
+								<pen lineWidth="0.5"/>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement>
+								<font size="8" isBold="true"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{PRJ_NO_TGTMeasure}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement style="Crosstab Data Text" mode="Opaque" x="43" y="0" width="54" height="29" uuid="a72256f8-32f4-4204-9348-9d79f66938ae"/>
+							<box>
+								<pen lineWidth="0.5"/>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement>
+								<font size="9" isBold="true"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{MM_TGTMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+			</crosstab>
+		</band>
+	</summary>
+</jasperReport>

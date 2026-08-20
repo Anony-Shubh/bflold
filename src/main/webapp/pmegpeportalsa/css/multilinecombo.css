@@ -1,0 +1,41 @@
+  	input{
+          	border: 1px solid #C8C8C8;
+   	 	  	border-radius: 5px 5px 5px 5px;
+		    box-shadow: 0 0 5px #C8C8C8 inset;
+		    font: 0.8em Arial,Arial,Helvetica,sans-serif;
+		    padding: 0.5%;
+		    width:20%;
+      	}
+      
+		#dropDownOptions{
+			display: none; 
+			z-index: 5000; 
+			position: absolute; 
+			padding-top: 2px;
+			overflow-x:none;
+			padding-bottom: 0 !important;
+			width: 200px;
+			border: 1px solid #C8C8C8;
+			background-color:#fff;
+			box-shadow: 0 4px 3px #8C8C8C;
+		}
+		
+		.scrollDiv{
+			height: 200px;
+			overflow-y: auto;
+		}
+		      
+		.optionDiv {
+		    background-color: #FFFFFF;
+		    border-bottom: 1px solid #C8C8C8;
+		    font: 0.8em Arial,Arial,Helvetica,sans-serif;
+		    padding-bottom: 3px;
+		    padding-left: 5px;
+		    padding-top: 3px;
+		    width: 97%;
+		    cursor: default;
+		}
+		
+		#dropDownOptions div:hover{
+		 background-color: #CCCCCC;
+		}

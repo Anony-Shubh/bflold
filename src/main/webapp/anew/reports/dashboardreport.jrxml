@@ -1,0 +1,440 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="TA_DA" language="groovy" pageWidth="1296" pageHeight="595" orientation="Landscape" columnWidth="1256" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7426a13f-b017-4a02-a137-80587d4de19d">
+	<property name="ireport.zoom" value="1.4641000000000133"/>
+	<property name="ireport.x" value="774"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="FROMDT" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="TODT" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT SUM(
+  CASE
+    WHEN TRUNC(AD.ONLINE_SUBDT) BETWEEN $P{FROMDT} AND $P{TODT}
+    THEN 1
+  END) AS NO_OF_APP,
+  SUM(
+  CASE
+    WHEN AD.ACT_ID IN (3, 7)
+    AND TRUNC(AD.ONLINE_SUBDT) BETWEEN $P{FROMDT} AND $P{TODT}
+    THEN 1
+    ELSE 0
+  END) RET_BY_AGENCY,
+  SUM(
+  CASE
+    WHEN AD.ACT_ID = 5
+    AND TRUNC(AD.BANK_F_DATE) BETWEEN $P{FROMDT} AND $P{TODT}
+    THEN 1
+    ELSE 0
+  END) BANK_FORD,
+  SUM(
+  CASE
+    WHEN AD.ACT_ID NOT IN (3, 7, 5)
+    AND TRUNC(AD.ONLINE_SUBDT) BETWEEN $P{FROMDT} AND $P{TODT}
+    THEN 1
+    ELSE 0
+  END) PENDING_AGENCY,
+  SUM(
+  CASE
+    WHEN BD.ACT_ID = 11
+    AND TRUNC(BD.LOAN_SANC_DT) BETWEEN $P{FROMDT} AND $P{TODT}
+    THEN 1
+    ELSE 0
+  END) LOAN_SANC,
+  SUM(
+  CASE
+    WHEN BD.ACT_ID = 11
+    AND TRUNC(BD.MM_CLAIM_DT) BETWEEN $P{FROMDT} AND $P{TODT}
+    THEN 1
+    ELSE 0
+  END) CLAIM_BY_BANK_NO,
+  ROUND(SUM(
+  CASE
+    WHEN BD.ACT_ID = 11
+    AND TRUNC(BD.MM_CLAIM_DT) BETWEEN $P{FROMDT} AND $P{TODT}
+    THEN BD.MM_CLAIM_AMT
+    ELSE 0
+  END) / 10000000, 2) CLAIM_BY_BANK_MM,
+  SUM(
+  CASE
+    WHEN BD.PACT_ID = 34
+    AND TRUNC(BD.MM_REL_DT) BETWEEN $P{FROMDT} AND $P{TODT}
+    THEN 1
+    ELSE 0
+  END) MM_REL_NO,
+  ROUND(SUM(
+  CASE
+    WHEN BD.PACT_ID = 34
+    AND TRUNC(BD.MM_REL_DT) BETWEEN $P{FROMDT} AND $P{TODT}
+    THEN BD.MM_REL_AMT
+    ELSE 0
+  END) / 10000000, 2) MM_REL_AMT,
+  SUM(
+  CASE
+    WHEN AD.ACT_ID         = 5
+    AND NVL(BD.ACT_ID, 0) IN (0, 8)
+    AND TRUNC(AD.BANK_F_DATE) BETWEEN $P{FROMDT} AND $P{TODT}
+    THEN 1
+    ELSE 0
+  END) FOR_DECISION,
+  SUM(
+  CASE
+    WHEN AD.ACT_ID = 5
+    AND BD.ACT_ID  = 3
+    AND TRUNC(AD.BANK_F_DATE) BETWEEN $P{FROMDT} AND $P{TODT}
+    THEN 1
+    ELSE 0
+  END) BANK_REJ
+
+ FROM APP_DETAIL AD,
+  BANK_DATAENTRY BD,
+  M_DISTRICT MD,
+  M_STATE MS,
+  MAS_OFF_MAST MOM
+WHERE AD.APP_ID    = BD.APP_ID(+)
+AND AD.OFF_CD      = MOM.OFF_CD
+AND AD.APP_DIST_CD = MD.DISTRICT_CD
+AND MD.STATE_CD    = MS.STATE_CD]]>
+	</queryString>
+	<field name="NO_OF_APP" class="java.math.BigDecimal"/>
+	<field name="RET_BY_AGENCY" class="java.math.BigDecimal"/>
+	<field name="BANK_FORD" class="java.math.BigDecimal"/>
+	<field name="PENDING_AGENCY" class="java.math.BigDecimal"/>
+	<field name="LOAN_SANC" class="java.math.BigDecimal"/>
+	<field name="CLAIM_BY_BANK_NO" class="java.math.BigDecimal"/>
+	<field name="CLAIM_BY_BANK_MM" class="java.math.BigDecimal"/>
+	<field name="MM_REL_NO" class="java.math.BigDecimal"/>
+	<field name="MM_REL_AMT" class="java.math.BigDecimal"/>
+	<field name="FOR_DECISION" class="java.math.BigDecimal"/>
+	<field name="BANK_REJ" class="java.math.BigDecimal"/>
+	<group name="ZONE_NM">
+		<groupExpression><![CDATA[]]></groupExpression>
+	</group>
+	<group name="STATE_NM">
+		<groupExpression><![CDATA[]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="34" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="1256" height="20" uuid="ef1d8b3d-661f-4e79-bef3-ca5369f05e0a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["PMEGP DASHBOARD ("+$P{FROMDT}+" to "+$P{TODT}+")"]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="40" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="70" y="0" width="72" height="40" backcolor="#CCCCCC" uuid="9ba46732-beaa-4f89-9815-41f51fe605e7"/>
+				<box leftPadding="4">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[No. of App.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="142" y="0" width="133" height="40" backcolor="#CCCCCC" uuid="c003e872-c372-44a0-965e-3d1566ad5239"/>
+				<box leftPadding="4">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Returned by Agency]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="275" y="0" width="97" height="40" backcolor="#CCCCCC" uuid="09d1b5ea-5e93-4667-ae3c-7e2fb66401a4"/>
+				<box leftPadding="4">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Forwaded to Bank]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="372" y="0" width="93" height="40" backcolor="#CCCCCC" uuid="2280a9f6-a67f-4911-a72c-54b01e6dfa33"/>
+				<box leftPadding="4">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Pending at Agency]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="465" y="0" width="84" height="40" backcolor="#CCCCCC" uuid="abc6746b-ec05-433b-bfd8-7176d74c31b9"/>
+				<box leftPadding="4">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Loan Sanctioned]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="549" y="0" width="105" height="40" backcolor="#CCCCCC" uuid="11fc47ef-b7ef-403a-b9a8-f62638f0d7ce"/>
+				<box leftPadding="4">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Claim by Bank (in No.)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="654" y="0" width="130" height="40" backcolor="#CCCCCC" uuid="c47adf30-731f-47f7-95d9-8ce87206ef0b"/>
+				<box leftPadding="4">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Claim by Bank (MM. in Cr.)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="784" y="0" width="106" height="40" backcolor="#CCCCCC" uuid="9884d3a9-199a-49f7-8b25-b467230d2e0b"/>
+				<box leftPadding="4">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[MM Released (in No.)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="890" y="0" width="134" height="40" backcolor="#CCCCCC" uuid="827b7ccc-ad1c-4626-be8f-443d9fa23ada"/>
+				<box leftPadding="4">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[MM Released (Amt. in Cr.)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1024" y="0" width="148" height="40" backcolor="#CCCCCC" uuid="54a6382d-1794-47af-b331-f06bd6a52152"/>
+				<box leftPadding="4">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Pending for decision by Bank]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1172" y="0" width="84" height="40" backcolor="#CCCCCC" uuid="fd6418cb-f4f5-4621-a438-d960d8149a9a"/>
+				<box leftPadding="4">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Rejected by Bank]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="70" height="40" backcolor="#CCCCCC" uuid="c26885ad-3d0c-4d96-946e-bd603f792b73"/>
+				<box leftPadding="4">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Country]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="70" y="0" width="72" height="20" uuid="8fd1dc65-dfad-4267-9fd9-a3b0af2b2bd2"/>
+				<box leftPadding="4">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{NO_OF_APP}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="142" y="0" width="133" height="20" uuid="28058013-1cf2-4a3d-a8cf-b9bc7e468315"/>
+				<box leftPadding="4">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{RET_BY_AGENCY}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="275" y="0" width="97" height="20" uuid="49cc0cfe-26a9-4268-9ea5-f2768ee8ddac"/>
+				<box leftPadding="4">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{BANK_FORD}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="372" y="0" width="93" height="20" uuid="1300dc12-1b82-4a39-b8f1-739222892581"/>
+				<box leftPadding="4">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{PENDING_AGENCY}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="465" y="0" width="84" height="20" uuid="ffd845ba-b616-45b1-8198-1fecfa7008e3"/>
+				<box leftPadding="4">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{LOAN_SANC}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="549" y="0" width="105" height="20" uuid="a38c3270-6289-46c8-a9d0-345c56104526"/>
+				<box leftPadding="4">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{CLAIM_BY_BANK_NO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="654" y="0" width="130" height="20" uuid="76bd5e2a-3487-46a3-b40d-0feccba15c5a"/>
+				<box leftPadding="4">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{CLAIM_BY_BANK_MM}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="784" y="0" width="106" height="20" uuid="01a5ff8b-6d9d-4b98-a667-8bbe4930958d"/>
+				<box leftPadding="4">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{MM_REL_NO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="890" y="0" width="134" height="20" uuid="cea2b794-61ea-4039-9fbd-ef09cf703ffe"/>
+				<box leftPadding="4">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{MM_REL_AMT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1024" y="0" width="148" height="20" uuid="aa35f9c9-403b-43c6-8870-00904d179299"/>
+				<box leftPadding="4">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{FOR_DECISION}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1172" y="0" width="84" height="20" uuid="c09b9198-54cd-468c-90a5-655a4a6be7cf"/>
+				<box leftPadding="4">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{BANK_REJ}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="70" height="20" uuid="c03dba08-fc12-457a-bff4-3a39476a209a"/>
+				<box leftPadding="4">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["INDIA"]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

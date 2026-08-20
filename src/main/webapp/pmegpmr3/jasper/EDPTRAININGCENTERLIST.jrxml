@@ -1,0 +1,526 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="EDPTRAININGCENTERLIST" pageWidth="2160" pageHeight="595" orientation="Landscape" columnWidth="2120" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="623f1e30-0c14-44a8-8260-483e7bddc6b6">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="vwherecls" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT MD.DISTRICT_NAME, MS.STATE_NM, MOM.OFF_ADDR1,MOC.OFF_TYPE_LONG_DESC,
+ MOM.OFF_ADDR2,MOM.CITY,MOM.PINCODE,MOM.OFF_TEL_NO,MOM.OFF_FAX_NO,MOM.OFF_EMAIL_ADDR,
+		 MOM.OFF_NAME,MOM.OFF_LONG_DESC,MOM.CONT_PER1,MOM.CONT_PER2,MOM.PER1_NO,MOM.PER2_NO,MOM.PER1_EMAIL,MOM.PER2_EMAIL,
+		MOM.CONT1_DESIG FROM MAS_OFF_MAST MOM,M_DISTRICT MD,M_STATE MS,mas_off_type_cdmast moc
+		 WHERE  mom.off_type_cd=moc.off_type_cd AND MD.DISTRICT_CD=MOM.DISTRICT_CD AND MS.STATE_CD=MD.STATE_CD AND OFF_CATEGORY=100
+ AND MOM.ACT_YN='Y'
+$P!{vwherecls}]]>
+	</queryString>
+	<field name="DISTRICT_NAME" class="java.lang.String"/>
+	<field name="STATE_NM" class="java.lang.String"/>
+	<field name="OFF_ADDR1" class="java.lang.String"/>
+	<field name="OFF_TYPE_LONG_DESC" class="java.lang.String"/>
+	<field name="OFF_ADDR2" class="java.lang.String"/>
+	<field name="CITY" class="java.lang.String"/>
+	<field name="PINCODE" class="java.math.BigDecimal"/>
+	<field name="OFF_TEL_NO" class="java.lang.String"/>
+	<field name="OFF_FAX_NO" class="java.lang.String"/>
+	<field name="OFF_EMAIL_ADDR" class="java.lang.String"/>
+	<field name="OFF_NAME" class="java.lang.String"/>
+	<field name="OFF_LONG_DESC" class="java.lang.String"/>
+	<field name="CONT_PER1" class="java.lang.String"/>
+	<field name="CONT_PER2" class="java.lang.String"/>
+	<field name="PER1_NO" class="java.lang.String"/>
+	<field name="PER2_NO" class="java.lang.String"/>
+	<field name="PER1_EMAIL" class="java.lang.String"/>
+	<field name="PER2_EMAIL" class="java.lang.String"/>
+	<field name="CONT1_DESIG" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="59" width="166" height="20" uuid="0f2c114f-e253-40e5-8dc9-08ae719d8b18"/>
+				<box leftPadding="3">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[TRAINING CENTRE NAME]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="359" y="59" width="100" height="20" uuid="a3d0fc1e-f534-458e-b912-f8ccc938011b"/>
+				<box leftPadding="3">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[OFFICE NAME]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="459" y="59" width="100" height="20" uuid="a61405fd-7fbe-45eb-880f-9ccc105bb317"/>
+				<box leftPadding="3">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[OFFICE ADDRESS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="559" y="59" width="100" height="20" uuid="6daa5386-bf94-447a-86e7-0af73cfa7602"/>
+				<box leftPadding="3">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[ADDRESS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="659" y="59" width="100" height="20" uuid="dc5e3833-2733-4bd5-9326-b4e33a5048ca"/>
+				<box leftPadding="3">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[CITY]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="859" y="59" width="100" height="20" uuid="e2d7157e-e95a-4b4c-8201-cb8a65495170"/>
+				<box leftPadding="3">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[DISTRICT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="959" y="59" width="100" height="20" uuid="84982d23-35cd-492a-91a8-b61eb3aa0b7a"/>
+				<box leftPadding="3">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[STATE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="759" y="59" width="100" height="20" uuid="12ba5c13-a5ab-4c65-807a-a4aaa6a26405"/>
+				<box leftPadding="3">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[PINCODE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1059" y="59" width="100" height="20" uuid="21a1d51e-4bc2-48dd-af2c-c271942ab18f"/>
+				<box leftPadding="3">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[OFFICE TEL NO.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1159" y="59" width="100" height="20" uuid="361f35b4-3584-42cc-b24c-c8feccab8b67"/>
+				<box leftPadding="3">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[OFFICE FAX NO.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1259" y="59" width="100" height="20" uuid="148a4317-160e-4a30-83b7-e0b8a955ef9e"/>
+				<box leftPadding="3">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[OFFICE EMAIL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1359" y="59" width="130" height="20" uuid="33e5b4e4-f295-4df9-b387-e859ed2e6c43"/>
+				<box leftPadding="3">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[CONTACT PERSON 1]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1589" y="59" width="100" height="20" uuid="b8b18e35-c3a8-4234-b7ca-739d30ee705e"/>
+				<box leftPadding="3">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[PHONE NO.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1802" y="59" width="118" height="20" uuid="f1eb22fd-9b67-436f-829b-95f3363932e0"/>
+				<box leftPadding="3">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[CONTACT PERSON 2]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1920" y="59" width="100" height="20" uuid="68b5bccc-40cb-4236-a45f-91c21685450a"/>
+				<box leftPadding="3">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[PHONE NO.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1489" y="59" width="100" height="20" uuid="60c9a7dd-482c-48b6-b146-3fa3dd551cbe"/>
+				<box leftPadding="3">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[DESIGNATION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1689" y="59" width="113" height="20" uuid="2e7395c4-285a-4342-be8d-1171837d325a"/>
+				<box leftPadding="3">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[EMAIL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2020" y="59" width="100" height="20" uuid="b86a0aea-50f9-4a3a-9018-b20aa9553086"/>
+				<box leftPadding="3">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[EMAIL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="0" width="1695" height="20" uuid="31e14981-c834-48b7-9b50-cf5af30c1586"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[EDP TRAINING CENTRE LIST]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="166" y="59" width="193" height="20" uuid="71ea74db-de0b-4b58-97f3-7360c4ceee2c"/>
+				<box leftPadding="1">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[CENTER TYPE]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="50" splitType="Prevent">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="166" height="50" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="4c824468-3e79-4268-af0b-c456609d5fca"/>
+				<box leftPadding="3">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{OFF_LONG_DESC}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="359" y="0" width="100" height="50" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="c51c6475-46c3-4bd6-ae1e-07516e1ed26b"/>
+				<box leftPadding="3">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{OFF_NAME}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="459" y="0" width="100" height="50" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="55feefc4-fd63-41a5-9861-09fa2a9457ea"/>
+				<box leftPadding="3">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{OFF_ADDR1}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="559" y="0" width="100" height="50" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="7b488370-4f28-4bf1-ae16-85fdc22cff00"/>
+				<box leftPadding="3">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{OFF_ADDR2}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="659" y="0" width="100" height="50" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="8bdc414f-25ee-4aa4-a892-aed7cb48feb3"/>
+				<box leftPadding="3">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{CITY}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="859" y="0" width="100" height="50" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="afe35dbe-e2e4-4dda-a45f-cad1513e7922"/>
+				<box leftPadding="3">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{DISTRICT_NAME}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="959" y="0" width="100" height="50" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="d0991d1c-bcba-43c7-a156-870fdec22791"/>
+				<box leftPadding="3">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{STATE_NM}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="759" y="0" width="100" height="50" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="79662e16-6b30-4955-be0f-e78bc046cfd9"/>
+				<box leftPadding="3">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{PINCODE}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="1059" y="0" width="100" height="50" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="cb0c4029-f234-45b9-a50c-260337474353"/>
+				<box leftPadding="3">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{OFF_TEL_NO}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="1159" y="0" width="100" height="50" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="42bc9012-a311-44e7-8a40-fd170ff4c8a3"/>
+				<box leftPadding="3">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{OFF_FAX_NO}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="1259" y="0" width="100" height="50" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="bff95be4-703c-4cf3-b048-ef6d22f94934"/>
+				<box leftPadding="3">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{OFF_EMAIL_ADDR}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="1359" y="0" width="130" height="50" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="e5975df4-52fb-4bd5-acf1-7f837b09970e"/>
+				<box leftPadding="3">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{CONT_PER1}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="1589" y="0" width="100" height="50" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="391f8cc3-48aa-43fe-af25-83eb99533c45"/>
+				<box leftPadding="3">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{PER1_NO}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="1920" y="0" width="100" height="50" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="ded52072-26bf-4de8-a55e-be42cb0bbf7f"/>
+				<box leftPadding="3">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{PER2_NO}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="1489" y="0" width="100" height="50" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="4a9bb5f3-676b-4004-9c98-f9ad0e12e220"/>
+				<box leftPadding="3">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{CONT1_DESIG}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="1689" y="0" width="113" height="50" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="12e995ae-3e17-4897-a293-acda86f89286"/>
+				<box leftPadding="3">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{PER1_EMAIL}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="1802" y="0" width="118" height="50" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="34646b70-718d-4fa8-b851-1a65ac8957f6"/>
+				<box leftPadding="3">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{CONT_PER2}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="2020" y="0" width="100" height="50" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="51df2ede-15a9-4115-bec5-d7e30a6ed1ba"/>
+				<box leftPadding="3">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{PER2_EMAIL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="166" y="0" width="193" height="50" uuid="c1b007b0-e853-456e-80bd-09f2c0b0f7bb"/>
+				<box leftPadding="1">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{OFF_TYPE_LONG_DESC}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

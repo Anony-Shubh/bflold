@@ -1,0 +1,188 @@
+<html>
+
+<head>
+    <META CHARSET="ISO-8859-1">
+    <TITLE>EMI Calculator</TITLE>
+
+    <link rel="stylesheet" href="css/sweetalert2.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="Media Query/media.css" rel="stylesheet">
+</head>
+
+<body>
+    <header class="top-banner mt-1 mb-1" style="width: 100%;" id="myDiv1">
+        <div class="container-fluid">
+          <img src="img/pmegp banner.jpg" style="margin: 10px auto; width: 100%;">
+        </div>
+      </header>
+      <section class="ftco-section">
+        <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar ftco-navbar-light" id="ftco-navbar">
+          <div class="container">
+  
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
+              aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span> PMEGP
+            </button>
+            <div class="emi order-lg-last">
+  
+              <a href="emiCalculator.html" class="nav-right">EMI Calculator</a>
+  
+            </div>
+            <div class="collapse navbar-collapse" id="ftco-nav">
+              <ul class="navbar-nav mr-auto" ID="ftco-ul">
+                <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">DPR</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Eligibility Criteria</a></li>
+                <li class="nav-item"><a href="https://www.kviconline.gov.in/pmegp/pmegpweb/docs/jsp/newprojectReports.jsp"
+                    class="nav-link">Model Projects</a></li>
+                <li class="nav-item"><a
+                    href="https://www.kviconline.gov.in/pmegpeportal/PMEGPONLINETUTORIAL/pmegponline.swf.html"
+                    class="nav-link">Video Tutorial</a></li>
+                <li class="nav-item"><a href="faq.html" class="nav-link">FAQ</a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </section>
+    <div class="container">
+        <div class="calculator">
+            <H3>EMI Calculator for PMEGP Loan </H3>
+            <FORM name="loan-form" inte();>
+                <div class="form1">
+                    <div class="row">
+                        <div class="col-md-2 col-12"></div>
+                        <div class="col-md-4 col-12">
+                            <div class='loanBlock'>
+                                <span class="loanAmount">Loan Amount : </span><BR>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-12">
+                            <div class='loanBlock'>
+                                <INPUT type=number id="amount" size="" PATTERN="/^-?\d+\.?\d*$/" value="" />
+                                <CENTER>
+                                    <H2>
+                                        <div id="word"></div>
+                                    </H2>
+                                </CENTER>
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-12"></div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-2 col-12"></div>
+                        <div class="col-md-4 col-12">
+                            <div class='loanBlock'>
+                                <span class="loanAmount">Annual Rate of Interest : </span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-12">
+                            <div class='loanBlock'>
+                                <INPUT type="number" STEP="any" name="apr" id="apr" PATTERN="/^-?\d+\.?\d*$/"
+                                    onclick="interest()" ; value=""><BR>
+                            </div>
+                        </div>
+
+                        <div class="col-md-2 col-12"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2 col-12"></div>
+                        <div class="col-md-4 col-12">
+                            <div class='loanBlock'>
+                                <span class="loanAmount">Loan Tenure (In Years) : </span>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-12">
+                            <div class='loanBlock'>
+                                <SELECT id="tenure" value="10">
+                                    <OPTION value="1">1</OPTION>
+                                    <OPTION value="2">2</OPTION>
+                                    <OPTION value="3">3</OPTION>
+                                    <OPTION value="4">4</OPTION>
+                                    <OPTION value="5" selected>5</OPTION>
+                                    <OPTION value="6">6</OPTION>
+                                    <OPTION value="7">7</OPTION>
+                                    <OPTION value="8">8</OPTION>
+                                    <OPTION value="9">9</OPTION>
+                                    <OPTION value="10">10</OPTION>
+                                </SELECT>
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-12"></div>
+                    </div>
+
+                    <button type="button" id="calculation" onclick="callcalc()" class="btn-calc">Calculate</button>
+                </div>
+
+                <div class="form2">
+                    <div class='right'>
+                        <div><B>Loan EMI : <BR>Rs. </B>
+                            <P id="EMICapt"> </P>
+                        </div>
+                    </div>
+                    <div class='middle'>
+                        <div><B> Total Interest Payable: <BR>Rs. </B>
+                            <P id="EMICapts"></P>
+                        </div>
+                    </div>
+                    <div class='left'>
+                        <div><B> Total Payment:<br> Rs. </B>
+                            <div id="EMICaptss"> </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div align="center" class="note">
+                    <h4>Note</h4>
+                    <p>1. Calculator is provided only as general self-help Planning Tools.</p>
+                    <p>2. Calculated EMI Result is indicative only.</P>
+                </div>
+            </FORM>
+        </div>
+    </div>
+    <!-------------------------------------------------Footer Section  start  ---------------------------------------------->
+  <Footer>
+    <div class="container-fluid">
+      <div class="footer-content py-2">
+        <p>DESIGNED AND MAINTAINED
+          BY DIRECTORATE OF INFORMATION TECHNOLOGY, KVIC, MUMBAI <span class="email">( pmegpeportal.kvic@gov.in )</span>
+        </p>
+      </div>
+    </div>
+  </Footer>
+
+  <!-------------------------------------------------Footer Section End  ---------------------------------------------->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <SCRIPT language="javascript" src="js/sweetalert2.js"></SCRIPT>
+    <SCRIPT src='js/calci.js'> </SCRIPT>
+    <SCRIPT language="javascript">
+        function callcalc() {
+            var vamt = document.getElementById('amount').value;
+            var vinte = document.getElementById('apr').value;
+            if (Number(vamt) < 1) {
+                Swal.fire("Please enter Loan Amount...");
+                return false;
+            } else if (Number(vamt) > 2500000) {
+                Swal.fire("Maximum Loan Amount is 25 lakhs");
+                return false;
+            } else if (Number(vinte) > 20) {
+                Swal.fire("Rate of Interest Should be less than 20%...");
+                return false;
+            } else if (Number(vinte) < 1) {
+                Swal.fire("Please enter annual Rate of Interest...");
+                return false;
+            }
+            else {
+                calculator();
+                return false;
+            }
+        }
+    </SCRIPT>
+</body>
+
+</html>

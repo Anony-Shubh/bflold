@@ -1,0 +1,727 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>New Loan Application</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link href="css/style.css" rel="stylesheet">
+  <link href="Media Query/media.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/font-awesome.css">
+  <link rel="stylesheet" href="css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+  <link href="css/ticker-style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <header class="top-banner mt-1 mb-1" style="width: 100%;" id="myDiv1">
+    <div class="container-fluid">
+      <img src="img/pmegp banner.jpg" style="margin: 10px auto; width: 100%;">
+    </div>
+  </header>
+  <section class="aadhar-validation">
+    <div class="container-fluid">
+      <div class="validation-container" style="background-color: #FFF;">
+
+
+        <!--------------------------------------Navbar ---------------------------------------->
+        <section class="ftco-section">
+          <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+            <div class="container">
+
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
+                aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span> PMEGP
+              </button>
+              <div class="emi order-lg-last">
+
+                <a href="emiCalculator.html" class="nav-right">EMI Calculator</a>
+
+              </div>
+              <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav mr-auto" ID="ftco-ul">
+                  <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                  <li class="nav-item"><a href="#" class="nav-link">DPR</a></li>
+                  <li class="nav-item"><a href="#" class="nav-link">Eligibility Criteria</a></li>
+                  <li class="nav-item"><a
+                      href="https://www.kviconline.gov.in/pmegp/pmegpweb/docs/jsp/newprojectReports.jsp"
+                      class="nav-link">Model Projects</a></li>
+                  <li class="nav-item"><a
+                      href="https://www.kviconline.gov.in/pmegpeportal/PMEGPONLINETUTORIAL/pmegponline.swf.html"
+                      class="nav-link">Video Tutorial</a></li>
+                  <li class="nav-item"><a href="FAQ.html" class="nav-link">FAQ</a></li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+        </section>
+
+
+        <!--------------------------------------Navbar ---------------------------------------->
+
+        <!--------------------------------------New Applicant form---------------------------->
+        <section>
+          <div class="container-fluid" style="padding: 0;">
+            <div class="Main-form" id="main-form1">
+              <div class="form-title">
+                <span>PMEGP ONLINE APPLICATION FOR INDIVIDUAL APPLICANT/व्यक्तिगत आवेदन के लिए पीएमईजीपी ऑनलाइन
+                  आवेदन</span>
+              </div>
+              <div class="personal" id="personal">
+                <form name="myform" class="form-group">
+
+                  <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                      <!-- <span class="numbering">1.</span> -->
+                      <label for="inputname" class="head-name">1. Name of Applicant / आवेदक का नाम : </label>
+                    </div>
+
+                    <div class="col-md-6 col-sm-12">
+
+                      <div class="input-group">
+                        <span class="fix-head">
+                          Mr. John cale
+                        </span>
+
+                        <!-- <span class="input-group-addon">
+                                  <select name="sal" class=""salut>
+                                     <option selected="selected" value="Shri.">Shri.</option>
+                                 <option value="Smt.">Smt.</option>
+                                      <option value="Miss">Mr.</option>
+                                      <option value="Miss">Ms.</option>
+                             </select>
+                        </span> -->
+                        <!-- <input type="text" name="Name" class="form-control" placeholder="Name as per Aadhar card / आधार कार्ड के अनुसार नाम" oninput="FullName.value = sal.value +' '+ Name.value" required> -->
+                      </div><!-- /input-group -->
+
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                      <!-- <span class="numbering">2.</span> -->
+                      <label for="inputname" class="head-name">2. Aadhar Card Number / आधार नंबर :</label>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                      <span class="fix-head">
+                        XXXX-XXXX-2154
+                      </span>
+
+                      <!-- <input type="text" class="form-control" placeholder="Aadhar Number / आधार नंबर " required> -->
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                      <!-- <span class="numbering">3.</span> -->
+                      <label for="inputname" class="head-name">3. Date of Birth / जन्म तिथि :</label>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                      <span class="fix-head">
+                        15-08-1998
+                      </span>
+                      <!-- <input type="date" class="form-control" placeholder="DD/MM/YYYY " required> -->
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-6 col-sm-12" id="gender">
+                      <!-- <span class="numbering">4.</span> -->
+                      <label for="inputname" class="head-name">4. Gender / लिंग :</label>
+                    </div>
+
+                    <div class="col-md-6 col-sm-12">
+                      <div class="all-gender">
+                        <span class="fix-head">
+                          Male
+                        </span>
+
+                        <!-- <input type="radio" name="gender" value="male"> Male
+                              <input type="radio" name="gender" value="female"> Female -->
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                      <!-- <span class="numbering">5.</span> -->
+                      <label for="inputname" class="head-name">5. Mobile Number / मोबाइल नंबर :</label>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                      <span class="fix-head">
+                        87XXXXXX12
+                      </span>
+                      <!-- <input type="tel" class="form-control" placeholder="123-456-7890" required> -->
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                      <!-- <span class="numbering">7.</span> -->
+                      <label for="inputname" class="head-name">6. Email / ई-मेल :</label>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                      <input type="email" class="form-control" placeholder="abcd@example.com" required>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                      <!-- <span class="numbering">8.</span> -->
+                      <label for="inputname" class="head-name">7. Alternate Number/वैकल्पिक नंबर : *</label>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                      <input type="tel" class="form-control" placeholder="0000000000" required>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                      <!-- <span class="numbering">9.</span> -->
+                      <label for="inputname" class="head-name">8. Qualification/शैक्षणिक योग्यता : *</label>
+                      <a class="help-link" href="#" data-toggle="tooltip" data-placement="right" data-container="body"
+                        title="Qualification/शैक्षणिक योगता : Select qualification from the list (i.e. 8th Pass, Under 8th, 10th Pass, 12th Pass, Graduate, Post Graduate, PHD, Diploma) /सूची से शैक्षणिक योग्यता का चयन करेन (अर्थात 8 वीं पास, 8 वीं से कम, 10 वीं पास, 12 वीं पास, स्नातक, स्नातकोत्तर, पीएचडी, डिप्लोमा)"><i
+                          class="fa fa-question" aria-hidden="true"></i></a>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                      <select id="Qualification" class="form-control">
+                        <option value="none" selected>-- Select Qualification --</option>
+                        <option value="male">8th Pass</option>
+                        <option value="female">10th pass</option>
+                        <option value="other">12th Pass</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                      <!-- <span class="numbering">10.</span> -->
+                      <label for="inputname" class="head-name">9. Social Category/सामाजिक श्रेणी : *</label>
+                      <a class="help-link" href="#" data-toggle="tooltip" data-placement="right" data-container="body"
+                        title="Social Category/सामाजिक श्रेणी : Select Social Category of the applicant from the list (i.e. General, Other Backward Caste, Scheduled Caste, Scheduled Tribe, Minority)/सूची से आवेदक की सामाजिक श्रेणी का चयन करें (अर्थात सामान्य, अन्य पिछड़ी जाति, अनुसूचित जनजाति, अल्पसंख्यक)"><i
+                          class="fa fa-question" aria-hidden="true"></i></a>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                      <select id="Social Category" class="form-control">
+                        <option value="none" selected>-- Select Social Category --</option>
+                        <option value="male">General</option>
+                        <option value="female">Other Backward Cast</option>
+                        <option value="other">Scheduled cast</option>
+                        <option value="other">Scheduled Tribe</option>
+                        <option value="other">Minority</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                      <!-- <span class="numbering">11.</span> -->
+                      <label for="inputname" class="head-name">10. Special Category (if any)/विशेष श्रेणी : *</label>
+                      <a class="help-link" href="#" data-toggle="tooltip" data-placement="right" data-container="body"
+                        title="Special Category/विशेष श्रेणी : Select Special Category from the list (i.e. Ex-serviceman, Physically Challenged, Hill Border Area, North East Area) /सूची से विशेष श्रेणी का चयन करें (अर्थात भूतपूर्व सैनिक, शारीरिक रूप से विकलांग, पहाड़ी सीमा क्षेत्र, उत्तर पूर्व क्षेत्र)"><i
+                          class="fa fa-question" aria-hidden="true"></i></a>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                      <select id="specialCategory" class="form-control">
+                        <option value="none" selected>-- Select Special Category --</option>
+                        <option value="male">Not Applicable</option>
+                        <option value="female">Ex-Serviceman</option>
+                        <option value="other">Physically Challenged</option>
+                        <option value="other">Hill Border Region</option>
+                        <option value="other">North East Region</option>
+                      </select>
+                    </div>
+                  </div>
+                  <hr>
+
+                  <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                      <!-- <span class="numbering">12.</span> -->
+                      <label for="inputname" class="head-name">11. Communication Address/पत्राचार हेतु पता : *</label>
+                      <a class="help-link" href="#" data-toggle="tooltip" data-placement="right" data-container="body"
+                        title="Address for Communication/पत्राचार हेतु पता: The Applicant should fill the complete postal address of the applicant including State, District, Pin Code, Mobile No., Email and PAN No/आवेदक को राज्य, जिला, पिन कोड, मोबाइल नंबर, ईमेल और पैन नंबर सहित आवेदक का पूरा डाक पता भरना चाहिए|."><i
+                          class="fa fa-question" aria-hidden="true"></i></a>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                      <input type="text" class="form-control" placeholder="Communication Add / पत्राचार हेतु पता "
+                        required>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                      <label for="inputname" class="head-name2">Taluka/ Block / तालुका / ब्लॉक : *</label>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                      <input type="text" class="form-control" placeholder="Taluka/ Block / तालुका  / ब्लॉक " required>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-6 col-sm-12">
+
+                      <label for="inputname" class="head-name2">District / जिला :</label>
+                    </div>
+                    <div class="col-md-3 col-sm-12">
+                      <input type="text" class="form-control" placeholder="District / जिला " required>
+                    </div>
+
+                    <div class="col-md-3 col-sm-12">
+                      <input type="submit" class="district" placeholder="District / जिला " value="Change District"
+                        required>
+
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6 col-sm-12">
+
+                      <label for="inputname" class="head-name2">Pin Code / पिन कोड : *</label>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                      <input type="text" class="form-control" placeholder="Pin Code / पिन कोड " required>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                      <!-- <span class="numbering">13.</span> -->
+                      <label for="inputname" class="head-name">12. Proposed Unit Address / प्रस्तावित इकाई पता :
+                        *</label>
+                      <a class="help-link" href="#" data-toggle="tooltip" data-placement="right" data-container="body"
+                        title="Proposed Unit Address/प्रस्तावित इकाई पता : The Applicant should fill the complete Unit address of the unit including Taluka, District, Pin Code (If Unit Address is same as Communication Address then click on communication Address to Unit Address) / आवेदक को इकाई-पता भरण चाहिए, जिसमें तालुका, जिला,
+                          पिन कोड (यदि इकाई का पता, पत्राचार के पते के समान है तो इकाई के पते के स्थान पर “इकाई का पता” पर क्लिक करें)"><i
+                          class="fa fa-question" aria-hidden="true"></i></a>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                      <input type="text" class="form-control" placeholder="Proposed Unit Address / प्रस्तावित इकाई पता "
+                        required>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6 col-sm-12">
+
+                      <label for="inputname" class="head-name2">Taluka/ Block / तालुका / ब्लॉक : *</label>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                      <input type="text" class="form-control" placeholder="Taluka/ Block / तालुका  / ब्लॉक " required>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                      <label for="inputname" class="head-name2">District / जिला : *</label>
+                    </div>
+                    <div class="col-md-3 col-sm-12">
+                      <input type="text" class="form-control" placeholder="District / जिला " required>
+                    </div>
+
+                    <div class="col-md-3 col-sm-12">
+                      <input type="text" class="form-control" placeholder="Pin Code / पिन कोड " required>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                      <!-- <span class="numbering">14.</span> -->
+                      <label for="inputname" class="head-name">13. Sponsoring Agency / प्रायोजक एजेंसी: *</label>
+                      <a class="help-link" href="#" data-toggle="tooltip" data-placement="right" data-container="body"
+                        title="Sponsoring Agency/प्रायोजक एजेंसी : Select Agency (KVIC, KVIB, DIC) in which you want to submit the application form/उस एजेंसी (KVIC, KVIB, DIC) का चयन करें, जिसमें आप आवेदन पत्र जमा करना चाहते हैं |."><i
+                          class="fa fa-question" aria-hidden="true"></i></a>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                      <select id="" class="form-control">
+                        <option value="none" selected>--Select Agency-</option>
+                        <option value="male">KVIC</option>
+                        <option value="female">KVIB</option>
+                        <option value="other">DIC</option>
+                        <option value="other">COIR BOARD</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6 col-sm-4">
+                      <!-- <span class="numbering">15.</span> -->
+                      <label for="inputname" class="head-name">14. State / राज्य : *</label>
+                      <a class="help-link" href="#" data-toggle="tooltip" data-placement="right" data-container="body"
+                        title="State/राज्य : Select State from the list/ सूची से राज्य का चयन करें ."><i
+                          class="fa fa-question" aria-hidden="true"></i></a>
+                    </div>
+                    <div class="col-md-6 col-sm-4">
+                      <select id="" class="form-control">
+                        <option value="none" selected>--Select State--</option>
+                        <option value="male">Maharashtra</option>
+                        <option value="female">karnataka</option>
+                        <option value="other">Goa</option>
+                        <option value="other">Gujarat</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6 col-sm-4">
+                      <!-- <span class="numbering">16.</span> -->
+                      <label for="inputname" class="head-name">15. District /जिला : *</label>
+                      <a class="help-link" href="#" data-toggle="tooltip" data-placement="right" data-container="body"
+                        title="District/जिला : Select District from the list/सूची से जिले का चयन करें"><i
+                          class="fa fa-question" aria-hidden="true"></i></a>
+                    </div>
+                    <div class="col-md-6 col-sm-4">
+                      <select id="" class="form-control">
+                        <option value="none" selected>--Select District-</option>
+                        <option value="male">Palghar</option>
+                        <option value="female">Mumbai</option>
+                        <option value="other">Jalna</option>
+                        <option value="other">Latur</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6 col-sm-4">
+                      <!-- <span class="numbering">17.</span> -->
+                      <label for="inputname" class="head-name">16. Sponsoring Office/प्रायोजक कार्यालय : *</label>
+                      <a class="help-link" href="#" data-toggle="tooltip" data-placement="right" data-container="body"
+                        title="Sponsoring Office/प्रायोजक कार्यालय : Select Office from the list /सूची से कार्यालय का चयन करें"><i
+                          class="fa fa-question" aria-hidden="true"></i></a>
+                    </div>
+                    <div class="col-md-6 col-sm-4">
+                      <span>To get Office Select Agency, State and District/कार्यालय प्राप्त करने के लिए एजेंसी, राज्य
+                        और जिला का चयन करें</span>
+                    </div>
+                  </div>
+
+                  <hr>
+
+                  <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                      <!-- <span class="numbering">18.</span> -->
+                      <label for="inputname" class="head-name">17. Unit Location/इकाई का स्थान : *</label>
+                      <a class="help-link" href="#" data-toggle="tooltip" data-placement="right" data-container="body"
+                        title="Type of Activity/गतिविधि का प्रकार : Select from the activity list (i.e. Service or Manufacturing)/सूची से चयन करें (अर्थात सेवा या विनिर्माण)"><i
+                          class="fa fa-question" aria-hidden="true"></i></a>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                      <select id="" class="form-control">
+                        <option value="none" selected>-- Select Unit Location --</option>
+                        <option value="male">Rural</option>
+                        <option value="female">Urban</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                      <!-- <span class="numbering">18.</span> -->
+                      <label for="inputname" class="head-name">18. Type of Activity /गतिविधि का प्रकार : *</label>
+                      <a class="help-link" href="#" data-toggle="tooltip" data-placement="right" data-container="body"
+                        title="Type of Activity/गतिविधि का प्रकार : Select from the activity list (i.e. Service or Manufacturing)/सूची से चयन करें (अर्थात सेवा या विनिर्माण)"><i
+                          class="fa fa-question" aria-hidden="true"></i></a>
+                    </div>
+                    <div class="col-md-3 col-sm-12">
+                      <select id="" class="form-control">
+                        <option value="none" selected>-- Activity Type --</option>
+                        <option value="male">Manufacturing</option>
+                        <option value="female">Trade</option>
+                        <option value="other">Service</option>
+
+                      </select>
+                    </div>
+
+                    <div class="col-md-3 col-sm-12">
+                      <input type="submit" class="district" value="Select Industry Activity" required>
+
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                      <!-- <span class="numbering">19.</span> -->
+                      <label for="inputname" class="head-name">19. Industry / Activity Name/गतिविधि का नाम :</label>
+                      <a class="help-link" href="#" data-toggle="tooltip" data-placement="right" data-container="body"
+                        title="Name of the Activity/गतिविधि का नाम : (i) Industr/उद्योगy : Select Industry from the List of Industry/उद्योग की सूची से उद्योग का चयन करें (ii) Product Description/उत्पाद विवरण : Type the specific product description/विशिष्ट: उत्पाद विवरण का नाम बताए ."><i
+                          class="fa fa-question" aria-hidden="true"></i></a>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                      <input type="text" class="form-control" placeholder="Industry / Activity Name/गतिविधि का नाम "
+                        required>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                      <label for="inputname" class="head-name2">Product Description/उत्पाद विवरण :</label>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                      <input type="text" class="form-control" placeholder="Product Description/उत्पाद विवरण " required>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                      <!-- <span class="numbering">20.</span> -->
+                      <label for="inputname" class="head-name">20. Project Cost/परियोजना की लागतण :</label>
+                      <a class="help-link" href="#" data-toggle="tooltip" data-placement="right" data-container="body"
+                        title="Loan Required/आवश्यक ऋण : (i) Capital Expenditure : Enter CE loan as proposed in the DPR in rupees/पूंजीगत व्यव: व्यव ऋण को रुपये में डीपीआर में प्रस्तावित अनुसार पूंजीगत दर्ज करें |. (ii) Working Capital : Enter WC loan as proposed in the DPR in rupees/कार्यशील पूंजी ऋण डीपीआर में प्रस्तावित अनुसार कार्यशील पूंजी ऋण को रुपये में दर्ज करें. (iii) Total Loan : The total loan will be calculated by the system automatically/) कुल ऋण: की गणना प्रणाली द्वारा स्वचालित रूप से की जाएगी |."><i
+                          class="fa fa-question" aria-hidden="true"></i></a>
+                    </div>
+
+                    <div class="col-md-6 col-sm-12">
+                      <div class="capital-head">
+                        <div class="capital">
+                          <input type="text" class="form-control" placeholder="Capital Expenditure/ पूंजीगत व्यय"
+                            required>
+                        </div>
+
+                        <div class="capital">
+                          <input type="text" class="form-control" placeholder="Working Capital/कार्यशील पूंजी" required>
+                        </div>
+                        <div class="capital">
+                          <input type="text" class="form-control" placeholder="Total/कुल" required>
+                        </div>
+                        <div class="capital">
+                          <input type="text" class="form-control" placeholder="Employment/रोज़गार" required>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+
+                  <hr>
+
+
+                  <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                      <!-- <span class="numbering">21.</span> -->
+                      <label for="inputname" class="head-name">21. EDP Training Undergone/क्या ईडीपी प्रशिक्षण लिया है ?
+                        : *</label>
+                      <a class="help-link" href="#" data-toggle="tooltip" data-placement="right" data-container="body"
+                        title="Whether EDP Training Undergone/क्या ईडीपी प्रशिक्षण लिया है : Select Yes Or No from the List/सूची से “हां” या “नहीं” का चयन करें |.&emsp;&emsp;&emsp;&ensp;&ensp;&emsp;&emsp;&nbsp;Training Institute's Name/प्रशिक्षण संस्था का नाम : If EDP Training Undergone YES, enter Training Institute Name in detail/ यदि ईडीपी प्रशिक्षण लिया है,तो प्रशिक्षण संस्थान का पूरा नाम व विवरण दर्ज करें |."><i
+                          class="fa fa-question" aria-hidden="true"></i></a>
+                    </div>
+
+                    <div class="col-md-2 col-sm-12">
+                      <select id="" class="form-control">
+                        <option value="none" selected>--Select--</option>
+                        <option value="male">Yes</option>
+                        <option value="female">No</option>
+
+                      </select>
+                    </div>
+
+
+                    <div class="col-md-4 col-sm-12">
+                      <input type="text" class="form-control"
+                        placeholder="EDP Training Instn. Name/प्रशिक्षण संस्था का नाम" required>
+                    </div>
+                  </div>
+
+
+                  <hr>
+
+                  <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                      <!-- <span class="numbering">22.</span> -->
+                      <label for="inputname" class="head-name">22. 1st Financing Bank/ बैंक विवरण : *</label>
+                      <a class="help-link" href="#" data-toggle="tooltip" data-placement="right" data-container="body"
+                        title="Bank Details/बैंक विवरण: (i) Enter IFSC code/आईएफससी (IFSC) कोड दर्ज करें (ii) if IFSC code is not known then click on GET IFSC CODE button and select correct IFSC Code of Financing Bank/ यदि IFSC कोड ज्ञात नहीं है तो GET IFSC CODE बटन पर क्लिक करें, और फाइनेंसिंग बैंक का सही IFSC कोड चुनें | . (iii) Enter optional Bank IFSC code/वैकल्पिक बैंक का IFSC कोड दर्ज करें |."><i
+                          class="fa fa-question" aria-hidden="true"></i></a>
+                    </div>
+
+                    <div class="col-md-6 col-sm-12">
+                      <select name="" id="" class="form-control">
+                        <option value="">--Select Bank Name--</option>
+                        <option value="">State bank of India</option>
+                        <option value="">Canara bank</option>
+                        <option value="">HDFC bank</option>
+                        <option value="">ICICI bank</option>
+                        <option value="">AU bank</option>
+                      </select>
+                    </div>
+
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                      <label for="inputname" class="head-name2">IFS Code/ IFSC कोड : :</label>
+                    </div>
+
+                    <div class="col-md-3 col-sm-12">
+                      <input type="text" class="form-control" placeholder="" required>
+                    </div>
+
+                    <div class="col-md-3 col-sm-12">
+                      <input type="submit" class="district" placeholder="District / जिला " value="Select IFS Code"
+                        required>
+                    </div>
+
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                      <label for="inputname" class="head-name2">Branch Name/शाखा का नाम :</label>
+                    </div>
+
+                    <div class="col-md-6 col-sm-12">
+                      <input type="text" class="form-control" placeholder="Branch Name/शाखा का नाम " required>
+                    </div>
+                  </div>
+
+
+                  <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                      <label for="inputname" class="head-name2">Address/पता :</label>
+                    </div>
+
+                    <div class="col-md-6 col-sm-12">
+                      <input type="text" class="form-control" placeholder="Address/पता" required>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                      <label for="inputname" class="head-name2">District:/जिला :</label>
+                    </div>
+
+                    <div class="col-md-6 col-sm-12">
+                      <input type="text" class="form-control" placeholder="District:/जिला" required>
+                    </div>
+                  </div>
+
+                  <hr>
+
+                  <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                      <!-- <span class="numbering">23.</span> -->
+                      <label for="inputname" class="head-name">23. Alternate Financing Bank Name /दूसरा फ़ाइनेंशियल बैंक
+                        :</label>
+                      <a class="help-link" href="#" data-toggle="tooltip" data-placement="right" data-container="body"
+                        title="2nd Financial Bank : Enter IFS Code of the 2nd Financing Branch which is optional /दूसरी फाइनेंसिंग ब्रांच का IFSC कोड दर्ज करें, जो वैकल्पिक है |"><i
+                          class="fa fa-question" aria-hidden="true"></i></a>
+                    </div>
+
+                    <div class="col-md-6 col-sm-12">
+                      <select name="" id="" class="form-control">
+                        <option value="">--Select Bank Name--</option>
+                        <option value="">State bank of India</option>
+                        <option value="">Canara bank</option>
+                        <option value="">HDFC bank</option>
+                        <option value="">ICICI bank</option>
+                        <option value="">AU bank</option>
+                      </select>
+                    </div>
+
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                      <label for="inputname" class="head-name2"> IFS Code/ IFSC कोड :</label>
+                    </div>
+
+                    <div class="col-md-3 col-sm-12">
+                      <input type="text" class="form-control" placeholder="" required>
+                    </div>
+
+                    <div class="col-md-3 col-sm-12">
+                      <input type="submit" class="district" placeholder="District / जिला " value="Select IFS Code"
+                        required>
+                    </div>
+
+                  </div>
+                  <hr>
+
+                  <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                      <!-- <span class="numbering">24.</span> -->
+                      <label for="inputname" class="head-name">24. Want To avail CGTMSE/सीजीटीएमएसई का लाभ उठाना चाहते
+                        हैं ? : *</label>
+                    </div>
+
+                    <div class="col-md-6 col-sm-12">
+                      <select id="" class="form-control">
+                        <option value="none" selected>--Select--</option>
+                        <option value="male">Yes</option>
+                        <option value="female">No</option>
+
+                      </select>
+                    </div>
+
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                      <!-- <span class="numbering">25.</span> -->
+                      <label for="inputname" class="head-name-25">25. Where did you hear about PMEGP/आपने पीएमईजीपी के
+                        बारे में कहां सुना ? : *</label>
+                    </div>
+
+                    <div class="col-md-6 col-sm-12">
+                      <select id="" class="form-control">
+                        <option value="none" selected>--Select--</option>
+                        <option value="male">Word Of Mouth</option>
+                        <option value="female">Awareness Camp</option>
+                        <option value="female">Awareness Camp</option>
+                        <option value="female">Implementing Agencies (KVIC/KVIB/DIC)</option>
+                        <option value="female">News Paper Advertisements</option>
+                        <option value="female">Radio Advertisements</option>
+                        <option value="female">Television Advertisements</option>
+                        <option value="female">Internet Advertisements</option>
+                        <option value="female">Social Media (Facebook, Twitter etc)</option>
+                        <option value="female">Search Engine</option>
+                        <option value="female">Other</option>
+
+                      </select>
+                    </div>
+
+                  </div>
+                  <hr>
+
+                  <div class="row">
+                    <div class="col-md-12 col-sm-12 d-flex">
+                      <div class="checkbox"><input type="checkbox" style="cursor: pointer;" required></div>
+                      <div class="checkbox-text">
+                        <p> I hereby declare that information given above is true to the best of my knowledge. Any
+                          information to be found incorrect /false / wrong , I shall be liable for suitable Action/
+                          <br>मैं एतद घोषणा करता हूं कि ऊपर दी गई जानकारी मेरे सर्वोत्तम ज्ञान के लिए सही है | किसी भी
+                          जानकारी के गलत/त्रुटिपूर्ण/असत्य पाए जाने कि स्थिति में, मैं उचित कार्रवाई के लिए स्वयं
+                          उत्तरदायी रहूँगा | .
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="submission">
+                    <a href="#">Submit data</a>
+                  </div>
+                </form>
+
+              </div>
+            </div>
+
+          </div>
+
+        </section>
+
+
+        <!--------------------------------------New Applicant form end---------------------------->
+        <!-------------------------------------------------Footer Section  start  ---------------------------------------------->
+  <Footer>
+    <div class="container-fluid">
+      <div class="footer-content py-2">
+        <p>DESIGNED AND MAINTAINED
+          BY DIRECTORATE OF INFORMATION TECHNOLOGY, KVIC, MUMBAI <span class="email">( pmegpeportal.kvic@gov.in )</span>
+        </p>
+      </div>
+    </div>
+  </Footer>
+
+  <!-------------------------------------------------Footer Section End  ---------------------------------------------->
+
+        <script src="js/popper.min.js"></script>
+        <script src="js/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/jquery.ticker.js" type="text/javascript"></script>
+
+        <script>
+          //Bootstrap Tooltip
+          $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+          });
+        </script>
+</body>
+
+</html>

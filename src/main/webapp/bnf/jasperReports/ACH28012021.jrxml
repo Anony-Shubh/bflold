@@ -1,0 +1,1058 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ACH" language="groovy" pageWidth="1080" pageHeight="842" columnWidth="1040" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8f7476a6-0481-4737-8acf-9bf57d960a07">
+	<property name="ireport.zoom" value="0.7513148009015811"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="bnfach" uuid="463c72a7-178c-445b-b0f6-11e3fe2d716d">
+		<parameter name="wrcls" class="java.lang.String">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="YEAR_ID" class="java.lang.String">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[SELECT OFF_CD,  ZONE_NM, OFF_NAME1, EDP1, P_V1, D_L_A_C1, S_L_W1, D_L_E1, S_L_E1, Z_L_E1,Z_L_E2, Z_L_R_M1, Q_B_R_M1,
+  S_L_M_C_M1, S_T_W1, TA_DA1, P_P1, D_E_O1, CONT1,D_L_A_C2,P_P2,CONT2,  S_L_W2, D_L_E2, S_L_E2, Z_L_R_M2,
+
+  PCCC,
+PMM,
+PIIE,
+PFA,
+BPV,
+OFFEDP,
+ONEDP,
+BEONOFF,
+TECHEXP,
+MARKEXP,
+RETDBANK,
+EVOSTUDY,
+PROFEXP,
+ADVBODY,
+CONCOFF,
+
+  CASE WHEN OFF_CD=9999 THEN P_V2_HO ELSE P_V2 END AS P_V2,
+  CASE WHEN OFF_CD=9999 THEN Q_B_R_M2_HO ELSE Q_B_R_M2 END AS Q_B_R_M2,
+  CASE WHEN OFF_CD=9999 THEN S_L_M_C_M2_HO ELSE S_L_M_C_M2 END AS S_L_M_C_M2,
+  CASE WHEN OFF_CD=9999 THEN S_T_W2_HO ELSE S_T_W2 END AS S_T_W2,
+  CASE WHEN OFF_CD=9999 THEN TA_DA2_HO ELSE TA_DA2 END AS TA_DA2,
+  CASE WHEN OFF_CD=9999 THEN D_E_O2_HO ELSE D_E_O2 END AS D_E_O2,
+  CASE WHEN OFF_CD=9999 THEN CONT2_HO ELSE CONT2 END AS CONT2,
+  CASE WHEN OFF_CD=9999 THEN EDP2_HO ELSE EDP2 END AS EDP2,
+ tott,
+  YEAR_ID
+  FROM
+  (SELECT OFF_CD,
+    ZONE_NM,
+    OFF_NAME1,
+    EDP1,
+    ROUND(EDP2 / 100000, 2) AS EDP2,
+    P_V1,
+    ROUND(P_V2 / 100000, 2) AS P_V2,
+    D_L_A_C1,
+    ROUND(D_L_A_C2 / 100000, 2) AS D_L_A_C2,
+    S_L_W1,
+    ROUND(S_L_W2 / 100000, 2) AS S_L_W2,
+    D_L_E1,
+    ROUND(D_L_E2 / 100000, 2) AS D_L_E2,
+    S_L_E1,
+    ROUND(S_L_E2 / 100000, 2) AS S_L_E2,
+    Z_L_E1,
+    ROUND(Z_L_E2 / 100000, 2) AS Z_L_E2,
+    Z_L_R_M1,
+    ROUND(Z_L_R_M2 / 100000, 2) AS Z_L_R_M2,
+    Q_B_R_M1,
+    ROUND(Q_B_R_M2 / 100000, 2) AS Q_B_R_M2,
+    S_L_M_C_M1,
+    ROUND(S_L_M_C_M2 / 100000, 2) AS S_L_M_C_M2,
+    S_T_W1,
+    ROUND(S_T_W2 / 100000, 2) AS S_T_W2,
+    TA_DA1,
+    ROUND(TA_DA2 / 100000, 2) AS TA_DA2,
+    P_P1,
+    ROUND(P_P2 / 100000, 2) AS P_P2,
+    D_E_O1,
+    ROUND(D_E_O2 / 100000, 2) AS D_E_O2,
+    CONT1,
+    ROUND(CONT2         / 100000, 2)                                                                                                                                                                                                                                                                                                                                                                                                                                           AS CONT2,
+    ROUND(CONT2_HO      / 100000, 2)                                                                                                                                                                                                                                                                                                                                                                                                                                           AS CONT2_HO,
+    ROUND(D_E_O2_HO     / 100000, 2)                                                                                                                                                                                                                                                                                                                                                                                                                                           AS D_E_O2_HO,
+    ROUND(TA_DA2_HO     / 100000, 2)                                                                                                                                                                                                                                                                                                                                                                                                                                           AS TA_DA2_HO,
+    ROUND(S_T_W2_HO     / 100000, 2)                                                                                                                                                                                                                                                                                                                                                                                                                                           AS S_T_W2_HO,
+    ROUND(Q_B_R_M2_HO   / 100000, 2)                                                                                                                                                                                                                                                                                                                                                                                                                                           AS Q_B_R_M2_HO,
+    ROUND(P_V2_HO       / 100000, 2)                                                                                                                                                                                                                                                                                                                                                                                                                                           AS P_V2_HO,
+    ROUND(S_L_M_C_M2_HO / 100000, 2)                                                                                                                                                                                                                                                                                                                                                                                                                                           AS S_L_M_C_M2_HO,
+    ROUND(CONT2_HO_2    / 100000, 2)                                                                                                                                                                                                                                                                                                                                                                                                                                           AS CONT2_HO_2,
+    ROUND(EDP2_HO       / 100000, 2) AS EDP2_HO,
+
+    ROUND(PCCC       / 100000, 2) AS PCCC,
+    ROUND(PMM       / 100000, 2) AS PMM,
+    ROUND(PIIE       / 100000, 2) AS PIIE,
+    ROUND(PFA       / 100000, 2) AS PFA,
+    ROUND(BPV       / 100000, 2) AS BPV,
+    ROUND(OFFEDP       / 100000, 2) AS OFFEDP,
+    ROUND(ONEDP       / 100000, 2) AS ONEDP,
+    ROUND(BEONOFF       / 100000, 2) AS BEONOFF,
+    ROUND(TECHEXP       / 100000, 2) AS TECHEXP,
+    ROUND(MARKEXP       / 100000, 2) AS MARKEXP,
+    ROUND(RETDBANK       / 100000, 2) AS RETDBANK,
+    ROUND(EVOSTUDY       / 100000, 2) AS EVOSTUDY,
+    ROUND(PROFEXP       / 100000, 2) AS PROFEXP,
+    ROUND(ADVBODY       / 100000, 2) AS ADVBODY,
+    ROUND(CONCOFF       / 100000, 2) AS CONCOFF,
+
+
+
+    ROUND((NVL(EDP2, 0) + NVL(P_V2, 0) + NVL(D_L_A_C2, 0) + NVL(S_L_W2, 0) + NVL(D_L_E2, 0) + NVL(S_L_E2, 0) + NVL(Z_L_E2, 0)
+    + NVL(Z_L_R_M2, 0) + NVL(Q_B_R_M2, 0) + NVL(S_L_M_C_M2, 0) + NVL(S_T_W2, 0) + NVL(TA_DA2, 0) + NVL(P_P2, 0) + NVL(D_E_O2, 0)
+    + NVL(CONT2, 0) + NVL(CONT2_HO, 0) + NVL(D_E_O2_HO, 0) + NVL(TA_DA2_HO, 0) + NVL(S_T_W2_HO, 0) + NVL(Q_B_R_M2_HO, 0)
+    + NVL(P_V2_HO, 0) + NVL(S_L_M_C_M2_HO, 0) + NVL(CONT2_HO_2, 0) + NVL(EDP2_HO, 0)
+
+    + NVL(PCCC, 0)
+    + NVL(PMM, 0)
+    + NVL(PIIE, 0)
+    + NVL(PFA, 0)
+    + NVL(BPV, 0)
+    + NVL(OFFEDP, 0)
+    + NVL(ONEDP, 0)
+    + NVL(BEONOFF, 0)
+    + NVL(TECHEXP, 0)
+    + NVL(MARKEXP, 0)
+    + NVL(RETDBANK, 0)
+    + NVL(EVOSTUDY, 0)
+    + NVL(PROFEXP, 0)
+    + NVL(ADVBODY, 0)
+    + NVL(CONCOFF, 0)
+    ) / 100000, 2) AS tott,
+    YEAR_ID
+  FROM
+    (SELECT BOM.OFF_CD,
+      BOM.ZONE_NM,
+      BOM.OFF_NAME1,
+      SUM(DECODE(BFT.BUD_ID, '1', NVL(BFT.PH_KVIC, 0)    + NVL(BFT.PH_KVIB, 0) + NVL(BFT.PH_DIC, 0)))   AS EDP1,
+      SUM(DECODE(BFT.BUD_ID, '1', NVL(BFT.FIN_KVIC, 0)   + NVL(BFT.FIN_DIC, 0) + NVL(BFT.FIN_KVIB, 0))) AS EDP2,
+      SUM(DECODE(BFT.BUD_ID, '2', NVL(BFT.PH_KVIC, 0)    + NVL(BFT.PH_KVIB, 0) + NVL(BFT.PH_DIC, 0)))   AS P_V1,
+      SUM(DECODE(BFT.BUD_ID, '2', NVL(BFT.FIN_KVIC, 0)   + NVL(BFT.FIN_DIC, 0) + NVL(BFT.FIN_KVIB, 0))) AS P_V2,
+      COUNT(DECODE(BFT.BUD_ID, '3', NVL(BFT.PH_KVIC, 0)  + NVL(BFT.PH_KVIB, 0) + NVL(BFT.PH_DIC, 0)))   AS D_L_A_C1,
+      SUM(DECODE(BFT.BUD_ID, '3', NVL(BFT.FIN_KVIC, 0)   + NVL(BFT.FIN_DIC, 0) + NVL(BFT.FIN_KVIB, 0))) AS D_L_A_C2,
+      COUNT(DECODE(BFT.BUD_ID, '4', NVL(BFT.PH_KVIC, 0)  + NVL(BFT.PH_KVIB, 0) + NVL(BFT.PH_DIC, 0)))   AS S_L_W1,
+      SUM(DECODE(BFT.BUD_ID, '4', NVL(BFT.FIN_KVIC, 0)   + NVL(BFT.FIN_DIC, 0) + NVL(BFT.FIN_KVIB, 0))) AS S_L_W2,
+      COUNT(DECODE(BFT.BUD_ID, '5', NVL(BFT.PH_KVIC, 0)  + NVL(BFT.PH_KVIB, 0) + NVL(BFT.PH_DIC, 0)))   AS D_L_E1,
+      SUM(DECODE(BFT.BUD_ID, '5', NVL(BFT.FIN_KVIC, 0)   + NVL(BFT.FIN_DIC, 0) + NVL(BFT.FIN_KVIB, 0))) AS D_L_E2,
+      COUNT(DECODE(BFT.BUD_ID, '6', NVL(BFT.PH_KVIC, 0)  + NVL(BFT.PH_KVIB, 0) + NVL(BFT.PH_DIC, 0)))   AS S_L_E1,
+      SUM(DECODE(BFT.BUD_ID, '6', NVL(BFT.FIN_KVIC, 0)   + NVL(BFT.FIN_DIC, 0) + NVL(BFT.FIN_KVIB, 0))) AS S_L_E2,
+      COUNT(DECODE(BFT.BUD_ID, '7', NVL(BFT.PH_KVIC, 0)  + NVL(BFT.PH_KVIB, 0) + NVL(BFT.PH_DIC, 0)))   AS Z_L_E1,
+      SUM(DECODE(BFT.BUD_ID, '7', NVL(BFT.FIN_KVIC, 0)   + NVL(BFT.FIN_DIC, 0) + NVL(BFT.FIN_KVIB, 0))) AS Z_L_E2,
+      COUNT(DECODE(BFT.BUD_ID, '8', NVL(BFT.PH_KVIC, 0)  + NVL(BFT.PH_KVIB, 0) + NVL(BFT.PH_DIC, 0)))   AS Z_L_R_M1,
+      SUM(DECODE(BFT.BUD_ID, '8', NVL(BFT.FIN_KVIC, 0)   + NVL(BFT.FIN_DIC, 0) + NVL(BFT.FIN_KVIB, 0))) AS Z_L_R_M2,
+      COUNT(DECODE(BFT.BUD_ID, '9', NVL(BFT.PH_KVIC, 0)  + NVL(BFT.PH_KVIB, 0) + NVL(BFT.PH_DIC, 0)))   AS Q_B_R_M1,
+      SUM(DECODE(BFT.BUD_ID, '9', NVL(BFT.FIN_KVIC, 0)   + NVL(BFT.FIN_DIC, 0) + NVL(BFT.FIN_KVIB, 0))) AS Q_B_R_M2,
+      COUNT(DECODE(BFT.BUD_ID, '10', NVL(BFT.PH_KVIC, 0) + NVL(BFT.PH_KVIB, 0) + NVL(BFT.PH_DIC, 0)))   AS S_L_M_C_M1,
+      SUM(DECODE(BFT.BUD_ID, '10', NVL(BFT.FIN_KVIC, 0)  + NVL(BFT.FIN_DIC, 0) + NVL(BFT.FIN_KVIB, 0))) AS S_L_M_C_M2,
+      SUM(DECODE(BFT.BUD_ID, '11', NVL(BFT.PH_KVIC, 0)   + NVL(BFT.PH_KVIB, 0) + NVL(BFT.PH_DIC, 0)))   AS S_T_W1,
+      SUM(DECODE(BFT.BUD_ID, '11', NVL(BFT.FIN_KVIC, 0)  + NVL(BFT.FIN_DIC, 0) + NVL(BFT.FIN_KVIB, 0))) AS S_T_W2,
+      SUM(DECODE(BFT.BUD_ID, '12', NVL(BFT.PH_KVIC, 0)   + NVL(BFT.PH_KVIB, 0) + NVL(BFT.PH_DIC, 0)))   AS TA_DA1,
+      SUM(DECODE(BFT.BUD_ID, '12', NVL(BFT.FIN_KVIC, 0)  + NVL(BFT.FIN_DIC, 0) + NVL(BFT.FIN_KVIB, 0))) AS TA_DA2,
+      SUM(DECODE(BFT.BUD_ID, '13', NVL(BFT.PH_KVIC, 0)   + NVL(BFT.PH_KVIB, 0) + NVL(BFT.PH_DIC, 0)))   AS P_P1,
+      SUM(DECODE(BFT.BUD_ID, '13', NVL(BFT.FIN_KVIC, 0)  + NVL(BFT.FIN_DIC, 0) + NVL(BFT.FIN_KVIB, 0))) AS P_P2,
+      SUM(DECODE(BFT.BUD_ID, '14', NVL(BFT.PH_KVIC, 0)   + NVL(BFT.PH_KVIB, 0) + NVL(BFT.PH_DIC, 0)))   AS D_E_O1,
+      SUM(DECODE(BFT.BUD_ID, '14', NVL(BFT.FIN_KVIC, 0)  + NVL(BFT.FIN_DIC, 0) + NVL(BFT.FIN_KVIB, 0))) AS D_E_O2,
+      SUM(DECODE(BFT.BUD_ID, '15', NVL(BFT.PH_KVIC, 0)   + NVL(BFT.PH_KVIB, 0) + NVL(BFT.PH_DIC, 0)))   AS CONT1,
+      SUM(DECODE(BFT.BUD_ID, '15', NVL(BFT.FIN_KVIC, 0)  + NVL(BFT.FIN_DIC, 0) + NVL(BFT.FIN_KVIB, 0))) AS CONT2,
+      SUM(DECODE(BFT.BUD_ID, '16', NVL(BFT.FIN_KVIC, 0)  + NVL(BFT.FIN_DIC, 0) + NVL(BFT.FIN_KVIB, 0))) AS CONT2_HO,
+      SUM(DECODE(BFT.BUD_ID, '17', NVL(BFT.FIN_KVIC, 0)  + NVL(BFT.FIN_DIC, 0) + NVL(BFT.FIN_KVIB, 0))) AS D_E_O2_HO,
+      SUM(DECODE(BFT.BUD_ID, '18', NVL(BFT.FIN_KVIC, 0)  + NVL(BFT.FIN_DIC, 0) + NVL(BFT.FIN_KVIB, 0))) AS TA_DA2_HO,
+      SUM(DECODE(BFT.BUD_ID, '19', NVL(BFT.FIN_KVIC, 0)  + NVL(BFT.FIN_DIC, 0) + NVL(BFT.FIN_KVIB, 0))) AS S_T_W2_HO,
+      SUM(DECODE(BFT.BUD_ID, '20', NVL(BFT.FIN_KVIC, 0)  + NVL(BFT.FIN_DIC, 0) + NVL(BFT.FIN_KVIB, 0))) AS Q_B_R_M2_HO,
+      SUM(DECODE(BFT.BUD_ID, '21', NVL(BFT.FIN_KVIC, 0)  + NVL(BFT.FIN_DIC, 0) + NVL(BFT.FIN_KVIB, 0))) AS P_V2_HO,
+      SUM(DECODE(BFT.BUD_ID, '22', NVL(BFT.FIN_KVIC, 0)  + NVL(BFT.FIN_DIC, 0) + NVL(BFT.FIN_KVIB, 0))) AS S_L_M_C_M2_HO,
+      SUM(DECODE(BFT.BUD_ID, '26', NVL(BFT.FIN_KVIC, 0)  + NVL(BFT.FIN_DIC, 0) + NVL(BFT.FIN_KVIB, 0))) AS CONT2_HO_2,
+      SUM(DECODE(BFT.BUD_ID, '27', NVL(BFT.FIN_KVIC, 0)  + NVL(BFT.FIN_DIC, 0) + NVL(BFT.FIN_KVIB, 0))) AS EDP2_HO,
+
+      SUM(DECODE(BFT.BUD_ID, '28', NVL(BFT.FIN_KVIC, 0)  + NVL(BFT.FIN_DIC, 0) + NVL(BFT.FIN_KVIB, 0))) AS PCCC,
+      SUM(DECODE(BFT.BUD_ID, '29', NVL(BFT.FIN_KVIC, 0)  + NVL(BFT.FIN_DIC, 0) + NVL(BFT.FIN_KVIB, 0))) AS PMM,
+      SUM(DECODE(BFT.BUD_ID, '30', NVL(BFT.FIN_KVIC, 0)  + NVL(BFT.FIN_DIC, 0) + NVL(BFT.FIN_KVIB, 0))) AS PIIE,
+      SUM(DECODE(BFT.BUD_ID, '31', NVL(BFT.FIN_KVIC, 0)  + NVL(BFT.FIN_DIC, 0) + NVL(BFT.FIN_KVIB, 0))) AS PFA,
+      SUM(DECODE(BFT.BUD_ID, '32', NVL(BFT.FIN_KVIC, 0)  + NVL(BFT.FIN_DIC, 0) + NVL(BFT.FIN_KVIB, 0))) AS BPV,
+      SUM(DECODE(BFT.BUD_ID, '33', NVL(BFT.FIN_KVIC, 0)  + NVL(BFT.FIN_DIC, 0) + NVL(BFT.FIN_KVIB, 0))) AS OFFEDP,
+      SUM(DECODE(BFT.BUD_ID, '34', NVL(BFT.FIN_KVIC, 0)  + NVL(BFT.FIN_DIC, 0) + NVL(BFT.FIN_KVIB, 0))) AS ONEDP,
+      SUM(DECODE(BFT.BUD_ID, '35', NVL(BFT.FIN_KVIC, 0)  + NVL(BFT.FIN_DIC, 0) + NVL(BFT.FIN_KVIB, 0))) AS BEONOFF,
+      SUM(DECODE(BFT.BUD_ID, '36', NVL(BFT.FIN_KVIC, 0)  + NVL(BFT.FIN_DIC, 0) + NVL(BFT.FIN_KVIB, 0))) AS TECHEXP,
+      SUM(DECODE(BFT.BUD_ID, '37', NVL(BFT.FIN_KVIC, 0)  + NVL(BFT.FIN_DIC, 0) + NVL(BFT.FIN_KVIB, 0))) AS MARKEXP,
+      SUM(DECODE(BFT.BUD_ID, '38', NVL(BFT.FIN_KVIC, 0)  + NVL(BFT.FIN_DIC, 0) + NVL(BFT.FIN_KVIB, 0))) AS RETDBANK,
+      SUM(DECODE(BFT.BUD_ID, '38', NVL(BFT.FIN_KVIC, 0)  + NVL(BFT.FIN_DIC, 0) + NVL(BFT.FIN_KVIB, 0))) AS EVOSTUDY,
+      SUM(DECODE(BFT.BUD_ID, '40', NVL(BFT.FIN_KVIC, 0)  + NVL(BFT.FIN_DIC, 0) + NVL(BFT.FIN_KVIB, 0))) AS PROFEXP,
+      SUM(DECODE(BFT.BUD_ID, '41', NVL(BFT.FIN_KVIC, 0)  + NVL(BFT.FIN_DIC, 0) + NVL(BFT.FIN_KVIB, 0))) AS ADVBODY,
+      SUM(DECODE(BFT.BUD_ID, '42', NVL(BFT.FIN_KVIC, 0)  + NVL(BFT.FIN_DIC, 0) + NVL(BFT.FIN_KVIB, 0))) AS CONCOFF,
+
+
+
+
+      BFT.YEAR_ID
+    FROM BNF_FO_TRANS BFT,
+      BNF_OFF_MAST BOM
+    WHERE BOM.OFF_CD = BFT.OFF_CD(+)
+    GROUP BY BOM.OFF_CD,
+      BOM.ZONE_NM,
+      BOM.OFF_NAME1,
+      BFT.YEAR_ID
+    )
+ WHERE  $P!{wrcls} AND  YEAR_ID = $P{YEAR_ID}
+  ORDER BY ZONE_NM
+  )]]>
+		</queryString>
+		<field name="OFF_CD" class="java.math.BigDecimal"/>
+		<field name="ZONE_NM" class="java.lang.String"/>
+		<field name="OFF_NAME1" class="java.lang.String"/>
+		<field name="EDP1" class="java.math.BigDecimal"/>
+		<field name="P_V1" class="java.math.BigDecimal"/>
+		<field name="D_L_A_C1" class="java.math.BigDecimal"/>
+		<field name="S_L_W1" class="java.math.BigDecimal"/>
+		<field name="D_L_E1" class="java.math.BigDecimal"/>
+		<field name="S_L_E1" class="java.math.BigDecimal"/>
+		<field name="Z_L_E1" class="java.math.BigDecimal"/>
+		<field name="Z_L_E2" class="java.math.BigDecimal"/>
+		<field name="Z_L_R_M1" class="java.math.BigDecimal"/>
+		<field name="Q_B_R_M1" class="java.math.BigDecimal"/>
+		<field name="S_L_M_C_M1" class="java.math.BigDecimal"/>
+		<field name="S_T_W1" class="java.math.BigDecimal"/>
+		<field name="TA_DA1" class="java.math.BigDecimal"/>
+		<field name="P_P1" class="java.math.BigDecimal"/>
+		<field name="D_E_O1" class="java.math.BigDecimal"/>
+		<field name="CONT1" class="java.math.BigDecimal"/>
+		<field name="D_L_A_C2" class="java.math.BigDecimal"/>
+		<field name="P_P2" class="java.math.BigDecimal"/>
+		<field name="CONT2" class="java.math.BigDecimal"/>
+		<field name="S_L_W2" class="java.math.BigDecimal"/>
+		<field name="D_L_E2" class="java.math.BigDecimal"/>
+		<field name="S_L_E2" class="java.math.BigDecimal"/>
+		<field name="Z_L_R_M2" class="java.math.BigDecimal"/>
+		<field name="PCCC" class="java.math.BigDecimal"/>
+		<field name="PMM" class="java.math.BigDecimal"/>
+		<field name="PIIE" class="java.math.BigDecimal"/>
+		<field name="PFA" class="java.math.BigDecimal"/>
+		<field name="BPV" class="java.math.BigDecimal"/>
+		<field name="OFFEDP" class="java.math.BigDecimal"/>
+		<field name="ONEDP" class="java.math.BigDecimal"/>
+		<field name="BEONOFF" class="java.math.BigDecimal"/>
+		<field name="TECHEXP" class="java.math.BigDecimal"/>
+		<field name="MARKEXP" class="java.math.BigDecimal"/>
+		<field name="RETDBANK" class="java.math.BigDecimal"/>
+		<field name="EVOSTUDY" class="java.math.BigDecimal"/>
+		<field name="PROFEXP" class="java.math.BigDecimal"/>
+		<field name="ADVBODY" class="java.math.BigDecimal"/>
+		<field name="CONCOFF" class="java.math.BigDecimal"/>
+		<field name="P_V2" class="java.math.BigDecimal"/>
+		<field name="Q_B_R_M2" class="java.math.BigDecimal"/>
+		<field name="S_L_M_C_M2" class="java.math.BigDecimal"/>
+		<field name="S_T_W2" class="java.math.BigDecimal"/>
+		<field name="TA_DA2" class="java.math.BigDecimal"/>
+		<field name="D_E_O2" class="java.math.BigDecimal"/>
+		<field name="EDP2" class="java.math.BigDecimal"/>
+		<field name="TOTT" class="java.math.BigDecimal"/>
+		<field name="YEAR_ID" class="java.lang.String"/>
+		<group name="ZONE_NM">
+			<groupExpression><![CDATA[$F{ZONE_NM}]]></groupExpression>
+		</group>
+	</subDataset>
+	<parameter name="wrcls" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="YEAR_ID" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select * from dual]]>
+	</queryString>
+	<field name="DUMMY" class="java.lang.String"/>
+	<group name="zone_nm">
+		<groupExpression><![CDATA[]]></groupExpression>
+		<groupHeader>
+			<band height="20"/>
+		</groupHeader>
+		<groupFooter>
+			<band height="20"/>
+		</groupFooter>
+	</group>
+	<group name="target">
+		<groupExpression><![CDATA[]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="1040" height="20" uuid="76de322f-c3bf-472f-8dc1-00dd261ecd08"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["CONSOLIDATED STATEMENT SHOWING STATE/DIVISIONAL OFFICE WISE EVENT-WISE UTILISITION OF FUND OF BFL UNDER PMEGP FOR THE YEAR "+$P{YEAR_ID}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="33" splitType="Stretch">
+			<textField pattern="dd MMMMM yyyy">
+				<reportElement x="949" y="11" width="72" height="13" uuid="e84ee68d-0c04-4599-92d4-bd0e8eafbca6"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date(System.currentTimeMillis())]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="882" y="11" width="68" height="13" uuid="14d40502-c13e-40b8-9c10-25b1286cd610"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Today's Date:]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="40" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="63" splitType="Stretch">
+			<componentElement>
+				<reportElement key="table" style="table" x="0" y="0" width="1040" height="63" uuid="ef8c4fdb-5abb-46a1-9c97-61b81c861d7b"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="bnfach" uuid="a3359078-02f6-4d13-afe4-5c04bc156944">
+						<datasetParameter name="wrcls">
+							<datasetParameterExpression><![CDATA[$P{wrcls}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="YEAR_ID">
+							<datasetParameterExpression><![CDATA[$P{YEAR_ID}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="90" uuid="5dfed771-0edb-4978-9f67-27006715c0aa">
+						<jr:columnHeader style="table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="375260fe-e920-491d-b6a5-d305b7d0eda6"/>
+								<text><![CDATA[OFF_CD]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="216eeea3-2973-452e-b728-8f095e0e3297"/>
+								<textFieldExpression><![CDATA[$F{OFF_CD}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="07b210d6-01f0-4472-b4fe-f37cea3f60e2">
+						<jr:columnHeader style="table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="5786bd1c-5811-4874-8be5-5ad6e2221953"/>
+								<text><![CDATA[ZONE_NM]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="fa012fe9-e797-451b-8f22-128ed5c36c2a"/>
+								<textFieldExpression><![CDATA[$F{ZONE_NM}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="a03b7d6d-3871-4f70-a855-a4f7f19c49bb">
+						<jr:columnHeader style="table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="d609e531-d68b-48df-aed9-1b702827e88a"/>
+								<text><![CDATA[OFF_NAME1]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="aa9d33b8-7d8b-486d-954f-7611e74d474f"/>
+								<textFieldExpression><![CDATA[$F{OFF_NAME1}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="ece5f112-1e32-44e4-9458-025a1c653320">
+						<jr:columnHeader style="table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="e198dda9-d8b6-4d4b-b68e-f3d2246189ee"/>
+								<text><![CDATA[EDP1]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="bced60f9-e418-40cd-b70c-5c9f52de75fa"/>
+								<textFieldExpression><![CDATA[$F{EDP1}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="fe2dd7ad-f85b-446a-abe2-7605cffb890d">
+						<jr:columnHeader style="table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="20aa3db4-b2cd-4df1-a123-096e4c350e3a"/>
+								<text><![CDATA[P_V1]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="6b83d72b-b510-42be-827a-097afc5c3ea5"/>
+								<textFieldExpression><![CDATA[$F{P_V1}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="0bf19aa5-a699-4404-ad2c-06a432aa8cab">
+						<jr:columnHeader style="table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="a897e970-214a-47ef-a20d-94225ff8da75"/>
+								<text><![CDATA[D_L_A_C1]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="19459899-5fba-431b-a762-9f3544a3e977"/>
+								<textFieldExpression><![CDATA[$F{D_L_A_C1}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="f4ffefe0-1e8d-46b2-868f-3ea423c54581">
+						<jr:columnHeader style="table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="2c352fd5-77b6-4560-8ade-4a27d1f14e38"/>
+								<text><![CDATA[S_L_W1]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="cb161329-47e6-426b-b423-318c2ec5525d"/>
+								<textFieldExpression><![CDATA[$F{S_L_W1}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="5baf0bb7-7439-4a93-a05b-83e9f27b19ba">
+						<jr:columnHeader style="table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="cb7a6931-9955-4834-bb44-761139a5993c"/>
+								<text><![CDATA[D_L_E1]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="1c4057bc-7e36-4ae6-a3ed-90ad1289e0b0"/>
+								<textFieldExpression><![CDATA[$F{D_L_E1}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="b71a7150-c41c-4601-9877-edb6cc147c3c">
+						<jr:columnHeader style="table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="0193ad9a-4c64-45bf-8f1d-edb21c645822"/>
+								<text><![CDATA[S_L_E1]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="f8acca6d-c3f7-4878-9e49-180a6dde39ea"/>
+								<textFieldExpression><![CDATA[$F{S_L_E1}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="97c58a55-0cca-4580-b875-2e9ca286ea87">
+						<jr:columnHeader style="table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="24ee2bde-8ba2-4995-9642-31db255dcc36"/>
+								<text><![CDATA[Z_L_E1]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="611f40dc-31fd-431d-91b4-569dd3a577d1"/>
+								<textFieldExpression><![CDATA[$F{Z_L_E1}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="017ddf8e-f802-421c-b64e-73425cf339f1">
+						<jr:columnHeader style="table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="2dfdda18-d4c6-42fd-81a8-dd57899e84ea"/>
+								<text><![CDATA[Z_L_E2]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="8cc08af0-8e7b-4e47-8edb-cb7caeb7f994"/>
+								<textFieldExpression><![CDATA[$F{Z_L_E2}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="87689e34-fb57-44a5-b5ea-717998a4b5b9">
+						<jr:columnHeader style="table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="a1060539-43bd-4b21-baa2-e4fe70c9a52e"/>
+								<text><![CDATA[Z_L_R_M1]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="9ce143c5-ac8e-43f5-868f-f56e28006efd"/>
+								<textFieldExpression><![CDATA[$F{Z_L_R_M1}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="130cdb1f-8744-46eb-9a15-13e9627b43c3">
+						<jr:columnHeader style="table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="21316756-f6fc-4c41-b587-dd7872dd8114"/>
+								<text><![CDATA[Q_B_R_M1]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="956b2d49-69f0-4298-895f-0a1b4c6e0969"/>
+								<textFieldExpression><![CDATA[$F{Q_B_R_M1}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="8b7659a0-7abf-4172-89cd-13f0d5c6794d">
+						<jr:columnHeader style="table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="5c20f195-399d-44cc-bffa-ed4e87a096fc"/>
+								<text><![CDATA[S_L_M_C_M1]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="92a7e55a-49fa-4eca-8dfe-1332bf19b418"/>
+								<textFieldExpression><![CDATA[$F{S_L_M_C_M1}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="bc4c48df-2973-4898-83a0-040cd78edc28">
+						<jr:columnHeader style="table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="1eb50fb4-3e03-4776-b51d-5ecab7a1da00"/>
+								<text><![CDATA[S_T_W1]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="115ffba8-93b6-48f2-8065-e8c4b82c9c1d"/>
+								<textFieldExpression><![CDATA[$F{S_T_W1}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="952d96e5-0851-482b-916b-ba33a532d3b0">
+						<jr:columnHeader style="table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="bae6dabd-0b76-4edd-86b9-5cf5f1431d79"/>
+								<text><![CDATA[TA_DA1]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="e844f095-573f-439a-91e8-55c562e33fca"/>
+								<textFieldExpression><![CDATA[$F{TA_DA1}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="351d946f-737f-4f8a-98d8-1863fb41eaad">
+						<jr:columnHeader style="table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="370389a9-4fe2-40e1-b110-3d2b10077b86"/>
+								<text><![CDATA[P_P1]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="cce074c3-a80c-46f5-b813-53d089feb95d"/>
+								<textFieldExpression><![CDATA[$F{P_P1}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="cb745b62-9a38-40fe-8ae1-cee860a00d52">
+						<jr:columnHeader style="table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="66761087-53d0-4289-be45-137e3ddb7049"/>
+								<text><![CDATA[D_E_O1]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="517d6793-877e-4082-9471-8969a870a390"/>
+								<textFieldExpression><![CDATA[$F{D_E_O1}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="77a7a5df-0997-4b8d-ae66-380b67096ace">
+						<jr:columnHeader style="table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="0cb10ac2-7f76-4ac3-ade9-f0253f5f7a12"/>
+								<text><![CDATA[CONT1]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="e55b7188-b2c7-4bdf-84b6-22cb23fbb7a6"/>
+								<textFieldExpression><![CDATA[$F{CONT1}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="16f637a4-2040-4e62-bd0b-b71a3fb3e5b0">
+						<jr:columnHeader style="table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="4357f50c-16af-4626-aee3-f9db7f8085a6"/>
+								<text><![CDATA[D_L_A_C2]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="3d2bf61e-8d65-40d5-a9bf-09314e8d266a"/>
+								<textFieldExpression><![CDATA[$F{D_L_A_C2}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="21c37b95-ed53-4e66-ae0b-0933bfcde11d">
+						<jr:columnHeader style="table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="95df621a-854d-42bc-bd3e-5089e0accd40"/>
+								<text><![CDATA[P_P2]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="842b8a19-e1a3-47db-b143-b604f962ff43"/>
+								<textFieldExpression><![CDATA[$F{P_P2}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="8ebe620a-3cad-48a5-a15c-bef3c8e4590b">
+						<jr:columnHeader style="table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="770b5980-b97d-40f4-83b6-48d008fab7a4"/>
+								<text><![CDATA[CONT2]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="af04b86a-2a36-4d35-adcd-446ba9c492fb"/>
+								<textFieldExpression><![CDATA[$F{CONT2}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="dccfafbc-eabc-4794-bfac-86289ef6b5a2">
+						<jr:columnHeader style="table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="5b672f09-21d6-4c36-8377-3a4676643e16"/>
+								<text><![CDATA[S_L_W2]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="c9769223-d260-4971-9811-f252a8f59a3a"/>
+								<textFieldExpression><![CDATA[$F{S_L_W2}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="a3c08da0-1e52-4a15-88c4-d2d61eee1f1f">
+						<jr:columnHeader style="table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="d597ec57-b7e8-4d65-979e-4362fd1635b4"/>
+								<text><![CDATA[D_L_E2]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="f0fb627e-0ff6-41cb-b2d7-b05218aa7e9a"/>
+								<textFieldExpression><![CDATA[$F{D_L_E2}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="133f582a-b301-470e-b714-9eb09d9e4e09">
+						<jr:columnHeader style="table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="bde2a19a-9249-4da8-8798-96a23399e710"/>
+								<text><![CDATA[S_L_E2]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="c8600e0c-f271-403c-941c-614c38a17641"/>
+								<textFieldExpression><![CDATA[$F{S_L_E2}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="0bb82bc6-7112-48e9-9d0e-4be7085da5d0">
+						<jr:columnHeader style="table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="a31a5847-f196-43ab-ada9-7bc492c0b4cd"/>
+								<text><![CDATA[Z_L_R_M2]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="341e5fcf-be58-48c2-8735-c75a7cff59ee"/>
+								<textFieldExpression><![CDATA[$F{Z_L_R_M2}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="48e2803f-cdcc-4a62-9244-dbf1cbcb904c">
+						<jr:columnHeader style="table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="720c9a18-0164-4e61-bb59-4a1779e67ae3"/>
+								<text><![CDATA[PCCC]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="3b260804-01e5-4059-a718-dc97a7f470a7"/>
+								<textFieldExpression><![CDATA[$F{PCCC}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="d5fae97c-e94a-48b4-b3cb-641fae1d335f">
+						<jr:columnHeader style="table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="94644389-deba-4db3-8ac2-d04f265ff6fa"/>
+								<text><![CDATA[PMM]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="94c62e06-b283-48b2-a04b-fa54a8c1b044"/>
+								<textFieldExpression><![CDATA[$F{PMM}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="0ab69a01-fbed-49eb-b2e2-073e319b26fb">
+						<jr:columnHeader style="table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="de824a75-e2f5-4190-a585-c1e8f384ee55"/>
+								<text><![CDATA[PIIE]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="65c9e7aa-b342-44c8-966d-c74c7aef45ec"/>
+								<textFieldExpression><![CDATA[$F{PIIE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="c095b12d-d219-41c7-a77a-a8f408a114d1">
+						<jr:columnHeader style="table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="6aa7d96e-6f50-411c-99b7-f0f1e4226dcf"/>
+								<text><![CDATA[PFA]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="2f2d2385-1e7e-44e6-9bd4-60761f4749b4"/>
+								<textFieldExpression><![CDATA[$F{PFA}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="691b05ce-b08f-4eaf-a606-2d0d5abaac25">
+						<jr:columnHeader style="table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="f86a1e57-4ab5-4f7a-9f18-3549540c8f29"/>
+								<text><![CDATA[BPV]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="f0bdb4b5-8c45-4b0f-a75c-e2fb49e24c7d"/>
+								<textFieldExpression><![CDATA[$F{BPV}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="6bb71e3b-de1c-49b8-ac39-f7e296600c44">
+						<jr:columnHeader style="table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="2558e3cd-ab5e-43ae-849d-dadcc0622577"/>
+								<text><![CDATA[OFFEDP]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="3a43091a-d326-40f6-ab37-3451a240faea"/>
+								<textFieldExpression><![CDATA[$F{OFFEDP}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="14e53027-cb77-4605-a253-d4bc576455e9">
+						<jr:columnHeader style="table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="e35834e4-4e77-4b47-9b6e-54ef6781394d"/>
+								<text><![CDATA[ONEDP]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="85ff4d60-137c-40ce-9edf-85a98fdf52a5"/>
+								<textFieldExpression><![CDATA[$F{ONEDP}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="d7ab1a6f-6779-483a-b762-fefca3f3601d">
+						<jr:columnHeader style="table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="312119ec-033a-408c-9f14-ba35b264f3ba"/>
+								<text><![CDATA[BEONOFF]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="076644f5-5909-4992-9d64-9852ae55b56b"/>
+								<textFieldExpression><![CDATA[$F{BEONOFF}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="2d683510-96cb-4def-a759-2bcf370e0041">
+						<jr:columnHeader style="table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="a300a771-c2d8-4d1e-b673-462e466a420f"/>
+								<text><![CDATA[TECHEXP]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="c0b65ba6-c9b1-4e1b-bb9b-7097d1850d3d"/>
+								<textFieldExpression><![CDATA[$F{TECHEXP}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="0c709c02-3b67-412f-92b5-e5d8094451f9">
+						<jr:columnHeader style="table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="9b44797a-6275-4542-90d2-4e88dbc14fca"/>
+								<text><![CDATA[MARKEXP]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="a4fb8bfd-1f77-4420-bcc8-5eebcc4c1792"/>
+								<textFieldExpression><![CDATA[$F{MARKEXP}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="ef9da2eb-1823-480e-84db-6b18f6691588">
+						<jr:columnHeader style="table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="604bf9a3-486e-4f01-9adf-e57ffff3bb44"/>
+								<text><![CDATA[RETDBANK]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="54068922-ecac-4eec-bf19-ae4bdb9b94da"/>
+								<textFieldExpression><![CDATA[$F{RETDBANK}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="ef88596e-babc-4a11-a9e7-a5dc9a4dfd03">
+						<jr:columnHeader style="table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="c1773edf-ffdf-4894-994e-9a3fca2175b8"/>
+								<text><![CDATA[EVOSTUDY]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="3cfd6b66-933b-49a2-9cce-32cd9ac4241c"/>
+								<textFieldExpression><![CDATA[$F{EVOSTUDY}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="48c0f723-07ad-4088-9a20-3226393f1e17">
+						<jr:columnHeader style="table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="0fc30eab-ce6c-48ca-93e0-5d75dcfb0957"/>
+								<text><![CDATA[PROFEXP]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="fb50fc5b-3df2-4344-bd7c-d14813f33478"/>
+								<textFieldExpression><![CDATA[$F{PROFEXP}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="3e7547fb-76b8-4ed5-9bac-4527be942b8b">
+						<jr:columnHeader style="table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="afa73290-b1d9-4c6c-bb67-74b8a3b9688a"/>
+								<text><![CDATA[ADVBODY]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="507b83e8-debb-4000-a183-9ef69f6ee610"/>
+								<textFieldExpression><![CDATA[$F{ADVBODY}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="cc02567d-d584-45b0-a89b-a78516c39162">
+						<jr:columnHeader style="table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="18a97685-81db-4fef-94e6-75525e7b8c27"/>
+								<text><![CDATA[CONCOFF]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="b889eeb4-669b-480d-b05b-733bad4faf3d"/>
+								<textFieldExpression><![CDATA[$F{CONCOFF}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="ecdf0d0e-97a5-41ad-b2e8-3684a26e25da">
+						<jr:columnHeader style="table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="f554c40d-9487-4f35-8f2f-335828693024"/>
+								<text><![CDATA[P_V2]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="fab07f35-6c79-47e9-834b-39b520a3e704"/>
+								<textFieldExpression><![CDATA[$F{P_V2}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="683ea2d2-5b13-421d-8e1e-1d8933b418a1">
+						<jr:columnHeader style="table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="6c10f045-8af2-4bf2-9f34-2cf7d11aa04a"/>
+								<text><![CDATA[Q_B_R_M2]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="5cadc6f0-1fb6-4f7a-8488-16fb12671648"/>
+								<textFieldExpression><![CDATA[$F{Q_B_R_M2}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="78e3d4d7-17ff-40fc-9261-73b26bb8ceb7">
+						<jr:columnHeader style="table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="eef15cea-14d7-46be-8a54-bb7123bf1b93"/>
+								<text><![CDATA[S_L_M_C_M2]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="443784ec-0319-4ebe-a920-de89f9a02324"/>
+								<textFieldExpression><![CDATA[$F{S_L_M_C_M2}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="36dffe01-14e2-4089-b5a7-4f16c1091f75">
+						<jr:columnHeader style="table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="3e20346c-c86e-498c-9ead-750b9852fce6"/>
+								<text><![CDATA[S_T_W2]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="1e4ee846-1fe3-4a3f-8254-568262d4570b"/>
+								<textFieldExpression><![CDATA[$F{S_T_W2}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="17c0bc70-8041-4a83-85f8-85237f7ea628">
+						<jr:columnHeader style="table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="956d76c3-c352-402f-95d6-7cc61fa60a7a"/>
+								<text><![CDATA[TA_DA2]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="4b9a35ed-57ff-4c1f-b696-68b2bbee78b6"/>
+								<textFieldExpression><![CDATA[$F{TA_DA2}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="2dc43b19-dc0e-43af-9521-d90e5adc4997">
+						<jr:columnHeader style="table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="e0d3add1-7750-402d-a217-dc0fc9acaa68"/>
+								<text><![CDATA[D_E_O2]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="3813e433-8d9c-4e42-b6d7-73a293e04226"/>
+								<textFieldExpression><![CDATA[$F{D_E_O2}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="165798ca-6965-409a-9f85-1a00dccc1484">
+						<jr:columnHeader style="table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="73302f97-271d-475b-9571-c816c27a2fb8"/>
+								<text><![CDATA[EDP2]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="19797eb9-e80f-476f-ad06-8f723168f40c"/>
+								<textFieldExpression><![CDATA[$F{EDP2}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="ffcf2155-2951-49f5-92ae-79b5d816212f">
+						<jr:columnHeader style="table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="40986cbb-97db-4523-b229-156379e4ac8c"/>
+								<text><![CDATA[TOTT]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="26b0eae5-b72a-4a70-a15e-f61c35f57440"/>
+								<textFieldExpression><![CDATA[$F{TOTT}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="4302a2cb-b08a-4714-96e9-b40a198ff571">
+						<jr:columnHeader style="table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="72e3e078-31cb-4923-8e80-4036a696fe23"/>
+								<text><![CDATA[YEAR_ID]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="b585d2e0-ccd0-4348-b0b3-9b731759b7ed"/>
+								<textFieldExpression><![CDATA[$F{YEAR_ID}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="49" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="20" splitType="Stretch"/>
+	</summary>
+</jasperReport>

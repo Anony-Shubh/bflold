@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DLTFCDashboard" pageWidth="595" pageHeight="842" columnWidth="553" leftMargin="22" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d460efaf-ea7b-40c0-8a97-39e83215cd46">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT AMM.MTG_ID,MS.STATE_NM,MT_DATE,MT.DISTRICT_NAME,amm.MTG_PLACE,
+COUNT(DISTINCT(AD.MTG_ID)) AS NO_OF_MTG, COUNT(*) AS APP_NO_PLACED FROM APP_DETAIL AD,
+app_meeting_mast amm,
+MAS_OFF_MAST mom,M_STATE MS ,M_DISTRICT MD,
+M_DISTRICT MT
+WHERE AD.MTG_ID=amm.MTG_ID
+AND AD.OFF_CD=MOM.OFF_CD
+AND AD.MTG_ID IS NOT NULL
+AND MOM.DISTRICT_CD=MD.DISTRICT_CD
+AND AMM.DISTRICT_CD=MT.DISTRICT_CD
+AND MD.STATE_CD=MS.STATE_CD
+GROUP BY
+AMM.MTG_ID,MS.STATE_NM,MT_DATE,MT.DISTRICT_NAME,amm.MTG_PLACE
+ORDER BY STATE_NM, MT_DATE]]>
+	</queryString>
+	<field name="MTG_ID" class="java.math.BigDecimal"/>
+	<field name="STATE_NM" class="java.lang.String"/>
+	<field name="MT_DATE" class="java.sql.Timestamp"/>
+	<field name="DISTRICT_NAME" class="java.lang.String"/>
+	<field name="MTG_PLACE" class="java.lang.String"/>
+	<field name="NO_OF_MTG" class="java.math.BigDecimal"/>
+	<field name="APP_NO_PLACED" class="java.math.BigDecimal"/>
+	<variable name="APP_NO_PLACED_1" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{APP_NO_PLACED}]]></variableExpression>
+	</variable>
+	<variable name="NO_OF_MTG_1" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{NO_OF_MTG}]]></variableExpression>
+	</variable>
+	<variable name="APP_NO_PLACED_2" class="java.math.BigDecimal" resetType="Group" resetGroup="STATEWISE" calculation="Sum">
+		<variableExpression><![CDATA[$F{APP_NO_PLACED}]]></variableExpression>
+	</variable>
+	<variable name="NO_OF_MTG_2" class="java.math.BigDecimal" resetType="Group" resetGroup="STATEWISE" calculation="Sum">
+		<variableExpression><![CDATA[$F{NO_OF_MTG}]]></variableExpression>
+	</variable>
+	<group name="STATEWISE">
+		<groupExpression><![CDATA[$F{STATE_NM}]]></groupExpression>
+		<groupHeader>
+			<band height="21">
+				<textField>
+					<reportElement x="0" y="0" width="550" height="20" uuid="bf0793b1-edce-4e63-8aae-2b7562568503"/>
+					<box leftPadding="3">
+						<pen lineWidth="1.0"/>
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font size="12" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{STATE_NM}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="21">
+				<textField>
+					<reportElement x="483" y="0" width="67" height="20" uuid="7c515928-7dfe-4a23-a586-bb3ccdb573f9"/>
+					<box leftPadding="3">
+						<pen lineWidth="1.0"/>
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="12" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{APP_NO_PLACED_2}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="434" y="1" width="49" height="20" uuid="6380f79a-75dc-4916-8eb0-4c08a9db9f71"/>
+					<box leftPadding="3">
+						<pen lineWidth="1.0"/>
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="12" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{NO_OF_MTG_2}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="35" y="0" width="399" height="20" uuid="3822fcc0-8858-4415-9ef1-2d53ff5140d3"/>
+					<textElement textAlignment="Right">
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[TOTAL :]]></text>
+				</staticText>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="48" splitType="Stretch">
+			<image scaleImage="FillFrame">
+				<reportElement x="0" y="0" width="553" height="48" uuid="84b6af7f-3b17-4daa-80a0-b56d554b374d"/>
+				<imageExpression><![CDATA["../images/pmegponlineN.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="26" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="553" height="26" isPrintWhenDetailOverflows="true" forecolor="#000000" backcolor="#CCCCCC" uuid="f10672ba-cd5b-455c-849d-42c9f96c823f"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DASHBOARD OF DLTFC MEETING FROM 01-JULY-16 TO AS ON DATE ]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="42" y="0" width="45" height="35" uuid="8f412466-17a7-4a79-a295-f81aa1e1b8ca"/>
+				<box leftPadding="3">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Meeting ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="186" y="0" width="67" height="35" uuid="478676ee-2dc6-452f-8405-0f5c2ba70f20"/>
+				<box leftPadding="3">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Meeting Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="253" y="0" width="181" height="35" uuid="c6605ec9-a258-4c45-9392-e91d6a4c335a"/>
+				<box leftPadding="3">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Meeting Place]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="87" y="0" width="99" height="35" uuid="fd398a22-878e-4f0f-b67b-8eee51e5782f"/>
+				<box leftPadding="3">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[District]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="434" y="0" width="50" height="35" uuid="25d212a8-bd3c-4a09-a9bb-e951b263e7bf"/>
+				<box leftPadding="3">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[No. of Meetings]]></text>
+			</staticText>
+			<staticText>
+				<reportElement stretchType="RelativeToBandHeight" x="483" y="0" width="70" height="35" uuid="90404f33-1a74-428f-ab16-2447f3413c4d"/>
+				<box leftPadding="3">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Forwarded to DLTFC]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="42" height="35" uuid="7ce70a6e-a0f3-4af6-8dfe-ff0edde7058c"/>
+				<box leftPadding="3">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Sr. No.]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement x="42" y="0" width="45" height="20" uuid="221ddb75-9dca-4762-8e66-92c5a1e1568f"/>
+				<box leftPadding="3">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{MTG_ID}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd-MMM-yy" isBlankWhenNull="true">
+				<reportElement x="186" y="0" width="67" height="20" uuid="5158ee6c-57b5-48dc-87f0-43b5bd8a96db"/>
+				<box leftPadding="3">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{MT_DATE}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="253" y="0" width="181" height="20" uuid="6c63f3a2-8bf3-4d4f-9072-66298c29ba26"/>
+				<box leftPadding="3">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{MTG_PLACE}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="42" height="20" uuid="e000998f-a031-4e72-918a-778dd964fc22"/>
+				<box leftPadding="3">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="89" y="0" width="97" height="20" uuid="5fc247ae-f9cb-4048-be72-11144b0d883b"/>
+				<box leftPadding="3">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{DISTRICT_NAME}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="434" y="0" width="49" height="20" uuid="406dc941-ff12-4988-868e-10d12c3b620b"/>
+				<box leftPadding="3">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{NO_OF_MTG}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="483" y="0" width="67" height="20" uuid="789567bf-7ea8-48fa-ac37-08b2ecba5502"/>
+				<box leftPadding="3">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{APP_NO_PLACED}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement x="403" y="0" width="80" height="20" uuid="04a1a96e-43be-4604-b0b1-dc3a775284ed"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="483" y="0" width="67" height="20" uuid="3a996fad-cbdf-4cf6-b8fb-64285935dff1"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="0" y="0" width="100" height="20" uuid="fd7413a9-5061-4ef0-b830-ed04be8d074d"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement x="483" y="0" width="67" height="20" uuid="348f58bf-6a8e-4fee-b300-1180a3f48e71"/>
+				<box leftPadding="3">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{APP_NO_PLACED_1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="434" y="1" width="49" height="20" uuid="ca0b1534-aa6e-494d-8ce4-bd101c7766df"/>
+				<box leftPadding="3">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{NO_OF_MTG_1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="1" width="434" height="20" uuid="200078c1-0570-4c7c-8d87-6d72baa0806c"/>
+				<textElement textAlignment="Right">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[GRAND TOTAL :]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

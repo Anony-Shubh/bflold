@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  
+    <link rel="stylesheet" type="text/css" href="css/jquery-steps.css">
+    <link rel="stylesheet" type="text/css" href="css/geoformstyle.css"> 
+  
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+    <title>PMEGP Unit Inspection Form</title>
+    
+     <style type="text/css">
+        
+        body 
+        {        
+            background-color: cornsilk;         
+        }
+
+        .step-btn 
+        {
+            display: inline-block;
+            padding: 8px 12px;
+            font-size: 15px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            outline: none;
+            color: #fff;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 5px #999;
+        }
+
+        .step-btn:hover 
+        {
+            background-color: #3e8e41
+        }
+
+        .step-btn:active 
+        {
+            background-color: #3e8e41;
+            box-shadow: 0 5px #666;
+            transform: translateY(4px);
+        }
+        .sticky {
+            position: fixed;
+            top: 0;
+            width: 100%;
+        }
+
+        .sticky + .content {
+            padding-top: 102px;
+        }
+    </style>   
+
+</head>
+
+<body>
+ <h2 align="center">PMEGP Unit Inspection Form</h2> <br><br>
+  <form action="/action_page.php" class="form-horizontal">    
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Beneficiary Id</th>
+                    <th>Beneficiary Name</th>
+                    <th>Verification Status</th>
+                    <th>Unit District</th>
+                    <th>State</th>
+                    <th>IA</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="success">
+                    <td> KVTN16176952-2177304 </td>
+                    <td> SOLAI M </td>
+                    <td> Working </td>
+                    <td> PUDUKOTTAI </td>
+                    <td> TAMIL NADU </td>
+                    <td> KVIC </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>    
+      
+    <div class="step-app" id="demo">
+        
+        <ul class="step-steps" align="center">
+            <li data-step-target="step1"> BENEFICIARY DETAIL </li>
+            <li data-step-target="step2"> UNIT DETAIL </li>
+            <li data-step-target="step3"> PROJECT DETAIL </li>
+	        <li data-step-target="step4"> PRODUCTION/SALES</li>            
+	        <li data-step-target="step5"> EMPLOYMENT DETAIL </li>
+		    <li data-step-target="step6"> MARGIN MONEY </li>
+		 	<li data-step-target="step7"> VERIFICATION DETAIL </li>
+	   </ul>    
+        
+        <div class="step-content">
+      <!--
+    <div class="step-header" align="center" id="myHeader">
+            <button type="button" data-step-action="prev" class="step-btn">Previous</button>
+            <button type="button" data-step-action="next" class="step-btn">Next</button>
+      </div>
+     -->
+        
+      <div class="step-tab-panel" data-step="step1">
+	  	<div class="container"> <br>
+            <div class="form-group">
+                    <label class="col-md-3">Geo Tagging Id : </label>
+                    <div class="col-md-3"> 2328062 </div>          
+                    <label class="col-md-3"> Beneficiary Id : </label>
+                    <div class="col-md-3"> KVTN16176952-2177304 </div>
+            </div>
+            <div class="form-group">
+                    <label class="col-md-3">Beneficiary Name : </label>
+                    <div class="col-md-3"> SOLAI M </div>          
+                    <label class="col-md-3"> Gender : </label>
+                    <div class="col-md-3"> Male </div>
+            </div>
+            <div class="form-group">
+                    <label class="col-md-3">Social Category : </label>
+                    <div class="col-md-3"> SC </div>          
+                    <label class="col-md-3"> Special Category : </label>
+                    <div class="col-md-3"> NA </div>
+            </div>
+            <div class="form-group">
+                    <label class="col-md-3"> Mobile : </label>
+                    <div class="col-md-3"> 9159179583 </div>          
+                    <label class="col-md-3"> Email Id : </label>
+                    <div class="col-md-3"> abc@xyz.com </div>
+            </div> <br>
+            <div class="form-group">
+                    <label class="col-md-12"> <u>EDP Training Details</u> </label>
+            </div>
+            <div class="form-group">
+                    <label class="col-md-3"> EDP Training Period From : </label>
+                    <div class="col-md-3"> 01-SEP-2017 </div>          
+                    <label class="col-md-3"> EDP Training Period To </label>
+                    <div class="col-md-3"> 09-SEP-2017 </div>
+            </div>
+            <div class="form-group">
+                    <label class="col-md-3"> Name Of Institute : </label>
+                    <div class="col-md-9"> EDP-IOS-Pudukottai(5545)</div>
+            </div>		
+		</div> <br>
+	   </div>	
+	
+        <div class="step-tab-panel" data-step="step2">
+        <div class="container"> <br>
+		  <div class="form-group">
+                    <label class="col-md-3">Unit Location : </label>
+                    <div class="col-md-9"> Rural </div>
+          </div>
+          <div class="form-group">
+                    <label class="col-md-3"> Unit Sponsored By : </label>
+                    <div class="col-md-3"> KVIC </div>
+                    <label class="col-md-3">Agency Office : </label>
+                    <div class="col-md-3"> KVIC-PUDUKOTTAI-TN </div>
+          </div>
+          <div class="form-group">
+                    <label class="col-md-3">PMEGP Eportal Unit Address : </label>
+                    <div class="col-md-9"> 442,Main Road,Irudhayapuram, Alangudi (Tk) </div>
+          </div>
+          <div class="form-group">
+                    <label class="col-md-3">Taluka : </label>
+                    <div class="col-md-3"> Dakshinapuram, vallathirakottai </div>          
+                    <label class="col-md-3"> Unit District : </label>
+                    <div class="col-md-3"> PUDUKOTTAI </div>
+          </div>
+          <div class="form-group">
+                    <label class="col-md-3">State : </label>
+                    <div class="col-md-3"> TAMIL NADU </div>          
+                    <label class="col-md-3"> Pincode : </label>
+                    <div class="col-md-3"> 622303 </div>
+          </div> <br>
+            
+          <div class="form-group">
+                    <label class="col-md-3">Industry Type : </label>
+                    <div class="col-md-9"> Manufacturing </div>
+          </div>
+          <div class="form-group">
+                    <label class="col-md-3">Latitude : </label>
+                    <div class="col-md-3"> 10.322583 </div>          
+                    <label class="col-md-3"> Longitude : </label>
+                    <div class="col-md-3"> 78.88865 </div>
+          </div>
+          <div class="form-group">
+                    <label class="col-md-3">Industry Activity : </label>
+                    <div class="col-md-9"> Cement Blocking, MINERAL BASED INDUSTRY </div>
+          </div>
+          <div class="form-group">
+                    <label class="col-md-3">Product Description : </label>
+                    <div class="col-md-9"> HOLLOW BLOCK UNIT </div>
+          </div> <br>              
+            
+            <div class="form-group">
+                <div class="col-md-12">
+                    <label> <u> Unit Details </u></label>
+                </div>            
+            </div> <br>
+            <div class="form-group">
+                <div class="col-md-3">
+                    <label for="unitName">Unit Name :</label>
+                </div>
+                <div class="col-md-9">
+                <input type="text" class="form-control" name="UNIT_NAME" type="text" id="UNIT_NAME" maxlength="150" value="" placeholder="Enter Unit Name" name="UNIT_NAME" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-3">
+                    <label for="unitAdd">Updated Unit Address as per Physical Verification :</label> 
+                </div>
+                <div class="col-md-9">
+                    <textarea class="form-control" rows="5" name="UNIT_ADDRESS" type="text" id="UNIT_ADDRESS" maxlength="1000" value="" placeholder="Enter Unit Address" name="UNIT_ADDRESS" height="150px" required></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="unitEstDate" class="col-md-3">Unit Establishment Date :</label>
+                <div class="col-md-3">
+                    <input type="date" class="form-control" name="UNIT_ESTABLISHMENT_DATE" type="text" id="UNIT_ESTABLISHMENT_DATE" value="" placeholder="Enter Establishment Date" name="UNIT_ESTABLISHMENT_DATE" height="150px" required>
+                </div>            
+                <label for="unitAdd" class="col-md-3">Unit setup On :</label>
+                <div class="col-md-3">
+                    <label class="radio-inline"><input type="radio" name="UNIT_SETUP" checked>Rental</label>
+                    <label class="radio-inline"><input type="radio" name="UNIT_SETUP">Lease</label>
+                    <label class="radio-inline"><input type="radio" name="UNIT_SETUP">Own Premises</label> 
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="dateWater" class="col-md-3">Date of Water connection :</label>
+                <div class="col-md-3">
+                    <input type="date" class="form-control" name="DATE_OF_WATER_CONNECTION" id="DATE_OF_WATER_CONNECTION" value="" name="DATE_OF_WATER_CONNECTION" required>                   
+                </div>            
+                <label for="dateWater" class="col-md-3">Date of Electricity connection:</label>
+                <div class="col-md-3">
+                    <input type="date" class="form-control" name="DATE_OF_ELECTRIC_CONNECTION" id="DATE_OF_ELECTRIC_CONNECTION" value="" name="DATE_OF_ELECTRIC_CONNECTION" required>                   
+                </div> 
+            </div>
+            
+            <div class="form-group">
+                <label for="dateWater" class="col-md-3">Clearance From Pollution :</label>
+                <div class="col-md-3">
+                    <label class="radio-inline"><input type="radio" name="POLLUTION_CLEARANCE_BOARD" checked>State</label>
+                    <label class="radio-inline"><input type="radio" name="POLLUTION_CLEARANCE_BOARD">Central</label>                   
+                </div>            
+                <label for="dateWater" class="col-md-3">Any other Clearance obtained : </label>
+                <div class="col-md-3">
+                    <input type="text" class="form-control" name="OTHER_CLEARANCE" id="OTHER_CLEARANCE" value="" name="OTHER_CLEARANCE" placeholder="Enter Other Clearance obtained" maxlength="100" required>                   
+                </div> 
+            </div>
+            
+            <div class="form-group">
+                <label for="dateWater" class="col-md-3">GST Registration Number :</label>
+                <div class="col-md-3">
+                    <input type="text" class="form-control" name="GST_REGISTRATION_NUMBER" id="GST_REGISTRATION_NUMBER" value="" name="GST_REGISTRATION_NUMBER" placeholder="Enter GST Registration Number" maxlength="15" required>                  
+                </div>            
+                <label for="dateWater" class="col-md-3">GST Registration Date : </label>
+                <div class="col-md-3">
+                    <input type="date" class="form-control" name="GST_REGISTRATION_DATE" id="GST_REGISTRATION_DATE" value="" name="GST_REGISTRATION_DATE" required>  
+                </div> 
+            </div>
+            
+            <div class="form-group">
+                <label for="dateWater" class="col-md-3">UDYAM Registration :</label>
+                <div class="col-md-3">
+                    <input type="text" class="form-control" name="UDYAM_REGISTRATION_NUMBER" id="UDYAM_REGISTRATION_NUMBER" value="" name="UDYAM_REGISTRATION_NUMBER" placeholder="Enter UDYAM Registration Number" maxlength="12" required>                  
+                </div>            
+                <label for="dateWater" class="col-md-3">UDYAM Registration Date : </label>
+                <div class="col-md-3">
+                    <input type="date" class="form-control" name="UDYAM_REGISTRATION_DATE" id="UDYAM_REGISTRATION_DATE" value="" name="UDYAM_REGISTRATION_DATE" required>  
+                </div> 
+            </div>
+           
+            <div class="form-group">
+                <label for="dateWater" class="col-md-3">PAN/TAN Number (if any) :</label>
+                <div class="col-md-3">
+                    <input type="text" class="form-control" name="PAN_OR_TAN_NUMBER" id="PAN_OR_TAN_NUMBER" value="" name="PAN_OR_TAN_NUMBER" placeholder="Enter PAN/TAN Number" maxlength="10">                  
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="dateWater" class="col-md-3">KVIC Registration Number: : </label>
+                <div class="col-md-3">
+                    <input type="text" class="form-control" name="KVIC_REGISTRATION_NUMBER" id="KVIC_REGISTRATION_NUMBER" value="" name="KVIC_REGISTRATION_NUMBER" placeholder="Enter KVIC Registration Number" maxlength="10" required>                  
+                </div> 
+                <label for="dateWater" class="col-md-3">KVIC Registration Date : </label>
+                <div class="col-md-3">
+                    <input type="date" class="form-control" name="KVIC_REGISTRATION_DATE" id="KVIC_REGISTRATION_DATE" value="" name="KVIC_REGISTRATION_DATE" required>  
+                </div> 
+            </div>
+            
+            <div class="form-group">
+                <label class="col-md-3">Certification :</label>
+                <div class="col-md-9">
+                    <label class="radio-inline"><input type="radio" name="CERTIFICATION" checked>FSSAI</label>
+                    <label class="radio-inline"><input type="radio" name="CERTIFICATION">AGMARK</label>
+                    <label class="radio-inline"><input type="radio" name="CERTIFICATION">BIS</label>
+                    <label class="radio-inline"><input type="radio" name="CERTIFICATION">Other</label>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="col-md-3">Registered Brand Name : </label>
+                <div class="col-md-3">
+                    <input type="text" class="form-control" name="REGISTERED_BRAND_NAME" id="REGISTERED_BRAND_NAME" value="" name="KVIC_REGISTRATION_NUMBER" placeholder="Enter Registered Brand Name" maxlength="100" required>                  
+                </div> 
+                
+                <label class="col-md-3">Patent Ownership (if any) : </label>
+                <div class="col-md-3">
+                    <input type="text" class="form-control" name="PATENT_OWNERSHIP" id="PATENT_OWNERSHIP" value="" name="PATENT_OWNERSHIP" placeholder="Enter Patent Ownership" maxlength="100">                  
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="col-md-3">Details of Handholding  :</label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" name="HANDHOLDING_DETAILS" id="HANDHOLDING_DETAILS" value="" name="HANDHOLDING_DETAILS" placeholder="Enter Details of Handholding" maxlength="100" required>                  
+                </div>                 
+            </div>          
+		</div> <br>
+	</div>
+        
+	<div class="step-tab-panel" data-step="step3">
+	  		<div class="container"> <br>
+                <div class="form-group">
+                    <label class="col-md-12"><u>Financing Bank Details </u></label>
+                </div>
+				<div class="form-group">
+                    <label class="col-md-3">Financing Bank : </label>
+                    <div class="col-md-9"> CANARA BANK </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="col-md-3">Bank Branch : </label>
+                    <div class="col-md-9"> VENKATAKULAM </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="col-md-3">Branch Address : </label>
+                    <div class="col-md-9"> St. Joseph`s Higher Secondary School Buildings, Venkatakulam,Dist:Pudukkottai,Tamil Nadu 622303 </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="col-md-3">IFSC Code : </label>
+                    <div class="col-md-9"> CNRB0001772 </div>
+                </div> <br><br>
+                
+                <div class="form-group">
+                    <label class="col-md-12"><u>Project Details </u></label>
+                </div>
+				<div class="form-group">
+                    <label class="col-md-4">Project Sanctioned Date :</label>
+                    <div class="col-md-2"> 16-AUG-2017 </div>               
+                    <label class="col-md-4">Scheme under which  project got sanctioned :</label>
+                    <div class="col-md-2"> PMEGP IST LOAN </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4">Capital Expenditure :</label>
+                    <div class="col-md-2"> 300000 </div>               
+                    <label class="col-md-4">Capital Expenditure Sanction :</label>
+                    <div class="col-md-2"> 285000 </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4">Working Capital :</label>
+                    <div class="col-md-2"> 300000 </div>               
+                    <label class="col-md-4">Working Capital Sanction :</label>
+                    <div class="col-md-2"> 150000 </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4">Total Project Cost :</label>
+                    <div class="col-md-2"> 500000 </div>               
+                    <label class="col-md-4">Total Sanction :</label>
+                    <div class="col-md-2"> 450000 </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4">Own Contribution :</label>
+                    <div class="col-md-2"> 50000 </div>               
+                    <label class="col-md-4">MM Released :</label>
+                    <div class="col-md-2"> 125000 </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4">Balance Loan to be released as on PV Date : </label>
+                    <div class="col-md-8"> 387732 </div>
+                </div>                      
+			</div> <br>
+		</div>
+        
+        <div class="step-tab-panel" data-step="step4">
+	  		<div class="container"><br>
+                <div class="form-group">
+                    <label class="col-md-12"><u> Production/Sales Details </u></label>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-12"><u> Annual Production </u></label>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3">Quantity : </label>
+                    <div class="col-md-3">
+                        <input type="number" class="form-control" name="ANNUAL_PRODUCTION_QUANTITY" id="ANNUAL_PRODUCTION_QUANTITY" value="" name="ANNUAL_PRODUCTION_QUANTITY" placeholder="Enter Annual Production Quantity" maxlength="50" min="0" required>
+                    </div>
+                
+                    <label class="col-md-3">Value (in Rupees) : </label>
+                    <div class="col-md-3">
+                        <input type="number" class="form-control" name="ANNUAL_PRODUCTION_VALUE" id="ANNUAL_PRODUCTION_VALUE" value="" name="ANNUAL_PRODUCTION_VALUE" placeholder="Enter Annual Production Value" maxlength="50" min="0" required>                  
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-12"><u> Present Production </u></label>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3">Quantity : </label>
+                    <div class="col-md-3">
+                        <input type="number" class="form-control" name="PRESENT_PRODUCTION_QUANTITY" id="PRESENT_PRODUCTION_QUANTITY" value="" name="PRESENT_PRODUCTION_QUANTITY" placeholder="Enter Annual Production Quantity" maxlength="50" min="0" required>
+                    </div> 
+                
+                    <label class="col-md-3">Value (in Rupees) : </label>
+                    <div class="col-md-3">
+                        <input type="number" class="form-control" name="PRESENT_PRODUCTION_VALUE" id="PRESENT_PRODUCTION_VALUE" value="" name="PRESENT_PRODUCTION_VALUE" placeholder="Enter Annual Production Value" maxlength="50" min="0" required>                  
+                    </div>
+                </div><br>
+                
+                <div class="form-group">
+                    <label class="col-md-12"><u> Machinery Details </u></label>
+                </div>
+                
+                <div class="form-group">
+                    <label class="col-md-3">Type of Machinary : </label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" name="MACHINERY_TYPE" id="MACHINERY_TYPE" value="" name="MACHINERY_TYPE" placeholder="Enter Machinery Details" maxlength="100" required>
+                    </div>  
+                </div> <br>
+                
+                <div class="form-group">
+                    <label class="col-md-12"><u> Raw Material Details </u></label>
+                </div>
+                
+                <div class="form-group">
+                    <label class="col-md-3">Details of Raw Material : </label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" name="RAW_MATERIAL_DETAILS" id="RAW_MATERIAL_DETAILS" value="" name="RAW_MATERIAL_DETAILS" placeholder="Enter Raw Material Details" maxlength="500" required>
+                    </div>  
+                </div>
+                
+                <div class="form-group">
+                    <label class="col-md-3">Import of Raw Material (if any) : </label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" name="RAW_MATERIAL_IMPORT" id="RAW_MATERIAL_IMPORT" value="" name="RAW_MATERIAL_IMPORT" placeholder="Enter Import Details" maxlength="100">
+                    </div>  
+                </div>
+                
+                <div class="form-group">
+                    <label class="col-md-3">Country of Import : </label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" name="COUNTRY_OF_IMPORT" id="COUNTRY_OF_IMPORT" value="" name="COUNTRY_OF_IMPORT" placeholder="Enter Country of Import" maxlength="50" required>
+                    </div>  
+                </div> <br>
+                
+                <div class="form-group">
+                    <label class="col-md-12"><u> Value of Stock on the Day of Visit (In Rupees) </u></label>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2">Raw : </label>
+                    <div class="col-md-2">
+                        <input type="number" class="form-control" name="RAW_MATERIAL_STOCK_VALUE" id="RAW_MATERIAL_STOCK_VALUE" value="" name="RAW_MATERIAL_STOCK_VALUE" placeholder="Enter value" maxlength="50" min="0" required>
+                    </div> 
+                
+                    <label class="col-md-2">Semi-Finished : </label>
+                    <div class="col-md-2">
+                        <input type="number" class="form-control" name="SEMI_FIN_RM_STOCK" id="SEMI_FIN_RM_STOCK" value="" name="SEMI_FIN_RM_STOCK" placeholder="Enter value" maxlength="50" required>                  
+                    </div>
+                    
+                    <label class="col-md-2">Finished : </label>
+                    <div class="col-md-2">
+                        <input type="number" class="form-control" name="FINISHED_RAW_MATERIAL_STOCK" id="FINISHED_RAW_MATERIAL_STOCK" value="" name="FINISHED_RAW_MATERIAL_STOCK" placeholder="Enter value" maxlength="50" min="0" required>                  
+                    </div>
+                </div> <br>
+                
+                <div class="form-group">
+                    <label class="col-md-12"><u> Cost of Capital Items Procured (In Rupees) </u></label>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3">Building: </label>
+                    <div class="col-md-3">
+                        <input type="number" class="form-control" name="CAPITAL_COST_OF_BUILDING" id="CAPITAL_COST_OF_BUILDING" value="" name="CAPITAL_COST_OF_BUILDING" placeholder="Enter value" maxlength="50" min="0" required>
+                    </div>                
+                    <label class="col-md-3">Machine Equipment : </label>
+                    <div class="col-md-3">
+                        <input type="number" class="form-control" name="CAPITAL_COST_OF_MACHINERY" id="CAPITAL_COST_OF_MACHINERY" value="" name="CAPITAL_COST_OF_MACHINERY" placeholder="Enter value" maxlength="50" min="0" required>
+                    </div>  
+                </div> <br>
+                
+                <div class="form-group">
+                    <label class="col-md-12"><u> Annual Sales Projection </u></label>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3">Quantity : </label>
+                    <div class="col-md-3">
+                        <input type="number" class="form-control" name="ANNUAL_SALES_QUANTITY" id="ANNUAL_SALES_QUANTITY" value="" name="ANNUAL_SALES_QUANTITY" placeholder="Enter value" maxlength="50" min="0" required>
+                    </div>                
+                    <label class="col-md-3">Value (In Rupees) : </label>
+                    <div class="col-md-3">
+                        <input type="number" class="form-control" name="ANNUAL_SALES_VALUE" id="ANNUAL_SALES_VALUE" value="" name="ANNUAL_SALES_VALUE" placeholder="Enter value" maxlength="50" min="0" required>
+                    </div>  
+                </div> <br>
+                
+                <div class="form-group">
+                    <label class="col-md-12"><u> Present Sale </u></label>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3">Quantity : </label>
+                    <div class="col-md-3">
+                        <input type="number" class="form-control" name="PRESENT_SALES_QUANTITY" id="PRESENT_SALES_QUANTITY" value="" name="PRESENT_SALES_QUANTITY" placeholder="Enter value" maxlength="50" min="0" required>
+                    </div>                
+                    <label class="col-md-3">Value (In Rupees) : </label>
+                    <div class="col-md-3">
+                        <input type="number" class="form-control" name="PRESENT_SALES_VALUE" id="PRESENT_SALES_VALUE" value="" name="PRESENT_SALES_VALUE" placeholder="Enter value" maxlength="50" min="0" required>
+                    </div>  
+                </div> <br>
+                
+                <div class="form-group">
+                    <label class="col-md-12"><u> Product Detail </u></label>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3">Main Product : </label>
+                    <div class="col-md-3">
+                        <input type="text" class="form-control" name="MAIN_PRODUCT" id="MAIN_PRODUCT" value="" name="MAIN_PRODUCT" placeholder="Enter Product Detail" maxlength="100" required>
+                    </div>                
+                    <label class="col-md-3">By-product : </label>
+                    <div class="col-md-3">
+                        <input type="text" class="form-control" name="BY_PRODUCT" id="BY_PRODUCT" value="" name="BY_PRODUCT" placeholder="Enter By-product Detail" maxlength="100" required>
+                    </div>  
+                </div> <br>
+                
+                <div class="form-group">
+                    <label class="col-md-12"><u> Export Detail </u></label>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3">Quantity : </label>
+                    <div class="col-md-3">
+                        <input type="number" class="form-control" name="EXPORT_QUANTITY" id="EXPORT_QUANTITY" value="" name="EXPORT_QUANTITY" placeholder="Enter value" maxlength="50" min="0" required>
+                    </div>                
+                    <label class="col-md-3">Value (In Rupees) : </label>
+                    <div class="col-md-3">
+                        <input type="number" class="form-control" name="EXPORT_VALUE" id="EXPORT_VALUE" value="" name="EXPORT_VALUE" placeholder="Enter value" maxlength="50" min="0" required>
+                    </div>  
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3">Country of : </label>
+                    <div class="col-md-3">
+                        <input type="text" class="form-control" name="COUNTRY_OF_EXPORT" id="COUNTRY_OF_EXPORT" value="" name="COUNTRY_OF_EXPORT" placeholder="Enter Country Of" maxlength="50" required>
+                    </div>
+                                        
+                    <label class="col-md-2">Mode of Export :</label>
+                    <div class="col-md-4">
+                        <label class="radio-inline"><input type="radio" name="MODE_OF_EXPORT" checked>Direct</label>
+                        <label class="radio-inline"><input type="radio" name="MODE_OF_EXPORT">Merchandize/Export Agency</label>                        
+                    </div>
+                </div>               
+            </div> <br><br>
+        </div>
+        
+        <div class="step-tab-panel" data-step="step5">
+	  	    <div class="container"> <br>
+                <div class="form-group" align="center">
+                    <label class="col-md-12"><u> Employment Detail </u></label>
+                </div> <br>
+                
+                <div class="form-group">
+                    <label class="col-md-12"><u> Type of Man Power </u></label>
+                </div>                
+                
+                <div class="form-group">
+                    <label class="col-md-1">Skilled </label>
+                    <div class="col-md-2">
+                        <input type="number" class="form-control" name="SKILLED_EMPLOYEES" id="SKILLED_EMPLOYEES" value="" name="SKILLED_EMPLOYEES" placeholder="Enter value" maxlength="10" min="0" required>
+                    </div> 
+                
+                    <label class="col-md-1">Semi-Skilled </label>
+                    <div class="col-md-2">
+                        <input type="number" class="form-control" name="SEMI_SKILLED_EMPLOYEES" id="SEMI_SKILLED_EMPLOYEES" value="" name="SEMI_SKILLED_EMPLOYEES" placeholder="Enter value" maxlength="10" min="0" required>                  
+                    </div>
+                    
+                    <label class="col-md-1">Unskilled </label>
+                    <div class="col-md-2">
+                        <input type="number" class="form-control" name="UNSKILLED_EMPLOYEES" id="UNSKILLED_EMPLOYEES" value="" name="UNSKILLED_EMPLOYEES" placeholder="Enter value" maxlength="10" min="0" required>                  
+                    </div>                    
+              
+                    <label class="col-md-1"> Total </label>
+                    <div class="col-md-2">
+                        <input type="number" class="form-control" name="TOTAL_SKILLED" id="TOTAL_SKILLED" value="" name="TOTAL_SKILLED" placeholder="Enter value" maxlength="10" min="0" required>                  
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="col-md-12"><u> Currently Employed Man Power </u></label>
+                </div>                
+                
+                <div class="form-group">
+                    <label class="col-md-1">Full-time </label>
+                    <div class="col-md-2">
+                        <input type="number" class="form-control" name="FULLTIME_EMPLOYEES" id="FULLTIME_EMPLOYEES" value="" name="FULLTIME_EMPLOYEES" placeholder="Enter value" maxlength="10" min="0" required>
+                    </div> 
+                
+                    <label class="col-md-1">Part-time </label>
+                    <div class="col-md-2">
+                        <input type="number" class="form-control" name="PART_TIME_EMPLOYEES" id="PART_TIME_EMPLOYEES" value="" name="PART_TIME_EMPLOYEES" placeholder="Enter value" maxlength="10" min="0" required>                  
+                    </div>                                    
+                    <label class="col-md-1">Seasonal </label>
+                    <div class="col-md-2">
+                        <input type="number" class="form-control" name="SEASONAL_EMPLOYEES" id="SEASONAL_EMPLOYEES" value="" name="SEASONAL_EMPLOYEES" placeholder="Enter value" maxlength="10" min="0" required>                  
+                    </div>
+                    
+                    <label class="col-md-1"> Total </label>
+                    <div class="col-md-2">
+                        <input type="number" class="form-control" name="TOTAL_SEASONAL" id="TOTAL_SEASONAL" value="" name="TOTAL_SEASONAL" placeholder="Enter value" maxlength="10" min="0" required>                  
+                    </div>
+                </div> <br>
+                
+                <div class="form-group">
+                    <label class="col-md-2">General </label>
+                    <div class="col-md-2">
+                        <input type="number" class="form-control" name="GENERAL" id="GENERAL" value="" name="GENERAL" placeholder="Enter value" maxlength="10" min="0" required>
+                    </div> 
+                
+                    <label class="col-md-2">SC </label>
+                    <div class="col-md-2">
+                        <input type="number" class="form-control" name="SC" id="SC" value="" name="SC" placeholder="Enter value" maxlength="10" min="0" required>                  
+                    </div>
+                    
+                    <label class="col-md-2">ST </label>
+                    <div class="col-md-2">
+                        <input type="number" class="form-control" name="ST" id="ST" value="" name="ST" placeholder="Enter value" maxlength="10" min="0" required>                  
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="col-md-2">OBC </label>
+                    <div class="col-md-2">
+                        <input type="number" class="form-control" name="OBC" id="OBC" value="" name="OBC" placeholder="Enter value" maxlength="10" min="0" required>
+                    </div> 
+                
+                    <label class="col-md-2">Minority </label>
+                    <div class="col-md-2">
+                        <input type="number" class="form-control" name="MINORITY" id="MINORITY" value="" name="MINORITY" placeholder="Enter value" maxlength="10" min="0" required>       
+                    </div>
+                    <label class="col-md-2"> Total </label>
+                    <div class="col-md-2">
+                        <input type="number" class="form-control" name="TOTAL_MINORITY" id="TOTAL_MINORITY" value="" name="TOTAL_MINORITY" placeholder="Enter value" maxlength="10" min="0" required>                  
+                    </div>                   
+                </div> <br>
+                
+                <div class="form-group">
+                    <label class="col-md-1">Male </label>
+                    <div class="col-md-2">
+                        <input type="number" class="form-control" name="MALE_EMPLOYEES" id="MALE_EMPLOYEES" value="" name="MALE_EMPLOYEES" placeholder="Enter value" maxlength="10" min="0" required>
+                    </div> 
+                
+                    <label class="col-md-1">Female </label>
+                    <div class="col-md-2">
+                        <input type="number" class="form-control" name="FEMALE_EMPLOYEES" id="FEMALE_EMPLOYEES" value="" name="FEMALE_EMPLOYEES" placeholder="Enter value" maxlength="10" min="0" required>                  
+                    </div>                    
+                    <label class="col-md-1">Transgender </label>
+                    <div class="col-md-2">
+                        <input type="number" class="form-control" name="TRANSGENDER_EMPLOYEES" id="TRANSGENDER_EMPLOYEES" value="" name="TRANSGENDER_EMPLOYEES" placeholder="Enter value" maxlength="10" min="0" required>                  
+                    </div>
+                    <label class="col-md-1"> Total </label>
+                    <div class="col-md-2">
+                        <input type="number" class="form-control" name="TOTAL_GENDER" id="TOTAL_GENDER" value="" name="TOTAL_GENDER" placeholder="Enter value" maxlength="10" min="0" required>                  
+                    </div> 
+                </div> <br>                
+                
+                <div class="form-group">
+                    <label class="col-md-4">Number of Physically Challenged Employees </label>
+                    <div class="col-md-8">
+                        <input type="number" class="form-control" name="PHYSICALLY_CHALLENGED_EMPLOYEE" id="PHYSICALLY_CHALLENGED_EMPLOYEE" value="" name="PHYSICALLY_CHALLENGED_EMPLOYEE" placeholder="Enter value" maxlength="10" min="0" required>                  
+                    </div>               
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4">Total Number of Employees </label>
+                    <div class="col-md-8">
+                        <input type="number" class="form-control" name="TOTAL_EMPLOYEES" id="TOTAL_EMPLOYEES" value="" name="TOTAL_EMPLOYEES" placeholder="Enter value" maxlength="10" min="0" required>                  
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="col-md-4">Average Wages paid per Month </label>
+                    <div class="col-md-8">
+                        <input type="number" class="form-control" name="AVERAGE_WAGES_PAID" id="AVERAGE_WAGES_PAID" value="" name="AVERAGE_WAGES_PAID" placeholder="Enter value" maxlength="10" min="0" required>                  
+                    </div>
+                </div>               
+            </div> <br>
+        </div>                
+		
+        <div class="step-tab-panel" data-step="step6">
+	  	    <div class="container"><br>
+                
+        
+                <div class="form-group" align="center">
+                    <label class="col-md-12"><u> Margin Money Detail </u></label>
+                </div> <br>                
+                
+                <div class="form-group">
+                    <label class="col-md-3">Margin Money Release Amount : </label>
+                    <div class="col-md-3"> 105000 </div>
+                    
+                    <label class="col-md-3">First Installment Date : </label>
+                    <div class="col-md-3"> 15-SEP-2017 </div>                                    
+                </div>
+                
+                <div class="form-group">
+                    <label class="col-md-3"> Balance Loan : </label>
+                    <div class="col-md-3">
+                        <input type="number" class="form-control" name="PENDING_LOAN_AMOUNT" id="PENDING_LOAN_AMOUNT" value="" name="PENDING_LOAN_AMOUNT" placeholder="Enter Balance Loan amount" maxlength="10" min="0" required>                  
+                    </div>
+                    
+                    <label class="col-md-3"> Rate of Interest on Loan : </label>
+                    <div class="col-md-3">
+                        <input type="number" class="form-control" name="ROI_LOAN" id="ROI_LOAN" value="" name="PENDING_LOAN_AMOUNT" placeholder="Enter value" maxlength="5" min="0" required>                  
+                    </div>                                                      
+                </div>
+                
+                <div class="form-group">
+                    <label class="col-md-2"> TDR Amount : </label>
+                    <div class="col-md-2">
+                        <input type="number" class="form-control" name="TDR_AMOUNT" id="TDR_AMOUNT" value="" name="TDR_AMOUNT" placeholder="Enter value" maxlength="10" min="0" required>                  
+                    </div>
+                    
+                    <label class="col-md-2"> TDR Numer : </label>
+                    <div class="col-md-2">
+                        <input type="number" class="form-control" name="TDR_NUMBER" id="TDR_NUMBER" value="" name="TDR_NUMBER" placeholder="Enter value" maxlength="50" min="0" required>                  
+                    </div>
+                    
+                    <label class="col-md-2"> TDR Date : </label>
+                    <div class="col-md-2">
+                        <input type="date" class="form-control" name="TDR_DATE" id="TDR_DATE" value="" name="TDR_DATE" maxlength="50" required>                  
+                    </div>
+                </div>
+				
+				<div class="form-group">
+                    <label class="col-md-4"> CGTMSE  Coverage : </label>
+                    <div class="col-md-2">
+                        <label class="radio-inline"><input type="radio" name="CGTMSE_COVERAGE" checked>Yes</label>
+                        <label class="radio-inline"><input type="radio" name="CGTMSE_COVERAGE">No</label>                        
+                    </div>
+                    
+                    <label class="col-md-4"> Margin Money Call : </label>
+                    <div class="col-md-2">
+                        <label class="radio-inline"><input type="radio" name="IS_MARGIN_MONEY_CALLBACK_" checked>Yes</label>
+                        <label class="radio-inline"><input type="radio" name="IS_MARGIN_MONEY_CALLBACK_">No</label>                        
+                    </div>                                                     
+                </div>
+				
+				<div class="form-group">
+                    <label class="col-md-4"> Margin Money Eligible  For Adjustment : </label>
+                    <div class="col-md-2">
+                        <label class="radio-inline"><input type="radio" name="IS_MARGIN_MONEY_ELIGIBLE_FOR_A" checked>Yes</label>
+                        <label class="radio-inline"><input type="radio" name="IS_MARGIN_MONEY_ELIGIBLE_FOR_A">No</label>                        
+                    </div>
+                    
+                    <label class="col-md-4"> Whether interest charged on the  corresponding amount of Margin : </label>
+                    <div class="col-md-2">
+                        <label class="radio-inline"><input type="radio" name="IS_INTEREST_CHARGED" checked>Yes</label>
+                        <label class="radio-inline"><input type="radio" name="IS_INTEREST_CHARGED">No</label>                        
+                    </div>                                                     
+                </div>
+				
+				<div class="form-group">
+                    <label class="col-md-4"> Collateral Security  Obtained?  : </label>
+                    <div class="col-md-2">
+                        <label class="radio-inline"><input type="radio" name="IS_COLLATERAL_SECURITY" checked>Yes</label>
+                        <label class="radio-inline"><input type="radio" name="IS_COLLATERAL_SECURITY">No</label>                        
+                    </div>
+                    
+                    <label class="col-md-3"> Value of Collateral  Security : </label>
+                    <div class="col-md-3">
+                        <input type="number" class="form-control" name="VALUE_OF_COLLATERAL_SECURITY" id="VALUE_OF_COLLATERAL_SECURITY" value="" name="VALUE_OF_COLLATERAL_SECURITY" placeholder="Enter value" maxlength="10" min="0" required>                  
+                    </div>                                                     
+                </div>
+                
+                <div class="form-group">
+                    <label class="col-md-4"> Whether Repayment of  Loan is regular? : </label>
+                    <div class="col-md-2">
+                        <label class="radio-inline"><input type="radio" name="IS_REPAYMENT_REGULAR" checked>Yes</label>
+                        <label class="radio-inline"><input type="radio" name="IS_REPAYMENT_REGULAR">No</label>                        
+                    </div>
+                    
+                    <label class="col-md-3"> NPA Period (Year) : </label>
+                    <div class="col-md-3">
+                        <input type="number" class="form-control" name="NPA_PERIOD" id="NPA_PERIOD" value="" name="NPA_PERIOD" placeholder="Enter value" maxlength="5" min="0" required>                  
+                    </div>                                                     
+                </div>
+				
+				<div class="form-group">                    
+                    <label class="col-md-6"> Balance Loan Outstanding on the date of  Physical verification  : </label>
+                    <div class="col-md-6">
+                        <input type="number" class="form-control" name="OUTSTANDING_LOAN_AMOUNT" id="OUTSTANDING_LOAN_AMOUNT" value="" name="OUTSTANDING_LOAN_AMOUNT" placeholder="Enter value" maxlength="10" min="0" required>                  
+                    </div>                                                     
+                </div>				
+				
+				
+				<div class="form-group">
+                    <label class="col-md-3"> Callback Amount  : </label>
+                    <div class="col-md-3">
+                        <input type="number" class="form-control" name="CALLBACK_AMOUNT" id="CALLBACK_AMOUNT" value="" name="CALLBACK_AMOUNT" placeholder="Enter Callback Amount" maxlength="10" min="0" required>                  
+                    </div> 
+                    <label class="col-md-3"> Callback Reason  : </label>
+                    <div class="col-md-3">
+						<textarea class="form-control" rows="5" name="CALLBACK_REASON" type="text" id="CALLBACK_REASON" size="50" maxlength="1000" value="" placeholder="Enter Callback Reason" name="CALLBACK_REASON" height="150px" required></textarea>
+                    </div>                                                     
+                </div>
+				
+				<div class="form-group">
+                    <label class="col-md-3"> Margin Money  Adjustment Amount : </label>
+                    <div class="col-md-3">
+                        <input type="number" class="form-control" name="MARGIN_MONEY_ADJUSTMENT_AMOUNT" id="MARGIN_MONEY_ADJUSTMENT_AMOUNT" value="" name="MARGIN_MONEY_ADJUSTMENT_AMOUNT" placeholder="Enter value" maxlength="10" min="0" required>                  
+                    </div> 
+                    <label class="col-md-3"> Margin Money  Adjustment Date : </label>
+                    <div class="col-md-3">
+                        <input type="date" class="form-control" name="MARGIN_MONEY_ADJUSTMENT_DATE" id="MARGIN_MONEY_ADJUSTMENT_DATE" value="" name="MARGIN_MONEY_ADJUSTMENT_DATE" placeholder="" maxlength="50" min="0" required>                  
+                    </div>                                                     
+                </div>				
+            </div> <br>			
+		</div>
+        
+        <div class="step-tab-panel" data-step="step7">
+	  	    <div class="container"> <br>
+                <div class="form-group" align="center">
+                    <label class="col-md-12"><u> Verification Detail </u></label>
+                </div>                
+                
+                <div class="form-group">
+                    <label class="col-md-3">Per Capita Investment  Norm Satisfied : </label>
+					<div class="col-md-3">
+                        <label class="radio-inline"><input type="radio" name="PER_CAPITA_INVESTMENT_NORM_SAT" checked>Yes</label>
+                        <label class="radio-inline"><input type="radio" name="PER_CAPITA_INVESTMENT_NORM_SAT">No</label>                        
+                    </div>                    
+                    <label class="col-md-3">Prominent Sign Board  Installed  : </label>
+                    <div class="col-md-3">
+						<label class="radio-inline"><input type="radio" name="PROMINENT_SIGN_BOARD_INSTALLED">Yes</label>
+                        <label class="radio-inline"><input type="radio" name="PROMINENT_SIGN_BOARD_INSTALLED" checked>No</label>
+					</div>                                    
+                </div>
+                
+                <div class="form-group">
+                    <label class="col-md-2"> Verification Status : </label>
+                    <div class="col-md-4">
+						<label class="radio-inline"><input type="radio" name="VERIFICATION_STATUS" checked>Working</label>
+                        <label class="radio-inline"><input type="radio" name="VERIFICATION_STATUS">Defunct</label>
+						<label class="radio-inline"><input type="radio" name="VERIFICATION_STATUS" checked>Non-Traceble</label>
+					</div>
+                    
+                    <label class="col-md-3"> Verification Date : </label>
+                    <div class="col-md-3">
+                        <input type="date" class="form-control" name="VERIFICATION_DATETIME" id="VERIFICATION_DATETIME" value="" name="VERIFICATION_DATETIME" maxlength="50" required>                  
+                    </div>                                                      
+                </div>
+				
+				<div class="form-group">
+                    <label class="col-md-3"> Verification Agency Name : </label>
+                    <div class="col-md-4">
+						<input type="text" class="form-control" name="VERIFICATION_BY" id="VERIFICATION_BY" value="" name="VERIFICATION_BY" placeholder="Verification Agency Name" maxlength="100" required>            
+
+					</div>
+				</div>
+                
+				<div class="form-group">				
+                    <label class="col-md-3"> Verification Agency  Remarks : </label>
+                    <div class="col-md-4">
+                        <input type="text" class="form-control" name="VERIFIER_REMARKS" id="VERIFIER_REMARKS" value="" name="VERIFIER_REMARKS" placeholder="Enter Remarks" maxlength="500" required>                  
+                    </div>                                                      
+                </div>
+                
+                <div class="form-group">				
+                    <label class="col-md-3"> Approve (Y/N) : </label>
+                    <div class="col-md-3">
+                        <label class="radio-inline"><input type="radio" name="QC_APPRV"> Yes</label>
+						<label class="radio-inline"><input type="radio" name="QC_APPRV" checked> No</label>
+                    </div> 
+                    <label class="col-md-3"> Remarks : </label>
+                    <div class="col-md-3">
+                        <input type="text" class="form-control" name="QC_REMARK" id="QC_REMARK" value="" name="QC_REMARK" placeholder="Enter Remarks" maxlength="500" required>     
+                    </div>                   
+                </div>               
+            </div> <br>
+        </div>
+        
+			
+    <div class="step-footer" align="center" style="position:inherit;" id="myFooter">
+      <button type="button" data-step-action="prev" class="step-btn">Previous</button>
+      <button type="button" data-step-action="next" class="step-btn">Next</button>
+      <button type="button" data-step-action="finish" class="step-btn">Finish</button>
+    </div>
+</div>
+</div>
+  <script src="js/jquery-steps.min.js"></script>
+  <script>      
+      
+    $('#demo').steps({
+      onFinish: function () {
+        alert('Wizard Completed');
+      }
+    });
+  </script>
+</form>
+</body>
+</html>

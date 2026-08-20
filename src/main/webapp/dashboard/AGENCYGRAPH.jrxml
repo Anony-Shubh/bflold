@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="AGENCYGRAPH" pageWidth="595" pageHeight="504" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4f81b1d4-6e75-4585-9cf5-5417ac709900">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT
+  MOM.AGENCY_TYPE AS AGENCY_TYPE,
+  COUNT(*) AS AGENCY_NO
+FROM APP_DETAIL AD,
+  MAS_OFF_MAST MOM
+WHERE AD.OFF_CD = MOM.OFF_CD
+GROUP BY MOM.AGENCY_TYPE]]>
+	</queryString>
+	<field name="AGENCY_TYPE" class="java.lang.String"/>
+	<field name="AGENCY_NO" class="java.math.BigDecimal"/>
+	<variable name="AGENCY_NO_1" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{AGENCY_NO}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="126" splitType="Stretch">
+			<rectangle>
+				<reportElement mode="Opaque" x="0" y="70" width="555" height="55" backcolor="#006699" uuid="93174388-dff2-4bf6-8693-331f12524bf1"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement mode="Opaque" x="50" y="73" width="463" height="48" forecolor="#FFFFFF" backcolor="#006699" uuid="9784943e-062d-41bc-95a1-15c11d2e6089"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Implementing Agency Wise No. of Application Received]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="300" splitType="Stretch">
+			<rectangle>
+				<reportElement mode="Opaque" x="0" y="256" width="555" height="42" backcolor="#006699" uuid="321e8632-74f6-497a-99e3-b820130422d0"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</rectangle>
+			<pie3DChart>
+				<chart renderType="image" theme="default">
+					<reportElement x="0" y="0" width="555" height="254" uuid="d5086733-8c8c-4a04-87bd-954a895fd263"/>
+					<box>
+						<pen lineWidth="2.0"/>
+						<topPen lineWidth="2.0"/>
+						<leftPen lineWidth="2.0"/>
+						<bottomPen lineWidth="2.0"/>
+						<rightPen lineWidth="2.0"/>
+					</box>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<pieDataset>
+					<keyExpression><![CDATA[$F{AGENCY_TYPE}]]></keyExpression>
+					<valueExpression><![CDATA[$F{AGENCY_NO}]]></valueExpression>
+					<otherSectionHyperlink>
+						<hyperlinkTooltipExpression><![CDATA[""+$F{AGENCY_NO}]]></hyperlinkTooltipExpression>
+					</otherSectionHyperlink>
+				</pieDataset>
+				<pie3DPlot labelFormat=" {0}  {1}  ({2})" legendLabelFormat=" {0}  {1}  ({2})">
+					<plot>
+						<seriesColor seriesOrder="0" color="#923432"/>
+						<seriesColor seriesOrder="1" color="#638389"/>
+						<seriesColor seriesOrder="2" color="#4B4B9A"/>
+					</plot>
+					<itemLabel color="#FFFF99" backgroundColor="#333300">
+						<font size="14" isBold="true" isItalic="true"/>
+					</itemLabel>
+				</pie3DPlot>
+			</pie3DChart>
+			<textField pattern="dd/MM/yyyy h.mm a">
+				<reportElement mode="Transparent" x="14" y="266" width="200" height="20" forecolor="#FFFFFF" uuid="2843fde7-8c04-4ace-bfc1-1f0e579e40a0"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="303" y="266" width="181" height="20" forecolor="#FFFFFF" uuid="99ef875a-0a33-4764-9b92-65fd2b2ee0e7"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total No of Applications:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="485" y="266" width="66" height="20" forecolor="#FFFFFF" uuid="888b5344-8a81-4e60-9d9a-e6db0d5de58d"/>
+				<textElement verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{AGENCY_NO_1}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="UNIT_GRAPH" pageWidth="595" pageHeight="504" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b983ed81-e20c-4fcf-aa35-7d4d713540af">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[select UNIT_LOC, COUNT(*) AS UNIT_LOCNO from app_detail
+GROUP BY UNIT_LOC]]>
+	</queryString>
+	<field name="UNIT_LOC" class="java.lang.String"/>
+	<field name="UNIT_LOCNO" class="java.math.BigDecimal"/>
+	<variable name="UNIT_LOCNO_1" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{UNIT_LOCNO}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="127" splitType="Stretch">
+			<rectangle>
+				<reportElement mode="Opaque" x="0" y="72" width="555" height="55" backcolor="#006699" uuid="aec68908-549b-4ae7-9a48-af535d67ee6d"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement mode="Transparent" x="46" y="76" width="463" height="48" forecolor="#FFFFFF" backcolor="#006699" uuid="8fefe182-d881-40b7-875c-251f60027f23"/>
+				<box>
+					<pen lineWidth="2.0"/>
+					<topPen lineWidth="2.0"/>
+					<leftPen lineWidth="2.0"/>
+					<bottomPen lineWidth="2.0"/>
+					<rightPen lineWidth="2.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Rural / Urban Region-wise No. of Application Received from 01-Jul-2016 to as on Date]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="320" splitType="Stretch">
+			<pie3DChart>
+				<chart>
+					<reportElement mode="Opaque" x="0" y="0" width="555" height="277" forecolor="#333300" backcolor="#FFF5E1" uuid="8322aed1-b86b-4ca9-b0d4-f68e06e0cf47"/>
+					<box>
+						<pen lineWidth="2.0"/>
+						<topPen lineWidth="2.0"/>
+						<leftPen lineWidth="2.0"/>
+						<bottomPen lineWidth="2.0"/>
+						<rightPen lineWidth="2.0"/>
+					</box>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend textColor="#FFFFFF" backgroundColor="#006666">
+						<font size="12" isBold="true"/>
+					</chartLegend>
+				</chart>
+				<pieDataset>
+					<keyExpression><![CDATA[$F{UNIT_LOC}]]></keyExpression>
+					<valueExpression><![CDATA[$F{UNIT_LOCNO}]]></valueExpression>
+				</pieDataset>
+				<pie3DPlot labelFormat=" {0}   No: {1}  ({2})" legendLabelFormat=" {0}   No: {1}  ({2})">
+					<plot>
+						<seriesColor seriesOrder="0" color="#6B0531"/>
+						<seriesColor seriesOrder="1" color="#97C5FE"/>
+					</plot>
+					<itemLabel color="#FFFF99" backgroundColor="#333300"/>
+				</pie3DPlot>
+			</pie3DChart>
+			<rectangle>
+				<reportElement mode="Opaque" x="0" y="277" width="555" height="42" backcolor="#006699" uuid="8ebb40dc-a485-46f7-ab60-3f99c76da00f"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="309" y="287" width="181" height="20" forecolor="#FFFFFF" uuid="c206ae5d-85c4-4776-83f7-475d960c5ee6"/>
+				<textElement textAlignment="Right">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total No of Applications:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy h.mm a">
+				<reportElement x="15" y="287" width="200" height="20" forecolor="#FFFFFF" uuid="ffe259d3-ef8e-420a-947e-cd756776f084"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="493" y="287" width="62" height="20" forecolor="#FFFFFF" uuid="8c803442-e823-4a2e-8d02-70eace8acddb"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{UNIT_LOCNO_1}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<HTML lang="en">
+
+<HEAD>
+
+    <META CHARSET="utf-8">
+    <META http-equiv="X-UA-Compatible" content="IE=edge">
+    <META name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <META name="description" content="">
+    <META name="author" content="">
+
+    <TITLE>SB Admin 2 - Dashboard</TITLE>
+
+    <!-- Custom fonts for this template-->
+    <LINK href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <LINK
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <LINK href="css/sb-admin-2.min.css" rel="stylesheet">
+
+</HEAD>
+
+<BODY id="page-top">
+
+    <!-- Page Wrapper -->
+    <DIV id="wrapper">
+
+        <!-- Sidebar -->
+        <UL class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+            <!-- Sidebar - Brand -->
+            <A class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+                <DIV class="sidebar-brand-icon rotate-n-15">
+                    <I class="fas fa-laugh-wink"></I>
+                </DIV>
+                <DIV class="sidebar-brand-text mx-3">SB Admin <SUP>2</SUP></DIV>
+            </A>
+
+            <!-- Divider -->
+            <HR class="sidebar-divider my-0">
+
+            <!-- Nav Item - Dashboard -->
+            <LI class="nav-item active">
+                <A class="nav-link" href="index.html">
+                    <I class="fas fa-fw fa-tachometer-alt"></I>
+                    <SPAN>Dashboard</SPAN></A>
+            </LI>
+
+            <!-- Divider -->
+            <HR class="sidebar-divider">
+
+            <!-- Heading -->
+            <DIV class="sidebar-heading">
+                Interface
+            </DIV>
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <LI class="nav-item">
+                <A class="nav-link collapsed" href="#" DATA-TOGGLE="collapse" DATA-TARGET="#collapseTwo"
+                    aria-expanded="true" ARIA-CONTROLS="collapseTwo">
+                    <I class="fas fa-fw fa-cog"></I>
+                    <SPAN>Components</SPAN>
+                </A>
+                <DIV id="collapseTwo" class="collapse" ARIA-LABELLEDBY="headingTwo" DATA-PARENT="#accordionSidebar">
+                    <DIV class="bg-white py-2 collapse-inner rounded">
+                        <H6 class="collapse-header">Custom Components:</H6>
+                        <A class="collapse-item" href="buttons.html">Buttons</A>
+                        <A class="collapse-item" href="cards.html">Cards</A>
+                    </DIV>
+                </DIV>
+            </LI>
+
+            <!-- Nav Item - Utilities Collapse Menu -->
+            <LI class="nav-item">
+                <A class="nav-link collapsed" href="#" DATA-TOGGLE="collapse" DATA-TARGET="#collapseUtilities"
+                    aria-expanded="true" ARIA-CONTROLS="collapseUtilities">
+                    <I class="fas fa-fw fa-wrench"></I>
+                    <SPAN>Utilities</SPAN>
+                </A>
+                <DIV id="collapseUtilities" class="collapse" ARIA-LABELLEDBY="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <DIV class="bg-white py-2 collapse-inner rounded">
+                        <H6 class="collapse-header">Custom Utilities:</H6>
+                        <A class="collapse-item" href="utilities-color.html">Colors</A>
+                        <A class="collapse-item" href="utilities-border.html">Borders</A>
+                        <A class="collapse-item" href="utilities-animation.html">Animations</A>
+                        <A class="collapse-item" href="utilities-other.html">Other</A>
+                    </DIV>
+                </DIV>
+            </LI>
+
+            <!-- Divider -->
+            <HR class="sidebar-divider">
+
+            <!-- Heading -->
+            <DIV class="sidebar-heading">
+                Addons
+            </DIV>
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <LI class="nav-item">
+                <A class="nav-link collapsed" href="#" DATA-TOGGLE="collapse" DATA-TARGET="#collapsePages"
+                    aria-expanded="true" ARIA-CONTROLS="collapsePages">
+                    <I class="fas fa-fw fa-folder"></I>
+                    <SPAN>Pages</SPAN>
+                </A>
+                <DIV id="collapsePages" class="collapse" ARIA-LABELLEDBY="headingPages" DATA-PARENT="#accordionSidebar">
+                    <DIV class="bg-white py-2 collapse-inner rounded">
+                        <H6 class="collapse-header">Login Screens:</H6>
+                        <A class="collapse-item" href="login.html">Login</A>
+                        <A class="collapse-item" href="register.html">Register</A>
+                        <A class="collapse-item" href="forgot-password.html">Forgot Password</A>
+                        <DIV class="collapse-divider"></DIV>
+                        <H6 class="collapse-header">Other Pages:</H6>
+                        <A class="collapse-item" href="404.html">404 Page</A>
+                        <A class="collapse-item" href="blank.html">Blank Page</A>
+                    </DIV>
+                </DIV>
+            </LI>
+
+            <!-- Nav Item - Charts -->
+            <LI class="nav-item">
+                <A class="nav-link" href="charts.html">
+                    <I class="fas fa-fw fa-chart-area"></I>
+                    <SPAN>Charts</SPAN></A>
+            </LI>
+
+            <!-- Nav Item - Tables -->
+            <LI class="nav-item">
+                <A class="nav-link" href="tables.html">
+                    <I class="fas fa-fw fa-table"></I>
+                    <SPAN>Tables</SPAN></A>
+            </LI>
+
+            <!-- Divider -->
+            <HR class="sidebar-divider d-none d-md-block">
+
+            <!-- Sidebar Toggler (Sidebar) -->
+            <DIV class="text-center d-none d-md-inline">
+                <BUTTON class="rounded-circle border-0" id="sidebarToggle"></BUTTON>
+            </DIV>
+
+            <!-- Sidebar Message -->
+            <DIV class="sidebar-card">
+                <IMG class="sidebar-card-illustration mb-2" src="img/undraw_rocket.svg" alt="">
+                <P class="text-center mb-2"><STRONG>SB Admin Pro</STRONG> is packed with premium features, components, and more!</P>
+                <A class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to Pro!</A>
+            </DIV>
+
+        </UL>
+        <!-- End of Sidebar -->
+
+        <!-- Content Wrapper -->
+        <DIV id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <DIV id="content">
+
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <BUTTON id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <I class="fa fa-bars"></I>
+                    </BUTTON>
+
+                    <!-- Topbar Search -->
+                    <FORM
+                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        <DIV class="input-group">
+                            <INPUT type="text" class="form-control bg-light border-0 small" PLACEHOLDER="Search for..."
+                                aria-label="Search" ARIA-DESCRIBEDBY="basic-addon2">
+                            <DIV class="input-group-append">
+                                <BUTTON class="btn btn-primary" type="button">
+                                    <I class="fas fa-search fa-sm"></I>
+                                </BUTTON>
+                            </DIV>
+                        </DIV>
+                    </FORM>
+
+                    <!-- Topbar Navbar -->
+                    <UL class="navbar-nav ml-auto">
+
+                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                        <LI class="nav-item dropdown no-arrow d-sm-none">
+                            <A class="nav-link dropdown-toggle" href="#" id="searchDropdown" ROLE="button"
+                                data-toggle="dropdown" ARIA-HASPOPUP="true" ARIA-EXPANDED="false">
+                                <I class="fas fa-search fa-fw"></I>
+                            </A>
+                            <!-- Dropdown - Messages -->
+                            <DIV class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                                aria-labelledby="searchDropdown">
+                                <FORM class="form-inline mr-auto w-100 navbar-search">
+                                    <DIV class="input-group">
+                                        <INPUT type="text" class="form-control bg-light border-0 small"
+                                            placeholder="Search for..." ARIA-LABEL="Search"
+                                            aria-describedby="basic-addon2">
+                                        <DIV class="input-group-append">
+                                            <BUTTON class="btn btn-primary" type="button">
+                                                <I class="fas fa-search fa-sm"></I>
+                                            </BUTTON>
+                                        </DIV>
+                                    </DIV>
+                                </FORM>
+                            </DIV>
+                        </LI>
+
+                        <!-- Nav Item - Alerts -->
+                        <LI class="nav-item dropdown no-arrow mx-1">
+                            <A class="nav-link dropdown-toggle" href="#" id="alertsDropdown" ROLE="button"
+                                data-toggle="dropdown" ARIA-HASPOPUP="true" ARIA-EXPANDED="false">
+                                <I class="fas fa-bell fa-fw"></I>
+                                <!-- Counter - Alerts -->
+                                <SPAN class="badge badge-danger badge-counter">3+</SPAN>
+                            </A>
+                            <!-- Dropdown - Alerts -->
+                            <DIV class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="alertsDropdown">
+                                <H6 class="dropdown-header">
+                                    Alerts Center
+                                </H6>
+                                <A class="dropdown-item d-flex align-items-center" href="#">
+                                    <DIV class="mr-3">
+                                        <DIV class="icon-circle bg-primary">
+                                            <I class="fas fa-file-alt text-white"></I>
+                                        </DIV>
+                                    </DIV>
+                                    <DIV>
+                                        <DIV class="small text-gray-500">December 12, 2019</DIV>
+                                        <SPAN class="font-weight-bold">A new monthly report is ready to download!</SPAN>
+                                    </DIV>
+                                </A>
+                                <A class="dropdown-item d-flex align-items-center" href="#">
+                                    <DIV class="mr-3">
+                                        <DIV class="icon-circle bg-success">
+                                            <I class="fas fa-donate text-white"></I>
+                                        </DIV>
+                                    </DIV>
+                                    <DIV>
+                                        <DIV class="small text-gray-500">December 7, 2019</DIV>
+                                        $290.29 has been deposited into your account!
+                                    </DIV>
+                                </A>
+                                <A class="dropdown-item d-flex align-items-center" href="#">
+                                    <DIV class="mr-3">
+                                        <DIV class="icon-circle bg-warning">
+                                            <I class="fas fa-exclamation-triangle text-white"></I>
+                                        </DIV>
+                                    </DIV>
+                                    <DIV>
+                                        <DIV class="small text-gray-500">December 2, 2019</DIV>
+                                        Spending Alert: We've noticed unusually high spending for your account.
+                                    </DIV>
+                                </A>
+                                <A class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</A>
+                            </DIV>
+                        </LI>
+
+                        <!-- Nav Item - Messages -->
+                        <LI class="nav-item dropdown no-arrow mx-1">
+                            <A class="nav-link dropdown-toggle" href="#" id="messagesDropdown" ROLE="button"
+                                data-toggle="dropdown" ARIA-HASPOPUP="true" ARIA-EXPANDED="false">
+                                <I class="fas fa-envelope fa-fw"></I>
+                                <!-- Counter - Messages -->
+                                <SPAN class="badge badge-danger badge-counter">7</SPAN>
+                            </A>
+                            <!-- Dropdown - Messages -->
+                            <DIV class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="messagesDropdown">
+                                <H6 class="dropdown-header">
+                                    Message Center
+                                </H6>
+                                <A class="dropdown-item d-flex align-items-center" href="#">
+                                    <DIV class="dropdown-list-image mr-3">
+                                        <IMG class="rounded-circle" src="img/undraw_profile_1.svg"
+                                            alt="">
+                                        <DIV class="status-indicator bg-success"></DIV>
+                                    </DIV>
+                                    <DIV class="font-weight-bold">
+                                        <DIV class="text-truncate">Hi there! I am wondering if you can help me with a
+                                            problem I've been having.</DIV>
+                                        <DIV class="small text-gray-500">Emily Fowler · 58m</DIV>
+                                    </DIV>
+                                </A>
+                                <A class="dropdown-item d-flex align-items-center" href="#">
+                                    <DIV class="dropdown-list-image mr-3">
+                                        <IMG class="rounded-circle" src="img/undraw_profile_2.svg"
+                                            alt="">
+                                        <DIV class="status-indicator"></DIV>
+                                    </DIV>
+                                    <DIV>
+                                        <DIV class="text-truncate">I have the photos that you ordered last month, how
+                                            would you like them sent to you?</DIV>
+                                        <DIV class="small text-gray-500">Jae Chun · 1d</DIV>
+                                    </DIV>
+                                </A>
+                                <A class="dropdown-item d-flex align-items-center" href="#">
+                                    <DIV class="dropdown-list-image mr-3">
+                                        <IMG class="rounded-circle" src="img/undraw_profile_3.svg"
+                                            alt="">
+                                        <DIV class="status-indicator bg-warning"></DIV>
+                                    </DIV>
+                                    <DIV>
+                                        <DIV class="text-truncate">Last month's report looks great, I am very happy with
+                                            the progress so far, keep up the good work!</DIV>
+                                        <DIV class="small text-gray-500">Morgan Alvarez · 2d</DIV>
+                                    </DIV>
+                                </A>
+                                <A class="dropdown-item d-flex align-items-center" href="#">
+                                    <DIV class="dropdown-list-image mr-3">
+                                        <IMG class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"
+                                            alt="">
+                                        <DIV class="status-indicator bg-success"></DIV>
+                                    </DIV>
+                                    <DIV>
+                                        <DIV class="text-truncate">Am I a good boy? The reason I ask is because someone
+                                            told me that people say this to all dogs, even if they aren't good...</DIV>
+                                        <DIV class="small text-gray-500">Chicken the Dog · 2w</DIV>
+                                    </DIV>
+                                </A>
+                                <A class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</A>
+                            </DIV>
+                        </LI>
+
+                        <DIV class="topbar-divider d-none d-sm-block"></DIV>
+
+                        <!-- Nav Item - User Information -->
+                        <LI class="nav-item dropdown no-arrow">
+                            <A class="nav-link dropdown-toggle" href="#" id="userDropdown" ROLE="button"
+                                data-toggle="dropdown" ARIA-HASPOPUP="true" ARIA-EXPANDED="false">
+                                <SPAN class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</SPAN>
+                                <IMG class="img-profile rounded-circle"
+                                    src="img/undraw_profile.svg">
+                            </A>
+                            <!-- Dropdown - User Information -->
+                            <DIV class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
+                                <A class="dropdown-item" href="#">
+                                    <I class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></I>
+                                    Profile
+                                </A>
+                                <A class="dropdown-item" href="#">
+                                    <I class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></I>
+                                    Settings
+                                </A>
+                                <A class="dropdown-item" href="#">
+                                    <I class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></I>
+                                    Activity Log
+                                </A>
+                                <DIV class="dropdown-divider"></DIV>
+                                <A class="dropdown-item" href="#" DATA-TOGGLE="modal" DATA-TARGET="#logoutModal">
+                                    <I class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></I>
+                                    Logout
+                                </A>
+                            </DIV>
+                        </LI>
+
+                    </UL>
+
+                </nav>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <DIV class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <DIV class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <H1 class="h3 mb-0 text-gray-800">Dashboard</H1>
+                        <A href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><I
+                                class="fas fa-download fa-sm text-white-50"></I> Generate Report</A>
+                    </DIV>
+
+                    <!-- Content Row -->
+                    <DIV class="row">
+
+                        <!-- Earnings (Monthly) Card Example -->
+                        <DIV class="col-xl-3 col-md-6 mb-4">
+                            <DIV class="card border-left-primary shadow h-100 py-2">
+                                <DIV class="card-body">
+                                    <DIV class="row no-gutters align-items-center">
+                                        <DIV class="col mr-2">
+                                            <DIV class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                Earnings (Monthly)</DIV>
+                                            <DIV class="h5 mb-0 font-weight-bold text-gray-800">$40,000</DIV>
+                                        </DIV>
+                                        <DIV class="col-auto">
+                                            <I class="fas fa-calendar fa-2x text-gray-300"></I>
+                                        </DIV>
+                                    </DIV>
+                                </DIV>
+                            </DIV>
+                        </DIV>
+
+                        <!-- Earnings (Monthly) Card Example -->
+                        <DIV class="col-xl-3 col-md-6 mb-4">
+                            <DIV class="card border-left-success shadow h-100 py-2">
+                                <DIV class="card-body">
+                                    <DIV class="row no-gutters align-items-center">
+                                        <DIV class="col mr-2">
+                                            <DIV class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                Earnings (Annual)</DIV>
+                                            <DIV class="h5 mb-0 font-weight-bold text-gray-800">$215,000</DIV>
+                                        </DIV>
+                                        <DIV class="col-auto">
+                                            <I class="fas fa-dollar-sign fa-2x text-gray-300"></I>
+                                        </DIV>
+                                    </DIV>
+                                </DIV>
+                            </DIV>
+                        </DIV>
+
+                        <!-- Earnings (Monthly) Card Example -->
+                        <DIV class="col-xl-3 col-md-6 mb-4">
+                            <DIV class="card border-left-info shadow h-100 py-2">
+                                <DIV class="card-body">
+                                    <DIV class="row no-gutters align-items-center">
+                                        <DIV class="col mr-2">
+                                            <DIV class="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks
+                                            </DIV>
+                                            <DIV class="row no-gutters align-items-center">
+                                                <DIV class="col-auto">
+                                                    <DIV class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</DIV>
+                                                </DIV>
+                                                <DIV class="col">
+                                                    <DIV class="progress progress-sm mr-2">
+                                                        <DIV class="progress-bar bg-info" ROLE="progressbar"
+                                                            style="width: 50%" ARIA-VALUENOW="80" ARIA-VALUEMIN="0"
+                                                            aria-valuemax="100"></DIV>
+                                                    </DIV>
+                                                </DIV>
+                                            </DIV>
+                                        </DIV>
+                                        <DIV class="col-auto">
+                                            <I class="fas fa-clipboard-list fa-2x text-gray-300"></I>
+                                        </DIV>
+                                    </DIV>
+                                </DIV>
+                            </DIV>
+                        </DIV>
+
+                        <!-- Pending Requests Card Example -->
+                        <DIV class="col-xl-3 col-md-6 mb-4">
+                            <DIV class="card border-left-warning shadow h-100 py-2">
+                                <DIV class="card-body">
+                                    <DIV class="row no-gutters align-items-center">
+                                        <DIV class="col mr-2">
+                                            <DIV class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                                Pending Requests</DIV>
+                                            <DIV class="h5 mb-0 font-weight-bold text-gray-800">18</DIV>
+                                        </DIV>
+                                        <DIV class="col-auto">
+                                            <I class="fas fa-comments fa-2x text-gray-300"></I>
+                                        </DIV>
+                                    </DIV>
+                                </DIV>
+                            </DIV>
+                        </DIV>
+                    </DIV>
+
+                    <!-- Content Row -->
+
+                    <DIV class="row">
+
+                        <!-- Area Chart -->
+                        <DIV class="col-xl-8 col-lg-7">
+                            <DIV class="card shadow mb-4">
+                                <!-- Card Header - Dropdown -->
+                                <DIV
+                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <H6 class="m-0 font-weight-bold text-primary">Earnings Overview</H6>
+                                    <DIV class="dropdown no-arrow">
+                                        <A class="dropdown-toggle" href="#" ROLE="button" id="dropdownMenuLink"
+                                            data-toggle="dropdown" ARIA-HASPOPUP="true" ARIA-EXPANDED="false">
+                                            <I class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></I>
+                                        </A>
+                                        <DIV class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                            aria-labelledby="dropdownMenuLink">
+                                            <DIV class="dropdown-header">Dropdown Header:</DIV>
+                                            <A class="dropdown-item" href="#">Action</A>
+                                            <A class="dropdown-item" href="#">Another action</A>
+                                            <DIV class="dropdown-divider"></DIV>
+                                            <A class="dropdown-item" href="#">Something else here</A>
+                                        </DIV>
+                                    </DIV>
+                                </DIV>
+                                <!-- Card Body -->
+                                <DIV class="card-body">
+                                    <DIV class="chart-area">
+                                        <canvas id="myAreaChart"></canvas>
+                                    </DIV>
+                                </DIV>
+                            </DIV>
+                        </DIV>
+
+                        <!-- Pie Chart -->
+                        <DIV class="col-xl-4 col-lg-5">
+                            <DIV class="card shadow mb-4">
+                                <!-- Card Header - Dropdown -->
+                                <DIV
+                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <H6 class="m-0 font-weight-bold text-primary">Revenue Sources</H6>
+                                    <DIV class="dropdown no-arrow">
+                                        <A class="dropdown-toggle" href="#" ROLE="button" id="dropdownMenuLink"
+                                            data-toggle="dropdown" ARIA-HASPOPUP="true" ARIA-EXPANDED="false">
+                                            <I class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></I>
+                                        </A>
+                                        <DIV class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                            aria-labelledby="dropdownMenuLink">
+                                            <DIV class="dropdown-header">Dropdown Header:</DIV>
+                                            <A class="dropdown-item" href="#">Action</A>
+                                            <A class="dropdown-item" href="#">Another action</A>
+                                            <DIV class="dropdown-divider"></DIV>
+                                            <A class="dropdown-item" href="#">Something else here</A>
+                                        </DIV>
+                                    </DIV>
+                                </DIV>
+                                <!-- Card Body -->
+                                <DIV class="card-body">
+                                    <DIV class="chart-pie pt-4 pb-2">
+                                        <canvas id="myPieChart"></canvas>
+                                    </DIV>
+                                    <DIV class="mt-4 text-center small">
+                                        <SPAN class="mr-2">
+                                            <I class="fas fa-circle text-primary"></I> Direct
+                                        </SPAN>
+                                        <SPAN class="mr-2">
+                                            <I class="fas fa-circle text-success"></I> Social
+                                        </SPAN>
+                                        <SPAN class="mr-2">
+                                            <I class="fas fa-circle text-info"></I> Referral
+                                        </SPAN>
+                                    </DIV>
+                                </DIV>
+                            </DIV>
+                        </DIV>
+                    </DIV>
+
+                    <!-- Content Row -->
+                    <DIV class="row">
+
+                        <!-- Content Column -->
+                        <DIV class="col-lg-6 mb-4">
+
+                            <!-- Project Card Example -->
+                            <DIV class="card shadow mb-4">
+                                <DIV class="card-header py-3">
+                                    <H6 class="m-0 font-weight-bold text-primary">Projects</H6>
+                                </DIV>
+                                <DIV class="card-body">
+                                    <H4 class="small font-weight-bold">Server Migration <SPAN
+                                            class="float-right">20%</SPAN></H4>
+                                    <DIV class="progress mb-4">
+                                        <DIV class="progress-bar bg-danger" ROLE="progressbar" style="width: 20%"
+                                            aria-valuenow="20" ARIA-VALUEMIN="0" ARIA-VALUEMAX="100"></DIV>
+                                    </DIV>
+                                    <H4 class="small font-weight-bold">Sales Tracking <SPAN
+                                            class="float-right">40%</SPAN></H4>
+                                    <DIV class="progress mb-4">
+                                        <DIV class="progress-bar bg-warning" ROLE="progressbar" style="width: 40%"
+                                            aria-valuenow="40" ARIA-VALUEMIN="0" ARIA-VALUEMAX="100"></DIV>
+                                    </DIV>
+                                    <H4 class="small font-weight-bold">Customer Database <SPAN
+                                            class="float-right">60%</SPAN></H4>
+                                    <DIV class="progress mb-4">
+                                        <DIV class="progress-bar" ROLE="progressbar" style="width: 60%"
+                                            aria-valuenow="60" ARIA-VALUEMIN="0" ARIA-VALUEMAX="100"></DIV>
+                                    </DIV>
+                                    <H4 class="small font-weight-bold">Payout Details <SPAN
+                                            class="float-right">80%</SPAN></H4>
+                                    <DIV class="progress mb-4">
+                                        <DIV class="progress-bar bg-info" ROLE="progressbar" style="width: 80%"
+                                            aria-valuenow="80" ARIA-VALUEMIN="0" ARIA-VALUEMAX="100"></DIV>
+                                    </DIV>
+                                    <H4 class="small font-weight-bold">Account Setup <SPAN
+                                            class="float-right">Complete!</SPAN></H4>
+                                    <DIV class="progress">
+                                        <DIV class="progress-bar bg-success" ROLE="progressbar" style="width: 100%"
+                                            aria-valuenow="100" ARIA-VALUEMIN="0" ARIA-VALUEMAX="100"></DIV>
+                                    </DIV>
+                                </DIV>
+                            </DIV>
+
+                            <!-- Color System -->
+                            <DIV class="row">
+                                <DIV class="col-lg-6 mb-4">
+                                    <DIV class="card bg-primary text-white shadow">
+                                        <DIV class="card-body">
+                                            1,00,000 crore
+                                            <DIV class="text-white-50 small">Loans Facilitated</DIV>
+                                        </DIV>
+                                    </DIV>
+                                </DIV>
+                                <DIV class="col-lg-6 mb-4">
+                                    <DIV class="card bg-success text-white shadow">
+                                        <DIV class="card-body">
+                                            20,00,000
+                                            <DIV class="text-white-50 small">PMEGP unit operational</DIV>
+                                        </DIV>
+                                    </DIV>
+                                </DIV>
+                                <DIV class="col-lg-6 mb-4">
+                                    <DIV class="card bg-info text-white shadow">
+                                        <DIV class="card-body">
+                                            2,500 crore
+                                            <DIV class="text-white-50 small">Margin Money released</DIV>
+                                        </DIV>
+                                    </DIV>
+                                </DIV>
+                                <DIV class="col-lg-6 mb-4">
+                                    <DIV class="card bg-warning text-white shadow">
+                                        <DIV class="card-body">
+                                           1,50,00,000
+                                            <DIV class="text-white-50 small">Employment generated</DIV>
+                                        </DIV>
+                                    </DIV>
+                                </DIV>
+                                <DIV class="col-lg-6 mb-4">
+                                    <DIV class="card bg-danger text-white shadow">
+                                        <DIV class="card-body">
+                                            5,00,000
+                                            <DIV class="text-white-50 small">Sanctioned applications</DIV>
+                                        </DIV>
+                                    </DIV>
+                                </DIV>
+                                <DIV class="col-lg-6 mb-4">
+                                    <DIV class="card bg-secondary text-white shadow">
+                                        <DIV class="card-body">
+                                            Secondary
+                                            <DIV class="text-white-50 small">#858796</DIV>
+                                        </DIV>
+                                    </DIV>
+                                </DIV>
+                                <DIV class="col-lg-6 mb-4">
+                                    <DIV class="card bg-light text-black shadow">
+                                        <DIV class="card-body">
+                                            Light
+                                            <DIV class="text-black-50 small">#f8f9fc</DIV>
+                                        </DIV>
+                                    </DIV>
+                                </DIV>
+                                <DIV class="col-lg-6 mb-4">
+                                    <DIV class="card bg-dark text-white shadow">
+                                        <DIV class="card-body">
+                                            Dark
+                                            <DIV class="text-white-50 small">#5a5c69</DIV>
+                                        </DIV>
+                                    </DIV>
+                                </DIV>
+                            </DIV>
+
+                        </DIV>
+
+                        <DIV class="col-lg-6 mb-4">
+
+                            <!-- Illustrations -->
+                            <DIV class="card shadow mb-4">
+                                <DIV class="card-header py-3">
+                                    <H6 class="m-0 font-weight-bold text-primary">Illustrations</H6>
+                                </DIV>
+                                <DIV class="card-body">
+                                    <DIV class="text-center">
+                                        <IMG class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
+                                            src="img/undraw_posting_photo.svg" alt="">
+                                    </DIV>
+                                    <P>Add some quality, svg illustrations to your project courtesy of <A
+                                            target="_blank" rel="nofollow" href="https://undraw.co/">unDraw</A>, a
+                                        constantly updated collection of beautiful svg images that you can use
+                                        completely free and without attribution!</P>
+                                    <A target="_blank" rel="nofollow" href="https://undraw.co/">Browse Illustrations on
+                                        unDraw &rarr;</A>
+                                </DIV>
+                            </DIV>
+
+                            <!-- Approach -->
+                            <DIV class="card shadow mb-4">
+                                <DIV class="card-header py-3">
+                                    <H6 class="m-0 font-weight-bold text-primary">Development Approach</H6>
+                                </DIV>
+                                <DIV class="card-body">
+                                    <P>SB Admin 2 makes extensive use of Bootstrap 4 utility classes in order to reduce
+                                        CSS bloat and poor page performance. Custom CSS classes are used to create
+                                        custom components and custom utility classes.</P>
+                                    <P class="mb-0">Before working with this theme, you should become familiar with the
+                                        Bootstrap framework, especially the utility classes.</P>
+                                </DIV>
+                            </DIV>
+
+                        </DIV>
+                    </DIV>
+
+                </DIV>
+                <!-- /.container-fluid -->
+
+            </DIV>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <DIV class="container my-auto">
+                    <DIV class="copyright text-center my-auto">
+                        <SPAN>Copyright &copy; Your Website 2020</SPAN>
+                    </DIV>
+                </DIV>
+            </footer>
+            <!-- End of Footer -->
+
+        </DIV>
+        <!-- End of Content Wrapper -->
+
+    </DIV>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <A class="scroll-to-top rounded" href="#page-top">
+        <I class="fas fa-angle-up"></I>
+    </A>
+
+    <!-- Logout Modal-->
+    <DIV class="modal fade" id="logoutModal" TABINDEX="-1" ROLE="dialog" ARIA-LABELLEDBY="exampleModalLabel"
+        aria-hidden="true">
+        <DIV class="modal-dialog" ROLE="document">
+            <DIV class="modal-content">
+                <DIV class="modal-header">
+                    <H5 class="modal-title" id="exampleModalLabel">Ready to Leave?</H5>
+                    <BUTTON class="close" type="button" DATA-DISMISS="modal" ARIA-LABEL="Close">
+                        <SPAN ARIA-HIDDEN="true">×</SPAN>
+                    </BUTTON>
+                </DIV>
+                <DIV class="modal-body">Select "Logout" below if you are ready to end your current session.</DIV>
+                <DIV class="modal-footer">
+                    <BUTTON class="btn btn-secondary" type="button" DATA-DISMISS="modal">Cancel</BUTTON>
+                    <A class="btn btn-primary" href="login.html">Logout</A>
+                </DIV>
+            </DIV>
+        </DIV>
+    </DIV>
+
+    <!-- Bootstrap core JavaScript-->
+    <SCRIPT src="vendor/jquery/jquery.min.js"></SCRIPT>
+    <SCRIPT src="vendor/bootstrap/js/bootstrap.bundle.min.js"></SCRIPT>
+
+    <!-- Core plugin JavaScript-->
+    <SCRIPT src="vendor/jquery-easing/jquery.easing.min.js"></SCRIPT>
+
+    <!-- Custom scripts for all pages-->
+    <SCRIPT src="js/sb-admin-2.min.js"></SCRIPT>
+
+    <!-- Page level plugins -->
+    <SCRIPT src="vendor/chart.js/Chart.min.js"></SCRIPT>
+
+    <!-- Page level custom scripts -->
+    <SCRIPT src="js/demo/chart-area-demo.js"></SCRIPT>
+    <SCRIPT src="js/demo/chart-pie-demo.js"></SCRIPT>
+
+</BODY>
+
+</HTML>

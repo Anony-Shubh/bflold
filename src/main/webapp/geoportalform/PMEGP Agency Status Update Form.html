@@ -1,0 +1,543 @@
+
+<!-- saved from url=(0061)http://www.kviconline.net.in/pmegpgeoapi/api/geoTagUpdate.jsp -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"><style type="text/css">.swal-icon--error{border-color:#f27474;-webkit-animation:animateErrorIcon .5s;animation:animateErrorIcon .5s}.swal-icon--error__x-mark{position:relative;display:block;-webkit-animation:animateXMark .5s;animation:animateXMark .5s}.swal-icon--error__line{position:absolute;height:5px;width:47px;background-color:#f27474;display:block;top:37px;border-radius:2px}.swal-icon--error__line--left{-webkit-transform:rotate(45deg);transform:rotate(45deg);left:17px}.swal-icon--error__line--right{-webkit-transform:rotate(-45deg);transform:rotate(-45deg);right:16px}@-webkit-keyframes animateErrorIcon{0%{-webkit-transform:rotateX(100deg);transform:rotateX(100deg);opacity:0}to{-webkit-transform:rotateX(0deg);transform:rotateX(0deg);opacity:1}}@keyframes animateErrorIcon{0%{-webkit-transform:rotateX(100deg);transform:rotateX(100deg);opacity:0}to{-webkit-transform:rotateX(0deg);transform:rotateX(0deg);opacity:1}}@-webkit-keyframes animateXMark{0%{-webkit-transform:scale(.4);transform:scale(.4);margin-top:26px;opacity:0}50%{-webkit-transform:scale(.4);transform:scale(.4);margin-top:26px;opacity:0}80%{-webkit-transform:scale(1.15);transform:scale(1.15);margin-top:-6px}to{-webkit-transform:scale(1);transform:scale(1);margin-top:0;opacity:1}}@keyframes animateXMark{0%{-webkit-transform:scale(.4);transform:scale(.4);margin-top:26px;opacity:0}50%{-webkit-transform:scale(.4);transform:scale(.4);margin-top:26px;opacity:0}80%{-webkit-transform:scale(1.15);transform:scale(1.15);margin-top:-6px}to{-webkit-transform:scale(1);transform:scale(1);margin-top:0;opacity:1}}.swal-icon--warning{border-color:#f8bb86;-webkit-animation:pulseWarning .75s infinite alternate;animation:pulseWarning .75s infinite alternate}.swal-icon--warning__body{width:5px;height:47px;top:10px;border-radius:2px;margin-left:-2px}.swal-icon--warning__body,.swal-icon--warning__dot{position:absolute;left:50%;background-color:#f8bb86}.swal-icon--warning__dot{width:7px;height:7px;border-radius:50%;margin-left:-4px;bottom:-11px}@-webkit-keyframes pulseWarning{0%{border-color:#f8d486}to{border-color:#f8bb86}}@keyframes pulseWarning{0%{border-color:#f8d486}to{border-color:#f8bb86}}.swal-icon--success{border-color:#a5dc86}.swal-icon--success:after,.swal-icon--success:before{content:"";border-radius:50%;position:absolute;width:60px;height:120px;background:#fff;-webkit-transform:rotate(45deg);transform:rotate(45deg)}.swal-icon--success:before{border-radius:120px 0 0 120px;top:-7px;left:-33px;-webkit-transform:rotate(-45deg);transform:rotate(-45deg);-webkit-transform-origin:60px 60px;transform-origin:60px 60px}.swal-icon--success:after{border-radius:0 120px 120px 0;top:-11px;left:30px;-webkit-transform:rotate(-45deg);transform:rotate(-45deg);-webkit-transform-origin:0 60px;transform-origin:0 60px;-webkit-animation:rotatePlaceholder 4.25s ease-in;animation:rotatePlaceholder 4.25s ease-in}.swal-icon--success__ring{width:80px;height:80px;border:4px solid hsla(98,55%,69%,.2);border-radius:50%;box-sizing:content-box;position:absolute;left:-4px;top:-4px;z-index:2}.swal-icon--success__hide-corners{width:5px;height:90px;background-color:#fff;padding:1px;position:absolute;left:28px;top:8px;z-index:1;-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}.swal-icon--success__line{height:5px;background-color:#a5dc86;display:block;border-radius:2px;position:absolute;z-index:2}.swal-icon--success__line--tip{width:25px;left:14px;top:46px;-webkit-transform:rotate(45deg);transform:rotate(45deg);-webkit-animation:animateSuccessTip .75s;animation:animateSuccessTip .75s}.swal-icon--success__line--long{width:47px;right:8px;top:38px;-webkit-transform:rotate(-45deg);transform:rotate(-45deg);-webkit-animation:animateSuccessLong .75s;animation:animateSuccessLong .75s}@-webkit-keyframes rotatePlaceholder{0%{-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}5%{-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}12%{-webkit-transform:rotate(-405deg);transform:rotate(-405deg)}to{-webkit-transform:rotate(-405deg);transform:rotate(-405deg)}}@keyframes rotatePlaceholder{0%{-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}5%{-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}12%{-webkit-transform:rotate(-405deg);transform:rotate(-405deg)}to{-webkit-transform:rotate(-405deg);transform:rotate(-405deg)}}@-webkit-keyframes animateSuccessTip{0%{width:0;left:1px;top:19px}54%{width:0;left:1px;top:19px}70%{width:50px;left:-8px;top:37px}84%{width:17px;left:21px;top:48px}to{width:25px;left:14px;top:45px}}@keyframes animateSuccessTip{0%{width:0;left:1px;top:19px}54%{width:0;left:1px;top:19px}70%{width:50px;left:-8px;top:37px}84%{width:17px;left:21px;top:48px}to{width:25px;left:14px;top:45px}}@-webkit-keyframes animateSuccessLong{0%{width:0;right:46px;top:54px}65%{width:0;right:46px;top:54px}84%{width:55px;right:0;top:35px}to{width:47px;right:8px;top:38px}}@keyframes animateSuccessLong{0%{width:0;right:46px;top:54px}65%{width:0;right:46px;top:54px}84%{width:55px;right:0;top:35px}to{width:47px;right:8px;top:38px}}.swal-icon--info{border-color:#c9dae1}.swal-icon--info:before{width:5px;height:29px;bottom:17px;border-radius:2px;margin-left:-2px}.swal-icon--info:after,.swal-icon--info:before{content:"";position:absolute;left:50%;background-color:#c9dae1}.swal-icon--info:after{width:7px;height:7px;border-radius:50%;margin-left:-3px;top:19px}.swal-icon{width:80px;height:80px;border-width:4px;border-style:solid;border-radius:50%;padding:0;position:relative;box-sizing:content-box;margin:20px auto}.swal-icon:first-child{margin-top:32px}.swal-icon--custom{width:auto;height:auto;max-width:100%;border:none;border-radius:0}.swal-icon img{max-width:100%;max-height:100%}.swal-title{color:rgba(0,0,0,.65);font-weight:600;text-transform:none;position:relative;display:block;padding:13px 16px;font-size:27px;line-height:normal;text-align:center;margin-bottom:0}.swal-title:first-child{margin-top:26px}.swal-title:not(:first-child){padding-bottom:0}.swal-title:not(:last-child){margin-bottom:13px}.swal-text{font-size:16px;position:relative;float:none;line-height:normal;vertical-align:top;text-align:left;display:inline-block;margin:0;padding:0 10px;font-weight:400;color:rgba(0,0,0,.64);max-width:calc(100% - 20px);overflow-wrap:break-word;box-sizing:border-box}.swal-text:first-child{margin-top:45px}.swal-text:last-child{margin-bottom:45px}.swal-footer{text-align:right;padding-top:13px;margin-top:13px;padding:13px 16px;border-radius:inherit;border-top-left-radius:0;border-top-right-radius:0}.swal-button-container{margin:5px;display:inline-block;position:relative}.swal-button{background-color:#7cd1f9;color:#fff;border:none;box-shadow:none;border-radius:5px;font-weight:600;font-size:14px;padding:10px 24px;margin:0;cursor:pointer}.swal-button:not([disabled]):hover{background-color:#78cbf2}.swal-button:active{background-color:#70bce0}.swal-button:focus{outline:none;box-shadow:0 0 0 1px #fff,0 0 0 3px rgba(43,114,165,.29)}.swal-button[disabled]{opacity:.5;cursor:default}.swal-button::-moz-focus-inner{border:0}.swal-button--cancel{color:#555;background-color:#efefef}.swal-button--cancel:not([disabled]):hover{background-color:#e8e8e8}.swal-button--cancel:active{background-color:#d7d7d7}.swal-button--cancel:focus{box-shadow:0 0 0 1px #fff,0 0 0 3px rgba(116,136,150,.29)}.swal-button--danger{background-color:#e64942}.swal-button--danger:not([disabled]):hover{background-color:#df4740}.swal-button--danger:active{background-color:#cf423b}.swal-button--danger:focus{box-shadow:0 0 0 1px #fff,0 0 0 3px rgba(165,43,43,.29)}.swal-content{padding:0 20px;margin-top:20px;font-size:medium}.swal-content:last-child{margin-bottom:20px}.swal-content__input,.swal-content__textarea{-webkit-appearance:none;background-color:#fff;border:none;font-size:14px;display:block;box-sizing:border-box;width:100%;border:1px solid rgba(0,0,0,.14);padding:10px 13px;border-radius:2px;transition:border-color .2s}.swal-content__input:focus,.swal-content__textarea:focus{outline:none;border-color:#6db8ff}.swal-content__textarea{resize:vertical}.swal-button--loading{color:transparent}.swal-button--loading~.swal-button__loader{opacity:1}.swal-button__loader{position:absolute;height:auto;width:43px;z-index:2;left:50%;top:50%;-webkit-transform:translateX(-50%) translateY(-50%);transform:translateX(-50%) translateY(-50%);text-align:center;pointer-events:none;opacity:0}.swal-button__loader div{display:inline-block;float:none;vertical-align:baseline;width:9px;height:9px;padding:0;border:none;margin:2px;opacity:.4;border-radius:7px;background-color:hsla(0,0%,100%,.9);transition:background .2s;-webkit-animation:swal-loading-anim 1s infinite;animation:swal-loading-anim 1s infinite}.swal-button__loader div:nth-child(3n+2){-webkit-animation-delay:.15s;animation-delay:.15s}.swal-button__loader div:nth-child(3n+3){-webkit-animation-delay:.3s;animation-delay:.3s}@-webkit-keyframes swal-loading-anim{0%{opacity:.4}20%{opacity:.4}50%{opacity:1}to{opacity:.4}}@keyframes swal-loading-anim{0%{opacity:.4}20%{opacity:.4}50%{opacity:1}to{opacity:.4}}.swal-overlay{position:fixed;top:0;bottom:0;left:0;right:0;text-align:center;font-size:0;overflow-y:auto;background-color:rgba(0,0,0,.4);z-index:10000;pointer-events:none;opacity:0;transition:opacity .3s}.swal-overlay:before{content:" ";display:inline-block;vertical-align:middle;height:100%}.swal-overlay--show-modal{opacity:1;pointer-events:auto}.swal-overlay--show-modal .swal-modal{opacity:1;pointer-events:auto;box-sizing:border-box;-webkit-animation:showSweetAlert .3s;animation:showSweetAlert .3s;will-change:transform}.swal-modal{width:478px;opacity:0;pointer-events:none;background-color:#fff;text-align:center;border-radius:5px;position:static;margin:20px auto;display:inline-block;vertical-align:middle;-webkit-transform:scale(1);transform:scale(1);-webkit-transform-origin:50% 50%;transform-origin:50% 50%;z-index:10001;transition:opacity .2s,-webkit-transform .3s;transition:transform .3s,opacity .2s;transition:transform .3s,opacity .2s,-webkit-transform .3s}@media (max-width:500px){.swal-modal{width:calc(100% - 20px)}}@-webkit-keyframes showSweetAlert{0%{-webkit-transform:scale(1);transform:scale(1)}1%{-webkit-transform:scale(.5);transform:scale(.5)}45%{-webkit-transform:scale(1.05);transform:scale(1.05)}80%{-webkit-transform:scale(.95);transform:scale(.95)}to{-webkit-transform:scale(1);transform:scale(1)}}@keyframes showSweetAlert{0%{-webkit-transform:scale(1);transform:scale(1)}1%{-webkit-transform:scale(.5);transform:scale(.5)}45%{-webkit-transform:scale(1.05);transform:scale(1.05)}80%{-webkit-transform:scale(.95);transform:scale(.95)}to{-webkit-transform:scale(1);transform:scale(1)}}</style>
+<title>PMEGP Agency Status Update Form</title>
+
+<link rel="stylesheet" type="text/css" href="./PMEGP Agency Status Update Form_files/pmegpTable.css">
+<script type="text/javascript" src="./PMEGP Agency Status Update Form_files/datetimepicker_css.js.download"></script>
+<script language="javascript" src="./PMEGP Agency Status Update Form_files/sweetalert.min.js.download"></script>
+
+
+<script language="javascript">
+
+
+
+function form_submit(){
+
+
+/*
+var MM_ADJUSTMENT_STATUS = document.form.MM_ADJUSTMENT_STATUS.value;
+  
+    var NODAL_OFFICER_REMARK = document.form.NODAL_OFFICER_REMARK.value;
+
+if(MM_ADJUSTMENT_STATUS==""){
+ swal ( 'Note:','Select MM Adjustemnt Status','error');	
+ return (false);
+}
+
+if(NODAL_OFFICER_REMARK==""){
+ swal ( 'Note:','Enter Nodal Officer Remarksn','error');	
+ return (false);
+}
+
+*/
+document.form.ins.value='I';
+document.form.submit();
+
+
+}
+
+//}
+
+</script></head>
+<body>
+<form name="form" id="form" method="post">
+
+
+  <table align="center" class="pmegpTable" width="50%">
+    <tbody><tr>
+      <th colspan="9"> <input name="APP_ID" type="hidden" id="APP_ID" value="KVTN16176952-2177304">
+	  <input name="PMEGPGEOTAGID" type="hidden" id="PMEGPGEOTAGID" value="2328062">
+        <h2>Margin Money Adjustment Update Form</h2>
+        <div align="center"></div></th>
+    </tr>
+    <tr>
+      <td colspan="2"><strong>Geo Tagging Id:</strong> 2328062 </td>
+      <td colspan="2"><div align="left">
+          <input name="ins" type="hidden" id="ins">
+          <strong>Applicant Id :</strong> KVTN16176952-2177304</div></td>
+      <td colspan="5"><strong>Beneficiary Name  :</strong> SOLAI M</td>
+    </tr>
+    <tr>
+      <td colspan="2"><strong>Gender:</strong> Male </td>
+      <td colspan="2"><div align="left"> <strong>Social :</strong> SC</div></td>
+      <td colspan="5"><strong>Special  :</strong> NA</td>
+    </tr>
+    <tr>
+      <td colspan="2"><strong>Mobile:</strong> 9159179583 </td>
+      <td colspan="7"><div align="left"> <strong>Email :</strong> </div></td>
+    </tr>
+    <tr>
+      <th colspan="9"><div align="center">Unit  Details </div></th>
+    </tr>
+    <tr>
+      <td colspan="2"><div align="left"><strong>Unit Location: </strong></div></td>
+      <td>Rural</td>
+      <td><strong>Unit Sponsored:</strong></td>
+      <td>KVIC</td>
+      <td colspan="3"><strong>Agency Office: </strong></td>
+      <td>KVIC-PUDUKOTTAI-TN</td>
+    </tr>
+    <tr>
+      <td colspan="2"><div align="left"><strong>PMEGPeportal Unit Address: </strong></div></td>
+      <td>442,Main Road,Irudhayapuram, Alangudi (Tk)</td>
+      <td><strong>Taluka/block: </strong></td>
+      <td>Dakshinapuram, vallathirakottai</td>
+      <td colspan="3"><strong>Unit District:</strong></td>
+      <td>PUDUKOTTAI</td>
+    </tr>
+    <tr>
+      <td colspan="2"><div align="left"><strong>State: </strong></div></td>
+      <td>TAMIL NADU</td>
+      <td><strong>Pincode  : </strong></td>
+      <td>622303</td>
+      <td colspan="3"><strong>Industry Type : </strong></td>
+      <td>Manufacturing</td>
+    </tr>
+    <tr>
+      <td><div align="left"><strong>Latitude: </strong></div></td>
+      <td><input name="LATITUDE" type="text" id="LATITUDE" size="50" maxlength="50" value="10.322583"></td>
+      <td><strong>Longitude  : </strong></td>
+      <td><input name="LONGITUDE" type="text" id="LONGITUDE" size="50" maxlength="50" value="78.88865"></td>
+      <td colspan="2"><strong>Industry Activity : </strong></td>
+      <td>Cement Blocking,MINERAL BASED INDUSTRY</td>
+      <td><div align="left"><strong>Product Description: </strong></div></td>
+      <td>HOLLOW BLOCK UNIT</td>
+    </tr>
+    <!--PERCAPITAEMPREQ-->
+    <tr>
+      <th colspan="9"><div align="center"><strong>EDP Details </strong></div></th>
+    </tr>
+    <tr>
+      <td colspan="2"><div align="left"><strong>EDP Training Period From: </strong></div></td>
+      <td>01-SEP-2017</td>
+      <td><strong>EDP Training Period To:</strong></td>
+      <td>09-SEP-2017</td>
+      <td><strong>Name Of Institute: </strong></td>
+      <td colspan="3">EDP-IOS-Pudukottai (5545)</td>
+    </tr>
+    <tr>
+      <th colspan="9"><div align="center"><strong>Project Details </strong></div></th>
+    </tr>
+    <tr>
+      <td colspan="2"><div align="left"><strong>Project Sanctioned Date: </strong></div></td>
+      <td colspan="3">16-AUG-2017</td>
+      <td colspan="2"><strong>Scheme under which  project got sanctioned:</strong></td>
+      <td colspan="2"></td>
+    </tr>
+    <tr>
+      <td colspan="2"><div align="left"><strong>Capital Expenditure: </strong></div></td>
+      <td colspan="3">300000</td>
+      <td colspan="2"><strong>Capital Expenditure Sanction :</strong></td>
+      <td colspan="2">285000</td>
+    </tr>
+    <tr>
+      <td colspan="2"><div align="left"><strong>Working Capital: </strong></div></td>
+      <td colspan="3">0</td>
+      <td colspan="2"><strong>Working Capital Sanction :</strong></td>
+      <td colspan="2"></td>
+    </tr>
+    <tr>
+      <td colspan="2"><div align="left"><strong>Total Project Cost: </strong></div></td>
+      <td colspan="3">300000</td>
+      <td colspan="2"><strong>Total Sanction:</strong></td>
+      <td colspan="2">285000</td>
+    </tr>
+    <tr>
+      <td colspan="2"><div align="left"><strong>Own Contribution : </strong></div></td>
+      <td colspan="3">15000</td>
+      <td colspan="2"><strong>MM Released::</strong></td>
+      <td colspan="2">105000</td>
+    </tr>
+    <tr>
+      <td colspan="5"><div align="left"><strong>Balance Loan to be released as on PV Date:</strong></div></td>
+      <td colspan="4">387732</td>
+    </tr>
+    <tr>
+      <th colspan="9"><div align="center">Financing Bank Detail </div></th>
+    </tr>
+    <tr>
+      <td colspan="2"><div align="left"><strong>Financing Bank  : </strong></div></td>
+      <td colspan="3">CANARA BANK</td>
+      <td colspan="2"><strong>Bank Branch:</strong></td>
+      <td colspan="2">VENKATAKULAM</td>
+    </tr>
+    <tr>
+      <td colspan="2"><div align="left"><strong>Branch Address  : </strong></div></td>
+      <td colspan="3">St. Joseph`s Higher Secondary School Buildings, Venkatakulam,Dist:Pudukkottai,Tamil Nadu 622303</td>
+      <td colspan="2"><strong>IFSC Code :</strong></td>
+      <td colspan="2">CNRB0001772</td>
+    </tr>
+    <tr>
+      <th colspan="9"><div align="center">Unit Details </div></th>
+    </tr>
+    <tr>
+      <td colspan="2"><div align="left"><strong>Unit Name: </strong></div></td>
+      <td><input name="UNIT_NAME" type="text" id="UNIT_NAME" size="50" maxlength="50" value="HOLLO.BLOCKlNG"></td>
+      <td><strong>Updated Unit Address as per  Physical Verification:</strong></td>
+      <td><input name="UNIT_ADDRESS" type="text" id="UNIT_ADDRESS" size="50" maxlength="50" value="442,Main road,Iruyhayapuram,Dhatchinapuram,vallathorakottai, pudukkotti Dist 622303"></td>
+      <td colspan="3"><strong>Unit Establishment Date : </strong></td>
+      <td> <input name="UNIT_ESTABLISHMENT_DATE" type="text" id="UNIT_ESTABLISHMENT_DATE" onclick="javascript:NewCssCal(&#39;UNIT_ESTABLISHMENT_DATE&#39;,&#39;yyyyMMdd&#39;)" value="16-SEP-2016" readonly=""></td>
+    </tr>
+    <tr>
+      <td colspan="2"><div align="left"><strong>Unit setup On: </strong></div></td>
+      <td><input name="UNIT_SETUP_ON" type="text" id="UNIT_SETUP_ON" size="50" maxlength="50" value="rental"></td>
+      <td><strong>Date of Water connection: </strong></td>
+      <td><input name="DATE_OF_WATER_CONNECTION" type="text" id="DATE_OF_WATER_CONNECTION" onclick="javascript:NewCssCal(&#39;DATE_OF_WATER_CONNECTION&#39;,&#39;yyyyMMdd&#39;)" value="2017-10-12 00:00:00.0" readonly=""></td>
+      <td colspan="3"><strong>Date of Electricity connection:</strong></td>
+      <td><input name="DATE_OF_ELECTRIC_CONNECTION" type="text" id="DATE_OF_ELECTRIC_CONNECTION" onclick="javascript:NewCssCal(&#39;DATE_OF_ELECTRIC_CONNECTION&#39;,&#39;yyyyMMdd&#39;)" value="" readonly=""></td>
+    </tr>
+    <tr>
+      <td colspan="2"><div align="left"><strong>Clearance From Pollution: </strong></div></td>
+      <td><input name="POLLUTION_CLEARANCE_BOARD" type="text" id="POLLUTION_CLEARANCE_BOARD" size="50" maxlength="50" value=""></td>
+      <td><strong>Any other Clearance obtained: </strong></td>
+      <td><input name="OTHER_CLEARANCE" type="text" id="OTHER_CLEARANCE" size="50" maxlength="50" value="0"></td>
+      <td colspan="3"><strong>GST Registration Number : </strong></td>
+      <td><input name="GST_REGISTRATION_NUMBER" type="text" id="GST_REGISTRATION_NUMBER" size="50" maxlength="50" value=""></td>
+    </tr>
+    <tr>
+      <td><div align="left"><strong>GST Registration Date: </strong></div></td>
+      <td><input name="GST_REGISTRATION_DATE" type="text" id="GST_REGISTRATION_DATE" onclick="javascript:NewCssCal(&#39;GST_REGISTRATION_DATE&#39;,&#39;ddMMyyyy&#39;)" value="" readonly=""></td>
+      <td><strong>UDYAM Registration  : </strong></td>
+      <td><input name="UDYAM_REGISTRATION_NUMBER" type="text" id="UDYAM_REGISTRATION_NUMBER" size="50" maxlength="50" value=""></td>
+      <td colspan="2"><strong>UDYAM Registration Date : </strong></td>
+      <td><input name="UDYAM_REGISTRATION_DATE" type="text" id="UDYAM_REGISTRATION_DATE" onclick="javascript:NewCssCal(&#39;UDYAM_REGISTRATION_DATE&#39;,&#39;ddMMyyyy&#39;)" value="" readonly=""></td>
+      <td><div align="left"><strong>PAN/TAN Number (if any): </strong></div></td>
+      <td><input name="PAN_OR_TAN_NUMBER" type="text" id="PAN_OR_TAN_NUMBER" size="50" maxlength="50" value=""></td>
+    </tr>
+    <tr>
+      <td colspan="2"><div align="left"><strong>KVIC Registration Number: </strong></div></td>
+      <td><input name="KVIC_REGISTRATION_NUMBER" type="text" id="KVIC_REGISTRATION_NUMBER" size="50" maxlength="50" value=""></td>
+      <td><strong>KVIC Registration Date : </strong></td>
+      <td>
+	 <input name="KVIC_REGISTRATION_DATE" type="text" id="KVIC_REGISTRATION_DATE" onclick="javascript:NewCssCal(&#39;KVIC_REGISTRATION_DATE&#39;,&#39;yyyyMMdd&#39;)" value="" readonly=""></td>
+      <td colspan="3"><strong>Certification : </strong></td>
+      <td><input name="CERTIFICATION" type="text" id="CERTIFICATION" size="50" maxlength="50" value=""></td>
+    </tr>
+    <tr>
+      <td colspan="2"><div align="left"><strong>Registered Brand Name: </strong></div></td>
+      <td><input name="REGISTERED_BRAND_NAME" type="text" id="REGISTERED_BRAND_NAME" size="50" maxlength="50" value="0"></td>
+      <td><strong>Patent Ownership(if any)  : </strong></td>
+      <td><input name="PATENT_OWNERSHIP" type="text" id="PATENT_OWNERSHIP" size="50" maxlength="50" value=",p"></td>
+      <td colspan="3"><strong>Details of Handholding  : </strong></td>
+      <td><input name="HANDHOLDING_DETAILS" type="text" id="HANDHOLDING_DETAILS" size="50" maxlength="50" value=""></td>
+    </tr>
+    <tr>
+      <th colspan="9"><div align="center">Production /Sale Detail</div></th>
+    </tr>
+    <tr>
+      <td colspan="3"><div align="left"></div></td>
+      <td colspan="2"><strong>Quality</strong></td>
+      <td colspan="4"><strong>Value(in Rupees)</strong> </td>
+    </tr>
+    <tr>
+      <td colspan="3"><div align="left"><strong>Annual Production: </strong></div></td>
+      <td colspan="2"><input name="ANNUAL_PRODUCTION_QUANTITY" type="text" id="ANNUAL_PRODUCTION_QUANTITY" size="50" maxlength="50" value="0"></td>
+      <td colspan="4"><input name="ANNUAL_PRODUCTION_VALUE" type="text" id="ANNUAL_PRODUCTION_VALUE" size="50" maxlength="50" value="0"></td>
+    </tr>
+    <tr>
+      <td colspan="3"><div align="left"><strong>Present Production : </strong></div></td>
+      <td colspan="2"><input name="PRESENT_PRODUCTION_QUANTITY" type="text" id="PRESENT_PRODUCTION_QUANTITY" size="50" maxlength="50" value="0"></td>
+      <td colspan="4"><input name="PRESENT_PRODUCTION_VALUE" type="text" id="PRESENT_PRODUCTION_VALUE" size="50" maxlength="50" value="0"></td>
+    </tr>
+    <tr>
+      <th colspan="9">Machinary Detail</th>
+    </tr>
+    <tr>
+      <td colspan="5"><strong>Type of Machinary</strong></td>
+      <td colspan="4"><input name="MACHINERY_TYPE" type="text" id="MACHINERY_TYPE" size="50" maxlength="50" value="indigenous"></td>
+    </tr>
+    <tr>
+      <th colspan="9">Raw Detail</th>
+    </tr>
+    <tr>
+      <td colspan="5"><strong>Details of Raw</strong></td>
+      <td colspan="4"><input name="RAW_MATERIAL_DETAILS" type="text" id="RAW_MATERIAL_DETAILS" size="50" maxlength="50" value=",0"></td>
+    </tr>
+    <tr>
+      <td colspan="5"><strong>Import of Raw material(if  any)</strong> </td>
+      <td colspan="4"><input name="RAW_MATERIAL_IMPORT" type="text" id="RAW_MATERIAL_IMPORT" size="50" maxlength="50" value="0"></td>
+    </tr>
+    <tr>
+      <td colspan="5"><strong>Country of import: </strong></td>
+      <td colspan="4"><input name="COUNTRY_OF_IMPORT" type="text" id="COUNTRY_OF_IMPORT" size="50" maxlength="50" value=""></td>
+    </tr>
+    <tr>
+      <th colspan="9">Value of Stock on the Day of Visit (In Rupees)</th>
+    </tr>
+    <tr>
+      <td colspan="2"><div align="left"><strong>Raw: </strong></div></td>
+      <td><input name="RAW_MATERIAL_STOCK_VALUE" type="text" id="RAW_MATERIAL_STOCK_VALUE" size="50" maxlength="50" value="0"></td>
+      <td><strong>Semi-Finished:</strong></td>
+      <td><input name="SEMI_FIN_RM_STOCK" type="text" id="SEMI_FIN_RM_STOCK" size="50" maxlength="50" value="0"></td>
+      <td colspan="3"><strong>Finished : </strong></td>
+      <td><input name="FINISHED_RAW_MATERIAL_STOCK" type="text" id="FINISHED_RAW_MATERIAL_STOCK" size="50" maxlength="50" value="0"></td>
+    </tr>
+    <tr>
+      <th colspan="9">Cost of Capital Items Procured(In Rupees)</th>
+    </tr>
+    <tr>
+      <td colspan="3"><div align="left"><strong>Biulding: </strong></div></td>
+      <td colspan="2"><input name="CAPITAL_COST_OF_BUILDING" type="text" id="CAPITAL_COST_OF_BUILDING" size="50" maxlength="50" value="0"></td>
+      <td colspan="2"><strong>Machine Equipment :</strong></td>
+      <td colspan="2"><input name="CAPITAL_COST_OF_MACHINERY" type="text" id="CAPITAL_COST_OF_MACHINERY" size="50" maxlength="50" value="0"></td>
+    </tr>
+    <tr>
+      <th colspan="9">Annual Sales Projection</th>
+    </tr>
+    <tr>
+      <td colspan="3"><div align="left"><strong>Quality: </strong></div></td>
+      <td colspan="2"><input name="ANNUAL_SALES_QUANTITY" type="text" id="ANNUAL_SALES_QUANTITY" size="50" maxlength="50" value="0"></td>
+      <td colspan="2"><strong>Value( In Rupees) :</strong></td>
+      <td colspan="2"><input name="ANNUAL_SALES_VALUE" type="text" id="ANNUAL_SALES_VALUE" size="50" maxlength="50" value="0"></td>
+    </tr>
+    <tr>
+      <th colspan="9">Present Sale </th>
+    </tr>
+    <tr>
+      <td colspan="3"><div align="left"><strong>Quality: </strong></div></td>
+      <td colspan="2"><input name="PRESENT_SALES_QUANTITY" type="text" id="PRESENT_SALES_QUANTITY" size="50" maxlength="50" value=",0"></td>
+      <td colspan="2"><strong>Value( In Rupees) :</strong></td>
+      <td colspan="2"><input name="PRESENT_SALES_VALUE" type="text" id="PRESENT_SALES_VALUE" size="50" maxlength="50" value="0"></td>
+    </tr>
+    <tr>
+      <th colspan="9">Product Detail </th>
+    </tr>
+    <tr>
+      <td colspan="3"><div align="left"><strong>Main Product: </strong></div></td>
+      <td colspan="2"><input name="MAIN_PRODUCT" type="text" id="MAIN_PRODUCT" size="50" maxlength="50" value="0"></td>
+      <td colspan="2"><strong>By Product :</strong></td>
+      <td colspan="2"><input name="BY_PRODUCT" type="text" id="BY_PRODUCT" size="50" maxlength="50" value="0"></td>
+    </tr>
+    <tr>
+      <th colspan="9">Export Detail</th>
+    </tr>
+    <tr>
+      <td colspan="3"><div align="left"><strong>Quality: </strong></div></td>
+      <td colspan="2"><input name="EXPORT_QUANTITY" type="text" id="EXPORT_QUANTITY" size="50" maxlength="50" value=",0"></td>
+      <td colspan="2"><strong>Value( In Rupees) :</strong></td>
+      <td colspan="2"><input name="EXPORT_VALUE" type="text" id="EXPORT_VALUE" size="50" maxlength="50" value="0"></td>
+    </tr>
+    <tr>
+      <td colspan="3"><div align="left"><strong>Country of: </strong></div></td>
+      <td colspan="2"><input name="COUNTRY_OF_EXPORT" type="text" id="COUNTRY_OF_EXPORT" size="50" maxlength="50" value="0"></td>
+      <td colspan="2"><strong>Mode of Export :</strong></td>
+      <td colspan="2"><input name="MODE_OF_EXPORT" type="text" id="MODE_OF_EXPORT" size="50" maxlength="50" value="direct"></td>
+    </tr>
+    <tr>
+      <th colspan="9">Employement Detail </th>
+    </tr>
+    <tr>
+      <th colspan="9">Type of Man Power </th>
+    </tr>
+    <tr>
+      <td colspan="2"><div align="left"><strong>Skilled: </strong></div></td>
+      <td><input name="SKILLED_EMPLOYEES" type="text" id="SKILLED_EMPLOYEES" size="50" maxlength="50" value="0"></td>
+      <td><strong>Semi-Skilled:</strong></td>
+      <td><input name="SEMI_SKILLED_EMPLOYEES" type="text" id="SEMI_SKILLED_EMPLOYEES" size="50" maxlength="50" value="0"></td>
+      <td colspan="3"><strong>Unskilled : </strong></td>
+      <td><input name="UNSKILLED_EMPLOYEES" type="text" id="UNSKILLED_EMPLOYEES" size="50" maxlength="50" value="0"></td>
+    </tr>
+    <tr>
+      <th colspan="9">Currently Employed Man Power </th>
+    </tr>
+    <tr>
+      <td colspan="2"><div align="left"><strong>Fulltime: </strong></div></td>
+      <td><input name="FULLTIME_EMPLOYEES" type="text" id="FULLTIME_EMPLOYEES" size="50" maxlength="50" value="0"></td>
+      <td><strong>Part time :</strong></td>
+      <td><input name="PART_TIME_EMPLOYEES" type="text" id="PART_TIME_EMPLOYEES" size="50" maxlength="50" value="0"></td>
+      <td colspan="3"><strong>Seasonal : </strong></td>
+      <td><input name="SEASONAL_EMPLOYEES" type="text" id="SEASONAL_EMPLOYEES" size="50" maxlength="50" value="0"></td>
+    </tr>
+    <tr>
+      <td colspan="2"><div align="left"><strong>Number of Physically Challanged Employee: </strong></div></td>
+      <td><input name="PHYSICALLY_CHALLENGED_EMPLOYEE" type="text" id="PHYSICALLY_CHALLENGED_EMPLOYEE" size="50" maxlength="50" value="0"></td>
+      <td><strong>General:</strong></td>
+      <td><input name="GENERAL" type="text" id="GENERAL" size="50" maxlength="50" value="0"></td>
+      <td colspan="3"><strong>SC : </strong></td>
+      <td><input name="SC" type="text" id="SC" size="50" maxlength="50" value="0"></td>
+    </tr>
+    <tr>
+      <td colspan="2"><div align="left"><strong>ST: </strong></div></td>
+      <td><input name="ST" type="text" id="ST" size="50" maxlength="50" value="0"></td>
+      <td><strong>OBC:</strong></td>
+      <td><input name="OBC" type="text" id="OBC" size="50" maxlength="50" value="0"></td>
+      <td colspan="3"><strong>Minority : </strong></td>
+      <td><input name="MINORITY" type="text" id="MINORITY" size="50" maxlength="50" value="0"></td>
+    </tr>
+    <tr>
+      <td colspan="2"><div align="left"><strong>Male: </strong></div></td>
+      <td><input name="MALE_EMPLOYEES" type="text" id="MALE_EMPLOYEES" size="50" maxlength="50" value="0"></td>
+      <td><strong>Female:</strong></td>
+      <td><input name="FEMALE_EMPLOYEES" type="text" id="FEMALE_EMPLOYEES" size="50" maxlength="50" value="0"></td>
+      <td colspan="3"><strong>Transgender:</strong></td>
+      <td><input name="TRANSGENDER_EMPLOYEES" type="text" id="TRANSGENDER_EMPLOYEES" size="50" maxlength="50" value="0"></td>
+    </tr>
+    <tr>
+      <td colspan="3"><div align="left"><strong>Total No of Employees: </strong></div></td>
+      <td colspan="2"><input name="TOTAL_EMPLOYEES" type="text" id="TOTAL_EMPLOYEES" size="50" maxlength="50" value="0"></td>
+      <td colspan="2"><strong>Average Wages paid per Month:</strong></td>
+      <td colspan="2"><input name="AVERAGE_WAGES_PAID" type="text" id="AVERAGE_WAGES_PAID" size="50" maxlength="50" value="0"></td>
+    </tr>
+    <tr>
+      <th colspan="9">Margin Money Detail </th>
+    </tr>
+    <tr>
+      <td colspan="2"><div align="left"><strong>Margin money  release: </strong></div></td>
+      <td>105000</td>
+      <td><strong>First Installment  :</strong></td>
+      <td>15-SEP-2017</td>
+      <td colspan="3"><strong>Balance Loan  : </strong></td>
+      <td><input name="PENDING_LOAN_AMOUNT" type="text" id="PENDING_LOAN_AMOUNT" size="50" maxlength="50" value="387732"></td>
+    </tr>
+    <tr>
+      <td colspan="2"><div align="left"><strong>Rate of interest  loan : </strong></div></td>
+      <td><input name="ROI_LOAN" type="text" id="ROI_LOAN" size="50" maxlength="50" value="11.25"></td>
+      <td><strong>Tdr Amount:</strong></td>
+      <td><input name="TDR_AMOUNT" type="text" id="TDR_AMOUNT" size="50" maxlength="50" value="105000"></td>
+      <td colspan="3"><strong>TDR Numer  : </strong></td>
+      <td><input name="TDR_NUMBER" type="text" id="TDR_NUMBER" size="50" maxlength="50" value="17725996000042"></td>
+    </tr>
+    <tr>
+      <td colspan="2"><div align="left"><strong>TDR Date : </strong></div></td>
+      <td><input name="TDR_DATE" type="text" id="TDR_DATE" onclick="javascript:NewCssCal(&#39;TDR_DATE&#39;,&#39;ddMMyyyy&#39;)" value="01-NOV-2020" readonly=""></td>
+      <td><strong>CGTMSE  Coverage  :</strong></td>
+      <td><select name="CGTMSE_COVERAGE" class="button" id="CGTMSE_COVERAGE">
+          <option value="">--Select--</option>
+          <option value="Y">Yes</option>
+          <option value="N" selected="">No</option>
+		  </select></td>
+      <td colspan="3"><strong>Margin Money Call  : </strong></td>
+      <td><select name="IS_MARGIN_MONEY_CALLBACK_" class="button" id="IS_MARGIN_MONEY_CALLBACK_">
+          <option value="">--Select--</option>
+          <option value="Y">Yes</option>
+          <option value="N">No</option>
+		  </select></td>
+    </tr>
+    <tr>
+      <td colspan="2"><div align="left"><strong>Margin Money Eligible  For Adjustment : </strong></div></td>
+      <td><select name="IS_MARGIN_MONEY_ELIGIBLE_FOR_A" class="button" id="IS_MARGIN_MONEY_ELIGIBLE_FOR_A">
+          <option value="">--Select--</option>
+          <option value="Y">Yes</option>
+          <option value="N" selected="">No</option>
+		  </select></td>
+      <td><strong>Whether interest charged on the  corresponding amount of Margin :</strong></td>
+      <td><select name="IS_INTEREST_CHARGED" class="button" id="IS_INTEREST_CHARGED">
+          <option value="">--Select--</option>
+          <option value="Y">Yes</option>
+          <option value="N" selected="">No</option>
+		  </select></td>
+      <td colspan="3"><strong>Collateral Security  Obtained?  : </strong></td>
+      <td><select name="IS_COLLATERAL_SECURITY" class="button" id="IS_COLLATERAL_SECURITY">
+          <option value="">--Select--</option>
+          <option value="Y">Yes</option>
+          <option value="N" selected="">No</option>
+		  </select></td>
+    </tr>
+    <tr>
+      <td colspan="2"><div align="left"><strong>Value of Collateral  Security : </strong></div></td>
+      <td><input name="VALUE_OF_COLLATERAL_SECURITY" type="text" id="VALUE_OF_COLLATERAL_SECURITY" size="50" maxlength="50" value=""></td>
+      <td><strong>Balance Loan Outstanding on the date of  Physical verification  :</strong></td>
+      <td><input name="OUTSTANDING_LOAN_AMOUNT" type="text" id="OUTSTANDING_LOAN_AMOUNT" size="50" maxlength="50" value=""></td>
+      <td colspan="3"><strong>Whether Repayment of  Loan is regular? : </strong></td>
+      <td><select name="IS_REPAYMENT_REGULAR" class="button" id="IS_REPAYMENT_REGULAR">
+          <option value="">--Select--</option>
+          <option value="Y">Yes</option>
+          <option value="N" selected="">No</option>
+		  </select></td>
+    </tr>
+    <tr>
+      <td colspan="2"><div align="left"><strong>NPA Period(Year): </strong></div></td>
+      <td><input name="NPA_PERIOD" type="text" id="NPA_PERIOD" size="50" maxlength="50" value="2"></td>
+      <td><strong>Callback Amount  :</strong></td>
+      <td><input name="CALLBACK_AMOUNT" type="text" id="CALLBACK_AMOUNT" size="50" maxlength="50" value=""></td>
+      <td colspan="3"><strong>Callback Reason  : </strong></td>
+      <td><input name="CALLBACK_REASON" type="text" id="CALLBACK_REASON" size="50" maxlength="50" value=""></td>
+    </tr>
+    <tr>
+      <td colspan="3"><div align="left"><strong>Margin Money  Adjustment Amount: </strong></div></td>
+      <td colspan="2"><input name="MARGIN_MONEY_ADJUSTMENT_AMOUNT" type="text" id="MARGIN_MONEY_ADJUSTMENT_AMOUNT" size="50" maxlength="50" value=""></td>
+      <td colspan="2"><strong>Margin Money  Adjustment Date :</strong></td>
+      <td colspan="2"><input name="MARGIN_MONEY_ADJUSTMENT_DATE" type="text" id="MARGIN_MONEY_ADJUSTMENT_DATE" onclick="javascript:NewCssCal(&#39;MARGIN_MONEY_ADJUSTMENT_DATE&#39;,&#39;ddMMyyyy&#39;)" value="" readonly="" <="" td="">
+    </td></tr>
+    <tr>
+      <th colspan="9">Verification Detail </th>
+    </tr>
+    <tr>
+      <td colspan="2"><div align="left"><strong>Per Capita Investment  Norm Satisfied : </strong></div></td>
+      <td><select name="PER_CAPITA_INVESTMENT_NORM_SAT" class="button" id="PER_CAPITA_INVESTMENT_NORM_SAT">
+          <option value="">--Select--</option>
+          <option value="Y" selected="">Yes</option>
+          <option value="N">No</option>
+		  </select></td>
+      <td><strong>Prominent Sign Board  Installed  :</strong></td>
+      <td><select name="PROMINENT_SIGN_BOARD_INSTALLED" class="button" id="PROMINENT_SIGN_BOARD_INSTALLED">
+          <option value="">--Select--</option>
+          <option value="Y" selected="">Yes</option>
+          <option value="N">No</option>
+		  </select></td>
+      <td colspan="3"><strong>Verification Status : </strong></td>
+      <td><select name="VERIFICATION_STATUS" class="button" id="VERIFICATION_STATUS">
+          <option value="">--Select--</option>
+          <option value="Working" selected="">Working</option>
+          <option value="Defunct">Defunct</option>
+		  <option value="Non-Traceble">Non-Traceble</option>
+		  </select></td>
+    </tr>
+    <tr>
+     
+	  <td colspan="2"><div align="left"><strong>Verification Date : </strong></div></td>
+      <td><input name="VERIFICATION_DATETIME" type="text" id="VERIFICATION_DATETIME" onclick="javascript:NewCssCal(&#39;VERIFICATION_DATETIME&#39;,&#39;ddMMyyyy&#39;)" value="21-AUG-2021" readonly=""></td>
+      <td><strong>Verification Agency  Name  :</strong></td>
+      <td><input name="VERIFICATION_BY" type="text" id="VERIFICATION_BY" size="50" maxlength="50" value="Genesys"></td>
+      <td colspan="3"><strong>Verification Agency  Remarks : </strong></td>
+      <td><input name="VERIFIER_REMARKS" type="text" id="VERIFIER_REMARKS" size="50" maxlength="50" value="Not working."></td>
+    </tr>
+	
+	<tr>
+	
+	</tr>
+	 <tr><td colspan="3"><div align="left"><strong> Approve (Y/N) : </strong></div></td>
+      <td colspan="2"><select name="QC_APPRV" class="button" id="QC_APPRV">
+          <option value="">--Select--</option>
+          <option value="Y">Yes</option>
+          <option value="N">No</option>
+		  </select>
+        
+</td>
+      <td colspan="2"><strong>Remarks :</strong></td>
+      <td colspan="2"><input name="QC_REMARK" type="text" id="QC_REMARK" size="50" maxlength="50" value=""></td>
+	 
+	</tr>
+	
+	
+    
+    <!--<TR >
+	  <TH colspan="2" >CallBack Reason: </TH>
+	  <TD ></TD>
+      <TH >CallBack Amount: </TH>
+      <TD colspan="3" ></TD>
+	</TR>-->
+    
+    <tr>
+      <th colspan="9"><h3 align="CENTER"><strong>System Validation Report</strong></h3></th>
+    </tr>
+    <tr>
+      <td colspan="9"><span class="redLebel"><strong>
+        Unit Establishment Date 16-SEP-16 before loan Sanction Date 16-AUG-17!<br>Annual Production/Sales Value is Not mentioned<br>No Employment Mentioned in Physicial Verification Report<br>Loan Sanctioned by Bank is Rs.285000 pending/Balance Loan Amount is Rs.387732<br>
+      </strong></span></td>
+    </tr>
+    
+    <tr>
+      <td colspan="9"><div align="center">
+          <input name="Button" type="button" class="button" onclick="form_submit()" value="Update">
+          <input name="Button" type="button" class="button" value="Cancel" onclick="self.close();">
+      </div></td>
+    </tr>
+  </tbody></table>
+  
+    <p></p>
+</form>
+
+
+</body></html>

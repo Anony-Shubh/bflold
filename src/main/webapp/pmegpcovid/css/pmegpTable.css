@@ -1,0 +1,202 @@
+.pmegpTable {
+	margin:0px;padding:0px;
+	width:100%;
+	box-shadow: 10px 10px 5px #888888;
+	border:1px solid #000000;
+	
+	-moz-border-radius-bottomleft:0px;
+	-webkit-border-bottom-left-radius:0px;
+	border-bottom-left-radius:0px;
+	
+	-moz-border-radius-bottomright:0px;
+	-webkit-border-bottom-right-radius:0px;
+	border-bottom-right-radius:0px;
+	
+	-moz-border-radius-topright:0px;
+	-webkit-border-top-right-radius:0px;
+	border-top-right-radius:0px;
+	
+	-moz-border-radius-topleft:0px;
+	-webkit-border-top-left-radius:0px;
+	border-top-left-radius:0px;
+}.pmegpTable table{
+    border-collapse: collapse;
+        border-spacing: 0;
+	width:100%;
+	height:100%;
+	margin:0px;padding:0px;
+}.pmegpTable tr:last-child td:last-child {
+	-moz-border-radius-bottomright:0px;
+	-webkit-border-bottom-right-radius:0px;
+	border-bottom-right-radius:0px;
+}
+.pmegpTable table tr:first-child td:first-child {
+	-moz-border-radius-topleft:0px;
+	-webkit-border-top-left-radius:0px;
+	border-top-left-radius:0px;
+}
+.pmegpTable table tr:first-child td:last-child {
+	-moz-border-radius-topright:0px;
+	-webkit-border-top-right-radius:0px;
+	border-top-right-radius:0px;
+}.pmegpTable tr:last-child td:first-child{
+	-moz-border-radius-bottomleft:0px;
+	-webkit-border-bottom-left-radius:0px;
+	border-bottom-left-radius:0px;
+}.pmegpTable tr:hover td{
+	
+}
+.pmegpTable tr:nth-child(odd){ background-color:#f7d2af; }
+.pmegpTable tr:nth-child(even)    { background-color:#ffffff; }.pmegpTable td{
+	vertical-align:middle;
+	
+	
+	border:1px solid #000000;
+	border-width:0px 1px 1px 0px;
+	text-align:left;
+	padding:7px;
+	font-size:14px;
+	font-family:Verdana;
+	font-weight:bold;
+	color:#000000;
+}.pmegpTable tr:last-child td{
+	border-width:0px 1px 0px 0px;
+}.pmegpTable tr td:last-child{
+	border-width:0px 0px 1px 0px;
+}.pmegpTable tr:last-child td:last-child{
+	border-width:0px 0px 0px 0px;
+}
+.pmegpTable tr:first-child td{
+		background:-o-linear-gradient(bottom, #ff7f00 5%, #A2A24F 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ff7f00), color-stop(1, #bf5f00) );
+	background:-moz-linear-gradient( center top, #ff7f00 5%, #bf5f00 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#ff7f00", endColorstr="#bf5f00");	background: -o-linear-gradient(top,#ff7f00,bf5f00);
+
+	background-color:#ff7f00;
+	border:0px solid #000000;
+	text-align:center;
+	border-width:0px 0px 1px 1px;
+	font-size:18px;
+	font-family:Verdana;
+	font-weight:bold;
+	color:#ffffff;
+}
+.pmegpTable tr:first-child:hover td{
+	background:-o-linear-gradient(bottom, #D6D6AB 5%, #D6D6A9 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ff7f00), color-stop(1, #bf5f00) );
+	background:-moz-linear-gradient( center top, #ff7f00 5%, #bf5f00 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#E7E7CB", endColorstr="#ADAD52");	background: -o-linear-gradient(top,#E7E7CB,#ADAD52);
+
+	background-color:#E3E3C4;
+}
+.pmegpTable tr:first-child td:first-child{
+	border-width:0px 0px 1px 0px;
+}
+.pmegpTable tr:first-child td:last-child{
+	border-width:0px 0px 1px 1px;
+}
+
+a.greenButtonRound {
+    border: 4px solid #000000;
+    border-radius: 10px;
+    background-color: #C4830B;
+    color: #ffffff;
+    font-weight: bold;
+    text-decoration: none;
+    margin : 1px;
+    padding: 5px 10px 5px 10px;
+    display: inline-block;
+}
+a.greenButtonRound:hover {
+    border: 2px solid #009900;
+    background-color: #D1C494;
+	 color: #000000;
+}
+
+/*Generated from Designmycss.com*/
+.button {
+  border: 4px solid #FFFFFF;
+    border-radius: 10px;
+    background-color: #C4830B;
+    color: #ffffff;
+    font-weight: bold;
+    text-decoration: none;
+    margin : 1px;
+    padding: 5px 10px 5px 10px;
+    display: inline-block;
+ }
+ .button:hover {
+  border: 4px solid #000000;
+    background-color: #D1C494;
+	 color: #000000;
+ }
+
+input[type=text] {
+border-radius:5px;
+-webkit-transition: all 0.30s ease-in-out;
+-moz-transition: all 0.30s ease-in-out;
+-ms-transition: all 0.30s ease-in-out;
+-o-transition: all 0.30s ease-in-out;
+outline: none;
+padding: 3px 0px 3px 3px;
+border: 1px
+solid #999;
+font-size:14px;
+font-weight:bold;
+}
+input[type=text]:focus{
+ background-color:#FFF;
+ border: 1px
+solid #07c;
+ box-shadow: 0
+0 10px #07c;
+} 
+.blinker{
+font-family: muli,arial,sans-serif;
+font-size: 20px;
+font-weight: bold; 
+color:#333;
+animation: changecolor 5s infinite;
+-moz-animation: changecolor 5s infinite; 
+-webkit-animation: changecolor 5s infinite;
+-ms-animation: changecolor 5s infinite; 
+-o-animation: changecolor 5s infinite; 
+}
+ 
+@keyframes changecolor
+{
+0%   {color: red;}
+25%  {color: yellow;}
+50%  {color: blue;}
+100% {color: green;}
+}
+/* Mozilla Browser */
+@-moz-keyframes changecolor 
+{
+0%   {color: red;}
+25%  {color: yellow;}
+50%  {color: blue;}
+100% {color: green;}
+}
+/* WebKit browser Safari and Chrome */
+@-webkit-keyframes changecolor 
+{
+0%   {color: red;}
+25%  {color: yellow;}
+50%  {color: blue;}
+100% {color: green;}
+}
+/* IE 9,10*/
+@-ms-keyframes changecolor 
+{
+0%   {color: red;}
+25%  {color: yellow;}
+50%  {color: blue;}
+100% {color: green;}
+}
+/* Opera Browser*/
+@-o-keyframes changecolor 
+{
+0%   {color: red;}
+25%  {color: yellow;}
+50%  {color: blue;}
+100% {color: green;}
+}

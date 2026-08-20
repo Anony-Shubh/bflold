@@ -1,0 +1,299 @@
+<%@ page import="java.sql.*"%>
+<%@ page import="java.util.*"%>
+<%@ page import="java.text.*"%>
+<%@ page import="java.util.Date"%>
+<%@ page import="java.io.*"%>
+<%@ page import="java.text.SimpleDateFormat"%>
+<%@ page import="java.io.InputStream"%>
+<%@ page import="java.io.InputStreamReader"%>
+<%@ page import="java.io.BufferedReader"%>
+<%@ page import="CovidPackage.DBCon"%>
+<%@ page import="java.util.Date"%>
+<%@ page import="java.text.SimpleDateFormat"%>
+
+<!DOCTYthE html thUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "httth://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="httth://www.w3.org/1999/xhtml">
+<head>
+<script type="text/javascript" src="js/datetimepicker_css.js"></script>
+<%! 
+
+public static String getExtension(String s) {
+    String ext = null;
+    int i = s.lastIndexOf('.');
+    if (i > 0 &&  i < s.length() - 1) {
+        ext = s.substring(i+1).toLowerCase();
+    }
+    return ext;
+}
+
+ %>	
+<meta httth-equiv="Content-Tythe" content="text/html; charset=iso-8859-1" />
+<title>Untitled Document</title>
+<style>
+#cont{
+border-style: outset;
+}
+#cont th{
+background:#FFCC99;
+padding-top:20thx;
+font-size:x-large;
+}
+
+.style1 {font-family: Arial black, Helvetica, sans-serif;
+font-size:14px;
+height:35;
+
+}
+#cont1{
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 75%;
+  border-style: inset;
+  background-color:#FFECD9;
+  
+}
+#cont1 td{height:70;
+}
+
+.button1 {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.6), 0 6px 20px 0 rgba(0,0,0,0.19);
+  margin: 4px 2px;
+  padding: 15px 32px;
+}
+.button2{
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.6), 0 6px 20px 0 rgba(0,0,0,0.19);
+  margin: 4px 2px;
+  padding: 10px 25px;
+}
+
+.button1:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+input[type=text] {
+  width: 70%;
+  padding: 8px 14px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+
+
+</style>
+<script language="javascript">
+function submitform() {
+document.form.ins.value='I';
+document.form.submit();
+
+}
+</script>
+</head>
+<FORM method="post" name="form">
+
+<%
+List values=new ArrayList(); 
+
+
+String off_cd =request.getParameter("off_cd")==null?"1":(String)request.getParameter("off_cd") ;
+String state ="";
+String off_name1 ="";
+String invupid="1";
+String ANY_REMARKS="";
+String fopay_dt="";
+String fopay_amt="";
+String fo_disallowment="";
+String tds_amt="";
+String PAYDETAILS="";
+String TOTAL_AMT="";
+String err="";
+
+String add_update="I";
+String ins=request.getParameter("ins")==null?"":(String) request.getParameter("ins");
+
+
+
+ DBCon db= new DBCon();
+      db.connect(); 
+
+if(!off_cd.equals("")){
+
+StringBuffer poR = new StringBuffer();
+
+
+poR.append(" SELECT "      );
+poR.append(" to_char(boi.month_dt, 'DD-MON-RRRR') AS month_dt, "  );
+poR.append(" ms.state_nm    AS state,  " );
+poR.append("  mom.off_name1, " );
+poR.append(" boi.off_cd, " );
+poR.append(" to_char(boi.fopay_dt,'dd-mon-yyyy')as fopay_dt,  " );
+poR.append(" boi.fopay_amt, " );
+poR.append("  boi.paydetails,  " );
+poR.append("  boi.any_remarks, " );
+poR.append("  boi.fo_disallowment, " );
+poR.append("  boi.tds_amt, " );
+poR.append("  boi.invupid " );
+poR.append(" FROM " );
+poR.append(" bnf_onlineedp_inf boi,  " );
+poR.append(" mas_off_mast      mom, " );
+poR.append(" m_district        md," );
+poR.append(" m_state           ms  " );
+poR.append(" WHERE  " );
+poR.append(" mom.district_cd = md.district_cd " );
+poR.append(" AND md.state_cd = ms.state_cd " );
+poR.append(" AND mom.off_cd = boi.off_cd (+) " );
+poR.append(" AND to_char(boi.month_dt, 'DD-MON-RRRR') = '31-MAR-2022' " );
+poR.append(" AND mom.off_cd = 1 " );
+
+
+
+
+
+
+//ResultSet rsMain = db.executeSQL(poR.toString(),values);
+
+ResultSet rsMain = db.execSQL(poR.toString());
+
+//out.print (poR.toString());
+
+
+
+while (rsMain.next()){
+
+invupid=rsMain.getString("invupid")==null?"1":rsMain.getString("invupid");
+fopay_dt=rsMain.getString("fopay_dt")==null?"":rsMain.getString("fopay_dt");
+fopay_amt=rsMain.getString("fopay_amt")==null?"":rsMain.getString("fopay_amt");
+fo_disallowment=rsMain.getString("fo_disallowment")==null?"":rsMain.getString("fo_disallowment");
+tds_amt=rsMain.getString("tds_amt")==null?"":rsMain.getString("tds_amt");
+PAYDETAILS=rsMain.getString("PAYDETAILS")==null?"":rsMain.getString("PAYDETAILS");
+state=rsMain.getString("state")==null?"":rsMain.getString("state");
+off_name1=rsMain.getString("off_name1")==null?"":rsMain.getString("off_name1");
+ANY_REMARKS=rsMain.getString("ANY_REMARKS")==null?"":rsMain.getString("ANY_REMARKS");
+
+add_update="U";
+
+
+}
+rsMain.close();
+
+}
+
+
+
+
+
+
+%>
+<body>
+
+
+
+<table align="center" border="1" width="75%" id="cont">
+<tr>
+<th colspan="2"><h1>Payment Details Form</h1>
+</th></tr>
+<tr align="left">
+  <td class="style1" width="50%">Office Name:<%=off_name1%>
+  <input name="ins" type="hidden" id="ins"></td>
+  <td class="style1" width="50%">State:<%=state%></td>
+</tr>
+</table><br>
+
+<table  align="center"  id="cont1" >
+<tr>
+      <td  class="style1"> (1) Field Office Payment Details:&nbsp;&nbsp;<input type="text" name="PAYDETAILS" id="PAYDETAILS" value="<%= PAYDETAILS %>"></td>
+  </tr>
+    <tr>
+      <td  class="style1">(2)Payment Date&nbsp;&nbsp;
+<input type="text"  name="fopay_dt" onClick="javascript:NewCssCal('fopay_dt','ddMMMyyyy')"  id="fopay_dt" value="<%= fopay_dt %>" /> </td>
+    </tr>
+    <tr>
+      <td class="style1">(3) Amount&nbsp;
+      <input type="text" id="fopay_amt" name="fopay_amt" value="<%=fopay_amt %>">&nbsp;&nbsp;&nbsp;&nbsp;</th>		     </td>
+    </tr>
+    <tr>
+      <td class="style1">(4)Any Remarks:
+          <input type="text" name="ANY_REMARKS" id="ANY_REMARKS" value="<%=ANY_REMARKS %>">  </td>
+    </tr>
+    <tr>
+      <td class="style1">(5) Field Office disallowment*:
+        <input  type="text"  name="fo_disallowment" id="fo_disallowment" value="<%= fo_disallowment %>" required /></td>
+    </tr>
+    <tr>
+      <td class="style1">(6) Tds/Other Amount 
+          <input  type="text"  name="tds_amt"  id="tds_amt" value="<%= tds_amt %>"required />    </td>
+    </tr>
+    <tr>
+      <td class="style1" align="center">
+          <input name="button" type="button" class="button1" onClick="submitform();" value="Save" />      </td>
+    </tr>
+  </table>
+  <%
+				
+		
+  if ((String)request.getParameter("ins")!=null){
+
+invupid=(String) request.getParameter("invupid")==null?"1":(String) request.getParameter("invupid").trim();
+fopay_dt=(String) request.getParameter("fopay_dt")==null?"":(String) request.getParameter("fopay_dt").trim();
+fopay_amt=(String) request.getParameter("fopay_amt")==null?"":(String) request.getParameter("fopay_amt").trim();
+fo_disallowment=(String) request.getParameter("fo_disallowment")==null?"":(String) request.getParameter("fo_disallowment").trim();
+tds_amt=(String) request.getParameter("tds_amt")==null?"":(String) request.getParameter("tds_amt").trim();
+PAYDETAILS=(String) request.getParameter("PAYDETAILS")==null?"":(String) request.getParameter("PAYDETAILS").trim();
+ANY_REMARKS=(String) request.getParameter("ANY_REMARKS")==null?"":(String) request.getParameter("ANY_REMARKS").trim();
+
+
+List pstm=new ArrayList();
+		StringBuffer qryUpdate = new StringBuffer();
+		values.clear();
+		
+		pstm.clear();
+		
+try{
+
+qryUpdate.append("	UPDATE BNF_ONLINEEDP_INF SET ");
+qryUpdate.append("	fopay_dt = ?, ");
+qryUpdate.append("	fopay_amt = ?, ");
+qryUpdate.append("	fo_disallowment = ?, ");
+qryUpdate.append("	tds_amt = ?, ");
+qryUpdate.append("  PAYDETAILS = ?,");
+qryUpdate.append("  ANY_REMARKS = ? ");
+qryUpdate.append(" WHERE invupid = ?   ");
+
+
+}
+catch(Exception e){
+out.print(e.toString());
+
+}
+
+
+
+
+
+values.add(fopay_dt); pstm.add ("L");
+values.add(fopay_amt); pstm.add ("L");
+values.add(fo_disallowment); pstm.add ("L");
+values.add(tds_amt ); pstm.add ("L");
+values.add(PAYDETAILS ); pstm.add ("L");
+values.add(ANY_REMARKS ); pstm.add ("L");
+values.add(invupid); pstm.add ("L");
+
+
+						
+db.setSqlValue(qryUpdate.toString()); 
+db.setValues(values,pstm); 
+db.executeUpdate() ;				
+						
+		//out.print ("invupid: "+invupid) ;			
+						
+					   
+					db.close();
+					response.sendRedirect("savemsg.jsp");
+					
+										
+					}
+
+%>
+
+ </FORM> 
+</body>
+</html>
+
+

@@ -1,0 +1,399 @@
+<%@ page session="true" import="java.sql.*,java.util.*,pkgPmegpNew.DBCon"  %>
+<html>
+<head>
+<title>
+</title>
+<link rel="stylesheet" type="text/css" href="../css/bnfstylesheet.css">
+
+<script language="javascript">
+
+function submitform() {
+var PH_KVIC= document.form.PH_KVIC.value;
+var FIN_KVIC= document.form.FIN_KVIC.value;
+var PH_KVIB= document.form.PH_KVIB.value;
+var FIN_KVIB= document.form.FIN_KVIB.value;
+var PH_DIC= document.form.PH_DIC.value;
+var FIN_DIC= document.form.FIN_DIC.value;
+
+if(PH_KVIC=="" && FIN_KVIC=="" && PH_KVIB=="" && FIN_KVIB=="" && PH_DIC=="" && FIN_DIC==""){
+alert ("Enter atleast one field")
+return(false);
+}
+
+if (FIN_KVIC==""&&!PH_KVIC==""){
+alert ("Finacial amount must be entered for physical achievement");
+return (false);
+}
+
+if (FIN_KVIB==""&&!PH_KVIB==""){
+alert ("Finacial amount must be entered for physical achievement");
+return (false);
+}
+
+if (FIN_DIC==""&&!PH_DIC==""){
+alert ("Finacial amount must be entered for physical achievement");
+return (false);
+}
+
+
+document.form.ins.value='I';
+document.form.submit();
+}
+
+function calculate_phytotal() {
+var PH_KVIC= document.form.PH_KVIC.value;
+var PH_KVIB= document.form.PH_KVIB.value;
+var PH_DIC= document.form.PH_DIC.value;
+
+var phytotal =Number(PH_KVIC)+Number(PH_KVIB)+Number(PH_DIC);
+
+document.form.PHY_TOTAL.value=phytotal;
+}
+
+function calculate_amttotal() {
+var FIN_KVIC= document.form.FIN_KVIC.value;
+var FIN_KVIB= document.form.FIN_KVIB.value;
+var FIN_DIC= document.form.FIN_DIC.value;
+
+var amttotal =Number(FIN_KVIC)+Number(FIN_KVIB)+Number(FIN_DIC);
+
+document.form.FIN_TOTAL.value=amttotal;
+}
+
+ function isNumberNoDec(evt)
+      {
+         var PH_KVIC = (evt.which) ? evt.which : event.keyCode
+		 var PH_KVIB = (evt.which) ? evt.which : event.keyCode
+		 var PH_DIC = (evt.which) ? evt.which : event.keyCode
+		 if (PH_KVIC > 31 && (PH_KVIC < 48 || PH_KVIC > 57))
+		 if (PH_KVIB > 31 && (PH_KVIB < 48 || PH_KVIB > 57))
+		 if (PH_DIC > 31 && (PH_DIC < 48 || PH_DIC > 57))
+		 return false;
+         return true;
+      }		
+ function isNumber(evt) {
+   var FIN_KVIC = (evt.which) ? evt.which : evt.keyCode
+		var FIN_KVIB = (evt.which) ? evt.which : evt.keyCode
+		var FIN_DIC = (evt.which) ? evt.which : evt.keyCode
+		if (FIN_KVIC != 46 && FIN_KVIC > 31 && (FIN_KVIC < 48 || FIN_KVIC > 57))
+		if (FIN_KVIB != 46 && FIN_KVIB > 31 && (FIN_KVIB < 48 || FIN_KVIB > 57))
+		if (FIN_DIC != 46 && FIN_DIC > 31 && (FIN_DIC < 48 || FIN_DIC > 57))
+        return false;
+        return true;
+    }    
+	
+	
+</script>
+
+<style type="text/css">
+<!--
+.style1 {color: #FFFFFF}
+-->
+</style>
+
+</head>
+<body>
+<form  name="form" id="form" method="post" >
+
+
+<%@ include file = "sessionoutinc.jsp" %>
+<%
+String ins=request.getParameter("ins")==null?"":(String) request.getParameter("ins");
+String POFF_CD=SOFF_CD;
+String PBNF_TRID=request.getParameter("PBNF_TRID")==null?"":(String)request.getParameter("PBNF_TRID");
+String PBUD_ID=request.getParameter("PBUD_ID")==null?"0":(String)request.getParameter("PBUD_ID");
+String PTR_DATE=request.getParameter("PTR_DATE")==null?"":(String)request.getParameter("PTR_DATE");
+String PCB_FNO=request.getParameter("PCB_FNO")==null?"":(String)request.getParameter("PCB_FNO");
+String BNF_HDID=request.getParameter("PBNF_HDID")==null?"0":(String)request.getParameter("PBNF_HDID");
+String BNF_SUB_HEAD_LONG_DESC="";
+String OFF_CD = POFF_CD;
+String BNF_TRID = PBNF_TRID;
+String BUD_ID = PBUD_ID;
+String TR_DATE = PTR_DATE;
+String PH_KVIC = "";
+String FIN_KVIC = "";
+String PH_KVIB = "";
+String FIN_KVIB = "";
+String PH_DIC = "";
+String FIN_DIC = "";
+String CB_FNO = PCB_FNO;
+String BNF_PLACE="";
+String ADD_RMRK="";
+String TIMESTAMP="";
+String add_update="I";
+
+DBCon db= new DBCon();
+db.connect();
+
+
+String qryname="SELECT BHM.BNF_HDID,BHM.BNF_SUB_HEAD_LONG_DESC FROM BNF_HEAD_MAST BHM WHERE BHM.BNF_HDID = "+BNF_HDID+"";
+
+out.print (qryname);
+
+ResultSet rsname=db.execSQL(qryname);
+
+while (rsname.next()){
+BNF_HDID=rsname.getString("BNF_HDID")==null?"":rsname.getString("BNF_HDID");
+BNF_SUB_HEAD_LONG_DESC=rsname.getString("BNF_SUB_HEAD_LONG_DESC")==null?"":rsname.getString("BNF_SUB_HEAD_LONG_DESC");
+}
+
+rsname.close();
+
+if (!BUD_ID.equals("")) {
+
+StringBuffer qrysb = new StringBuffer();
+qrysb.append("   SELECT BFT.OFF_CD,"      );
+qrysb.append("     BFT.BNF_TRID,"      );
+qrysb.append("     BFT.BUD_ID,"      );
+qrysb.append("     BFT.TR_DATE,"      );
+qrysb.append("      BFT.FIN_KVIC+BFT.FIN_KVIB+ BFT.FIN_DIC AS FIN_TOTAL,"      );
+qrysb.append("     BFT.PH_KVIB+ BFT.PH_KVIC+BFT.PH_DIC AS PH_TOTAL,"      );
+qrysb.append("     BFT.CB_FNO,"      );
+qrysb.append("     BFT.BNF_PLACE,"      );
+qrysb.append("     BFT.ADD_RMRK,"      );
+qrysb.append("     BFT.TIMESTAMP"      );
+qrysb.append("   FROM BNF_FO_TRANS BFT"      );
+qrysb.append("   WHERE BFT.OFF_CD = 29 AND BFT.BUD_ID=4"      );
+
+
+//out.print (qrysb.toString());
+
+/*
+
+ResultSet rsMain=db.execSQL(qrysb.toString());
+
+
+while (rsMain.next()){
+BNF_TRID=rsMain.getString("BNF_TRID")==null?"0":rsMain.getString("BNF_TRID");
+OFF_CD=rsMain.getString("OFF_CD")==null?"":rsMain.getString("OFF_CD");
+BUD_ID=rsMain.getString("BUD_ID")==null?"":rsMain.getString("BUD_ID");
+TR_DATE=rsMain.getString("TR_DATE")==null?"":rsMain.getString("TR_DATE");
+PH_KVIC=rsMain.getString("PH_KVIC")==null?"":rsMain.getString("PH_KVIC");
+FIN_KVIC=rsMain.getString("FIN_KVIC")==null?"":rsMain.getString("FIN_KVIC");
+PH_KVIB=rsMain.getString("PH_KVIB")==null?"":rsMain.getString("PH_KVIB");
+FIN_KVIB=rsMain.getString("FIN_KVIB")==null?"":rsMain.getString("FIN_KVIB");
+PH_DIC=rsMain.getString("PH_DIC")==null?"":rsMain.getString("PH_DIC");
+FIN_DIC=rsMain.getString("FIN_DIC")==null?"":rsMain.getString("FIN_DIC");
+CB_FNO=rsMain.getString("CB_FNO")==null?"":rsMain.getString("CB_FNO");
+BNF_PLACE=rsMain.getString("BNF_PLACE")==null?"":rsMain.getString("BNF_PLACE");
+ADD_RMRK=rsMain.getString("ADD_RMRK")==null?"":rsMain.getString("ADD_RMRK");
+TIMESTAMP=rsMain.getString("TIMESTAMP")==null?"":rsMain.getString("TIMESTAMP");
+add_update="U";
+}
+rsMain.close();
+*/
+}
+
+%>
+<table>
+<tr>
+  <td colspan="9"><div align="center">B&amp;F  2018-19 </div></td>
+  </tr>
+<tr>
+  <td>&nbsp;</td>
+  <td colspan="8"><%= BNF_SUB_HEAD_LONG_DESC %>&nbsp;</td>
+</tr>
+<tr>
+  <td>BNF TRID:</td>
+  <td colspan="8"> <%= BNF_TRID %> </td>
+</tr>
+<tr>
+  <td>Office Code:</td>
+  <td colspan="8"> <%= OFF_CD %> </td>
+</tr>
+<tr>
+  <td>Bud Id:</td>
+  <td colspan="8"> <%= BUD_ID %> </td>
+</tr>  
+  
+<tr>
+  <td> TR DATE:</td>
+  <td colspan="8"> <%= TR_DATE %> </td>
+</tr>
+  <tr>
+  <td> PHYSICAL NO KVIC:</td>
+  <td colspan="8"> <%= PH_KVIC %> </td>
+</tr>
+<tr>
+  <td> FINANCIAL KVIC :</td>
+  <td colspan="8"> <%= FIN_KVIC %> </td>
+</tr>
+<tr>
+  <td> PHYSICAL NO KVIB :</td>
+  <td colspan="8"> <%= PH_KVIB %> </td>
+</tr>
+<tr>
+  <td> FINANCIAL KVIB :</td>
+  <td colspan="8"> <%= FIN_KVIB %> </td>
+</tr>
+<tr>
+  <td> PHYSICAL NO DIC :</td>
+  <td colspan="8"> <%= PH_DIC %> </td>
+</tr>
+  
+  <tr>
+  <td> FINANCIAL DIC :</td>
+  <td colspan="8"> <%= FIN_DIC %> </td>
+</tr>
+  
+   <tr>
+  <td> CB_FNO :</td>
+  <td colspan="8"> <%= CB_FNO %> </td>
+</tr>
+ <tr>
+  <td> BNF PLACE :</td>
+  <td colspan="8"> <%= BNF_PLACE %> </td>
+</tr>
+ <tr>
+  <td> ADD REMARK :</td>
+  <td colspan="8"> <%= ADD_RMRK %> </td>
+</tr>
+ <tr>
+  <td> TIMESTAMP :</td>
+  <td colspan="8"> <%= TIMESTAMP %> </td>
+</tr>
+
+  
+<tr>
+  <td rowspan="3">Physical and Financial Target/Budget: </td>
+  <td colspan="8">(Amount in Lakhs) </td>
+  </tr>
+<tr>
+  <th colspan="2">KVIC  </th>
+  <th colspan="2">KVIB</th>
+  <th colspan="2">DIC</th>
+  <th colspan="2">TOTAL</th>
+  </tr>
+<tr>
+  <th width="9%">In No. </th>
+  <th width="10%">Amount</th>
+  <th width="9%">In No. </th>
+  <th width="10%">Amount</th>
+  <th width="9%">In No. </th>
+  <th width="10%">Amount</th>
+  <th width="9%">In No. </th>
+  <th width="10%">Amount</th>
+</tr>
+<tr>
+  <td>  KVIC Financial Amount :  </td>
+  <td><div align="center">
+  <input name="PH_KVIC"  type="text" id="PH_KVIC" value="<%=PH_KVIC%>" onKeyPress="return isNumberNoDec(event)"   size="8" maxlength="8" onBlur="calculate_phytotal();" > 
+</div></td>
+ <td><input name="FIN_KVIC"  type="text"   id="FIN_KVIC" value="<%=FIN_KVIC%>" onKeyPress="javascript:return isNumber(event)" size="10" maxlength="15" onBlur="calculate_amttotal();" ></td>
+  
+  <td><input name="PH_KVIB"  type="text"  id="PH_KVIB" value="<%=PH_KVIB%>" onKeyPress="return isNumberNoDec(event)" size="8" maxlength="8" onBlur="calculate_phytotal();"></td>
+   <td><input name="FIN_KVIB"  type="text"   id="FIN_KVIB" value="<%=FIN_KVIB%>" onKeyPress="javascript:return isNumber(event)" size="10" maxlength="13" onBlur="calculate_amttotal();"></td>
+ 
+  <td><input name="PH_DIC"  type="text"  id="PH_DIC" value="<%=PH_DIC%>" onKeyPress="return isNumberNoDec(event)" size="8" maxlength="8" onBlur="calculate_phytotal();"></td>
+  <td><input name="FIN_DIC"  type="text" id="FIN_DIC" value="<%=FIN_DIC%>" onKeyPress="javascript:return isNumber(event)" size="10" maxlength="13" onBlur="calculate_amttotal();"></td>
+  <td><input name="PHY_NO_TOTAL" type="text" readonly="" id="PHY_NO_TOTAL" size="10" maxlength="10" onClick="calculate_phytotal();"></td>
+  <td> <input name="FIN_AMT_TOTAL" type="text" readonly="" id="FIN_AMT_TOTAL" size="10" onClick="calculate_amttotal();"></td>
+</tr>
+<tr> <td colspan="9"><label>
+<div align="center">
+  <input name="Button" type="button" class="button" onClick="submitform();" value="SAVE">
+</div>
+</label></td> </tr>  
+</table>
+<%
+//out.print (ins);
+if (ins.equals("I")) {
+
+
+BUD_ID=(String) request.getParameter("BUD_ID")==null?"":(String) request.getParameter("BUD_ID").trim();
+BNF_TRID=(String) request.getParameter("BNF_TRID")==null?"":(String) request.getParameter("BNF_TRID").trim();
+OFF_CD=(String) request.getParameter("OFF_CD")==null?"":(String) request.getParameter("OFF_CD").trim();
+TR_DATE=(String) request.getParameter("TR_DATE")==null?"":(String) request.getParameter("TR_DATE").trim();
+PH_KVIC=(String) request.getParameter("PH_KVIC")==null?"":(String) request.getParameter("PH_KVIC").trim();
+FIN_KVIC=(String) request.getParameter("FIN_KVIC")==null?"":(String) request.getParameter("FIN_KVIC").trim();
+PH_KVIB=(String) request.getParameter("PH_KVIB")==null?"":(String) request.getParameter("PH_KVIB").trim();
+FIN_KVIB=(String) request.getParameter("FIN_KVIB")==null?"":(String) request.getParameter("FIN_KVIB").trim();
+PH_DIC=(String) request.getParameter("PH_DIC")==null?"":(String) request.getParameter("PH_DIC").trim();
+FIN_DIC=(String) request.getParameter("FIN_DIC")==null?"":(String) request.getParameter("FIN_DIC").trim();
+CB_FNO=(String) request.getParameter("CB_FNO")==null?"":(String) request.getParameter("CB_FNO").trim();
+BNF_PLACE=(String) request.getParameter("BNF_PLACE")==null?"":(String) request.getParameter("BNF_PLACE").trim();
+ADD_RMRK=(String) request.getParameter("ADD_RMRK")==null?"":(String) request.getParameter("ADD_RMRK").trim();
+TIMESTAMP=(String) request.getParameter("TIMESTAMP")==null?"":(String) request.getParameter("TIMESTAMP").trim();
+
+
+ List values=new ArrayList();
+		List pstm=new ArrayList();
+		StringBuffer qryUpdate = new StringBuffer();
+		
+		if (add_update.equals("I")) {
+		
+		String maxId="SELECT NVL(MAX(BUD_ID),0)+1 AS BUD_ID FROM BNF_FO_TRANS";
+ResultSet rsMax=db.execSQL(maxId);
+while (rsMax.next()){
+BUD_ID=rsMax.getString("BUD_ID")==null?"":rsMax.getString("BUD_ID");
+}
+
+
+rsMax.close();
+
+qryUpdate.append("INSERT INTO BNF_FO_TRANS (");
+qryUpdate.append("BNF_TRID,");
+qryUpdate.append("OFF_CD,");
+qryUpdate.append("BUD_ID,");
+qryUpdate.append("TR_DATE,");
+qryUpdate.append("PH_KVIC,");
+qryUpdate.append("FIN_KVIC,");
+qryUpdate.append("PH_KVIB,");
+qryUpdate.append("FIN_KVIB,");
+qryUpdate.append("PH_DIC,");
+qryUpdate.append("FIN_DIC,");
+qryUpdate.append("CB_FNO");
+qryUpdate.append("BNF_PLACE");
+qryUpdate.append("ADD_RMRK");
+qryUpdate.append("TIMESTAMP");
+
+qryUpdate.append(" ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+}else {
+
+qryUpdate.append("UPDATE BNF_FO_TRANS SET ");
+qryUpdate.append("BNF_TRID=?,");
+qryUpdate.append("OFF_CD=?,");
+qryUpdate.append("BUD_ID=?,");
+qryUpdate.append("TR_DATE=?,");
+qryUpdate.append("PH_KVIC=?,");
+qryUpdate.append("FIN_KVIC=?,");
+qryUpdate.append("PH_KVIB=?,");
+qryUpdate.append("FIN_KVIB=?,");
+qryUpdate.append("PH_DIC=?,");
+qryUpdate.append("FIN_DIC=? ");
+qryUpdate.append("CB_FNO=? ");
+qryUpdate.append("BNF_PLACE=? ");
+qryUpdate.append("ADD_RMRK=? ");
+qryUpdate.append("TIMESTAMP=? ");
+qryUpdate.append(" WHERE  BNF_BUDID=?");
+
+}
+
+//out.print (qryUpdate.toString());
+values.add(BNF_TRID); pstm.add ("L");
+values.add(OFF_CD); pstm.add ("L");
+values.add(BUD_ID); pstm.add ("L");
+values.add(TR_DATE); pstm.add ("L");
+values.add(PH_KVIC); pstm.add ("L");
+values.add(FIN_KVIC); pstm.add ("L");
+values.add(PH_KVIB); pstm.add ("L");
+values.add(FIN_KVIB); pstm.add ("L");
+values.add(PH_DIC); pstm.add ("L");
+values.add(FIN_DIC); pstm.add ("L");
+values.add(CB_FNO); pstm.add ("L");
+values.add(BNF_PLACE); pstm.add ("L");
+values.add(ADD_RMRK); pstm.add ("L");
+values.add(TIMESTAMP); pstm.add ("L");
+
+db.setSqlValue(qryUpdate.toString());
+db.setValues(values,pstm);
+db.executeUpdate();
+db.close();
+
+response.sendRedirect("savemsg.jsp");
+}
+
+%>
+</form>
+</body>
+</html>

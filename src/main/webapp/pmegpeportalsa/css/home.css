@@ -1,0 +1,568 @@
+
+.pmegpTable {
+	margin:0px;padding:0px;
+	width:100%;
+	box-shadow: 10px 10px 5px #888888;
+	border:1px solid #000000;
+	
+	-moz-border-radius-bottomleft:0px;
+	-webkit-border-bottom-left-radius:0px;
+	border-bottom-left-radius:0px;
+	
+	-moz-border-radius-bottomright:0px;
+	-webkit-border-bottom-right-radius:0px;
+	border-bottom-right-radius:0px;
+	
+	-moz-border-radius-topright:0px;
+	-webkit-border-top-right-radius:0px;
+	border-top-right-radius:0px;
+	
+	-moz-border-radius-topleft:0px;
+	-webkit-border-top-left-radius:0px;
+	border-top-left-radius:0px;
+}.pmegpTable table{
+    border-collapse: collapse;
+        border-spacing: 0;
+	width:100%;
+	height:100%;
+	margin:0px;padding:0px;
+}.pmegpTable tr:last-child td:last-child {
+	-moz-border-radius-bottomright:0px;
+	-webkit-border-bottom-right-radius:0px;
+	border-bottom-right-radius:0px;
+}
+.pmegpTable table tr:first-child td:first-child {
+	-moz-border-radius-topleft:0px;
+	-webkit-border-top-left-radius:0px;
+	border-top-left-radius:0px;
+}
+.pmegpTable table tr:first-child td:last-child {
+	-moz-border-radius-topright:0px;
+	-webkit-border-top-right-radius:0px;
+	border-top-right-radius:0px;
+}.pmegpTable tr:last-child td:first-child{
+	-moz-border-radius-bottomleft:0px;
+	-webkit-border-bottom-left-radius:0px;
+	border-bottom-left-radius:0px;
+}.pmegpTable tr:hover td{
+	
+}
+.pmegpTable tr:nth-child(odd){ background-color:#f7d2af; }
+.pmegpTable tr:nth-child(even)    { background-color:#ffffff; }.pmegpTable td{
+	vertical-align:middle;
+	
+	
+	border:1px solid #000000;
+	border-width:0px 1px 1px 0px;
+	text-align:left;
+	padding:7px;
+	font-size:14px;
+	font-family:Verdana;
+	font-weight:bold;
+	color:#000000;
+}.pmegpTable tr:last-child td{
+	border-width:0px 1px 0px 0px;
+}.pmegpTable tr td:last-child{
+	border-width:0px 0px 1px 0px;
+}.pmegpTable tr:last-child td:last-child{
+	border-width:0px 0px 0px 0px;
+}
+.pmegpTable tr:first-child td{
+		background:-o-linear-gradient(bottom, #ff7f00 5%, #A2A24F 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ff7f00), color-stop(1, #bf5f00) );
+	background:-moz-linear-gradient( center top, #ff7f00 5%, #bf5f00 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#ff7f00", endColorstr="#bf5f00");	background: -o-linear-gradient(top,#ff7f00,bf5f00);
+
+	background-color:#ff7f00;
+	border:0px solid #000000;
+	text-align:center;
+	border-width:0px 0px 1px 1px;
+	font-size:18px;
+	font-family:Verdana;
+	font-weight:bold;
+	color:#ffffff;
+}
+.pmegpTable tr:first-child:hover td{
+	background:-o-linear-gradient(bottom, #D6D6AB 5%, #D6D6A9 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ff7f00), color-stop(1, #bf5f00) );
+	background:-moz-linear-gradient( center top, #ff7f00 5%, #bf5f00 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#E7E7CB", endColorstr="#ADAD52");	background: -o-linear-gradient(top,#E7E7CB,#ADAD52);
+
+	background-color:#E3E3C4;
+}
+.pmegpTable tr:first-child td:first-child{
+	border-width:0px 0px 1px 0px;
+}
+.pmegpTable tr:first-child td:last-child{
+	border-width:0px 0px 1px 1px;
+}
+
+a.greenButtonRound {
+    border: 4px solid #000000;
+    border-radius: 10px;
+    background-color: #C4830B;
+    color: #ffffff;
+    font-weight: bold;
+    text-decoration: none;
+    margin : 1px;
+    padding: 5px 10px 5px 10px;
+    display: inline-block;
+}
+a.greenButtonRound:hover {
+    border: 2px solid #009900;
+    background-color: #D1C494;
+	 color: #000000;
+}
+
+/*Generated from Designmycss.com*/
+.button {
+  border: 4px solid #FFFFFF;
+    border-radius: 10px;
+    background-color: #C4830B;
+    color: #ffffff;
+    font-weight: bold;
+    text-decoration: none;
+    margin : 1px;
+    padding: 5px 10px 5px 10px;
+    display: inline-block;
+ }
+ .button:hover {
+  border: 4px solid #000000;
+    background-color: #D1C494;
+	 color: #000000;
+ }
+
+input[type=text] {
+border-radius:5px;
+-webkit-transition: all 0.30s ease-in-out;
+-moz-transition: all 0.30s ease-in-out;
+-ms-transition: all 0.30s ease-in-out;
+-o-transition: all 0.30s ease-in-out;
+outline: none;
+padding: 3px 0px 3px 3px;
+border: 1px
+solid #999;
+font-size:14px;
+font-weight:bold;
+}
+input[type=text]:focus{
+ background-color:#FFF;
+ border: 1px
+solid #07c;
+ box-shadow: 0
+0 10px #07c;
+}
+.tfoot input {
+        width: 100%;
+        padding: 3px;
+        box-sizing: border-box;
+    } 
+	#cssmenu ul
+   {
+   margin:0; 
+  
+   padding:10px 8px 0;
+   background:#FFFFFF;
+   line-height:100%;
+   border-radius:1em;
+   font:normal 0.5333333333333333em Arial,Helvetica,sans-serif;
+   -webkit-border-radius:5px;
+   -moz-border-radius:5px;
+   border-radius:5px;
+   -webkit-box-shadow:0 1px 3px rgba(0,0,0,0.4);
+   -moz-box-shadow:0 1px 3px rgba(0,0,0,0.4);
+   width:auto
+   }
+   #cssmenu li
+   {
+	   
+	   margin:0 5px;
+	   padding:0 6.5 8px;
+	   float:left;
+	   position:relative;
+	   
+	   list-style:none
+	   
+	   }
+	   #cssmenu a,#cssmenu a:link
+	   { 
+			
+		   font-weight:bold;
+		   font-size:13px;
+		   color:#000000;
+		   text-decoration:none;
+		   display:block;
+		   padding:8px 20px;
+		   margin:0;
+		   border-radius:5px;
+		   -webkit-border-radius:5px;
+		   -moz-border-radius:5px;
+		   background:#C4830B;
+		   border:solid 2px #000000;
+		   text-shadow:0 1px 1px rgba(0,0,0,0.3)
+		   }
+		   #cssmenu a:hover
+		   {
+			   background:#000;
+			   color:#fff
+			   }
+			   #cssmenu .active a,#cssmenu li:hover > a 
+			   {
+			   background:#C4830B ;
+			   background:#C4830B ;
+			   color:#444;
+			  
+			   -webkit-box-shadow:0 1px 1px rgba(0,0,0,0.2);
+			   -moz-box-shadow:0 1px 1px rgba(0,0,0,0.2);
+			   box-shadow:0 1px 1px rgba(0,0,0,0.2);
+			   text-shadow:0 1px 0 #fff
+			   }
+			   #cssmenu ul ul li:hover a,#cssmenu li:hover li a
+			   {
+				   background:#C4830B;
+				   border:#000000;
+				   color:#000000;
+				   -webkit-box-shadow:none;
+				   -moz-box-shadow:none
+				   }
+				   #cssmenu ul ul a:hover
+				   {
+					   background:; 
+					   color:#0000000 !important;
+					   -webkit-border-radius:5px;
+					   -moz-border-radius:5px;
+					   border-radius:5px;
+					   text-shadow:0 1px 1px rgba(0,0,0,0.1)
+					   }
+					   #cssmenu li:hover > ul{display:block}#cssmenu ul ul
+					   {
+						   display:none;
+						   margin:0;
+						   padding:0;
+						   width:185px;
+						   position:absolute;
+						   top:40px;left:0;
+						   background:url(http://1.bp.blogspot.com/-HJ22JUxrT54/UjqQ-s8HTgI/AAAAAAAABcs/phC6FO25qCQ/s1600/overlay.png) repeat-x 0 0;
+						   border:solid 1px #b4b4b4;
+						   -webkit-border-radius:5px;
+						   -moz-border-radius:5px;
+						   border-radius:5px;
+						   -webkit-box-shadow:0 1px 3px rgba(0,0,0,0.3);
+						   -moz-box-shadow:0 1px 3px rgba(0,0,0,0.3);
+						   box-shadow:0 1px 3px rgba(0,0,0,0.3)
+						   }
+						   #cssmenu ul ul li
+						   {
+							   float:none;
+							   margin:0;
+							   padding:3px
+							   }
+							   #cssmenu ul ul a,#cssmenu ul ul a:link
+							   {font-weight:normal;
+							   font-size:12px
+							   }
+							   #cssmenu ul:after
+							   {
+								   content:'.';
+								   display:block;
+								   clear:both;
+								   visibility:hidden;
+								   line-height:0;
+								   height:0
+								   }
+								   * html #cssmenu ul
+								   {
+									   height:1%
+									   }
+									  
+									   <a href="http://24work.blogspot.com/" rel="dofollow" target="_blank" title="Drop Down Menus"><img src="https://bitly.com/24workpng1" alt="Drop Down Menus" border="0" style="position: fixed; bottom: 10%; right: 0%; top: 0px;" /></a><a href="http://24work.blogspot.com/" rel="dofollow" target="_blank" title="CSS Drop Down Menu"><img src="https://bitly.com/24workpng1" alt="CSS Drop Down Menu" border="0" style="position: fixed; bottom: 10%; right: 0%;" /></a><a href="http://24work.blogspot.com/" rel="dofollow" target="_blank" title="Pure CSS Dropdown Menu"><img src="https://bitly.com/24workpng1" alt="Pure CSS Dropdown Menu" border="0" style="position: fixed; bottom: 10%; left: 0%;" /></a>
+   /*Generated from Designmycss.com*/
+.button {
+  border: 4px solid #FFFFFF;
+    border-radius: 10px;
+    background-color: #C4830B;
+    color: #ffffff;
+    font-weight: bold;
+    text-decoration: none;
+    margin : 1px;
+    padding: 5px 10px 5px 10px;
+    display: inline-block;
+ }
+ .button:hover {
+  border: 2px solid #000000;
+    background-color: #D1C494;
+	 color: #000000;
+ }
+
+table
+{
+    border-spacing:1px;
+    border-style:solid;
+    border-color:#2C4F85;
+    font:14px Georgia, serif;
+    padding:0;
+    box-shadow:0px 0px #000000;
+    table-layout: fixed;
+	
+}
+
+
+th
+{
+    color:#333333;
+    background:#EFE0D1;
+    border-style:solid;
+    border-width:0px;
+    border-color:#2C4F85;
+    font-weight:bold;
+	font-size:16px;
+    padding:5px;
+    text-align:center;
+    vertical-align:top;
+}
+ 
+tr
+{
+    color:#333333;
+    font-weight:bold;
+}
+ 
+tr:hover td
+{
+    color:#081C6B;
+}
+ 
+td
+{
+    padding:3px 5px;
+    text-align:left;
+    vertical-align:top;
+	font-weight:bold;
+}
+ 
+th:first-child
+{
+    border-top-left-radius:10px;
+}
+ 
+th:last-child
+{
+    border-top-right-radius:10px;
+}
+ 
+tr:last-child td:first-child
+{
+    border-bottom-left-radius:10px;
+}
+ 
+tr:last-child td:last-child
+{
+    border-bottom-right-radius:10px;
+}
+
+/* The CSS */
+select {
+    padding:3px;
+    margin: 0;
+    -webkit-border-radius:4px;
+    -moz-border-radius:4px;
+    border-radius:4px;
+    -webkit-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    -moz-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    background: #f8f8f8;
+    color:#000000;
+    border:none;
+    outline:none;
+    display: inline-block;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    appearance:none;
+    cursor:pointer;
+	font-size:14px;
+    font-weight:bold;
+}
+
+/* Targetting Webkit browsers only. FF will show the dropdown arrow with so much padding. */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    select {padding-right:30px}
+}
+
+label {position:relative}
+label:after {
+    content:'<>';
+    font:11px "Consolas", monospace;
+    color:#aaa;
+    -webkit-transform:rotate(90deg);
+    -moz-transform:rotate(90deg);
+    -ms-transform:rotate(90deg);
+    transform:rotate(90deg);
+    right:8px; top:2px;
+    padding:0 0 2px;
+    border-bottom:1px solid #ddd;
+    position:absolute;
+    pointer-events:none;
+}
+label:before {
+    content:'';
+    right:6px; top:0px;
+    width:20px; height:20px;
+    background:#f8f8f8;
+    position:absolute;
+    pointer-events:none;
+    display:block;
+}
+
+a.greenButtonRound {
+    border: 4px solid #FFFFFF;
+    border-radius: 10px;
+    background-color: #C4830B;
+    color: #ffffff;
+    font-weight: bold;
+    text-decoration: none;
+    margin : 1px;
+    padding: 5px 10px 5px 10px;
+    display: inline-block;
+}
+a.greenButtonRound:hover {
+    border: 2px solid #000000;
+    background-color: #D1C494;
+	 color: #000000;
+}
+
+a.blueRound {
+    border: 4px solid #FFFFFF;
+    border-radius: 10px;
+    background-color:#0000CC;
+    color: #ffffff;
+    font-weight: bold;
+    text-decoration: none;
+    margin : 1px;
+    padding: 5px 10px 5px 10px;
+    display: inline-block;
+}
+a.blueRound:hover {
+    border: 2px solid #000000;
+    background-color: #D1C494;
+	 color: #000000;
+}
+
+
+a.marunRound {
+    border: 4px solid #FFFFFF;
+    border-radius: 10px;
+    background-color:#990000;
+    color: #ffffff;
+    font-weight: bold;
+    text-decoration: none;
+    margin : 1px;
+    padding: 5px 10px 5px 10px;
+    display: inline-block;
+}
+a.marunRound:hover {
+    border: 2px solid #000000;
+    background-color: #D1C494;
+	 color: #000000;
+}
+
+
+input[type=text] {
+border-radius:5px;
+-webkit-transition: all 0.30s ease-in-out;
+-moz-transition: all 0.30s ease-in-out;
+-ms-transition: all 0.30s ease-in-out;
+-o-transition: all 0.30s ease-in-out;
+outline: none;
+padding: 3px 0px 3px 3px;
+border: 1px
+solid #999;
+font-size:14px;
+font-weight:bold;
+}
+input[type=text]:focus{
+ background-color:#FFF;
+ border: 1px
+solid #07c;
+ box-shadow: 0
+0 10px #07c;
+} 
+
+input[type=password] {
+border-radius:5px;
+-webkit-transition: all 0.30s ease-in-out;
+-moz-transition: all 0.30s ease-in-out;
+-ms-transition: all 0.30s ease-in-out;
+-o-transition: all 0.30s ease-in-out;
+outline: none;
+padding: 3px 0px 3px 3px;
+border: 1px
+solid #999;
+font-size:14px;
+font-weight:bold;
+}
+input[type=password]:focus{
+ background-color:#FFF;
+ border: 1px
+solid #07c;
+ box-shadow: 0
+0 10px #07c;
+} 
+
+
+
+.mob{
+background-image:url(../images/mob_img.jpg);
+background-size: cover;
+background-repeat:no-repeat;
+font-family:Verdana, Arial, Helvetica, sans-serif;
+max-width:100%;
+font-size:12px;
+font-weight:bold;
+padding-left:3px;
+letter-spacing:4px;
+}
+
+.aadharimg{
+background-image:url(../images/aadhar_img.jpg);
+background-size: cover;
+background-repeat:no-repeat;
+font-family:Verdana, Arial, Helvetica, sans-serif;
+max-width:100%;
+font-size:12px;
+font-weight:bold;
+padding-left:3px;
+letter-spacing:4px;
+}
+
+#msg {display:none; position:absolute; z-index:200; background:url(../images/msg_arrow.gif) left center no-repeat; padding-left:7px}
+#msgcontent {display:block; font:Arial, Helvetica, sans-serif; font-weight:bold;color: #990000;font-size: 16px;background:#f3e6e6; border:2px solid #924949; border-left:none; padding:5px; min-width:150px; max-width:250px}
+
+.redLebel
+{
+ color:#FF0000;
+ font-size:16px;
+ font-weight:bold;
+
+}
+
+.GreenLebel
+{
+ color:#009900;
+ font-size:16px;
+ font-weight:bold;
+
+}
+
+input[type="radio"]+label {
+width:25px;
+height:25px;
+    color:#f2f2f2;
+    font-family:Arial, sans-serif;
+    font-size:14px;
+}
+
+input:-moz-read-only { /* For Firefox */
+    background-color: #FFCCCC;
+}
+
+input:read-only { 
+    background-color: #FFCCCC;
+}

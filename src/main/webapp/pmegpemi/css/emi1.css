@@ -1,0 +1,148 @@
+.body {
+	
+    overflow-x: hidden;
+        
+     }
+          
+h1 {        
+	        margin-top: 25px;
+	        text-align: center;
+            font-size: 55px;
+            color: black;
+        }
+          
+h2 {        text-align: center;
+            font-size: 25px;
+            margin-top: 20px;
+            color: red;
+        }
+          
+.calculator {
+	         
+	        
+	        margin-left: auto;
+            margin-right: auto;
+	        border-radius: 5px;
+	        border: 5px solid #000000;
+            width: 65%;
+            height: 95%;
+            background-color: 	#e6e6e6;
+            position: absolute;
+            left: 50%;
+            top: 51%;
+            transform: translateX(-50%) translateY(-50%);
+            padding: 10px 0px 0px 20px;
+            border-radius: 10px;
+            color:	#e6e6e6;
+ }
+          
+input {     
+			font-weight: bold;
+	        font-size: 20px;
+            padding: 7px;
+            width: 70%;
+            margin-top: 7px;
+  }
+.form1{     
+	        font-size: 24px;
+	        border: 4px solid #005cb9;
+	        left:70%;
+	        width: 70%;
+            height: 30%;
+	        margin: 0;
+            padding: 0;
+}
+h4{
+	font-weight: bold;
+	font-size: 24px;
+}
+        
+.note {
+	        font-weight: bold;
+	        font-size: 24px;
+  			height: 20%;
+            bottom: 15%;
+  			color: #0000ff;
+  			white-space: nowrap;
+  		
+}
+		
+.loanBlock {
+	font-weight: bold;
+	height: 30%;
+	font-size: 25px;
+    width: 80%;
+    color: black;
+    border-radius: 20px;
+    white-space: nowrap;
+}
+.aprBlock {
+	font-size: 25px;
+	font-weight: bold;
+    width: 80%;
+    padding: 20px;
+    border-radius: 20px;
+    color: black;
+  
+}
+#tenure{
+ width:50%;   
+}
+
+#tenure option{
+
+ width:100px;
+ font-weight: bold;    
+}
+.tenureBlock{
+	font-size: 21px;
+	font-weight: bold;
+	border-radius: 20px;
+    width: 80%;
+    padding: 20px;
+    color: black;
+ 
+}
+
+
+.left{
+	background-color: #005cb9;
+	font-size: 25px;
+	height:15%;
+	width:25%;
+    display: inline-block;
+    border: 1px solid red; 
+    margin:10px;
+    color: white;
+    float:right;
+}
+.middle {
+	background-color: #005cb9;
+	font-size: 25px;
+	height:15%;
+	width:25%;
+    display: inline-block;
+    border: 1px solid red; 
+    margin:10px;
+    color: white;
+}
+.right {
+	background-color: #005cb9;
+	font-size: 25px;
+	height:15%;
+	width:24%;
+    display: inline-block;
+    border: 1px solid red; 
+    margin:10px;
+    color: white;
+    float:left;
+}
+select {
+	font-size: 25px;
+    width: 70%;
+    height: 50px;
+    line-height: 40px;
+    -webkit-appearance: menulist-button;  
+    -moz-appearance:none;
+}
+

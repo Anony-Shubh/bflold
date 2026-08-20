@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>New Loan Application</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link href="css/style.css" rel="stylesheet" />
+    <link href="Media Query/media.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/font-awesome.css" />
+    <link rel="stylesheet" href="css/font-awesome.min.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <link href="css/ticker-style.css" rel="stylesheet" type="text/css" />
+    <style>
+      /* STYLE 6
+   ----------------------------- */
+      .six {
+        padding: 20px;
+        margin: 20px;
+      }
+
+      .six .six-h1 {
+        text-align: center;
+        text-transform: uppercase;
+        font-weight: 400;
+        word-spacing: 1px;
+        letter-spacing: 2px;
+        color: #540b0e;
+        position: relative;
+        padding: 20px;
+        margin: 0;
+        font-family: "Raleway", sans-serif;
+        font-size: 30px;
+        -webkit-transition: all 0.4s ease 0s;
+        -o-transition: all 0.4s ease 0s;
+        transition: all 0.4s ease 0s;
+      }
+
+      .six .six-h1 .six-span {
+        line-height: 2em;
+        text-transform: none;
+        font-size: 1em;
+        font-weight: normal;
+        font-style: italic;
+        font-family: "Playfair Display", "Bookman", serif;
+        color: #999;
+        letter-spacing: -0.005em;
+        word-spacing: 1px;
+        letter-spacing: none;
+      }
+
+      .six .six-h1:after,
+      .six .six-h1:before {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 50px;
+        height: 10px;
+        content: "";
+        right: 55px;
+        margin: auto;
+        background-color: #ccc;
+      }
+
+      .six .six-h1:before {
+        background-color: #540b0e;
+        left: 55px;
+        width: 100px;
+      }
+    </style>
+    <style>
+      .row {
+        margin: 0;
+        padding: 0;
+      }
+      .goog-te-gadget {
+        font-size: 0px !important;
+      }
+      .VIpgJd-ZVi9od-l4eHX-hSRGPd {
+        display: none !important;
+      }
+      .VIpgJd-ZVi9od-ORHb-OEVmcd {
+        display: none !important;
+        overflow: hidden !important ;
+      }
+      /* .VIpgJd-suEOdc,
+    .VIpgJd-yAWNEb-L7lbkb,
+    .skiptranslate {
+      display: none !important;
+    } */
+      #google_translate_element select {
+        box-shadow: rgba(255, 116, 116, 0.35) 0px 5px 15px;
+        border-radius: 10px;
+        width: 80px auto !important;
+        text-align: center;
+        margin: 5px;
+        padding: 5px;
+        font-size: 12px;
+        font-weight: 700 !important;
+        position: absolute !important;
+        right: 160px;
+        top: 5px;
+        color: #5b5b5b;
+      }
+      #google_translate_element {
+        line-height: 40px;
+      }
+      .goog-te-banner-frame.skiptranslate {
+        display: none !important;
+      }
+      body {
+        top: 0px !important;
+        padding: 0;
+        margin: 0;
+      }
+      #goog-gt-tt {
+        display: none !important;
+      }
+      .goog-tooltip skiptranslate {
+        display: none !important;
+        top: 0px !important;
+      }
+      .activity-root {
+        display: hide !important;
+      }
+      .status-message {
+        display: hide !important;
+      }
+      .started-activity-container {
+        display: hide !important;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="top-banner mt-1 mb-1" style="width: 100%" id="myDiv1">
+      <div class="container-fluid">
+        <img
+          src="img/pmegp banner.jpg"
+          style="margin: 10px auto; width: 100%"
+        />
+      </div>
+    </header>
+    <section class="aadhar-validation">
+      <div class="container-fluid">
+        <div class="validation-container" style="background-color: #fff">
+          <!-----------------Navbar --------->
+          <section class="ftco-section">
+            <nav
+              class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light"
+              id="ftco-navbar"
+            >
+              <div class="container">
+                <button
+                  class="navbar-toggler"
+                  type="button"
+                  data-toggle="collapse"
+                  data-target="#ftco-nav"
+                  aria-controls="ftco-nav"
+                  aria-expanded="false"
+                  aria-label="Toggle navigation"
+                >
+                  <span class="navbar-toggler-icon"></span> PMEGP
+                </button>
+
+                <div class="emi order-lg-last">
+                  <a href="ApplicantLogin.html" class="nav-right">Logout</a>
+                </div>
+                <div class="order-lg-last">
+                  <span id="google_translate_element"></span>
+                </div>
+
+                <div class="collapse navbar-collapse" id="ftco-nav">
+                  <ul class="navbar-nav mr-auto" id="ftco-ul">
+                    <li class="nav-item">
+                      <a href="index.html" class="nav-link active">Home</a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="RegisteredApplicant.html" class="nav-link"
+                        >Applicant Data (1)</a
+                      >
+                    </li>
+                    <li class="nav-item">
+                      <a href="upload_app_doc.html" class="nav-link"
+                        >Upload (2)</a
+                      >
+                    </li>
+                    <li class="nav-item">
+                      <a href="edpDetails.html" class="nav-link">EDP (3)</a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="scorecard.html" class="nav-link"
+                        >Score Card (4)</a
+                      >
+                    </li>
+                    <li class="nav-item">
+                      <a href="FinalSubmission.html" class="nav-link"
+                        >Final Submission (5)</a
+                      >
+                    </li>
+                    <li class="nav-item">
+                      <a href="" class="nav-link">Current Status</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                      <a
+                        class="nav-link dropdown-toggle"
+                        href="#"
+                        id="navbarDropdown"
+                        role="button"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                      >
+                        Others
+                      </a>
+                      <div
+                        class="dropdown-menu"
+                        aria-labelledby="navbarDropdown"
+                      >
+                        <a class="dropdown-item" href="resetPassInd.html"
+                          >Change Password</a
+                        >
+                        <a class="dropdown-item" href="update-mobile.html"
+                          >Update Mobile</a
+                        >
+                        <a class="dropdown-item" href="feedback.html"
+                          >Feedback</a
+                        >
+                        <a class="dropdown-item" href="grievances.html"
+                          >Grievance</a
+                        >
+                        <a
+                          class="dropdown-item"
+                          href="https://www.kviconline.gov.in/pmegpeportal/PMEGPONLINETUTORIAL/pmegponline.swf.html"
+                          >Video Tutorial</a
+                        >
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </nav>
+          </section>
+          <!---------------------Navbar-------------------->
+          <!----------------------New Applicant form------------------->
+          <section>
+            <div class="container-fluid" style="padding: 0">
+              <div class="Main-form" id="main-form1">
+                <div class="form-title">
+                  <span>User Name : RANI VISHWAKARMA ( Individual )</span>
+                </div>
+                <section class="login-head">
+                  <div class="tags">
+                    <p class="text-shadow">WELCOME</p>
+                  </div>
+                  <h1 class="text-shadow">PMEGP e-PORTAL</h1>
+                </section>
+                <div class="personal" id="personal">
+                  <form name="myform" class="form-group">
+                    <div class="row">
+                      <div class="col-md-2 col-sm-12"></div>
+                      <div class="col-md-8 col-sm-12">
+                        <div class="app-doc1">
+                          <div class="six">
+                            <h1 class="six-h1">
+                              Current Status :
+                              <span class="six-span">Forwarded to Bank</span>
+                            </h1>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-2 col-sm-12"></div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </section>
+          <!---New Applicant form end------------>
+          <!--------------Footer Section  start  ---------->
+          <footer>
+            <div class="container-fluid">
+              <div class="footer-content py-2">
+                <p>
+                  DESIGNED AND MAINTAINED BY DIRECTORATE OF INFORMATION
+                  TECHNOLOGY, KVIC, MUMBAI
+                  <span class="email">( pmegpeportal.kvic@gov.in )</span>
+                </p>
+              </div>
+            </div>
+          </footer>
+        </div>
+      </div>
+    </section>
+    <!----------------Footer Section End---------------->
+    <script src="js/popper.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.ticker.js" type="text/javascript"></script>
+    <script
+      type="text/javascript"
+      src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+    ></script>
+    <script type="text/javascript">
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement(
+          {
+            pageLanguage: "en",
+            includedLanguages: "hi,en,gu,bn,ml,mr,pa,te,or,ta,kn",
+            layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL,
+          },
+          "google_translate_element"
+        );
+      }
+    </script>
+    <script>
+      //Bootstrap Tooltip
+      $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+      });
+    </script>
+  </body>
+</html>

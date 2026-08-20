@@ -1,0 +1,84 @@
+.buttonGreen {
+  border: 4px solid #006600;
+    border-radius: 10px;
+    background-color: #00CC66;
+    color: #ffffff;
+    font-weight: bold;
+    text-decoration: none;
+    margin : 1px;
+    padding: 5px 10px 5px 10px;
+    display: inline-block;
+ }
+ .buttonGreen:hover {
+  border: 2px solid #006600;
+    background-color: #00CC66;
+	 color: #000000;
+ }
+ 
+  .buttonOrange {
+  border: 4px solid #A84300;
+    border-radius: 10px;
+    background-color: #FF6600;
+    color: #ffffff;
+    font-weight: bold;
+    text-decoration: none;
+    margin : 1px;
+    padding: 5px 10px 5px 10px;
+    display: inline-block;
+ }
+ .buttonOrange:hover {
+  border: 2px solid #A84300;
+    background-color: #FF6600;
+	 color: #000000;
+ }
+
+ .buttonMerun {
+  border: 4px solid #A84300;
+    border-radius: 10px;
+    background-color: #990000;
+    color: #ffffff;
+    font-weight: bold;
+    text-decoration: none;
+    margin : 1px;
+    padding: 5px 10px 5px 10px;
+    display: inline-block;
+ }
+ .buttonMerun:hover {
+  border: 2px solid #A84300;
+    background-color: #990000;
+	 color: #000000;
+ }
+ 
+ .buttonBlue {
+  border: 4px solid #A84300;
+    border-radius: 10px;
+    background-color:  #000099;
+    color: #ffffff;
+    font-weight: bold;
+    text-decoration: none;
+    margin : 1px;
+    padding: 5px 10px 5px 10px;
+    display: inline-block;
+ }
+ .buttonBlue:hover {
+  border: 2px solid #A84300;
+    background-color:  #000099;
+	 color: #000000;
+ }
+ 
+  .buttonGray {
+  border: 4px solid #A84300;
+    border-radius: 10px;
+    background-color:  #996633;
+    color: #ffffff;
+    font-weight: bold;
+    text-decoration: none;
+    margin : 1px;
+    padding: 5px 10px 5px 10px;
+    display: inline-block;
+ }
+ .buttonGray:hover {
+  border: 2px solid #A84300;
+    background-color:  #996633;
+	 color: #000000;
+ }

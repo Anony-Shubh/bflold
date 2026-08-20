@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>New Loan Application</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link href="css/style.css" rel="stylesheet" />
+    <link href="Media Query/media.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/font-awesome.css" />
+    <link rel="stylesheet" href="css/font-awesome.min.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <link href="css/ticker-style.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body>
+    <header class="top-banner mt-1 mb-1" style="width: 100%" id="myDiv1">
+      <div class="container-fluid">
+        <img
+          src="img/pmegp banner.jpg"
+          style="margin: 10px auto; width: 100%"
+        />
+      </div>
+    </header>
+    <section class="aadhar-validation">
+      <div class="container-fluid">
+        <div class="validation-container" style="background-color: #fff">
+          <section class="login-head">
+            <h1 class="text-shadow">PMEGP e-PORTAL</h1>
+            <div class="tags">
+              <p class="text-shadow">
+                <small
+                  >Login Form for Registered Applicant Of Second Loan Subsidy
+                  For Upgrading Of Exisiting Unit</small
+                >
+              </p>
+            </div>
+          </section>
+
+          <section class="main" id="main">
+            <div class="limiter">
+              <div class="container-login100">
+                <div class="wrap-login100">
+                  <!-- <div class="login100-form-title">
+                <img src="images/title-1.jpg">
+            </div> -->
+
+                  <div class="login_head">
+                    <h5>Login Form for Registered Applicant</h5>
+                  </div>
+                  <form class="login100-form validate-form">
+                    <div
+                      class="wrap-input100 validate-input m-b-26"
+                      data-validate="Username is required"
+                    >
+                      <span class="label-input100">Username&nbsp;:</span>
+                      <input
+                        class="input100"
+                        type="text"
+                        name="username"
+                        placeholder="Enter username"
+                      />
+                      <span class="focus-input100"></span>
+                    </div>
+                    <div
+                      class="wrap-input100 validate-input m-b-18"
+                      data-validate="Password is required"
+                    >
+                      <span class="label-input100">Password&nbsp;:</span>
+                      <input
+                        class="input100"
+                        type="password"
+                        name="pass"
+                        placeholder="Enter password"
+                      />
+                      <span class="focus-input100"></span>
+                    </div>
+                    <div class="check-100">
+                      <div class="contact100-form-checkbox">
+                        <input
+                          class="input-checkbox100"
+                          id="ckb1"
+                          type="checkbox"
+                          name="remember-me"
+                        />
+                        <label class="label-checkbox100" for="ckb1">
+                          Remember me
+                        </label>
+                      </div>
+                    </div>
+                    <div class="container-login100-form-btn">
+                      <a
+                        href="ApplicantHomePage.html"
+                        class="login100-form-btn"
+                      >
+                        Login
+                      </a>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!--------------Footer Section  start  ---------->
+          <footer>
+            <div class="container-fluid">
+              <div class="footer-content py-2">
+                <p>
+                  DESIGNED AND MAINTAINED BY DIRECTORATE OF INFORMATION
+                  TECHNOLOGY, KVIC, MUMBAI
+                  <span class="email">( pmegpeportal.kvic@gov.in )</span>
+                </p>
+              </div>
+            </div>
+          </footer>
+          <!----------------Footer Section End---------------->
+          <script src="js/popper.min.js"></script>
+          <script src="js/jquery.min.js"></script>
+          <script src="js/bootstrap.min.js"></script>
+          <script src="js/jquery.ticker.js" type="text/javascript"></script>
+          <script>
+            //Bootstrap Tooltip
+            $(document).ready(function () {
+              $('[data-toggle="tooltip"]').tooltip();
+            });
+          </script>
+          <script>
+            $(document).ready(function () {
+              $("#login-alert").click(function () {
+                $(".alert").show();
+              });
+            });
+
+            function readonlyFunction() {
+              document.getElementById("main").disabled = true;
+              document.getElementById("main").style.filter = "blur(10px)";
+            }
+          </script>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

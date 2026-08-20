@@ -1,0 +1,73 @@
+body,td,th {
+	color: #990000;
+	font-size: 12px;
+	font-family:Verdana, Arial, Helvetica, sans-serif
+}
+.style1 {
+	font-size: 18px;
+	font-style: italic;
+	font-weight: bold;
+}
+.style60 {color: #990000; font-family: Verdana, Arial, Helvetica, sans-serif; font-weight: bold; font-size: 12px; }
+.buttonSave {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+
+
+.buttonDraft {
+    background-color:#993300; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.buttonDPR {
+    background-color:#0000CC; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+
+
+/* unvisited link */
+a:link {
+    color: red;
+}
+
+/* visited link */
+a:visited {
+    color: green;
+}
+
+/* mouse over link */
+a:hover {
+    color: hotpink;
+}
+
+/* selected link */
+a:active {
+    color: blue;
+}
+
+
+
+#msg {display:none; position:absolute; z-index:200; background:url(images/msg_arrow.gif) left center no-repeat; padding-left:7px}
+#msgcontent {display:block; background:#f3e6e6; border:2px solid #924949; border-left:none; padding:5px; min-width:150px; max-width:250px}
+

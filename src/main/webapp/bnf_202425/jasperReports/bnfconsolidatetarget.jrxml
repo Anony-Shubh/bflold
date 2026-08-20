@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="bnfconsolidatetarget" pageWidth="612" pageHeight="1008" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="19d8e020-dc60-47e9-b966-daaa9b7eef79">
+	<property name="ireport.zoom" value="1.3310000000000006"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="PBGTID" class="java.math.BigDecimal">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="YEAR_ID" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+  BOM.ZONE_NM,BBM.OFF_CD,
+  BOM.OFF_NAME1,
+  NVL(BBM.FIN_AMT_KVIC, 0) AS FIN_AMT_KVIC,
+  NVL(BBM.PHY_NO_KVIC, 0)  AS PHY_NO_KVIC,
+  NVL(BBM.FIN_AMT_KVIB, 0) AS FIN_AMT_KVIB,
+  NVL(BBM.PHY_NO_KVIB, 0)  AS PHY_NO_KVIB,
+  NVL(BBM.FIN_AMT_DIC, 0)  AS FIN_AMT_DIC,
+  NVL(BBM.PHY_NO_DIC, 0)   AS PHY_NO_DIC,
+
+   NVL(BBM.FIN_AMT_KVIC, 0)+ NVL(BBM.FIN_AMT_KVIB, 0)+ NVL(BBM.FIN_AMT_DIC, 0) AS TOTAL_FAMT,
+  NVL(BBM.PHY_NO_KVIC, 0)+ NVL(BBM.PHY_NO_KVIB, 0) + NVL(BBM.PHY_NO_DIC, 0) AS TOTAL_PAMT,
+
+
+  BBM.BNF_HDID,
+  BBM.BNF_BUDID,
+  BHM.BNF_SUB_HEAD_SH_DESC
+
+FROM BNF_BUDGET_MAST BBM,
+  BNF_HEAD_MAST BHM,
+  BNF_OFF_MAST BOM
+WHERE BBM.BNF_HDID = BHM.BNF_HDID
+AND BBM.OFF_CD     = BOM.OFF_CD
+AND BBM.BNF_HDID   = $P{PBGTID} AND BBM.YEAR_ID=$P{YEAR_ID}
+ORDER BY BOM.ZONE_NM]]>
+	</queryString>
+	<field name="ZONE_NM" class="java.lang.String"/>
+	<field name="OFF_CD" class="java.math.BigDecimal"/>
+	<field name="OFF_NAME1" class="java.lang.String"/>
+	<field name="FIN_AMT_KVIC" class="java.math.BigDecimal"/>
+	<field name="PHY_NO_KVIC" class="java.math.BigDecimal"/>
+	<field name="FIN_AMT_KVIB" class="java.math.BigDecimal"/>
+	<field name="PHY_NO_KVIB" class="java.math.BigDecimal"/>
+	<field name="FIN_AMT_DIC" class="java.math.BigDecimal"/>
+	<field name="PHY_NO_DIC" class="java.math.BigDecimal"/>
+	<field name="TOTAL_FAMT" class="java.math.BigDecimal"/>
+	<field name="TOTAL_PAMT" class="java.math.BigDecimal"/>
+	<field name="BNF_HDID" class="java.math.BigDecimal"/>
+	<field name="BNF_BUDID" class="java.math.BigDecimal"/>
+	<field name="BNF_SUB_HEAD_SH_DESC" class="java.lang.String"/>
+	<variable name="PHY_NO_KVIC_1" class="java.math.BigDecimal" resetType="Group" resetGroup="ZONE_NM" calculation="Sum">
+		<variableExpression><![CDATA[$F{PHY_NO_KVIC}]]></variableExpression>
+	</variable>
+	<variable name="FIN_AMT_KVIC_1" class="java.math.BigDecimal" resetType="Group" resetGroup="ZONE_NM" calculation="Sum">
+		<variableExpression><![CDATA[$F{FIN_AMT_KVIC}]]></variableExpression>
+	</variable>
+	<variable name="PHY_NO_KVIB_1" class="java.math.BigDecimal" resetType="Group" resetGroup="ZONE_NM" calculation="Sum">
+		<variableExpression><![CDATA[$F{PHY_NO_KVIB}]]></variableExpression>
+	</variable>
+	<variable name="FIN_AMT_KVIB_1" class="java.math.BigDecimal" resetType="Group" resetGroup="ZONE_NM" calculation="Sum">
+		<variableExpression><![CDATA[$F{FIN_AMT_KVIB}]]></variableExpression>
+	</variable>
+	<variable name="PHY_NO_DIC_1" class="java.math.BigDecimal" resetType="Group" resetGroup="ZONE_NM" calculation="Sum">
+		<variableExpression><![CDATA[$F{PHY_NO_DIC}]]></variableExpression>
+	</variable>
+	<variable name="FIN_AMT_DIC_1" class="java.math.BigDecimal" resetType="Group" resetGroup="ZONE_NM" calculation="Sum">
+		<variableExpression><![CDATA[$F{FIN_AMT_DIC}]]></variableExpression>
+	</variable>
+	<variable name="PHY_NO_KVIC_2" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{PHY_NO_KVIC}]]></variableExpression>
+	</variable>
+	<variable name="FIN_AMT_KVIC_2" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{FIN_AMT_KVIC}]]></variableExpression>
+	</variable>
+	<variable name="PHY_NO_KVIB_2" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{PHY_NO_KVIB}]]></variableExpression>
+	</variable>
+	<variable name="FIN_AMT_KVIB_2" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{FIN_AMT_KVIB}]]></variableExpression>
+	</variable>
+	<variable name="PHY_NO_DIC_2" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{PHY_NO_DIC}]]></variableExpression>
+	</variable>
+	<variable name="FIN_AMT_DIC_2" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{FIN_AMT_DIC}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_PAMT_1" class="java.math.BigDecimal" resetType="Group" resetGroup="ZONE_NM" calculation="Sum">
+		<variableExpression><![CDATA[$F{TOTAL_PAMT}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_FAMT_1" class="java.math.BigDecimal" resetType="Group" resetGroup="ZONE_NM" calculation="Sum">
+		<variableExpression><![CDATA[$F{TOTAL_FAMT}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_PAMT_2" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{TOTAL_PAMT}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL_FAMT_2" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{TOTAL_FAMT}]]></variableExpression>
+	</variable>
+	<group name="ZONE_NM">
+		<groupExpression><![CDATA[$F{ZONE_NM}]]></groupExpression>
+		<groupHeader>
+			<band height="15">
+				<textField>
+					<reportElement mode="Opaque" x="140" y="0" width="195" height="15" backcolor="#FFFFCC" uuid="774e809b-e0fd-4f9e-92cf-c030d7565cc2"/>
+					<box leftPadding="1" rightPadding="1">
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{ZONE_NM}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="15">
+				<printWhenExpression><![CDATA[$V{ZONE_NM_COUNT}>1]]></printWhenExpression>
+				<staticText>
+					<reportElement mode="Opaque" x="140" y="0" width="110" height="15" backcolor="#FFFFCC" uuid="e21f5ddc-40da-4a30-82c0-426c006d7a80"/>
+					<box leftPadding="1" rightPadding="1">
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Zone Total]]></text>
+				</staticText>
+				<textField pattern="###0" isBlankWhenNull="true">
+					<reportElement mode="Opaque" x="250" y="0" width="43" height="15" backcolor="#FFFFCC" uuid="1b8372f7-18ec-4edd-937c-08212e999cd1"/>
+					<box leftPadding="1" rightPadding="1">
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{TOTAL_PAMT_1}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0.00;-###0.00" isBlankWhenNull="true">
+					<reportElement mode="Opaque" x="293" y="0" width="42" height="15" backcolor="#FFFFCC" uuid="38183505-2d19-42b7-839c-acdcd6a87406"/>
+					<box leftPadding="1" rightPadding="1">
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{TOTAL_FAMT_1}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement x="140" y="0" width="195" height="20" uuid="f4adb212-55ae-4791-908d-6d985f5ab7f9"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{BNF_SUB_HEAD_SH_DESC}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="386" y="0" width="172" height="20" uuid="a70f71ae-d6b9-47ce-9007-7f73122895fb"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{YEAR_ID}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<staticText>
+				<reportElement x="140" y="2" width="110" height="34" uuid="498bd1b9-3455-4d0e-9653-bab530994217"/>
+				<box leftPadding="1" rightPadding="1">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Office Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="293" y="20" width="42" height="16" uuid="26bed76e-888d-4924-999e-e22ff8ca5871"/>
+				<box leftPadding="1" rightPadding="1">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Amount]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="250" y="2" width="85" height="18" uuid="cc848efd-86b6-41bd-a44b-1de8ce350c22"/>
+				<box leftPadding="1" rightPadding="1">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[TOTAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="250" y="20" width="43" height="16" uuid="6b4c8761-02b4-459f-b624-3962ae106660"/>
+				<box leftPadding="1" rightPadding="1">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[No]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<textField>
+				<reportElement x="140" y="0" width="110" height="15" uuid="d192afae-6bf2-4f82-927f-496d423fc8c9"/>
+				<box leftPadding="1" rightPadding="1">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{OFF_NAME1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0" isBlankWhenNull="true">
+				<reportElement x="250" y="0" width="43" height="15" uuid="caf171bd-edfe-4274-8528-588285671f66"/>
+				<box leftPadding="1" rightPadding="1">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{TOTAL_PAMT}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00;-###0.00" isBlankWhenNull="true">
+				<reportElement x="293" y="0" width="42" height="15" uuid="3f40458f-28e2-4792-9a7a-4354eda827b6"/>
+				<box leftPadding="1" rightPadding="1">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{TOTAL_FAMT}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="16" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="140" y="1" width="110" height="15" backcolor="#FFFFCC" uuid="f389996e-657c-4929-8cee-6ca455dc4eb0"/>
+				<box leftPadding="1" rightPadding="1">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Grand Total]]></text>
+			</staticText>
+			<textField pattern="###0" isBlankWhenNull="true">
+				<reportElement mode="Opaque" x="250" y="0" width="43" height="15" backcolor="#FFFFCC" uuid="efa97977-a462-4627-b902-b8d1db0d1400"/>
+				<box leftPadding="1" rightPadding="1">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_PAMT_2}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00;-###0.00" isBlankWhenNull="true">
+				<reportElement mode="Opaque" x="293" y="0" width="42" height="15" backcolor="#FFFFCC" uuid="29bacba1-bc57-4c31-aa74-cc829ec225ad"/>
+				<box leftPadding="1" rightPadding="1">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_FAMT_2}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

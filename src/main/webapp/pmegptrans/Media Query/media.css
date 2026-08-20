@@ -1,0 +1,147 @@
+/*---------------------------media Query---------------------------------------------*/
+
+
+@media (max-width: 575.98px) {
+    .top-banner img{
+        height: 90px;
+    }
+    .navbar-toggler{
+        margin-right:-10px;
+        margin-top:-5px;
+    }
+    .footer-content{
+        height: auto;
+    }
+
+    .footer-content{
+        height: auto;
+    }
+    #ftco-ul .nav-item .nav-link{
+        background-color: #540b0e;
+        border: 1px solid #FFF;
+    }
+    .pmegp-alert {
+        max-height: 600px;
+        top: 7%;
+        left: 5%;
+        width: 90%;        
+      }
+      .pmegp-alert h5{
+          padding: 6px 6px;
+          font-size: 15px;
+      }
+      .alert-head{
+          margin-left: 8px ;
+      }
+      .info-icon {
+        width: 22px;
+        height: 22px;
+        line-height: 22px;
+    }
+      .alert-head a {
+        padding: 5px 8px;
+        font-size: 13px;
+      }
+      .toggled-div h6 {
+          padding: 5px 5px;
+          font-size: 15px;    
+      }
+      .toggled-div ol{
+          padding: 6px 10px;
+          margin: 0px 0px 10px 10px;
+          font-size: 15px;
+          font-weight: bolder;
+      }
+      .toggled-div li{
+          line-height: 28px;
+      }
+      .alert-closebtn {
+
+        font-size: 17px;
+        cursor: pointer;
+        left: 43%;
+        padding: 6px 15px;
+      }
+      .consent{
+        margin-right:10px;
+}
+.head-body .margin-faq p{
+    font-size: 10px;
+}
+.head-body .margin-faq h4{
+    font-size: 12px;
+}
+.Main-form .head-name{
+    font-size: 0.6em;
+}
+.help-link i{
+    width: 14px;
+    height: 14px;
+    line-height: 14px;
+}
+.nav-item .dropdown-menu{
+    background-color: #ced4da;
+    position: relative;
+    box-shadow: none !important;
+    top: 0;
+}
+.nav-item .dropdown-item{
+    background-color: #FFF;
+}
+}
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .navbar-toggler{
+        margin-right:-200px;
+        margin-top: -5px; 
+    }
+    .footer-content{
+        height: auto;
+    }
+
+    .pmegp-alert {
+        max-height: 700px;
+        top: 10%;
+        width: 80%;
+        left: 10%;        
+      }
+      .pmegp-alert h5{
+          padding: 6px 6px;
+          font-size: 15px;
+      }
+      .alert-head{
+          margin-left: 8px ;
+      }
+      .info-icon {
+        width: 22px;
+        height: 22px;
+        line-height: 22px;
+    }
+      .alert-head a {
+        padding: 4px 6px;
+        font-size: 13px;
+      }
+      .toggled-div h6 {
+          padding: 5px 10px;    
+      }
+      .toggled-div ol{
+          padding: 6px 15px;
+          margin: 0px 0px 10px 10px;
+          font-size: 15px;
+      }
+      .toggled-div li{
+          line-height: 28px;
+      }
+      .alert-closebtn {
+
+        font-size: 15px;
+        cursor: pointer;
+        left: 44%;
+        padding: 8px 15px;
+        margin: 5px;
+      }
+}
+@media (min-width: 992px) and (max-width: 1199.98px) { 
+  
+      
+    }
+@media (min-width: 1200px) {  }

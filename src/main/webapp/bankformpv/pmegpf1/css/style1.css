@@ -1,0 +1,619 @@
+*{
+    margin: o;
+    padding:0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+@font-face {
+    font-family:"Raleway-Regular" ;
+    src: url(../fonts/Raleway-Regular.ttf);
+}
+
+@font-face {
+    font-family:"Raleway-SemiBold" ;
+    src: url(../fonts/Raleway-SemiBold.ttf);
+}
+
+@font-face {
+    font-family:"Raleway-Bold" ;
+    src: url(../fonts/Raleway-Bold.ttf);
+}
+
+:root{
+    --primary:#b9360c;
+    --secondary:#faefcf;
+    --tertiary:#f8cb95;
+    --content:#000000;
+    --pure-white:#ffffff;
+    --red:#fd0000;
+}
+
+body{
+    background-color: var(--secondary);
+}
+
+
+.top-banner{
+    filter: blur(3px);
+}
+
+.top-banner ul li a{
+    list-style: none;
+    text-decoration: none;
+    color:var(--secondary);
+    
+}
+.ticker-news{
+    background-color: var(--primary);
+    color: var(--pure-white);
+    margin: 0px auto; 
+    width: 100%; 
+    height:40px; 
+    position:relative;
+}
+
+.ticker-news .update{
+    position:absolute; 
+    top: 0; 
+    left: 0; 
+    padding: 5px 10px 0 10px; 
+    width: auto;
+    height: 100%; 
+    background-color: rgb(78, 0, 0); 
+    color: var(--pure-white);
+    border-top:5px solid transparent;
+    border-bottom:5px solid transparent;
+    border-right: 13px solid var(--primary);
+   font-weight: bold; 
+    z-index: 4;
+}
+.navbar {
+    height:auto;
+    width: 100%;
+    padding-bottom: 28px;
+    background-color:var(--secondary);
+    overflow-x: hidden;
+    border-top: 1px solid var(--primary);
+    border-bottom: 15px solid var(--primary);
+    border-right: 1px solid var(--primary);
+    border-left:1px solid var(--primary);
+    display:block;
+    position: relative;
+    box-shadow: 0px 0px 2px 0.30px rgb(235, 91, 91) inset;  
+        
+   }
+
+
+   .navbar ul{
+       width: 100%;
+     
+   }
+   .navbar ul li{
+       width: 100%;
+       display: block;
+       border-bottom: 0.5px solid brown;
+   }
+  
+  .navbar a {
+    padding: 20px 0px 6px 10px;
+    text-decoration: none;
+    font-size: 0.60rem;
+    color:var(--content);
+    font-family:"Raleway-SemiBold";
+    display: block;
+    text-transform: uppercase;
+  /* box-shadow: 0px 0px 2px 0.30px rgb(139, 139, 139);*/
+   
+  }
+  .navbar .navbar-brand{
+      background-color: var(--primary);
+      width: 100%;
+  }
+  .navbar .navbar-brand h5{
+      font-family: "Raleway-Bold";
+      color: var(--pure-white);
+  }
+
+  .navbar .navbar-toggler{
+      position: absolute;
+      top: 20px;
+      right:-120px;      
+      width: 100%;
+      outline: none;
+      border:0;
+  }
+
+  .navbar .fa{
+      padding-right: 30px;
+  }
+  
+  .navbar a:hover {
+    color: var(--red);
+    font-weight: bold;
+  }
+ 
+  /*................ header to side bar css end...........................*/
+  .online-application{
+      display: inline-block;
+      width: 100%;
+
+       }
+
+  .online-application .main-newloan{
+      background-color: var(--tertiary);
+      margin:0.625rem auto;
+      padding:0 20px;
+      height: auto;
+  }
+  .new-loan{
+      margin:10px auto;
+      display: block;
+     
+  }
+  .new-loan h5{
+      color:var(--content);
+      font-weight: 600;
+      font-family: Raleway-Bold;
+      text-align: center;
+  }
+  .online-application .card{
+    height:14rem;
+    width:auto;
+    margin:1.25rem auto; 
+    background-color: var(--secondary);
+    box-shadow:0px 2px 3px 3px rgba(136, 13, 109, 0.3);  ;
+    }
+
+    .online-application .card:hover{
+        box-shadow:0px 2px 3px 3px var(--primary);
+    }
+
+ .online-application .card-body{
+    width: 100%;
+    height: auto;
+    text-align: center;
+    margin: 1rem auto;   
+    
+ }
+
+ .online-application .card-body .btn{
+     border:0;
+     background-color: var(--primary);
+     border-radius: 10px;
+     color: var(--pure-white);
+ }
+
+ .online-application .card-body img{
+     margin-bottom: 15px;
+     width:50px;
+ }
+
+ .online-application .card-body p{
+     text-align: center;
+     color: var(--content);
+     font-family:"Raleway-Bold";
+     font-size:1rem;
+ }
+  .online-application .card-body:hover .btn{
+    background-color:var(--tertiary);
+    color: var(--content);
+    font-weight: bold;
+    border: 2px solid brown;
+}
+
+  .main{
+    width: 100%;
+    height:auto;
+   
+
+  }
+
+  .main .main-second{
+      margin-top: 1rem;
+      padding: 1rem 5rem;
+      background: url(../img/work4.jpg);
+      background-size:100% 100%;
+      background-repeat: no-repeat;
+      border: 1px solid var(--primary);
+    
+  }
+
+  .main .main-second .second-application{
+      border-bottom: 1px solid var(--primary);
+      position: relative;
+      margin-bottom: 1.50rem;
+  }
+
+  .main .main-second .second-application::before{
+      content: "";
+      border-left:10px solid transparent;
+      border-right:10px solid transparent;
+      border-top: 13px solid var(--primary);
+      position: absolute;
+      top:41px;
+      left:49%;
+  }
+
+
+  .main .main-second .second-application ul li a{
+      
+     text-decoration: none;
+     color: var(--content);
+     font-family: "Raleway-Bold";
+     list-style: none;
+     transition: all 0.3s ease;
+      }
+      .main .main-second .second-application ul li{
+          list-style: none;
+      }
+
+ .second-application ul li a.active{
+
+      background-color: var(--pure-white);
+      padding: 10px;
+      color: var(--primary) !important;
+      border: 1px solid rgb(255, 0, 0);
+      border-radius: 5px; 
+  }
+
+  .second-application ul li a:hover{      
+    background-color: var(--primary);
+    padding: 10px;
+    color: var(--pure-white) !important;
+  }
+  .second-loan h5{
+    color:var(--content);
+    font-weight: 600;
+    font-family: "Raleway-Bold";
+    text-align: center;
+}
+.upgrade-content .icon{
+   margin: 10px auto;
+}
+
+.upgrade-content .icon img{
+    margin: 0 auto;
+    display: block;
+    width: 80px;
+    transition: all 1.3s ease;
+   
+}
+
+.upgrade-content .icon:hover img{
+   transform: scale(1.2);
+   
+}
+
+.upgrade-content .subsidy{
+    width:100%;
+    height: auto;
+    padding: 0.90rem 0.90rem;
+    margin: 10px auto;
+    background:rgba(230, 157, 113, 0.6);
+    box-shadow: 1px 2px 5px black;
+    border-radius: 15px;
+    display: block;
+    overflow: hidden;
+}
+
+
+.upgrade-content h4{
+ font-family:"Raleway-Bold";
+ text-align:center;
+ color:var(--content);
+ /*text-shadow: 1px 3px rgb(0, 0, 0, 0.9);*/
+  font-size: 1.60rem;
+}
+
+.upgrade-content p{
+    font-family:"Raleway-SemiBold";
+    text-align:center;
+    color:var(--content);
+ /*text-shadow: 1px 3px rgb(0, 0, 0, 0.9);*/
+    
+}
+
+
+
+.official-main{
+    display: inline-block;
+    background-color: var(--tertiary);
+    width: 100%;
+    padding:0 20px;
+     }
+
+
+.official-main .card{
+background-color: var(--secondary);
+height:13rem;
+width:auto;
+margin:1.25rem auto;
+box-shadow:0px 2px 3px 3px rgba(136, 13, 109, 0.3);  
+    
+}
+
+.official-main .card:hover{
+    box-shadow:0px 2px 3px 3px var(--primary);
+}
+
+.official-main .card .card-body{
+    width: 100%;
+    height: auto;
+    text-align: center;
+    margin: 0.20rem auto;
+   
+}
+.official-main .card-body img{
+    width:50px;
+    margin-bottom: 0.40rem;
+     
+}
+.official-main .card-body .btn{
+    border:0;
+    background-color: var(--primary);
+    border-radius: 10px;
+    color: var(--pure-white);
+}
+
+.official-main .card-body:hover .btn{
+    background-color:var(--tertiary);
+    color: var(--content);
+    font-weight: bold;
+    border: 2px solid brown;
+}
+
+.official-main .card .card-body .card-text{
+    text-align: center;
+    font-family: "Raleway-Bold";
+    word-spacing:2px;
+    font-size: 18px;
+
+}
+.caution{
+    width: 100%;
+    height: auto;
+    margin: 1.5rem 0;
+    position: relative;
+}
+.caution-main{
+    background-color: var(--tertiary);
+ 
+}
+.caution-main .caution-head{
+    padding:7px 15px 0px 15px;
+    width: auto;
+    height: 2.20rem;
+    background-color: var(--secondary);
+    border:1px solid var(--primary);
+    border-radius:15px;
+    box-shadow: 1px 1px 2px 2px rgb(248, 207, 118) inset;
+    position:absolute;   
+    top:-11px;
+    left:30%;
+   
+    }
+
+
+.caution-notice{
+    padding:0 0.50rem;
+    width: auto;
+    height: auto;
+}
+.caution-notice p{
+text-align: center;
+font-family:"Raleway-SemiBold";
+font-size: 0.80rem;
+padding-top: 2.20rem;
+}
+
+.footer-content{
+    background-color: var(--primary);
+    width: 100%;
+    height:auto;
+    margin: 5px auto;
+  
+}
+
+.footer-content p{
+    text-align: center;
+    font-size:1rem;
+    color: var(--content);
+     font-family: "raleway-bold";
+     color:var(--pure-white) !important;
+     padding:1rem 0.60rem 0 0.60rem;
+    
+    
+}
+
+/*------------------------------------- Aadhar Validation Form--------------------------------------- */
+.aadhar-validation .validation-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    padding: 20px 16px;
+    width: 100%;
+    border: 2px solid #dad7d7;
+    -webkit-box-shadow: 0px 5px 5px #dad7d7;
+	-moz-box-shadow: 0px 5px 5px #dad7d7;
+	box-shadow: 0px 5px 5px #dad7d7;
+    border-radius: 6px;
+    height: fit-content;
+    overflow: hidden;
+    position: relative;
+    
+}
+.aadhar-validation .validation-form{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+}
+.aadhar-validation .validation-form::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(119.54deg,#faefcf,#ffa73c);
+    top: 0;
+    left: 0;
+}
+.aadhar-validation .form-input{
+    position: relative;
+    width: 520px;
+    margin: 20px;
+}
+.aadhar-validation .aadhar-input{
+    width: 100%;
+    font-size: 18px;
+    padding: 15px;
+    border-radius: 7px;
+    border: 2px solid #dad7d7;
+    -webkit-box-shadow: 0px 5px 5px #dad7d7;
+	-moz-box-shadow: 0px 5px 5px #dad7d7;
+	box-shadow: 0px 5px 5px #dad7d7;
+}
+.aadhar-validation .aadhar-input:focus{
+    border: 3px solid var(--primary);
+}
+.aadhar-validation .aadhar-input::placeholder{
+    opacity: 0;
+}
+.aadhar-validation .aadhar-input:focus::placeholder{
+    opacity: 1;
+}
+.aadhar-validation .aadhar-label{
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: all 0.3s ease;
+    z-index: 1;
+}
+
+.aadhar-input:focus + .aadhar-label, .aadhar-input:not(:placeholder-shown) + .aadhar-label{
+    top: 0%;
+    background-color: #FFF;
+    color: var(--primary);
+}
+.validation-container .submit-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.validation-container .submit-button input{
+    width: 40%;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -o-border-radius: 5px;
+    -ms-border-radius: 5px;
+    padding: 13px 18px;
+    box-sizing: border-box;
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    background-image: -moz-linear-gradient(to left, #F7941D, #2874f0);
+    background-image: -ms-linear-gradient(to left, #F7941D, #2874f0);
+    background-image: -o-linear-gradient(to left, #F7941D, #2874f0);
+    background-image: -webkit-linear-gradient(to left, #F7941D, #2874f0);
+    background-image: linear-gradient(to left, #F7941D, #2874f0);  
+}
+.pmegp-alert {
+    position: relative;
+    height: fit-content;
+    max-height: 550px;
+    overflow: scroll;
+    background-color: #fff;
+    border: 2px solid #dad7d7;
+    -webkit-box-shadow: 0px 5px 5px #dad7d7;
+	-moz-box-shadow: 0px 5px 5px #dad7d7;
+	box-shadow: 0px 5px 5px #dad7d7;
+    position: fixed;
+    z-index: 1;
+    top: 8%;    
+    width: 70%;
+    left: 15%;
+    overflow-x: hidden;     
+  }
+  .pmegp-alert h5{
+      padding: 10px 10px;
+      border-top: 20px #50a0c0 solid;
+      background-color: #b5d5e2;
+      text-transform: uppercase;
+      text-align: center;
+      font-size: 18px;
+      font-weight: 600;
+  }
+  .alert-head{
+      margin: 0 0 10px 10px;
+  }
+  .pmegp-alert h6{
+      font-weight: bold;
+      margin-left: 10px;
+  }
+  .info-icon {
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
+    display: inline-block;
+    text-align: center;
+    border-radius: 16px;
+    margin-right: 10px;
+    background-color: #50a0c0;
+    color: #ffffff;
+    font-family: Georgia, "Times New Roman", Times, serif;
+    font-style: italic;
+}
+  .alert-head a{
+    background-color: #50a0c0;
+    color: #FFF;
+    padding: 5px 10px;
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+  } 
+  .alert-head a:focus{
+      background-color: #dad7d7;
+      color: #000000;
+      outline: none;
+      border: none;
+  }
+  .toggled-div h6{
+      background-color: #ececec;
+      margin: 0;
+      padding: 5px 10px;    
+  }
+  .toggled-div ol{
+      padding: 30px;
+      padding-top: 0;
+      font-size: 14px;
+  }
+  .alert-closebtn {
+    position: sticky;
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+    bottom: 1%;
+    left: 50%;
+    color: #FFF;
+    background-color: #50a0c0;
+    padding: 8px 15px;
+    margin: 5px;
+    border-radius: 5px;
+  }
+  .alert-closebtn:hover {
+    background-color: #dad7d7;
+    color: #000000;
+  }
+  .toggled-div:not(#div1) {
+    display: none;
+}
+
+
+

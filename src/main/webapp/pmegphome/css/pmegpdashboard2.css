@@ -1,0 +1,270 @@
+body{
+  background:#E6EEF6;
+}
+
+.box{
+  width:100%;
+  height:250px;
+  float:left;
+  background-color:white; 
+  margin:20px 15px;
+  border-radius:10px;
+}
+
+.box h3{
+  font-family: 'Didact Gothic', sans-serif;
+  font-weight:normal;
+  text-align:center;
+  color:#fff;
+}
+.box1{
+  background-color: #845CA2;
+}
+.box2{
+  background-color: #A05CA2;
+}
+.box3{
+  background-color: #60A37E;
+}
+.box4{
+  background-color: #69A360;
+}
+.box5{
+  background-color: #E4602B;
+}
+.box6{
+  background-color: #8A3B22;
+}
+.box7{
+  background-color: #DB9EEB;
+}
+.box8{
+    background-color: #ffffff;
+}
+.shadow1, .shadow2, .shadow3,.shadow4,.shadow5,.shadow6,.shadow7,.shadow8{
+  position:relative;
+}
+.shadow1,.shadow2,.shadow3,.shadow4,.shadow5,.shadow6,.shadow7,.shadow8{
+    box-shadow:0 10px 4px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.1) inset;
+}
+/*****************************************************************dashed border
+****************************************************************/
+.shadow1 h3, .shadow2 h3, .shadow3 h3, .shadow4 h3, .shadow5 h3, .shadow6 h3, .shadow7 h3, .shadow8 h3{
+  width:87%;
+  height:100px;
+  margin-left:6%;
+  border-radius:5px;
+  color: whitesmoke;
+  font-weight: 600;
+}
+/****************************************************************
+*styling shadows
+****************************************************************/
+.shadow1:before, .shadow1:after{
+  position:absolute;
+  content:"";
+  bottom:12px;left:15px;top:80%;
+  width:80%;
+  background:#9B7468;
+  z-index:-1;
+  -webkit-box-shadow: 0 20px 15px #9B7468;
+  -moz-box-shadow: 0 20px 15px #9B7468;
+  box-shadow: 0 20px 15px #9B7468;
+  -webkit-transform: rotate(-6deg);
+  -moz-transform: rotate(-6deg);
+  transform: rotate(-6deg);
+}
+.shadow1:after{
+  -webkit-transform: rotate(6deg);
+  -moz-transform: rotate(6deg);
+  transform: rotate(6deg);
+}
+.shadow2:before{
+  position:absolute;
+  content:"";
+  width:80%;
+  top:140px;bottom:15px;left:30px;
+  background-color:#9F8641;
+  z-index:-1;
+  -webkit-box-shadow:0 23px 17px 0 #9F8641;
+  -moz-box-shadow:0 23px 17px 0 #9F8641;
+  box-shadow: 0 23px 17px 0 #9F8641;
+  -webkit-transform:rotate(-4deg);
+  -moz-transform:rotate(-4deg);
+  transform:rotate(-4deg);
+}
+.shadow3:before, .shadow3:after{
+  content:"";
+  position:absolute;
+  bottom:0;top:2px;left:15px;right:15px;
+  z-index:-1;
+  border-radius:100px/30px;
+ -webkit-box-shadow:0 0 30px 2px #479F41;
+  -moz-box-shadow:0 0 30px 2px #479F41;
+  box-shadow: 0 0 30px 2px #479F41;
+}
+.shadow4:before, .shadow4:after{
+  position:absolute;
+  content:"";
+  top:14px;bottom:14px;left:0;right:0;
+  box-shadow:0 0 25px 3px #548E7F;
+  border-radius:100px/10px;
+  z-index:-1;
+}
+.shadow5:before, .shadow5:after{
+  position:absolute;
+  content:"";
+  box-shadow:0 10px 25px 20px #518C96;
+  top:40px;left:10px;bottom:50px;
+  width:15%;
+  z-index:-1;
+  -webkit-transform: rotate(-8deg);
+  -moz-transform: rotate(-8deg);
+  transform: rotate(-8deg);
+}
+.shadow5:after{
+  -webkit-transform: rotate(8deg);
+  -moz-transform: rotate(8deg);
+  transform: rotate(8deg);
+  right: 10px;left: auto;
+}
+.shadow6:before, .shadow6:after{
+  position:absolute;
+  content:"";
+  top:100px;bottom:5px;left:30px;right:30px;
+  z-index:-1;
+  box-shadow:0 0 40px 13px #486685;
+  border-radius:100px/20px; 
+}
+.shadow7:before, .shadow7:after{
+  position:absolute;
+  content:"1";
+  top:25px;left:20px;bottom:150px;
+  width:80%;
+  z-index:-1;
+  -webkit-transform: rotate(-6deg);
+  -moz-transform: rotate(-6deg);
+  transform: rotate(-6deg);
+}
+.shadow7:before{
+  box-shadow:10px -10px 30px 15px #984D8E;
+}
+.shadow7:after{
+  -webkit-transform: rotate(7deg);
+  -moz-transform: rotate(7deg);
+  transform: rotate(7deg);
+  bottom: 25px;top: auto;
+  box-shadow:10px 10px 30px 15px #984D8E;
+}
+.shadow8{
+  box-shadow:
+ -6px -6px 8px -4px rgba(250,254,118,0.75),
+  6px -6px 8px -4px rgba(254,159,50,0.75),
+  6px 6px 8px -4px rgba(255,255,0,0.75),
+  6px 6px 8px -4px rgba(0,0,255,2.75);
+}
+
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,800,700,300);
+@import url(http://fonts.googleapis.com/css?family=Squada+One);
+
+
+#menu li {
+  display: inline-block;
+  width: 270px;
+  margin: 0 10px;
+  position: relative;
+  -webkit-transform: skewy(-3deg);
+  -webkit-backface-visibility: hidden;
+  -webkit-transition: 200ms all;
+}
+#menu li a {
+  text-transform: uppercase;
+  font-family: 'Squada One', cursive;
+  font-weight: 800;
+  display: block;
+  background: #FFF;
+  padding: 5px 10px;
+  color: #333;
+  font-size: 35px;
+  text-align: center;
+  text-decoration: none;
+  position: relative;
+  z-index: 1;
+  text-shadow: 
+        1px 1px 0px #FFF, 
+        2px 2px 0px #999,
+        3px 3px 0px #FFF;
+    background-image: -webkit-linear-gradient(top, transparent 0%, rgba(0,0,0,.05) 100%);
+    -webkit-transition: 1s all;
+    background-image: -webkit-linear-gradient(left top, 
+        transparent 0%, transparent 25%, 
+        rgba(0,0,0,.15) 25%, rgba(0,0,0,.15) 50%, 
+        transparent 50%, transparent 75%, 
+        rgba(0,0,0,.15) 75%);
+  background-size: 4px 4px;
+    box-shadow: 
+        0 0 0 1px rgba(0,0,0,.4) inset, 
+        0 0 20px -5px rgba(0,0,0,.4),
+        0 0 0px 3px #FFF inset;
+}
+#menu li:hover {
+    width: 300px;
+    margin: 0 -5px;
+}
+#menu a:hover {
+  color: #d90075;
+}
+#menu li:after,
+#menu li:before {
+  content: '';
+  position: absolute;
+  width: 70px;
+  height: 100%;
+  background: #BBB;
+  -webkit-transform: skewY(7deg);
+    border-radius: 4px;
+}
+#menu li:after {
+    background-image: -webkit-linear-gradient(left, transparent 0%, rgba(0,0,0,.4) 100%);
+  right: 0;
+  top: -4px; 
+}
+#menu li:before {
+  left: 0;
+  bottom: -4px;
+    background-image: -webkit-linear-gradient(right, transparent 0%, rgba(0,0,0,.4) 100%);
+}
+
+.button {
+  border: 4px solid #FFFFFF;
+    border-radius: 10px;
+    background-color: #C4830B;
+    color: #ffffff;
+    font-weight: bold;
+    text-decoration: none;
+    margin : 1px;
+    padding: 5px 10px 5px 10px;
+    display: inline-block;
+ }
+ .button:hover {
+  border: 2px solid #000000;
+    background-color: #D1C494;
+	 color: #000000;
+ }
+ .buttonGreen {
+  border: 4px solid #FFFFFF;
+    border-radius: 10px;
+    background-color: #00CC66;
+    color: #ffffff;
+    font-weight: bold;
+    text-decoration: none;
+    margin : 1px;
+    padding: 5px 10px 5px 10px;
+    display: inline-block;
+ }
+ .buttonGreen:hover {
+  border: 2px solid #000000;
+    background-color: #00CC66;
+	 color: #000000;
+ }
+ 

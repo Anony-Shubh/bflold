@@ -1,0 +1,1254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="msmepmegpdata" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c368a69a-d8e0-4d63-8421-61920bb00df1">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="New Dataset 1" uuid="1f38e7d9-5201-4146-b2b4-9b073a19be85">
+		<parameter name="PSR_NO" class="java.lang.String"/>
+		<parameter name="POFF_NAME" class="java.lang.String"/>
+		<parameter name="PSTATE_NM" class="java.lang.String"/>
+		<parameter name="PAPP_ID" class="java.lang.String"/>
+		<parameter name="PAPP_NAME" class="java.lang.String"/>
+		<parameter name="PBENF_TYPE_DESC" class="java.lang.String"/>
+		<parameter name="PGENDER" class="java.lang.String"/>
+		<parameter name="PBENF_SPECAT_CD" class="java.lang.String"/>
+		<parameter name="PBENF_CATEGORY_DESC" class="java.lang.String"/>
+		<parameter name="PDOB" class="java.lang.String"/>
+		<parameter name="PUNIT_LOC" class="java.lang.String"/>
+		<parameter name="PDISTRICT_NAME" class="java.lang.String"/>
+		<parameter name="PUNIT_ADDR" class="java.lang.String"/>
+		<parameter name="PUNIT_TALUK_BLOCK" class="java.lang.String"/>
+		<parameter name="PIND_TYPE" class="java.lang.String"/>
+		<parameter name="PIND_GRP_LONG_DESC" class="java.lang.String"/>
+		<parameter name="PACTIVITY_NAME" class="java.lang.String"/>
+		<parameter name="PPROJ_COST" class="java.lang.String"/>
+		<parameter name="PBANK_ADDRESS" class="java.lang.String"/>
+		<parameter name="PIFSC_CODE" class="java.lang.String"/>
+		<parameter name="PBANK_F_DATE" class="java.lang.String"/>
+		<parameter name="PBANK_REMARKS" class="java.lang.String"/>
+		<parameter name="PBANK_REC_DATE" class="java.lang.String"/>
+		<parameter name="PTOT_SANC_FB" class="java.lang.String"/>
+		<parameter name="PCGTSI" class="java.lang.String"/>
+		<parameter name="PMM_CLAIM_AMT" class="java.lang.String"/>
+		<parameter name="PMM_CLAIM_DT" class="java.lang.String"/>
+		<parameter name="PMM_REL_AMT" class="java.lang.String"/>
+		<parameter name="PMM_REL_DT" class="java.lang.String"/>
+		<parameter name="PEDP_TRG_NM" class="java.lang.String"/>
+		<parameter name="PEDP_FR_DT" class="java.lang.String"/>
+		<parameter name="PEDP_TO_DT" class="java.lang.String"/>
+		<parameter name="PEDP_CERT_DT" class="java.lang.String"/>
+		<parameter name="PEDP_DAYS" class="java.lang.String"/>
+		<parameter name="PCURRENT_STATUS" class="java.lang.String"/>
+		<parameter name="PAGENCY_TYPE" class="java.lang.String"/>
+		<parameter name="PMOB_NO2" class="java.lang.String"/>
+		<parameter name="PTEL_NO" class="java.lang.String"/>
+		<parameter name="PEMAIL_ID" class="java.lang.String"/>
+		<parameter name="PLOAN_TYPE" class="java.lang.String"/>
+		<parameter name="PAPR_YR" class="java.lang.String"/>
+		<parameter name="PBANK_NAME" class="java.lang.String"/>
+		<parameter name="PONLINEMOBNO" class="java.lang.String">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="PAPR_YR_DD" class="java.lang.String"/>
+		<parameter name="PLOAN_TYPE_DD" class="java.lang.String">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="PWHRCLS" class="java.lang.String">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[SELECT BT.*,ROWNUM AS SR_NODD FROM PMEGP_MSME_BENDATA BT WHERE APR_YR=$P{PAPR_YR_DD}
+$P!{PWHRCLS}
+order by sr_no]]>
+		</queryString>
+		<field name="SR_NO" class="java.math.BigDecimal"/>
+		<field name="OFF_NAME" class="java.lang.String"/>
+		<field name="AGENCY_TYPE" class="java.lang.String"/>
+		<field name="STATE_NM" class="java.lang.String"/>
+		<field name="APP_ID" class="java.lang.String"/>
+		<field name="APP_NAME" class="java.lang.String"/>
+		<field name="BENF_TYPE_DESC" class="java.lang.String"/>
+		<field name="GENDER" class="java.lang.String"/>
+		<field name="BENF_CATEGORY_DESC" class="java.lang.String"/>
+		<field name="BENF_SPECAT_CD" class="java.lang.String"/>
+		<field name="DOB" class="java.lang.String"/>
+		<field name="UNIT_LOC" class="java.lang.String"/>
+		<field name="UNIT_ADDR" class="java.lang.String"/>
+		<field name="UNIT_TALUK_BLOCK" class="java.lang.String"/>
+		<field name="DISTRICT_NAME" class="java.lang.String"/>
+		<field name="IND_TYPE" class="java.lang.String"/>
+		<field name="ACTIVITY_NAME" class="java.lang.String"/>
+		<field name="PROD_DESC" class="java.lang.String"/>
+		<field name="IFSC_CODE" class="java.lang.String"/>
+		<field name="BANK_NAME" class="java.lang.String"/>
+		<field name="BANK_ADDRESS" class="java.lang.String"/>
+		<field name="BANK_F_DATE" class="java.lang.String"/>
+		<field name="PROJ_COST" class="java.math.BigDecimal"/>
+		<field name="TOT_SANC_FB" class="java.math.BigDecimal"/>
+		<field name="CGTSI" class="java.lang.String"/>
+		<field name="IST_LOAN_REL" class="java.math.BigDecimal"/>
+		<field name="MM_CLAIM_DT" class="java.lang.String"/>
+		<field name="MM_CLAIM_AMT" class="java.math.BigDecimal"/>
+		<field name="MM_REL_DT" class="java.lang.String"/>
+		<field name="MM_REL_AMT" class="java.math.BigDecimal"/>
+		<field name="EDP_TRG_NM" class="java.lang.String"/>
+		<field name="EDP_CERT_DT" class="java.lang.String"/>
+		<field name="LOAN_TYPE" class="java.lang.String"/>
+		<field name="APR_YR" class="java.lang.String"/>
+		<field name="ONLINEMOBNO" class="java.lang.String"/>
+		<field name="TEL_NO" class="java.lang.String"/>
+		<field name="E_MAIL" class="java.lang.String"/>
+		<field name="CURRENT_STATUS" class="java.lang.String"/>
+		<field name="IND_GRP_LONG_DESC" class="java.lang.String"/>
+		<field name="SR_NODD" class="java.math.BigDecimal"/>
+	</subDataset>
+	<parameter name="PSR_NO" class="java.lang.String"/>
+	<parameter name="POFF_NAME" class="java.lang.String"/>
+	<parameter name="PSTATE_NM" class="java.lang.String"/>
+	<parameter name="PAPP_ID" class="java.lang.String"/>
+	<parameter name="PAPP_NAME" class="java.lang.String"/>
+	<parameter name="PBENF_TYPE_DESC" class="java.lang.String"/>
+	<parameter name="PGENDER" class="java.lang.String"/>
+	<parameter name="PBENF_SPECAT_CD" class="java.lang.String"/>
+	<parameter name="PBENF_CATEGORY_DESC" class="java.lang.String"/>
+	<parameter name="PDOB" class="java.lang.String"/>
+	<parameter name="PUNIT_LOC" class="java.lang.String"/>
+	<parameter name="PDISTRICT_NAME" class="java.lang.String"/>
+	<parameter name="PUNIT_ADDR" class="java.lang.String"/>
+	<parameter name="PUNIT_TALUK_BLOCK" class="java.lang.String"/>
+	<parameter name="PIND_TYPE" class="java.lang.String"/>
+	<parameter name="PIND_GRP_LONG_DESC" class="java.lang.String"/>
+	<parameter name="PACTIVITY_NAME" class="java.lang.String"/>
+	<parameter name="PPROJ_COST" class="java.lang.String"/>
+	<parameter name="PBANK_ADDRESS" class="java.lang.String"/>
+	<parameter name="PIFSC_CODE" class="java.lang.String"/>
+	<parameter name="PBANK_REMARKS" class="java.lang.String"/>
+	<parameter name="PBANK_REC_DATE" class="java.lang.String"/>
+	<parameter name="PTOTAL_SANC" class="java.lang.String"/>
+	<parameter name="PTOT_SANC_FB" class="java.lang.String"/>
+	<parameter name="PCGTSI" class="java.lang.String"/>
+	<parameter name="PMM_CLAIM_AMT" class="java.lang.String"/>
+	<parameter name="PMM_CLAIM_DT" class="java.lang.String"/>
+	<parameter name="PMM_REL_AMT" class="java.lang.String"/>
+	<parameter name="PMM_REL_DT" class="java.lang.String"/>
+	<parameter name="PEDP_TRG_NM" class="java.lang.String"/>
+	<parameter name="PEDP_FR_DT" class="java.lang.String"/>
+	<parameter name="PEDP_TO_DT" class="java.lang.String"/>
+	<parameter name="PEDP_CERT_DT" class="java.lang.String"/>
+	<parameter name="PEDP_DAYS" class="java.lang.String"/>
+	<parameter name="PCURRENT_STATUS" class="java.lang.String"/>
+	<parameter name="PAGENCY_TYPE" class="java.lang.String"/>
+	<parameter name="PMOB_NO2" class="java.lang.String"/>
+	<parameter name="PTEL_NO" class="java.lang.String"/>
+	<parameter name="PEMAIL_ID" class="java.lang.String"/>
+	<parameter name="PLOAN_TYPE" class="java.lang.String"/>
+	<parameter name="PAPR_YR" class="java.lang.String"/>
+	<parameter name="PBANK_F_DATE" class="java.lang.String"/>
+	<parameter name="PBANK_NAME" class="java.lang.String"/>
+	<parameter name="PONLINEMOBNO" class="java.lang.String"/>
+	<parameter name="PAPR_YR_DD" class="java.lang.String"/>
+	<parameter name="PLOAN_TYPE_DD" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PWHRCLS" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select * from dual]]>
+	</queryString>
+	<field name="DUMMY" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="50">
+			<componentElement>
+				<reportElement key="table 2" style="table 2" x="0" y="0" width="555" height="50" uuid="c5086787-5bba-4668-8809-a2a96329008b"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="New Dataset 1" uuid="1069ebb6-9436-487c-997e-c69e6b3768c5">
+						<datasetParameter name="PSR_NO">
+							<datasetParameterExpression><![CDATA[$P{PSR_NO}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="POFF_NAME">
+							<datasetParameterExpression><![CDATA[$P{POFF_NAME}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="PSTATE_NM">
+							<datasetParameterExpression><![CDATA[$P{PSTATE_NM}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="PAPP_ID">
+							<datasetParameterExpression><![CDATA[$P{PAPP_ID}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="PAPP_NAME">
+							<datasetParameterExpression><![CDATA[$P{PAPP_NAME}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="PBENF_TYPE_DESC">
+							<datasetParameterExpression><![CDATA[$P{PBENF_TYPE_DESC}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="PGENDER">
+							<datasetParameterExpression><![CDATA[$P{PGENDER}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="PBENF_SPECAT_CD">
+							<datasetParameterExpression><![CDATA[$P{PBENF_SPECAT_CD}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="PBENF_CATEGORY_DESC">
+							<datasetParameterExpression><![CDATA[$P{PBENF_CATEGORY_DESC}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="PDOB">
+							<datasetParameterExpression><![CDATA[$P{PDOB}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="PUNIT_LOC">
+							<datasetParameterExpression><![CDATA[$P{PUNIT_LOC}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="PUNIT_ADDR">
+							<datasetParameterExpression><![CDATA[$P{PUNIT_ADDR}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="PDISTRICT_NAME">
+							<datasetParameterExpression><![CDATA[$P{PDISTRICT_NAME}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="PUNIT_TALUK_BLOCK">
+							<datasetParameterExpression><![CDATA[$P{PUNIT_TALUK_BLOCK}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="PIND_TYPE">
+							<datasetParameterExpression><![CDATA[$P{PIND_TYPE}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="PIND_GRP_LONG_DESC">
+							<datasetParameterExpression><![CDATA[$P{PIND_GRP_LONG_DESC}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="PACTIVITY_NAME">
+							<datasetParameterExpression><![CDATA[$P{PACTIVITY_NAME}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="PPROJ_COST">
+							<datasetParameterExpression><![CDATA[$P{PPROJ_COST}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="PBANK_ADDRESS">
+							<datasetParameterExpression><![CDATA[$P{PBANK_ADDRESS}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="PIFSC_CODE">
+							<datasetParameterExpression><![CDATA[$P{PIFSC_CODE}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="PBANK_F_DATE">
+							<datasetParameterExpression><![CDATA[$P{PBANK_F_DATE}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="PBANK_REMARKS">
+							<datasetParameterExpression><![CDATA[$P{PBANK_REMARKS}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="PBANK_REC_DATE">
+							<datasetParameterExpression><![CDATA[$P{PBANK_REC_DATE}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="PTOT_SANC_FB">
+							<datasetParameterExpression><![CDATA[$P{PTOT_SANC_FB}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="PCGTSI">
+							<datasetParameterExpression><![CDATA[$P{PCGTSI}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="PMM_CLAIM_AMT">
+							<datasetParameterExpression><![CDATA[$P{PMM_CLAIM_AMT}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="PMM_CLAIM_DT">
+							<datasetParameterExpression><![CDATA[$P{PMM_CLAIM_DT}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="PMM_REL_AMT">
+							<datasetParameterExpression><![CDATA[$P{PMM_REL_AMT}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="PMM_REL_DT">
+							<datasetParameterExpression><![CDATA[$P{PMM_REL_DT}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="PEDP_TRG_NM">
+							<datasetParameterExpression><![CDATA[$P{PEDP_TRG_NM}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="PEDP_FR_DT">
+							<datasetParameterExpression><![CDATA[$P{PEDP_FR_DT}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="PEDP_TO_DT">
+							<datasetParameterExpression><![CDATA[$P{PEDP_TO_DT}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="PEDP_CERT_DT">
+							<datasetParameterExpression><![CDATA[$P{PEDP_CERT_DT}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="PCURRENT_STATUS">
+							<datasetParameterExpression><![CDATA[$P{PCURRENT_STATUS}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="PAGENCY_TYPE">
+							<datasetParameterExpression><![CDATA[$P{PAGENCY_TYPE}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="PMOB_NO2">
+							<datasetParameterExpression><![CDATA[$P{PMOB_NO2}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="PTEL_NO">
+							<datasetParameterExpression><![CDATA[$P{PTEL_NO}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="PEMAIL_ID">
+							<datasetParameterExpression><![CDATA[$P{PEMAIL_ID}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="PLOAN_TYPE">
+							<datasetParameterExpression><![CDATA[$P{PLOAN_TYPE}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="PAPR_YR">
+							<datasetParameterExpression><![CDATA[$P{PAPR_YR}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="PBANK_NAME">
+							<datasetParameterExpression><![CDATA[$P{PBANK_NAME}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="PONLINEMOBNO">
+							<datasetParameterExpression><![CDATA[$P{PONLINEMOBNO}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="PAPR_YR_DD">
+							<datasetParameterExpression><![CDATA[$P{PAPR_YR_DD}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="PLOAN_TYPE_DD">
+							<datasetParameterExpression><![CDATA[$P{PLOAN_TYPE_DD}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="PWHRCLS">
+							<datasetParameterExpression><![CDATA[$P{PWHRCLS}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="90" uuid="51a84197-338c-48c2-91a1-d4d028e959dc">
+						<printWhenExpression><![CDATA[$P{PSR_NO}.equals( "A" )]]></printWhenExpression>
+						<jr:tableHeader height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="77a67039-9a7e-46e5-b922-88e31818d707">
+									<printWhenExpression><![CDATA[$P{PSR_NO}.equals("A")]]></printWhenExpression>
+								</reportElement>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Sr No.]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell style="table 2_TD" height="22" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="90" height="22" uuid="2b991859-3b1f-4888-93fb-0ea4864aced9">
+									<printWhenExpression><![CDATA[$P{PSR_NO}.equals("A")]]></printWhenExpression>
+								</reportElement>
+								<box topPadding="3" leftPadding="5" bottomPadding="3" rightPadding="5"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{SR_NODD}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="8d78ef62-c1fe-427d-a9eb-01c07e33ac20">
+						<printWhenExpression><![CDATA[$P{PCURRENT_STATUS}.equals( "A" )]]></printWhenExpression>
+						<jr:tableHeader height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="a6b093ec-a11e-460f-bca0-46cf93f856d6">
+									<printWhenExpression><![CDATA[$V{PAGE_NUMBER}==1]]></printWhenExpression>
+								</reportElement>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Current Status]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell style="table 2_TD" height="22" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="90" height="22" isPrintWhenDetailOverflows="true" uuid="ab655efa-1a7a-4c54-bfd0-3416c8b6fb39">
+									<printWhenExpression><![CDATA[$P{PCURRENT_STATUS}.equals("A")]]></printWhenExpression>
+								</reportElement>
+								<box topPadding="3" leftPadding="5" bottomPadding="3" rightPadding="5"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{CURRENT_STATUS}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="ef4e252c-3b3b-490b-9ac0-58b282820972">
+						<printWhenExpression><![CDATA[$P{POFF_NAME}.equals( "A" )]]></printWhenExpression>
+						<jr:tableHeader height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="78f21b6a-23b4-4e26-ac4a-c2dfb6eb9fbe">
+									<printWhenExpression><![CDATA[$V{PAGE_NUMBER}==1]]></printWhenExpression>
+								</reportElement>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Office Name]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell style="table 2_TD" height="22" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="90" height="22" isPrintWhenDetailOverflows="true" uuid="4a361be0-67c1-4ca1-b4a6-118e7171e423">
+									<printWhenExpression><![CDATA[$P{POFF_NAME}.equals("A")]]></printWhenExpression>
+								</reportElement>
+								<box topPadding="3" leftPadding="5" bottomPadding="3" rightPadding="5"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{OFF_NAME}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="7c473c81-365e-485e-9553-a19ed4696269">
+						<printWhenExpression><![CDATA[$P{PAGENCY_TYPE}.equals( "A" )]]></printWhenExpression>
+						<jr:tableHeader height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="79f55424-25f3-40b2-9380-2cdecaa6672f">
+									<printWhenExpression><![CDATA[$V{PAGE_NUMBER}==1]]></printWhenExpression>
+								</reportElement>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Agency Type]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell style="table 2_TD" height="22" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="90" height="22" isPrintWhenDetailOverflows="true" uuid="56cb72a0-1c73-409a-a55d-bf620ee64618">
+									<printWhenExpression><![CDATA[$P{PAGENCY_TYPE}.equals("A")]]></printWhenExpression>
+								</reportElement>
+								<box topPadding="3" leftPadding="5" bottomPadding="3" rightPadding="5"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{AGENCY_TYPE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="c833b044-9937-414e-934c-9963d3cc4720">
+						<printWhenExpression><![CDATA[$P{PSTATE_NM}.equals( "A" )]]></printWhenExpression>
+						<jr:tableHeader height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="f4b5dfff-2ae9-4fc2-a418-bd222c5771b9">
+									<printWhenExpression><![CDATA[$V{PAGE_NUMBER}==1]]></printWhenExpression>
+								</reportElement>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[State]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell style="table 2_TD" height="22" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="90" height="22" isPrintWhenDetailOverflows="true" uuid="332138a0-9df8-4470-82a4-eb2c265409a7">
+									<printWhenExpression><![CDATA[$P{PSTATE_NM}.equals("A")]]></printWhenExpression>
+								</reportElement>
+								<box topPadding="3" leftPadding="5" bottomPadding="3" rightPadding="5"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{STATE_NM}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="e411be05-d61b-4d2f-893b-dd9e53f905f9">
+						<printWhenExpression><![CDATA[$P{PAPP_ID}.equals( "A" )]]></printWhenExpression>
+						<jr:tableHeader height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="063fd2dd-953f-4640-b91e-11b71ca7d8ba">
+									<printWhenExpression><![CDATA[$V{PAGE_NUMBER}==1]]></printWhenExpression>
+								</reportElement>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Applicant Id]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell style="table 2_TD" height="22" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="90" height="22" isPrintWhenDetailOverflows="true" uuid="2c518561-fecd-4a4e-afe0-9c106b854297">
+									<printWhenExpression><![CDATA[$P{PAPP_ID}.equals("A")]]></printWhenExpression>
+								</reportElement>
+								<box topPadding="3" leftPadding="5" bottomPadding="3" rightPadding="5"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{APP_ID}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="ca6788fc-5017-4cf0-942a-a60cf91de2f1">
+						<printWhenExpression><![CDATA[$P{PAPP_NAME}.equals( "A" )]]></printWhenExpression>
+						<jr:tableHeader height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="b05e8930-12e0-4268-ba2b-0a09142a7de6">
+									<printWhenExpression><![CDATA[$V{PAGE_NUMBER}==1]]></printWhenExpression>
+								</reportElement>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Applicant Name]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell style="table 2_TD" height="22" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="90" height="22" isPrintWhenDetailOverflows="true" uuid="9b4ced7a-dfdb-4593-bc6c-5be1e8333415">
+									<printWhenExpression><![CDATA[$P{PAPP_NAME}.equals("A")]]></printWhenExpression>
+								</reportElement>
+								<box topPadding="3" leftPadding="5" bottomPadding="3" rightPadding="5"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{APP_NAME}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="97" uuid="fae08100-e0c3-4a20-8dcd-3cd7d063a376">
+						<printWhenExpression><![CDATA[$P{PMOB_NO2}.equals( "A" )]]></printWhenExpression>
+						<jr:tableHeader height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="97" height="30" uuid="9d581b17-12c5-4ae3-83b2-b7f4078ffd14"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Contact Number]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell height="22" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="97" height="22" isPrintWhenDetailOverflows="true" uuid="682e8a38-cdb0-4783-9e83-f93cd5292009">
+									<printWhenExpression><![CDATA[$P{PONLINEMOBNO}.equals("A")]]></printWhenExpression>
+								</reportElement>
+								<box topPadding="3" leftPadding="5" bottomPadding="3" rightPadding="5"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{ONLINEMOBNO}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="c94e211c-9223-480a-821c-555ca1c19e83">
+						<printWhenExpression><![CDATA[$P{PTEL_NO}.equals( "A" )]]></printWhenExpression>
+						<jr:tableHeader height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="7a0cbd71-f770-40b4-a43d-1bc1d5544f19">
+									<printWhenExpression><![CDATA[$P{PTEL_NO}.equals("A")]]></printWhenExpression>
+								</reportElement>
+								<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Alternative Contact No.]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell height="22" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="90" height="22" isPrintWhenDetailOverflows="true" uuid="7a232ea6-8cab-4bdd-9b36-aeb8eab63709">
+									<printWhenExpression><![CDATA[$P{PTEL_NO}.equals("A")]]></printWhenExpression>
+								</reportElement>
+								<box topPadding="3" leftPadding="5" bottomPadding="3" rightPadding="5"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{TEL_NO}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="49d3e529-4630-441a-a84a-f98686b7791c">
+						<printWhenExpression><![CDATA[$P{PEMAIL_ID}.equals( "A" )]]></printWhenExpression>
+						<jr:tableHeader height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="b818098d-4d03-4580-bcb1-50b584294ff1"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Email ID]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell height="22" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="90" height="22" isPrintWhenDetailOverflows="true" uuid="3c73760e-0b2c-4d86-868a-7c6ebe7bd8e9">
+									<printWhenExpression><![CDATA[$P{PEMAIL_ID}.equals("A")]]></printWhenExpression>
+								</reportElement>
+								<box topPadding="3" leftPadding="5" bottomPadding="3" rightPadding="5"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{E_MAIL}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="92" uuid="a037370c-519d-4d91-ba96-69676a0f9db4">
+						<printWhenExpression><![CDATA[$P{PBENF_TYPE_DESC}.equals( "A" )]]></printWhenExpression>
+						<jr:tableHeader height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="92" height="30" uuid="def1a8ab-446f-40eb-82ab-195056c75a6a">
+									<printWhenExpression><![CDATA[$V{PAGE_NUMBER}==1]]></printWhenExpression>
+								</reportElement>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Legal Status]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell style="table 2_TD" height="22" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="92" height="22" isPrintWhenDetailOverflows="true" uuid="ae685200-09f1-4483-a464-4ed76c46c650">
+									<printWhenExpression><![CDATA[$P{PBENF_TYPE_DESC}.equals("A")]]></printWhenExpression>
+								</reportElement>
+								<box topPadding="3" leftPadding="5" bottomPadding="3" rightPadding="5"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{BENF_TYPE_DESC}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="514f1abb-9c84-4ace-a889-3d4f646ad6f0">
+						<printWhenExpression><![CDATA[$P{PGENDER}.equals( "A" )]]></printWhenExpression>
+						<jr:tableHeader height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="bfdfd5ac-851b-4830-b055-0e9ffd79b814">
+									<printWhenExpression><![CDATA[$V{PAGE_NUMBER}==1]]></printWhenExpression>
+								</reportElement>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Gender]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell style="table 2_TD" height="22" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="90" height="22" isPrintWhenDetailOverflows="true" uuid="5418d984-b89c-4f61-a45e-a8c48e5f6915">
+									<printWhenExpression><![CDATA[$P{PGENDER}.equals("A")]]></printWhenExpression>
+								</reportElement>
+								<box topPadding="3" leftPadding="5" bottomPadding="3" rightPadding="5"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{GENDER}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="fd2e9bc9-dce2-4ee5-8447-6fd5f6c88f14">
+						<printWhenExpression><![CDATA[$P{PBENF_SPECAT_CD}.equals( "A" )]]></printWhenExpression>
+						<jr:tableHeader height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="670c57b8-7289-43e8-833e-a278274ac8d1">
+									<printWhenExpression><![CDATA[$V{PAGE_NUMBER}==1]]></printWhenExpression>
+								</reportElement>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Special Category]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell style="table 2_TD" height="22" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="90" height="22" isPrintWhenDetailOverflows="true" uuid="98871f7e-0b77-4f37-a3b4-2fd5248ff665">
+									<printWhenExpression><![CDATA[$P{PBENF_SPECAT_CD}.equals("A")]]></printWhenExpression>
+								</reportElement>
+								<box topPadding="3" leftPadding="5" bottomPadding="3" rightPadding="5"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{BENF_SPECAT_CD}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="b7ce8eca-8f58-457b-acf4-9f29a245b77e">
+						<printWhenExpression><![CDATA[$P{PBENF_CATEGORY_DESC}.equals( "A" )]]></printWhenExpression>
+						<jr:tableHeader height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="3ba2aae4-3c00-43ae-9361-b0d1cf009ccd">
+									<printWhenExpression><![CDATA[$V{PAGE_NUMBER}==1]]></printWhenExpression>
+								</reportElement>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Category]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell style="table 2_TD" height="22" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="90" height="22" isPrintWhenDetailOverflows="true" uuid="9a6a17ce-62fa-4ee6-85a2-f90e671cf171">
+									<printWhenExpression><![CDATA[$P{PBENF_CATEGORY_DESC}.equals("A")]]></printWhenExpression>
+								</reportElement>
+								<box topPadding="3" leftPadding="5" bottomPadding="3" rightPadding="5"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{BENF_CATEGORY_DESC}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="bac61c62-8389-4674-8860-e36e7bc11714">
+						<printWhenExpression><![CDATA[$P{PDOB}.equals( "A" )]]></printWhenExpression>
+						<jr:tableHeader height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="72176ba1-d29d-4a13-8da4-f1367bb2f1aa">
+									<printWhenExpression><![CDATA[$V{PAGE_NUMBER}==1]]></printWhenExpression>
+								</reportElement>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Date of Birth]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell style="table 2_TD" height="22" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="90" height="22" isPrintWhenDetailOverflows="true" uuid="ef9e081e-0b06-4db7-bc44-ef84cdd00885">
+									<printWhenExpression><![CDATA[$P{PDOB}.equals("A")]]></printWhenExpression>
+								</reportElement>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{DOB}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="50b627e2-9ffe-4b94-8e37-554b9faf1a91">
+						<printWhenExpression><![CDATA[$P{PUNIT_LOC}.equals( "A" )]]></printWhenExpression>
+						<jr:tableHeader height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="f2523a13-70c8-4ff3-afbd-4ad72fd4576d">
+									<printWhenExpression><![CDATA[$V{PAGE_NUMBER}==1]]></printWhenExpression>
+								</reportElement>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Unit Location]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell style="table 2_TD" height="22" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="90" height="22" isPrintWhenDetailOverflows="true" uuid="8fa81d43-5a47-445c-a575-22391978f3e1">
+									<printWhenExpression><![CDATA[$P{PUNIT_LOC}.equals("A")]]></printWhenExpression>
+								</reportElement>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{UNIT_LOC}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="96" uuid="88a8c74c-44ef-43f6-a6c5-bede4d86b6cd">
+						<printWhenExpression><![CDATA[$P{PDISTRICT_NAME}.equals( "A" )]]></printWhenExpression>
+						<jr:tableHeader height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="96" height="30" uuid="b7916b6e-1a32-49ee-8512-52460b68b9f0">
+									<printWhenExpression><![CDATA[$V{PAGE_NUMBER}==1]]></printWhenExpression>
+								</reportElement>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Unit District]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell style="table 2_TD" height="22" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="96" height="22" isPrintWhenDetailOverflows="true" uuid="11a2522f-98d5-4663-ae02-174de387f0f6">
+									<printWhenExpression><![CDATA[$P{PDISTRICT_NAME}.equals("A")]]></printWhenExpression>
+								</reportElement>
+								<box topPadding="3" leftPadding="5" bottomPadding="3" rightPadding="5"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{DISTRICT_NAME}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="23a12569-1698-409d-916a-6ffd6e701734">
+						<printWhenExpression><![CDATA[$P{PUNIT_ADDR}.equals( "A" )]]></printWhenExpression>
+						<jr:tableHeader height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="3219f34b-5ce5-4546-9136-22a6ce253c19">
+									<printWhenExpression><![CDATA[$V{PAGE_NUMBER}==1]]></printWhenExpression>
+								</reportElement>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Unit Address]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell style="table 2_TD" height="22" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="90" height="22" isPrintWhenDetailOverflows="true" uuid="c6b376c1-0b6e-4b12-8fb8-2f3e78c38e09">
+									<printWhenExpression><![CDATA[$P{PUNIT_ADDR}.equals("A")]]></printWhenExpression>
+								</reportElement>
+								<box topPadding="3" leftPadding="5" bottomPadding="3" rightPadding="5"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{UNIT_ADDR}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="6c04b33d-a67e-4a2d-9f56-d539124d1061">
+						<printWhenExpression><![CDATA[$P{PUNIT_TALUK_BLOCK}.equals( "A" )]]></printWhenExpression>
+						<jr:tableHeader height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="372e7e1c-af70-433e-b22e-70b3c6b2b8a7">
+									<printWhenExpression><![CDATA[$V{PAGE_NUMBER}==1]]></printWhenExpression>
+								</reportElement>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Taluka/block]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell style="table 2_TD" height="22" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="90" height="22" isPrintWhenDetailOverflows="true" uuid="15762d29-2ac7-4920-b0a7-892c8e8e813d">
+									<printWhenExpression><![CDATA[$P{PUNIT_TALUK_BLOCK}.equals("A")]]></printWhenExpression>
+								</reportElement>
+								<box topPadding="3" leftPadding="5" bottomPadding="3" rightPadding="5"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{UNIT_TALUK_BLOCK}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="389f668c-5752-4b6a-a5c8-74e2202ea07f">
+						<printWhenExpression><![CDATA[$P{PIND_TYPE}.equals( "A" )]]></printWhenExpression>
+						<jr:tableHeader height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="d20490ae-96d3-489d-8c9f-661a0de964c1">
+									<printWhenExpression><![CDATA[$V{PAGE_NUMBER}==1]]></printWhenExpression>
+								</reportElement>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Industry Type]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell style="table 2_TD" height="22" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="90" height="22" isPrintWhenDetailOverflows="true" uuid="b851a5c6-3fa0-4d64-a2ce-7c18468bfd89">
+									<printWhenExpression><![CDATA[$P{PIND_TYPE}.equals("A")]]></printWhenExpression>
+								</reportElement>
+								<box topPadding="3" leftPadding="5" bottomPadding="3" rightPadding="5"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{IND_TYPE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="109" uuid="036f50f2-2bbf-418e-bbdd-b305f2885b7a">
+						<printWhenExpression><![CDATA[$P{PIND_GRP_LONG_DESC}.equals( "A" )]]></printWhenExpression>
+						<jr:tableHeader height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="109" height="30" uuid="9841aba1-c80f-4fcd-9cfa-8756dc86a462">
+									<printWhenExpression><![CDATA[$V{PAGE_NUMBER}==1]]></printWhenExpression>
+								</reportElement>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Product Desc]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell style="table 2_TD" height="22" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="109" height="22" isPrintWhenDetailOverflows="true" uuid="ce9bf22a-a3de-4fc3-8b04-e460c60327e9">
+									<printWhenExpression><![CDATA[$P{PIND_GRP_LONG_DESC}.equals("A")]]></printWhenExpression>
+								</reportElement>
+								<box topPadding="3" leftPadding="5" bottomPadding="3" rightPadding="5"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{IND_GRP_LONG_DESC}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="eb0ee3ab-5f4d-4d30-894f-2a1158fdd286">
+						<printWhenExpression><![CDATA[$P{PACTIVITY_NAME}.equals( "A" )]]></printWhenExpression>
+						<jr:tableHeader height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="b7f08006-1cce-4424-a77c-3a9c6592c073">
+									<printWhenExpression><![CDATA[$V{PAGE_NUMBER}==1]]></printWhenExpression>
+								</reportElement>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Activity Description]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell style="table 2_TD" height="22" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="90" height="22" isPrintWhenDetailOverflows="true" uuid="dd9b312b-395f-43f0-85e0-d968291c28a6">
+									<printWhenExpression><![CDATA[$P{PACTIVITY_NAME}.equals("A")]]></printWhenExpression>
+								</reportElement>
+								<box topPadding="3" leftPadding="5" bottomPadding="3" rightPadding="5"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{ACTIVITY_NAME}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="752d9ef9-19ce-4d75-aef9-804fc2641f76">
+						<printWhenExpression><![CDATA[$P{PPROJ_COST}.equals( "A" )]]></printWhenExpression>
+						<jr:tableHeader height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="dc475259-99c4-4620-861d-d518ae4f844c">
+									<printWhenExpression><![CDATA[$V{PAGE_NUMBER}==1]]></printWhenExpression>
+								</reportElement>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Project Cost]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell style="table 2_TD" height="22" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="90" height="22" isPrintWhenDetailOverflows="true" uuid="645c4bda-ed11-4bb7-9f1c-a7d6148ed791">
+									<printWhenExpression><![CDATA[$P{PPROJ_COST}.equals("A")]]></printWhenExpression>
+								</reportElement>
+								<box topPadding="3" leftPadding="5" bottomPadding="3" rightPadding="5"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{PROJ_COST}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="7038f8a5-7078-4b8e-a82d-79b6e7042a17">
+						<printWhenExpression><![CDATA[$P{PBANK_ADDRESS}.equals( "A" )]]></printWhenExpression>
+						<jr:tableHeader height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="bf3be729-af4d-4f3c-b1b9-26c19237dbdd">
+									<printWhenExpression><![CDATA[$V{PAGE_NUMBER}==1]]></printWhenExpression>
+								</reportElement>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Financing Branch Address]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell style="table 2_TD" height="22" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="90" height="22" isPrintWhenDetailOverflows="true" uuid="9f8723fa-0a38-4dec-8803-29bbc9e5f01d">
+									<printWhenExpression><![CDATA[$P{PBANK_ADDRESS}.equals("A")]]></printWhenExpression>
+								</reportElement>
+								<box topPadding="3" leftPadding="5" bottomPadding="3" rightPadding="5"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{BANK_ADDRESS}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="b7179eb1-0a16-4ef6-9676-a0aab2c1d9dc">
+						<printWhenExpression><![CDATA[$P{PIFSC_CODE}.equals( "A" )]]></printWhenExpression>
+						<jr:tableHeader height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="f0d7844c-d2c2-473c-9489-626ddb36e4ac">
+									<printWhenExpression><![CDATA[$V{PAGE_NUMBER}==1]]></printWhenExpression>
+								</reportElement>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[IFSC Code]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell style="table 2_TD" height="22" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="90" height="22" isPrintWhenDetailOverflows="true" uuid="bc133ae6-b128-47fd-92a6-991700550dc1">
+									<printWhenExpression><![CDATA[$P{PIFSC_CODE}.equals("A")]]></printWhenExpression>
+								</reportElement>
+								<box topPadding="3" leftPadding="5" bottomPadding="3" rightPadding="5"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{IFSC_CODE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="3756f0dd-2caa-4854-898b-4d17f2a8a9ba">
+						<printWhenExpression><![CDATA[$P{PBANK_NAME}.equals( "A" )]]></printWhenExpression>
+						<jr:tableHeader height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="d880b8d1-e61f-4a1a-8c9a-ab3e20ee997f">
+									<printWhenExpression><![CDATA[$V{PAGE_NUMBER}==1]]></printWhenExpression>
+								</reportElement>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Bank Name]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell style="table 2_TD" height="22" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="90" height="22" isPrintWhenDetailOverflows="true" uuid="e28555b5-f975-4a44-b5dd-a9cabd49d2df">
+									<printWhenExpression><![CDATA[$P{PBANK_NAME}.equals("A")]]></printWhenExpression>
+								</reportElement>
+								<box topPadding="3" leftPadding="5" bottomPadding="3" rightPadding="5"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{BANK_NAME}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="10e6b58c-2849-4331-8b24-f50848642f12">
+						<printWhenExpression><![CDATA[$P{PBANK_F_DATE}.equals( "A" )]]></printWhenExpression>
+						<jr:tableHeader height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="0925d7f4-6dc4-4b1f-ae09-e3350c4974d1">
+									<printWhenExpression><![CDATA[$V{PAGE_NUMBER}==1]]></printWhenExpression>
+								</reportElement>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Bank Forwarding Date]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell style="table 2_TD" height="22" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="90" height="22" isPrintWhenDetailOverflows="true" uuid="5c451b14-1911-4a0c-832a-b06bb92a4a25">
+									<printWhenExpression><![CDATA[$P{PBANK_F_DATE}.equals("A")]]></printWhenExpression>
+								</reportElement>
+								<box topPadding="3" leftPadding="5" bottomPadding="3" rightPadding="5"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{BANK_F_DATE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="5c263c06-fb84-405d-b5ea-bb6d7ace4f5b">
+						<printWhenExpression><![CDATA[$P{PTOT_SANC_FB}.equals( "A" )]]></printWhenExpression>
+						<jr:tableHeader height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="2a971422-8e87-445b-b9da-036898c8b19e">
+									<printWhenExpression><![CDATA[$V{PAGE_NUMBER}==1]]></printWhenExpression>
+								</reportElement>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Total sanction by bank]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell style="table 2_TD" height="22" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="90" height="22" isPrintWhenDetailOverflows="true" uuid="28333734-3d91-4d39-b8e9-53583e52ad89">
+									<printWhenExpression><![CDATA[$P{PTOT_SANC_FB}.equals("A")]]></printWhenExpression>
+								</reportElement>
+								<box topPadding="3" leftPadding="5" bottomPadding="3" rightPadding="5"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{TOT_SANC_FB}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="f44ae01c-3384-4342-b47d-6552a030ec90">
+						<printWhenExpression><![CDATA[$P{PCGTSI}.equals( "A" )]]></printWhenExpression>
+						<jr:tableHeader height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="b259f818-3d91-4134-b433-a3b94b23f8a1">
+									<printWhenExpression><![CDATA[$V{PAGE_NUMBER}==1]]></printWhenExpression>
+								</reportElement>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[CGTSI]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell style="table 2_TD" height="22" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="90" height="22" isPrintWhenDetailOverflows="true" uuid="2b74fcb5-257c-43bb-8a56-44b4ceecb493">
+									<printWhenExpression><![CDATA[$P{PCGTSI}.equals("A")]]></printWhenExpression>
+								</reportElement>
+								<box topPadding="3" leftPadding="5" bottomPadding="3" rightPadding="5"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{CGTSI}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="93d1bb46-d2bd-41ef-93cb-e8ad81ce4ad1">
+						<printWhenExpression><![CDATA[$P{PMM_CLAIM_AMT}.equals( "A" )]]></printWhenExpression>
+						<jr:tableHeader height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="eafc322b-d1dc-43e8-9757-133eccc5e86d">
+									<printWhenExpression><![CDATA[$V{PAGE_NUMBER}==1]]></printWhenExpression>
+								</reportElement>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[MM Claim Amt]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell style="table 2_TD" height="22" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="90" height="22" isPrintWhenDetailOverflows="true" uuid="8d6d4d48-6262-4b93-bb0d-192504f259a4">
+									<printWhenExpression><![CDATA[$P{PMM_CLAIM_AMT}.equals("A")]]></printWhenExpression>
+								</reportElement>
+								<box topPadding="3" leftPadding="5" bottomPadding="3" rightPadding="5"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{MM_CLAIM_AMT}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="457ef168-be1b-4584-a538-b051ae44c6aa">
+						<printWhenExpression><![CDATA[$P{PMM_CLAIM_DT}.equals( "A" )]]></printWhenExpression>
+						<jr:tableHeader height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="cf17b87f-a8ca-41c2-94d4-4285e8b2999b">
+									<printWhenExpression><![CDATA[$V{PAGE_NUMBER}==1]]></printWhenExpression>
+								</reportElement>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[MM Claim Date]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell style="table 2_TD" height="22" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="90" height="22" isPrintWhenDetailOverflows="true" uuid="6f560419-7e30-4bed-b47c-f083ba32822e">
+									<printWhenExpression><![CDATA[$P{PMM_CLAIM_DT}.equals("A")]]></printWhenExpression>
+								</reportElement>
+								<box topPadding="3" leftPadding="5" bottomPadding="3" rightPadding="5"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{MM_CLAIM_DT}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="8efed53e-fb5e-4720-a54c-2494c25804b0">
+						<printWhenExpression><![CDATA[$P{PMM_REL_AMT}.equals( "A" )]]></printWhenExpression>
+						<jr:tableHeader height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="aaf3bf1d-2974-4042-8940-79ed79be411a">
+									<printWhenExpression><![CDATA[$V{PAGE_NUMBER}==1]]></printWhenExpression>
+								</reportElement>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[MM Release Amt]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell style="table 2_TD" height="22" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="90" height="22" isPrintWhenDetailOverflows="true" uuid="57e05e98-02e4-4a66-b870-ae9f7df47649">
+									<printWhenExpression><![CDATA[$P{PMM_REL_AMT}.equals("A")]]></printWhenExpression>
+								</reportElement>
+								<box topPadding="3" leftPadding="5" bottomPadding="3" rightPadding="5"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{MM_REL_AMT}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="4c59613c-6e2a-4c55-a8b3-69f27ba90ba1">
+						<printWhenExpression><![CDATA[$P{PMM_REL_DT}.equals( "A" )]]></printWhenExpression>
+						<jr:tableHeader height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="e4b35025-2c56-4d5e-9789-3aa3fa78528d">
+									<printWhenExpression><![CDATA[$V{PAGE_NUMBER}==1]]></printWhenExpression>
+								</reportElement>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[MM Release Date]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell style="table 2_TD" height="22" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="90" height="22" isPrintWhenDetailOverflows="true" uuid="eb6e6370-2abc-4978-97c6-1a6680627f79">
+									<printWhenExpression><![CDATA[$P{PMM_REL_DT}.equals("A")]]></printWhenExpression>
+								</reportElement>
+								<box topPadding="3" leftPadding="5" bottomPadding="3" rightPadding="5"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{MM_REL_DT}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="71b001b4-360d-4872-8d8d-0e863c08d235">
+						<printWhenExpression><![CDATA[$P{PEDP_TRG_NM}.equals( "A" )]]></printWhenExpression>
+						<jr:tableHeader height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="8f6e6a3d-3912-4b6a-aa53-7e7ebe6d34be">
+									<printWhenExpression><![CDATA[$V{PAGE_NUMBER}==1]]></printWhenExpression>
+								</reportElement>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[EDP Training Center Name]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell style="table 2_TD" height="22" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="90" height="22" isPrintWhenDetailOverflows="true" uuid="9f187d9f-891b-4f65-ab41-0aa8a25c2680">
+									<printWhenExpression><![CDATA[$P{PEDP_TRG_NM}.equals("A")]]></printWhenExpression>
+								</reportElement>
+								<box topPadding="3" leftPadding="5" bottomPadding="3" rightPadding="5"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{EDP_TRG_NM}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="6d4a47a0-6a6d-4002-a29e-804b0af9604e">
+						<printWhenExpression><![CDATA[$P{PEDP_CERT_DT}.equals( "A" )]]></printWhenExpression>
+						<jr:tableHeader height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="777ad9d8-6efa-417c-97c3-6d916f6292b1">
+									<printWhenExpression><![CDATA[$V{PAGE_NUMBER}==1]]></printWhenExpression>
+								</reportElement>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Edp Certificate Issue Date]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell style="table 2_TD" height="22" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="90" height="22" isPrintWhenDetailOverflows="true" uuid="06cb6d41-ce4c-4c60-9c21-76288a2e0cd6">
+									<printWhenExpression><![CDATA[$P{PEDP_CERT_DT}.equals("A")]]></printWhenExpression>
+								</reportElement>
+								<box topPadding="3" leftPadding="5" bottomPadding="3" rightPadding="5"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{EDP_CERT_DT}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="459ca0b8-f264-42c5-a659-65452d3f7b22">
+						<printWhenExpression><![CDATA[$P{PLOAN_TYPE}.equals( "A" )]]></printWhenExpression>
+						<jr:tableHeader height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="1f97531f-13fd-4894-87b7-049e93e9e404">
+									<printWhenExpression><![CDATA[$V{PAGE_NUMBER}==1]]></printWhenExpression>
+								</reportElement>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Loan Type]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell height="22" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="90" height="22" isPrintWhenDetailOverflows="true" uuid="c31bcd2e-f105-4039-9745-17d0934c000d">
+									<printWhenExpression><![CDATA[$P{PLOAN_TYPE}.equals("A")]]></printWhenExpression>
+								</reportElement>
+								<box topPadding="3" leftPadding="5" bottomPadding="3" rightPadding="5"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{LOAN_TYPE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="e7546e0b-cf28-44f8-b1e1-2a9ee2a73b52">
+						<jr:tableHeader height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="ce4d1fa2-013d-43df-9126-8599158ad7f7">
+									<printWhenExpression><![CDATA[$V{PAGE_NUMBER}==1]]></printWhenExpression>
+								</reportElement>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[APR YEAR]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell height="22" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="90" height="22" isPrintWhenDetailOverflows="true" uuid="02cbf705-9dbd-40f7-863d-036904d59e00">
+									<printWhenExpression><![CDATA[$P{PAPR_YR}.equals("A")]]></printWhenExpression>
+								</reportElement>
+								<box topPadding="3" leftPadding="5" bottomPadding="3" rightPadding="5"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{APR_YR}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+	</title>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+</jasperReport>

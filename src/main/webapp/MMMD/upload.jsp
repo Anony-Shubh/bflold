@@ -1,0 +1,343 @@
+<%@ page buffer="1000kb" session="true" import="java.sql.*,java.util.*,java.text.*,java.util.Date,java.text.SimpleDateFormat,pkgPmegpNew.DBCon"  %>
+<%@ page import="java.sql.*"%>
+<%@ page import="java.util.*"%>
+<%@ page import="java.text.*"%>
+<%@ page import="java.util.Date"%>
+<%@ page import="java.io.*"%>
+<%@ page import="java.text.SimpleDateFormat"%>
+<%@ page import="java.io.InputStream"%>
+<%@ page import="java.io.InputStreamReader"%>
+<%@ page import="java.io.BufferedReader"%>
+<%@ page import="javazoom.upload.*"%>
+<%@ page import="globalp.*"%>
+<%@ page import="pkgPmegpNew.DBCon"%>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <%
+    response.setHeader("Cache-Control", "no-cache");
+response.setHeader("Cache-Control", "no-store");
+response.setHeader("Pragma", "no-cache");
+response.setDateHeader("Expires", 0);
+    %>
+<%! 
+
+public static String getExtension(String s) {
+    String ext = null;
+    int i = s.lastIndexOf('.');
+    if (i > 0 &&  i < s.length() - 1) {
+        ext = s.substring(i+1).toLowerCase();
+    }
+    return ext;
+}
+ %>
+  <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+	  <script src="../js/sweetalert.min.js"></script>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+ <script>
+ function submit_form() {
+	 var uploadfile = form.uploadfile.value;
+    
+	 if (uploadfile == "")   {	 swal({title:"Please Select A File To Upload "});	return (false);} 
+	 var M_OTP = form.M_OTP.value;
+		
+	 
+	var DOC_OTP = document.form.DOC_OTP.value;
+    var numberOnly=/^[0-9]*$/;
+ 
+ if(DOC_OTP == "") {
+	 swal({title:"Please Enter OTP "});
+    return false;
+	 }
+	 
+
+	
+	 if(Number(DOC_OTP.length)!=8) {
+		 swal({title:"Invalid OTP....... "});
+				return false;
+	}
+	if(M_OTP != DOC_OTP ) {
+	 swal({title:"OTP Mismatch "});
+    return false;
+	 }
+	
+	document.form.ins.value='I';
+	document.form.submit();
+	
+}</script>
+   
+	<style>
+	.redLebel
+{
+ color:#FF0000;
+ font-size:24px;
+ font-weight:bold;
+
+}
+	</style>
+  </head>
+  <body>
+  <FORM  name="form" action="upload.jsp" id="form" method="post" enctype="multipart/form-data" >
+<%
+ DBCon db= new DBCon();
+db.connect();
+String MIID=(String)session.getAttribute("sMIID");
+String M_OTP=(String)session.getAttribute("sM_OTP");
+
+out.print(M_OTP);
+out.print(MIID);
+String DOC_OTP="";	 
+String DOC_NAME="";
+String msgStrFS=(String) session.getAttribute("msgStrFS")==null?"":(String) session.getAttribute("msgStrFS");
+out.print(msgStrFS);
+	 List values=new ArrayList();
+ List pstm=new ArrayList();
+%>
+<%
+kvicGlobalPath sm = new kvicGlobalPath();
+String a=sm.getStorage("KHADIMHTSV/");
+%>
+	<jsp:useBean id="upBean" scope="page" class="javazoom.upload.UploadBean" >
+  <jsp:setProperty name="upBean" property="folderstore" value="<%=a%>"/>
+  <jsp:setProperty name="upBean" property="filesizelimit" value="4000000" />
+   <jsp:setProperty name="upBean" property="overwrite" value="false" />
+   <jsp:setProperty name="upBean" property="whitelist" value="*.pdf,*.jpg,*.jpeg,*.png" />
+ </jsp:useBean>
+    <div class="background-image">
+      <img src="images/meri_mathi_mera_desh-blankbg.jpg" alt="" />
+    </div>
+    <div class="carousel-container">
+      <div class="row">
+        <div class="col-lg-5 slider">
+          <div
+            id="carouselExampleIndicators"
+            class="carousel slide"
+            data-ride="carousel"
+          >
+            <ol class="carousel-indicators">
+              <li
+                data-target="#carouselExampleIndicators"
+                data-slide-to="0"
+                class="active"
+              ></li>
+              <li
+                data-target="#carouselExampleIndicators"
+                data-slide-to="1"
+              ></li>
+              <li
+                data-target="#carouselExampleIndicators"
+                data-slide-to="2"
+              ></li>
+              <li
+                data-target="#carouselExampleIndicators"
+                data-slide-to="3"
+              ></li>
+              <li
+                data-target="#carouselExampleIndicators"
+                data-slide-to="4"
+              ></li>
+            </ol>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img
+                  class="d-block w-100"
+                  src="images/k1.jpg"
+                  alt="First slide"
+                />
+              </div>
+              <div class="carousel-item">
+                <img
+                  class="d-block w-100"
+                  src="images/k2.jpg"
+                  alt="Second slide"
+                />
+              </div>
+              <div class="carousel-item">
+                <img
+                  class="d-block w-100"
+                  src="images/k3.jpg"
+                  alt="Second slide"
+                />
+              </div>
+              <div class="carousel-item">
+                <img
+                  class="d-block w-100"
+                  src="images/k4.jpg"
+                  alt="Second slide"
+                />
+              </div>
+            </div>
+            <a
+              class="carousel-control-prev"
+              href="#carouselExampleIndicators"
+              role="button"
+              data-slide="prev"
+            >
+              <span
+                class="carousel-control-prev-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a
+              class="carousel-control-next"
+              href="#carouselExampleIndicators"
+              role="button"
+              data-slide="next"
+            >
+              <span
+                class="carousel-control-next-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="sr-only">Next</span>
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-2"></div>
+        <div class="col-lg-5 upload">
+          <h6>Upload picture wearing Khadi</h6>
+          <div class="row" style="justify-content: center">
+            <div class="columns">
+              <div class="containers">
+                <div class="imageWrapper">
+                  <img class="image" src="images/no-img.jpg" />
+                </div>
+              </div> <input type="hidden" name="todo" value="upload"/>
+              <button class="file-upload">
+                <input type="file" name="uploadfile" id="uploadfile" class="file-input" />Choose File
+              </button>
+			   <input name="ins" type="hidden" id="ins" value="">
+            </div>
+          </div>
+		  <div class="row" style="justify-content: center">
+		  <div class="columns">
+              <div class="containers">
+			  <input name="DOC_OTP" type="text" placeholder="enter OTP" id="DOC_OTP" size="10" maxlength="8">
+			   <input name="M_OTP" type="hidden" value="<%=M_OTP%>" id="M_OTP" >
+			  </div>
+			  </div>
+		  </div>
+		   
+      <div class="buttons">
+            <!--<a href="certificate.html" class="final-button"
+              >Generate Certificate</a
+            >-->
+			<input name="btnUpload" type="button" class="final-button" id="btnUpload" value="UPLOAD" onClick="submit_form();">
+          
+          </div>
+		  <br/>
+		  <br/>
+		  <div align="center" class="redLebel"><%=msgStrFS%></div>
+        </div>
+      </div>
+    </div>
+	<br/><br/>
+	
+ <%
+	 
+	 
+	
+	 try {
+      if (MultipartFormDataRequest.isMultipartFormData(request))
+      {
+	  
+         MultipartFormDataRequest mrequest = new MultipartFormDataRequest(request);
+         String todo = null;
+         if (mrequest != null) todo = mrequest.getParameter("todo");
+	     if ( (todo != null) && (todo.equalsIgnoreCase("upload")) )
+	     {
+                Hashtable files = mrequest.getFiles();
+							
+                if ( (files != null) && (!files.isEmpty()))
+                {
+                    UploadFile file = (UploadFile) files.get("uploadfile");
+					
+					String ext=getExtension(file.getFileName());
+					
+					if (ext.equals("jpg")||ext.equals("jpeg")||ext.equals("pdf")) {
+					 upBean.store(mrequest, "uploadfile");
+						String maxID="";
+						 ResultSet rsMax = db.execSQL("SELECT APPUPLOAD_SEQ.NEXTVAL AS MAX_ID FROM SYS.DUAL");
+						 
+						 while (rsMax.next()) {
+						 maxID=rsMax.getString(1);
+						 }
+						
+						rsMax.close();
+						
+						String frenNm="app"+maxID+"."+ext;
+						
+						
+						//File f = new File("/opt/tomcat5/webapps/pmegpeportal/pmegpappupload/"+file.getFileName()+"");
+						File f = new File(a+file.getFileName()+"");
+						
+						boolean success =f.renameTo(new File(a+frenNm+""));
+						//update data in database
+						
+						DOC_OTP=(String) mrequest.getParameter("DOC_OTP")==null?"":(String) mrequest.getParameter("DOC_OTP").trim();
+						
+						
+						out.print("M"+M_OTP);
+						out.print("D"+DOC_OTP);
+						
+						if (DOC_OTP.equals(M_OTP)) {
+		String docStr="update MMMD_DETAIL set DOC_NAME='"+frenNm+"',ACT_YN='Y',UPLOAD_TIMESTAMP=SYSDATE where MIID="+MIID+" ";
+		    ResultSet rsDoc = db.execSQL(docStr);
+				msgStrFS="";
+				session.setAttribute("msgStrFS",msgStrFS);	
+			db.close();
+response.sendRedirect("certificate.html");			
+			
+						}
+						
+						else{
+						msgStrFS="Incorrect OTP....";
+						session.setAttribute("msgStrFS",msgStrFS);	
+						response.sendRedirect("upload.jsp");	
+						
+	 }
+		
+		
+			
+						
+						
+							
+							
+							}//end of jpg
+
+						}
+						}
+						}
+						
+			
+						
+} catch (Exception e) {
+out.print (e.toString());
+}finally{
+
+}
+						%>
+
+    <script src="js/jquery-3.2.1.slim.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script>
+      $(".file-input").change(function () {
+        var curElement = $(this).parent().parent().find(".image");
+        console.log(curElement);
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+          // get loaded data and render thumbnail.
+          curElement.attr("src", e.target.result);
+        };
+
+        // read the image file as a data URL.
+        reader.readAsDataURL(this.files[0]);
+      });
+    </script>
+  </body>
+</html>

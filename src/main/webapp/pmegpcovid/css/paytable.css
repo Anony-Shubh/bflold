@@ -1,0 +1,53 @@
+body {
+  font-family: 'lato', sans-serif;
+}
+.container {
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+h2 {
+  font-size: 26px;
+  margin: 20px 0;
+  text-align: center;
+  small {
+    font-size: 0.5em;
+  }
+
+
+table {
+  border-collapse: collapse;
+ 
+}
+
+th {
+  text-align: left;
+  padding: 8px;
+ 
+  font-family:Georgia, "Times New Roman", Times, serif;
+}
+
+ td {
+  text-align: left;
+  padding: 8px;
+    font-family:Georgia, "Times New Roman", Times, serif;
+
+}
+
+tr:nth-child(even) {background-color: #DEEFEF;}
+tr:nth-child(even) {background-color: #DEEFEF;}
+
+
+/* The Modal (background) */
+
+.style1 {color: #FF0000}
+.style9 {	color: #FF3333;
+	font-size: 18px;
+	font-weight: bold;
+}
+.tooltip {    position: relative;
+    display: inline-block;   
+}

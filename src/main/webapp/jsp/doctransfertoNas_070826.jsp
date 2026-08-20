@@ -1,0 +1,278 @@
+<%@ page import="java.io.IOException" %>
+<%@ page import="java.io.*" %>
+<%-- <%@ page import="java.nio.file.Files" %>
+<%@ page import="java.nio.file.Path" %>
+<%@ page import="java.nio.file.Paths" %>
+<%@ page import="java.nio.file.StandardCopyOption" %> --%>
+<%@ page import="pkgPmegpNew.DBCon"%>
+<%@ page import="java.sql.*" %>
+<%@ page import="java.util.*" %>
+<%@ page import="globalp.*"%>
+ <%@ page import="com.kvic.util.SftpFileReader" %> 
+
+<%
+ /* String linuxIp = "43.240.67.38";
+int sshPort = 5938;
+String linuxUser = "root";
+String linuxPassword = "s0J8&9&!@ENmjlc2B"; 
+SftpFileReader sftp =new SftpFileReader(linuxIp,sshPort,linuxUser,linuxPassword); */
+//String remoteFilePath = "/home/readonly_user/sample.txt";
+//String remoteFilePath = "/shared_storage/pmegpeportalupload/KVIC_UPLOAD_TEMP/PMEGPEPORTAL/pmegpappupload_temp";
+
+
+String vdocname=request.getParameter("docname")==null?"-":(String) request.getParameter("docname");
+String vappID=session.getAttribute("sAPP_ID")==null?"":(String) session.getAttribute("sAPP_ID");;
+
+if (vappID.equals("-")){
+vappID=session.getAttribute("sAPP_ID")==null?"-":(String) session.getAttribute("sAPP_ID");
+}
+
+
+if (vappID !="" && !vdocname.equals("")) {
+StringBuffer qrysb = new StringBuffer();
+
+qrysb.append("SELECT AUT.UP_ID, aut.APP_ID  AS APP_ID, ");
+qrysb.append(" aut.DOC_NAME  AS DOC_NAME,");
+qrysb.append(" 'pmegpeportalupload'||'/'||TO_CHAR(aut.UPLOAD_TIMESTAMP,'RRRR')||'/'||TO_CHAR(aut.UPLOAD_TIMESTAMP,'MON') ");
+qrysb.append(" ||'/'|| TO_CHAR(aut.UPLOAD_TIMESTAMP,'DD') ||'/'||substr(app_id,instr(app_id,'-')+1,length(app_id)) AS DOC_PATH, ");
+qrysb.append(" TO_CHAR(aut.UPLOAD_TIMESTAMP,'RRRR')||'/'||TO_CHAR(aut.UPLOAD_TIMESTAMP,'MON') ");
+qrysb.append(" ||'/'|| TO_CHAR(aut.UPLOAD_TIMESTAMP,'DD') ||'/'||substr(app_id,instr(app_id,'-')+1,length(app_id)) ");
+qrysb.append("  AS TDIR, ");
+qrysb.append(" TO_CHAR(aut.UPLOAD_TIMESTAMP,'RRRR')||'/'||TO_CHAR(aut.UPLOAD_TIMESTAMP,'MON')|| ");
+qrysb.append(" '/'|| TO_CHAR(aut.UPLOAD_TIMESTAMP,'DD') ||'/'||substr(app_id,instr(app_id,'-')+1,length(app_id)) ");
+qrysb.append("  AS REDPATH ");
+qrysb.append(" FROM app_upload_trans aut  WHERE aut.DOC_NAME ='"+vdocname+"' AND AUT.APP_ID='"+vappID+"' ");
+
+  String UP_ID="";
+  String APP_ID="";
+  String TDIR="";
+  String DOC_NAME="";
+  String DOC_PATH="";
+  String REDPATH ="";
+ 
+  List values=new ArrayList();
+ List pstm=new ArrayList();
+ boolean b = false;
+  boolean c = false;
+
+
+int cnt=0;
+DBCon db= new DBCon();
+  db.connect(); 
+
+try {
+
+   ResultSet rs = db.execSQL(qrysb.toString());
+
+  while (rs.next()){
+  
+    UP_ID=rs.getString("UP_ID")==null?"":rs.getString("UP_ID");
+  APP_ID=rs.getString("APP_ID")==null?"":rs.getString("APP_ID");
+    TDIR=rs.getString("TDIR")==null?"":rs.getString("TDIR");
+   DOC_NAME=rs.getString("DOC_NAME")==null?"":rs.getString("DOC_NAME");
+   DOC_PATH=rs.getString("DOC_PATH")==null?"":rs.getString("DOC_PATH");
+   REDPATH=rs.getString("REDPATH")==null?"":rs.getString("REDPATH");
+ cnt=cnt+1;
+}//end of loop
+rs.close();
+}catch (Exception e){}
+out.print (cnt);
+if (cnt>0) {
+	kvicGlobalPath sm = new kvicGlobalPath();
+
+
+	String linuxIp = "43.240.67.38";
+	int sshPort = 5938;
+	String linuxUser = "root";
+	String linuxPassword = "s0J8&9&!@ENmjlc2B";
+
+
+	SftpFileReader sftp = new SftpFileReader(
+	        linuxIp,
+	        sshPort,
+	        linuxUser,
+	        linuxPassword
+	);
+
+
+
+	String tempFolderPath =
+	"/shared_storage/pmegpeportalupload/KVIC_UPLOAD_TEMP/PMEGPEPORTAL/pmegpeappupload_temp";
+
+
+	String nonTempFolderPath =
+	"/shared_storage/pmegpeportalupload/"+TDIR;
+
+
+	String nonTempFilePath =
+	nonTempFolderPath+"/"+DOC_NAME;
+
+
+
+	try {
+
+
+	    // Create destination folder if not available
+
+	    if(!sftp.exists(nonTempFolderPath))
+	    {
+	        sftp.createDirectory(nonTempFolderPath);
+
+	        out.print("Created folder : "
+	                + nonTempFolderPath+"<br>");
+	    }
+
+
+
+	    // Check main file
+
+	    if(sftp.exists(nonTempFilePath))
+	    {
+
+	        c=true;
+
+	        out.print(
+	        "File Exist in main path : "
+	        +nonTempFilePath+"<br>");
+
+	    }
+	    else
+	    {
+
+	        c=false;
+
+	        out.print(
+	        "File Not Exist in main path : "
+	        +nonTempFilePath+"<br>");
+
+	    }
+
+
+
+
+	    /*
+	     * Move from TEMP folder
+	     */
+
+	    if(!c)
+	    {
+
+
+	        String tempFile =
+	        tempFolderPath+"/"+DOC_NAME;
+
+
+
+	        if(sftp.exists(tempFile))
+	        {
+
+	            sftp.moveFile(
+	                    tempFile,
+	                    nonTempFilePath
+	            );
+
+
+	            c=true;
+
+
+	            out.print(
+	            "File moved from temp : "
+	            +tempFile+"<br>");
+
+	        }
+	        else
+	        {
+
+	            out.print(
+	            "Temp file not found : "
+	            +tempFile+"<br>");
+
+	        }
+
+
+	    }
+
+
+
+
+	    /*
+	     * Move from Nash temporary folder
+	     */
+
+	    if(!c)
+	    {
+
+
+	        String foldername="";
+
+
+	        ResultSet rstemp =
+	        db.execSQL(
+	        "SELECT foldername FROM TEMPUPLOADVIEW "
+	        +" WHERE FILENME='"+vdocname+"' "
+	        +" GROUP BY foldername"
+	        );
+
+
+	        while(rstemp.next())
+	        {
+
+	            foldername =
+	            rstemp.getString("foldername")==null?
+	            "":
+	            rstemp.getString("foldername");
+
+
+
+	            String Nashfolder =
+	            "/shared_storage/pmegpeportalupload/"
+	            +"KVIC_UPLOAD_TEMP/PMEGPEPORTAL/"
+	            +foldername+"/"+vdocname;
+
+
+
+	            if(sftp.exists(Nashfolder))
+	            {
+
+
+	                sftp.moveFile(
+	                    Nashfolder,
+	                    nonTempFilePath
+	                );
+
+
+	                c=true;
+
+
+	                out.print(
+	                "Moved Nash file : "
+	                +Nashfolder+"<br>");
+
+	            }
+
+
+	        }
+
+
+	        rstemp.close();
+
+	    }
+
+
+
+	}
+	catch(Exception m)
+	{
+
+	    out.print(
+	    "SFTP Error : "
+	    +m.getMessage());
+
+	}
+
+response.sendRedirect("http://https://219.65.90.102/uploads/"+REDPATH+"/"+DOC_NAME);
+}// end if
+db.close();
+
+}
+%>

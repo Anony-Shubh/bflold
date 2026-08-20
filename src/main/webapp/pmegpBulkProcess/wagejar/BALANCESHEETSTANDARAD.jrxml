@@ -1,0 +1,561 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="BALANCESHEETSTANDARAD" pageWidth="936" pageHeight="842" columnWidth="896" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="14e876e5-d07c-491a-8ce3-62b15bd088f3">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="187"/>
+	<property name="ireport.y" value="34"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Crosstab Data Text" hAlign="Center"/>
+	<subDataset name="ASSET" uuid="89bb1886-d8eb-4596-9789-1884c3ca7b1a">
+		<parameter name="PVCUSTCODE" class="java.lang.String">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="PVFROMDT" class="java.lang.String">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="PVTODT" class="java.lang.String">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="PVSESSIONID" class="java.lang.String">
+			<defaultValueExpression><![CDATA[$P{PVSESSIONID}]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[SELECT * FROM ACC_TEMP_PL_SD WHERE TYPE='A' ORDER BY SRNO]]>
+		</queryString>
+		<field name="ACGRP_ID" class="java.math.BigDecimal"/>
+		<field name="ACGRP_DESC" class="java.lang.String"/>
+		<field name="LEDG_DESC" class="java.lang.String"/>
+		<field name="TOT_LIABILITY" class="java.math.BigDecimal"/>
+		<field name="TOT_ASSETS" class="java.math.BigDecimal"/>
+		<field name="PNL_GROSS" class="java.math.BigDecimal"/>
+		<field name="PNL_FLAG" class="java.lang.String"/>
+		<field name="DR_AMT_CL" class="java.math.BigDecimal"/>
+		<field name="ACGRP_NATURE" class="java.lang.String"/>
+		<field name="SRNO" class="java.math.BigDecimal"/>
+		<field name="TYPE" class="java.lang.String"/>
+		<variable name="TOT_ASSETS" class="java.math.BigDecimal" calculation="Sum">
+			<variableExpression><![CDATA[$F{DR_AMT_CL}]]></variableExpression>
+		</variable>
+		<variable name="ASSET_TOT_DR" class="java.math.BigDecimal" resetType="Group" resetGroup="ACGRP_DESC" calculation="Sum">
+			<variableExpression><![CDATA[$F{DR_AMT_CL}]]></variableExpression>
+		</variable>
+		<group name="ACGRP_DESC">
+			<groupExpression><![CDATA[$F{ACGRP_DESC}]]></groupExpression>
+		</group>
+		<group name="LEDG_DESC">
+			<groupExpression><![CDATA[$F{LEDG_DESC}]]></groupExpression>
+		</group>
+		<group name="DR_AMT_CL">
+			<groupExpression><![CDATA[$F{DR_AMT_CL}]]></groupExpression>
+		</group>
+	</subDataset>
+	<subDataset name="LIABILITY" uuid="ac846fad-bbe6-4290-9281-34dcf74b4c27">
+		<parameter name="LPCUSTCODE" class="java.lang.String">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="LPFROMDT" class="java.lang.String">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="LPTODT" class="java.lang.String">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="PVSESSIONID" class="java.lang.String">
+			<defaultValueExpression><![CDATA[$P{PVSESSIONID}]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[SELECT * FROM ACC_TEMP_PL_SD WHERE TYPE='L' ORDER BY SRNO]]>
+		</queryString>
+		<field name="ACGRP_ID" class="java.math.BigDecimal"/>
+		<field name="ACGRP_DESC" class="java.lang.String"/>
+		<field name="LEDG_DESC" class="java.lang.String"/>
+		<field name="TOT_LIABILITY" class="java.math.BigDecimal"/>
+		<field name="TOT_ASSETS" class="java.math.BigDecimal"/>
+		<field name="PNL_GROSS" class="java.math.BigDecimal"/>
+		<field name="PNL_FLAG" class="java.lang.String"/>
+		<field name="DR_AMT_CL" class="java.math.BigDecimal"/>
+		<field name="ACGRP_NATURE" class="java.lang.String"/>
+		<field name="SRNO" class="java.math.BigDecimal"/>
+		<field name="TYPE" class="java.lang.String"/>
+		<variable name="LIABILITY_TOT_CR" class="java.math.BigDecimal" resetType="Group" resetGroup="ACGRP_DESC" calculation="Sum">
+			<variableExpression><![CDATA[$F{CR_AMT_CL}]]></variableExpression>
+		</variable>
+		<variable name="LIABILITY_TOT" class="java.math.BigDecimal" calculation="Sum">
+			<variableExpression><![CDATA[$F{CR_AMT_CL}]]></variableExpression>
+		</variable>
+		<group name="ACGRP_NATURE">
+			<groupExpression><![CDATA[$F{ACGRP_NATURE}]]></groupExpression>
+		</group>
+		<group name="ACGRP_DESC">
+			<groupExpression><![CDATA[$F{ACGRP_DESC}]]></groupExpression>
+		</group>
+		<group name="LEDG_DESC">
+			<groupExpression><![CDATA[$F{LEDG_DESC}]]></groupExpression>
+		</group>
+	</subDataset>
+	<parameter name="PCUSTCODE" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PFROMDT" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PTODT" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PSESSIONID" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[(SELECT AGM.ACGRP_NATURE,
+  DRT.LEDGERID,
+  DRT.ACGRP_ID,
+(SELECT  KI.KINAME FROM  KIMAST KI ,CUSTMAST CM WHERE  KI.KIID=CM.BASEID AND CM.CUSTCODE=$P{PCUSTCODE}) AS KINAME ,
+   (SELECT  CM.NAME FROM  KIMAST KI ,CUSTMAST CM WHERE  KI.KIID=CM.BASEID AND CM.CUSTCODE=$P{PCUSTCODE}) AS NAME,
+    (SELECT  CM.ADDR1
+  || ','
+  || 'Pincode:'
+  || CM.PINCODE
+  || ','
+  || CM.CITY
+  || ',State:'
+  ||
+  MAX((SELECT statemaster.STATENAME
+  FROM statemaster
+  WHERE statemaster.STATEID = CM.STATE
+  )) AS BR_ADDRESS FROM  KIMAST KI ,CUSTMAST CM WHERE  KI.KIID=CM.BASEID AND CM.CUSTCODE=$P{PCUSTCODE}
+  GROUP BY    CM.ADDR1, CM.PINCODE, CM.CITY,   CM.PHONE_STD, CM.PHONE_NO1,CM.BASEID ) AS ADDR,
+  DRT.DR_AMT_CL-DRT.CR_AMT_CL AS DR_AMT_CL ,
+  --DRT.CR_AMT_CL,
+  AGM.ACGRP_DESC,
+  ALM.LEDG_DESC
+FROM
+  (SELECT *
+  FROM TABLE(FUNCT_LEDGER_ALL_TRAIL($P{PCUSTCODE}, $P{PFROMDT},$P{PTODT} ))
+  ) DRT,
+  ACC_GROUP_MAST AGM,
+  ACC_LEDG_MAST ALM
+WHERE DRT.LEDGERID    = ALM.LEDGID
+AND ALM.ACGRP_ID      = AGM.ACGRP_ID
+AND AGM.ACGRP_NATURE IN ('ASSETS') AND AGM.ACGRP_DESC NOT LIKE'STOCK_IN_HAND'
+--GROUP BY
+)order by AGM.ACGRP_DESC]]>
+	</queryString>
+	<field name="ACGRP_NATURE" class="java.lang.String"/>
+	<field name="LEDGERID" class="java.math.BigDecimal"/>
+	<field name="ACGRP_ID" class="java.math.BigDecimal"/>
+	<field name="KINAME" class="java.lang.String"/>
+	<field name="NAME" class="java.lang.String"/>
+	<field name="ADDR" class="java.lang.String"/>
+	<field name="DR_AMT_CL" class="java.math.BigDecimal"/>
+	<field name="ACGRP_DESC" class="java.lang.String"/>
+	<field name="LEDG_DESC" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="106" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="-1" width="896" height="23" uuid="7cc85eaa-4ef9-48ff-b414-5bf0b3628e25"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="16" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KINAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="22" width="896" height="20" uuid="0dece255-79b3-45ad-a40a-31be5e1f0595"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="42" width="896" height="20" uuid="80706633-07f1-4580-a9f6-3c9316d0a80a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ADDR}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="63" width="896" height="20" uuid="5fe1382b-0e15-4fca-b4a2-e17f0ffa0e6f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TO]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="308" y="63" width="100" height="20" uuid="f995d2d3-b0c7-42a8-8a58-2563cf0ebfb9"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{PFROMDT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="505" y="63" width="100" height="20" uuid="2d4ab0b1-c9eb-460b-991e-c6bb120ce60c"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{PTODT}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="1" y="83" width="438" height="23" backcolor="#FFFF99" uuid="d74b96b2-9690-49ae-a701-566718bb92f0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[BALANCESHEET AS ON ]]></text>
+			</staticText>
+			<textField>
+				<reportElement mode="Opaque" x="439" y="83" width="100" height="23" backcolor="#FFFF99" uuid="a997e961-f2ae-48f4-b268-407e86c9a520"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{PTODT}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="539" y="80" width="357" height="26" backcolor="#FFFF99" uuid="05773b11-f9c8-4467-bf1b-b8f986ae3d2e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="23" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="1" y="0" width="357" height="23" backcolor="#FFCCCC" uuid="47298a50-b2e9-486a-9761-eca102702493"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[LIABILITIES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="562" y="0" width="334" height="23" backcolor="#CCFFCC" uuid="49c9c9e8-d4db-4dae-b025-addc3c6c5b40"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ASSETS]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="225" splitType="Stretch">
+			<componentElement>
+				<reportElement key="table 1" style="table 1" x="562" y="0" width="334" height="140" uuid="42e1af97-6b9c-4bb7-bc51-f600a5330b57"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="ASSET" uuid="d4ac64bc-5437-477f-a380-7d776a328a6f">
+						<datasetParameter name="PVCUSTCODE">
+							<datasetParameterExpression><![CDATA[$P{PCUSTCODE}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="PVFROMDT">
+							<datasetParameterExpression><![CDATA[$P{PFROMDT}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="PVTODT">
+							<datasetParameterExpression><![CDATA[$P{PTODT}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="PVSESSIONID">
+							<datasetParameterExpression><![CDATA[$P{PSESSIONID}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="76" uuid="9b5eaf32-8398-4649-8eb8-43d9d1e9703c">
+						<jr:tableFooter style="table 1_CH" height="30" rowSpan="1"/>
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement isPrintRepeatedValues="false" x="0" y="0" width="76" height="28" isPrintInFirstWholeBand="true" uuid="aca5ce3e-7a4b-4fb8-9665-770aee2011df"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[GROUP]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 1_TD" height="30" rowSpan="1"/>
+						<jr:detailCell style="table 1_TD" height="30" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="76" height="30" uuid="689a000f-459a-4762-a249-265c7598782a"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="160" uuid="eb41fa81-e57e-4dfc-89ae-eefddfc2282d">
+						<jr:tableFooter style="table 1_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement isPrintRepeatedValues="false" x="0" y="0" width="160" height="30" isPrintInFirstWholeBand="true" uuid="b876ec87-2858-4d98-b7f0-5d9f37934714"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Total :]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement isPrintRepeatedValues="false" x="0" y="0" width="160" height="28" isPrintInFirstWholeBand="true" uuid="1656f694-e3b5-4ff7-ab09-8792954df9ab"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[PARTICULARS]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 1_TD" height="30" rowSpan="1">
+							<staticText>
+								<reportElement isPrintRepeatedValues="false" x="0" y="0" width="160" height="30" isPrintInFirstWholeBand="true" uuid="08dc4eec-7df6-4503-9562-f14d82d08c91">
+									<printWhenExpression><![CDATA[$F{PNL_FLAG}.equals( "L" )]]></printWhenExpression>
+								</reportElement>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Profit & Loss A/C (Loss) :]]></text>
+							</staticText>
+						</jr:columnFooter>
+						<jr:detailCell style="table 1_TD" height="30" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="1" width="160" height="29" uuid="3e60ed0e-0ce5-4099-ad90-a99ac62d8063"/>
+								<box leftPadding="3"/>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="11"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{LEDG_DESC}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="98" uuid="e79bb001-7dcf-4830-984d-6366a68f4a44">
+						<jr:tableFooter style="table 1_CH" height="30" rowSpan="1">
+							<textField pattern="###0.00;-###0.00">
+								<reportElement x="0" y="0" width="98" height="30" uuid="300025ea-615e-419e-9388-5410f72e1f05"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="12"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{TOT_ASSETS}]]></textFieldExpression>
+							</textField>
+						</jr:tableFooter>
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement isPrintRepeatedValues="false" x="0" y="0" width="98" height="28" isPrintInFirstWholeBand="true" uuid="de2fa1ae-d483-4aa3-a202-5f4ed1522cae"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[AMOUNT]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 1_TD" height="30" rowSpan="1">
+							<textField pattern="###0.00;-###0.00">
+								<reportElement x="0" y="0" width="98" height="30" uuid="cce455eb-5403-40d4-b783-2df39ea4d319">
+									<printWhenExpression><![CDATA[$F{PNL_FLAG}.equals( "L" )]]></printWhenExpression>
+								</reportElement>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="11"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{PNL_GROSS}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table 1_TD" height="30" rowSpan="1">
+							<textField evaluationTime="Group" evaluationGroup="ACGRP_DESC" pattern="###0.00;-###0.00">
+								<reportElement x="0" y="1" width="98" height="29" printWhenGroupChanges="ACGRP_DESC" uuid="3e72176c-0176-45fd-9315-874bfe842be4">
+									<printWhenExpression><![CDATA[$V{ACGRP_DESC_COUNT}==1]]></printWhenExpression>
+								</reportElement>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{ASSET_TOT_DR}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+			<componentElement>
+				<reportElement key="table 2" style="table 2" x="0" y="0" width="328" height="140" uuid="5d15d4f2-daf5-42ef-abfc-c5a36fed1cd1"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="LIABILITY" uuid="1d9eeb8d-45a0-4bd9-9ad3-d75f4ae0df70">
+						<datasetParameter name="LPCUSTCODE">
+							<datasetParameterExpression><![CDATA[$P{PCUSTCODE}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="LPFROMDT">
+							<datasetParameterExpression><![CDATA[$P{PFROMDT}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="LPTODT">
+							<datasetParameterExpression><![CDATA[$P{PTODT}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="PVSESSIONID">
+							<datasetParameterExpression><![CDATA[$P{PSESSIONID}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="74" uuid="34c7d83c-8d41-4707-bda9-9685f386bbf6">
+						<jr:tableFooter style="table 1_CH" height="30" rowSpan="1"/>
+						<jr:columnHeader style="table 2_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement isPrintRepeatedValues="false" x="0" y="0" width="74" height="28" isPrintInFirstWholeBand="true" uuid="5fb04fec-7bf7-49a9-86c4-bd639a9ee75e"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[GROUP]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 1_TD" height="30" rowSpan="1"/>
+						<jr:detailCell style="table 2_TD" height="33" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="74" height="33" uuid="4fbbd208-0df4-42f5-8131-eed0ab816532"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="176" uuid="2c6590e0-d1c3-45b0-bf07-2353dd996f55">
+						<jr:tableFooter style="table 1_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement isPrintRepeatedValues="false" x="0" y="0" width="176" height="30" isPrintInFirstWholeBand="true" uuid="9c85406d-4a06-482f-9368-85cd30e96172">
+									<printWhenExpression><![CDATA[$F{PNL_FLAG}.equals( "P" )]]></printWhenExpression>
+								</reportElement>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Total]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:columnHeader style="table 2_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement isPrintRepeatedValues="false" x="0" y="0" width="176" height="28" isPrintInFirstWholeBand="true" uuid="a0ac21ca-4847-4b9b-ad37-192e66fe747e"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[PARTICULARS]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 1_TD" height="30" rowSpan="1">
+							<staticText>
+								<reportElement isPrintRepeatedValues="false" x="0" y="0" width="176" height="30" isPrintInFirstWholeBand="true" uuid="042ecc74-68bd-4f80-b86b-d3ba0c94b793">
+									<printWhenExpression><![CDATA[$F{PNL_FLAG}.equals( "P" )]]></printWhenExpression>
+								</reportElement>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Profit & Loss A/C (Profit) :]]></text>
+							</staticText>
+						</jr:columnFooter>
+						<jr:detailCell style="table 2_TD" height="33" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="176" height="33" uuid="ccc4c81e-8aa9-4384-a11a-dcb2fe53dd03"/>
+								<box leftPadding="3"/>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="11"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{LEDG_DESC}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="45538cb2-b1dc-45dd-8156-13c9bbfac1cf">
+						<jr:tableFooter style="table 1_CH" height="30" rowSpan="1">
+							<textField pattern="###0.00;-###0.00">
+								<reportElement x="0" y="0" width="100" height="30" uuid="c5d1f967-831e-428d-8a2a-b544120cf756"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="12"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{TOT_LIABILITY}]]></textFieldExpression>
+							</textField>
+						</jr:tableFooter>
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement isPrintRepeatedValues="false" x="0" y="0" width="100" height="28" isPrintInFirstWholeBand="true" uuid="ab00748d-bf77-4528-81d8-39bd786f9e60"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[AMOUNT]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 1_TD" height="30" rowSpan="1">
+							<textField pattern="###0.00;-###0.00">
+								<reportElement x="0" y="0" width="100" height="30" uuid="f8708023-60ea-4b6b-81d0-3c8339ddbd6f">
+									<printWhenExpression><![CDATA[$F{PNL_FLAG}.equals( "P" )]]></printWhenExpression>
+								</reportElement>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="11"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{PNL_GROSS}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table 1_TD" height="33" rowSpan="1">
+							<textField evaluationTime="Group" evaluationGroup="ACGRP_DESC" pattern="###0.00;-###0.00">
+								<reportElement x="0" y="0" width="100" height="33" printWhenGroupChanges="ACGRP_DESC" uuid="3041f775-3341-49fd-810c-96e4913d3cdb">
+									<printWhenExpression><![CDATA[$V{ACGRP_DESC_COUNT}==1]]></printWhenExpression>
+								</reportElement>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{LIABILITY_TOT_CR}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+	</summary>
+</jasperReport>

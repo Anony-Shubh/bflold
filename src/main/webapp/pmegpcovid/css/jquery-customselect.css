@@ -1,0 +1,170 @@
+/*!
+ * jQuery Custom Select Plugin - Master Source
+ * 2014-09-03
+ *
+ * http://www.blissmedia.com.au/
+ *
+ * Copyright 2014 Bliss Media
+ * Released under the MIT license:
+ *   http://www.opensource.org/licenses/mit-license.php
+ */
+
+/* Standard
+----------------------------------*/
+.custom-select {
+  position: relative;
+  width: 60%;
+  height: 36px;
+  border: 1px solid white;
+
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  background-color: #ba8107;
+  font-weight: bold;
+  font-size: 11px; 
+  font-family: Verdana,  Arial, Sans-Serif; 
+  font-style: normal;
+}
+.custom-select a {
+  display: inline-block;
+  width: 90%;
+  height: 20px;
+  padding: 8px 10px;
+  color: #000;
+  background-color: #ba8107;
+  text-decoration: none;
+  cursor: pointer;
+}
+}
+.custom-select a span {
+  display: inline-block;
+  width: 90%;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.custom-select select {
+  display: none !important;
+}
+.custom-select > div {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin: 1px 0 0 -1px;
+  width: 100%;
+  border: 1px solid #888;
+  border-top: 0;
+  background: #FFFFFF;
+  z-index: 10;
+  overflow: hidden;
+}
+.custom-select input {
+  width: 90%;
+  border: 1px solid #ffffff ;
+  margin: 5px 5px 0;
+  padding: 5px;
+    font-weight: bold;
+  font-size: 11px; 
+  font-family: Verdana,  Arial, Sans-Serif; 
+  font-style: normal;
+  background: #fff url('../images/multilist.search.png') no-repeat 5px 50%;
+  line-height: 2em;
+  padding: 2px 5px 2px 25px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  background-color: #EAEBEE;
+  
+}
+
+.custom-select loading{
+	 background: white url('../images/multilist.indicator.gif') right center no-repeat;
+	
+}
+
+.custom-select > div > div {
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: visible;
+  margin: 5px;
+  max-height: 250px;
+}
+.custom-select div ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.custom-select div ul li {
+  display: none;
+  padding: 5px;
+}
+.custom-select div ul li.active {
+  display: block;
+  cursor: pointer;
+}
+.custom-select div ul li:hover {
+  background: #9298A9;
+  color: #fff;
+}
+.custom-select div ul li.option-hover {
+  background: #808040;
+  color: #fff;
+}
+.custom-select div ul li.option-disabled {
+  color: #999;
+}
+.custom-select div ul li.option-disabled:hover {
+  background: #ff9999;
+  color: #C4C8D2;
+}
+.custom-select div ul li.option-hover.option-disabled {
+  background: #ff6666;
+  color: #C4C8D2;
+}
+.custom-select div ul li.no-results {
+  display: none;
+  background: #f2f2f2;
+  color: #000;
+}
+
+.autocomplete-suggestions strong {
+	font-weight: normal; 
+	color: #3399ff;
+	}
+
+/* Custom Select - Open
+----------------------------------*/
+.custom-select-open {
+  border-bottom: 1px solid ;
+    background-color: #D9DBE1;
+}
+.custom-select-open div {
+  display: block;
+    background-color: #D9DBE1;
+}
+
+/* Hide Input Box
+----------------------------------*/
+.custom-select input.custom-select-hidden-input {
+  position: absolute !important;
+  top: 0 !important;
+  left: -1000px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  z-index: -1 !important;
+}
+
+/* Mobile Override
+----------------------------------*/
+.custom-select-mobile select {
+  display: inline !important;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}

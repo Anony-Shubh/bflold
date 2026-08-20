@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="GENDER" pageWidth="595" pageHeight="504" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ac61080d-8fbe-4900-910f-e5e5a48d70bf">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT GENDER,SUM(GEND_COUNT)  AS GEND_COUNT FROM
+(
+SELECT
+CASE WHEN GENDER IN ('Women','NA') then
+'Non-Individual'
+ELSE
+GENDER
+END GENDER
+
+,COUNT(*) AS GEND_COUNT FROM APP_DETAIL
+GROUP BY
+GENDER) GROUP BY GENDER]]>
+	</queryString>
+	<field name="GENDER" class="java.lang.String"/>
+	<field name="GEND_COUNT" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="57" splitType="Stretch">
+			<staticText>
+				<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="2" y="3" width="553" height="48" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" forecolor="#FFFFFF" backcolor="#006699" uuid="296c8a0e-1dce-4196-8cb1-d70209aa0596"/>
+				<box>
+					<pen lineWidth="5.0" lineStyle="Double"/>
+					<topPen lineWidth="5.0" lineStyle="Double"/>
+					<leftPen lineWidth="5.0" lineStyle="Double"/>
+					<bottomPen lineWidth="5.0" lineStyle="Double"/>
+					<rightPen lineWidth="5.0" lineStyle="Double"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Gender wise and Non individual wise No. of Application Received from 01-Jul-2016 to as on Date]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="22" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="316" splitType="Stretch">
+			<pieChart>
+				<chart renderType="image">
+					<reportElement mode="Opaque" x="0" y="0" width="555" height="274" isRemoveLineWhenBlank="true" forecolor="#333300" backcolor="#FFF5E1" uuid="67c2da3c-1299-41e2-bdcd-b68599fe1254"/>
+					<box>
+						<pen lineWidth="2.0"/>
+						<topPen lineWidth="2.0"/>
+						<leftPen lineWidth="2.0"/>
+						<bottomPen lineWidth="2.0"/>
+						<rightPen lineWidth="2.0"/>
+					</box>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend textColor="#FFFFFF" backgroundColor="#006666">
+						<font size="12" isBold="true"/>
+					</chartLegend>
+				</chart>
+				<pieDataset>
+					<keyExpression><![CDATA[$F{GENDER}]]></keyExpression>
+					<valueExpression><![CDATA[$F{GEND_COUNT}]]></valueExpression>
+				</pieDataset>
+				<piePlot labelFormat=" {0}   No: {1}  ({2})">
+					<plot>
+						<seriesColor seriesOrder="0" color="#C4AA9D"/>
+						<seriesColor seriesOrder="1" color="#D6D325"/>
+						<seriesColor seriesOrder="2" color="#A5D0E3"/>
+					</plot>
+					<itemLabel color="#FFFF99" backgroundColor="#333300">
+						<font size="12" isBold="true"/>
+					</itemLabel>
+				</piePlot>
+			</pieChart>
+			<textField pattern="dd/MM/yyyy h.mm a">
+				<reportElement mode="Opaque" x="0" y="274" width="236" height="30" forecolor="#FFFFFF" backcolor="#CCCCCC" uuid="f9ce7cdd-8207-45dd-a93c-68e76c95caf5"/>
+				<box leftPadding="5" rightPadding="5">
+					<pen lineWidth="5.0" lineStyle="Double"/>
+					<topPen lineWidth="5.0" lineStyle="Double"/>
+					<leftPen lineWidth="5.0" lineStyle="Double"/>
+					<bottomPen lineWidth="5.0" lineStyle="Double"/>
+					<rightPen lineWidth="5.0" lineStyle="Double"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="236" y="274" width="243" height="30" forecolor="#000000" backcolor="#CCCCCC" uuid="d9eed0b1-ddce-4870-871c-bacf9249f6e7"/>
+				<box leftPadding="5" rightPadding="5">
+					<pen lineWidth="3.0" lineStyle="Double"/>
+					<topPen lineWidth="3.0" lineStyle="Double"/>
+					<leftPen lineWidth="3.0" lineStyle="Double"/>
+					<bottomPen lineWidth="3.0" lineStyle="Double"/>
+					<rightPen lineWidth="3.0" lineStyle="Double"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total No of Applications:]]></text>
+			</staticText>
+			<textField>
+				<reportElement mode="Opaque" x="479" y="274" width="77" height="30" forecolor="#000000" backcolor="#CCCCCC" uuid="3717f40d-08e2-4769-87fd-f9bc5c762375"/>
+				<box leftPadding="5" rightPadding="5">
+					<pen lineWidth="3.0" lineStyle="Double"/>
+					<topPen lineWidth="3.0" lineStyle="Double"/>
+					<leftPen lineWidth="3.0" lineStyle="Double"/>
+					<bottomPen lineWidth="3.0" lineStyle="Double"/>
+					<rightPen lineWidth="3.0" lineStyle="Double"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{GEND_COUNT}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

@@ -1,0 +1,859 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="pmegpOnlineIndividualReport" pageWidth="612" pageHeight="1008" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5a19cd2d-70b2-4f68-a369-dd88c6e28ab6">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="495"/>
+	<style name="Crosstab Data Text" hAlign="Center"/>
+	<parameter name="PFRDT" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PTODT" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT  PROC_DT,USR_SH_NM,REF_CL,REF_CL_MM,'Refered' as REF_CLAIMED FROM
+(SELECT TRUNC(PROC_DT) AS PROC_DT,USR_SH_NM,
+
+    SUM(
+    CASE
+      WHEN ACT_ID = 30
+      THEN 1
+      ELSE 0
+    END) AS REF_CL,
+    SUM(
+    CASE
+      WHEN ACT_ID = 30
+      THEN ROUND(MM_CLAIM_AMT / 100000, 2)
+      ELSE 0
+    END) AS REF_CL_MM,
+    SUM(
+    CASE
+      WHEN ACT_ID IN (32,34)
+      THEN 1
+      ELSE 0
+    END) AS RECOM_CL,
+    SUM(
+    CASE
+      WHEN ACT_ID IN (32,34)
+      THEN ROUND(MM_CLAIM_AMT / 100000, 2)
+      ELSE 0
+    END) AS RECOM_MM
+
+  FROM
+    (SELECT MOM.OFF_NAME1       AS AGENCY_STATE,
+      AD.APP_ID                 AS PMEGP_APPLICANTION_ID,
+      AD.APP_NAME               AS APPLICANT_NAME,
+      BD.IFSC_CODE              AS IFSC_CODE,
+      BD.FB_ACNO                AS TRANSIENT_ACCNT_NO,
+      TO_CHAR(BD.APPLOAN_ACCNO) AS LOAN_ACCOUNT_NUMBER,
+      BD.MM_CLAIM_AMT           AS MARGIN_MONEY_CLAIMED_AMOUNT,
+      MRT.CO_REMARKS,MCU.USR_SH_NM,
+      TRUNC(MRT.PROC_DT)                                AS PROC_DT,
+      TRUNC(BD.MM_CLAIM_DT)                             AS MM_CLAIM_DT,
+      NVL(BAS.ACT_ID, 0)                                AS ACT_ID,
+      NVL(BAS.ACT_DESC, 'Pending for MM claim process') AS ACT_DESC,
+      NVL(BD.MM_CLAIM_AMT, 0)                           AS MM_CLAIM_AMT,
+      BBM.BR_NAME,
+      BBM.BR_ADDR,
+      BBM.EMAIL,
+      BBM.BRANCH_NAME,
+      BBM.CONT_NO,
+      BBM.DESIG,
+      BBM.CONT_NAME,
+      BD.APPRV_YN,
+      BD.PACT_ID,
+      BD.PBATCH_ID,
+      TO_CHAR(BD.BATCH_DATE, 'DD-MON-RRRR') AS BTACH_DATE,
+      BD.EDP_CERT_DT,
+      BD.PAY_STATUS,
+      BD.UTRN_NO
+    FROM APP_DETAIL AD,
+      BANK_DATAENTRY BD,
+      MAS_OFF_MAST MOM,
+      M_DISTRICT MD,
+      M_STATE MS,
+      MM_REMARKS_TRANS MRT,MMCLAIM_USER MCU,
+      BANK_APP_STATUS BAS,
+      BANK_BR_MAST BBM
+    WHERE AD.APP_ID       = BD.APP_ID
+    AND AD.OFF_CD         = MOM.OFF_CD
+    AND AD.UNIT_DIST_CD   = MD.DISTRICT_CD
+    AND MS.STATE_CD       = MD.STATE_CD
+    AND BD.REMTRID        = MRT.REMTR_ID
+    AND MRT.USER_ID       = MCU.USER_ID
+    AND BD.PACT_ID        = BAS.ACT_ID(+)
+    AND BBM.BR_IFSL_CODE  = BD.IFSC_CODE
+    AND BD.MM_CLAIM_AMT   > 0
+    AND BD.LOAN_DOCFNAME IS NOT NULL
+    )
+    WHERE  TRUNC(PROC_DT)  BETWEEN $P{PFRDT} AND $P{PTODT}
+  GROUP BY (TRUNC(PROC_DT)),USR_SH_NM)
+  UNION
+   SELECT PROC_DT,USR_SH_NM,REF_CL,REF_CL_MM,'Refered' as REF_CLAIMED FROM
+(SELECT TRUNC(PROC_DT) AS PROC_DT,USR_SH_NM,
+
+    SUM(
+    CASE
+      WHEN ACT_ID = 30
+      THEN 1
+      ELSE 0
+    END) AS REF_CL,
+    SUM(
+    CASE
+      WHEN ACT_ID = 30
+      THEN ROUND(MM_CLAIM_AMT / 100000, 2)
+      ELSE 0
+    END) AS REF_CL_MM,
+    SUM(
+    CASE
+      WHEN  ACT_ID IN (32,34)
+      THEN 1
+      ELSE 0
+    END) AS RECOM_CL,
+    SUM(
+    CASE
+      WHEN ACT_ID IN (32,34)
+      THEN ROUND(MM_CLAIM_AMT / 100000, 2)
+      ELSE 0
+    END) AS RECOM_MM
+
+  FROM
+    (SELECT MOM.OFF_NAME1       AS AGENCY_STATE,
+      AD.APP_ID                 AS PMEGP_APPLICANTION_ID,
+      AD.APP_NAME               AS APPLICANT_NAME,
+      BD.IFSC_CODE              AS IFSC_CODE,
+      BD.FB_ACNO                AS TRANSIENT_ACCNT_NO,
+      TO_CHAR(BD.APPLOAN_ACCNO) AS LOAN_ACCOUNT_NUMBER,
+      BD.MM_CLAIM_AMT           AS MARGIN_MONEY_CLAIMED_AMOUNT,
+      MRT.CO_REMARKS,MCU.USR_SH_NM,
+      TRUNC(MRT.PROC_DT)                                AS PROC_DT,
+      TRUNC(BD.MM_CLAIM_DT)                             AS MM_CLAIM_DT,
+      NVL(BAS.ACT_ID, 0)                                AS ACT_ID,
+      NVL(BAS.ACT_DESC, 'Pending for MM claim process') AS ACT_DESC,
+      NVL(BD.MM_CLAIM_AMT, 0)                           AS MM_CLAIM_AMT,
+      BBM.BR_NAME,
+      BBM.BR_ADDR,
+      BBM.EMAIL,
+      BBM.BRANCH_NAME,
+      BBM.CONT_NO,
+      BBM.DESIG,
+      BBM.CONT_NAME,
+      BD.APPRV_YN,
+      BD.PACT_ID,
+      BD.PBATCH_ID,
+      TO_CHAR(BD.BATCH_DATE, 'DD-MON-RRRR') AS BTACH_DATE,
+      BD.EDP_CERT_DT,
+      BD.PAY_STATUS,
+      BD.UTRN_NO
+    FROM APP_DETAIL AD,
+      BANK_DATAENTRY BD,
+      MAS_OFF_MAST MOM,
+      M_DISTRICT MD,
+      M_STATE MS,
+      MM_REMARKS_TRANS MRT,MMCLAIM_USER MCU,
+      BANK_APP_STATUS BAS,
+      BANK_BR_MAST BBM
+    WHERE AD.APP_ID       = BD.APP_ID
+    AND AD.OFF_CD         = MOM.OFF_CD
+    AND AD.UNIT_DIST_CD   = MD.DISTRICT_CD
+    AND MS.STATE_CD       = MD.STATE_CD
+    AND BD.REMTRID        = MRT.REMTR_ID
+    AND MRT.USER_ID       = MCU.USER_ID
+    AND BD.PACT_ID        = BAS.ACT_ID(+)
+    AND BBM.BR_IFSL_CODE  = BD.IFSC_CODE
+    AND BD.MM_CLAIM_AMT   > 0
+    AND BD.LOAN_DOCFNAME IS NOT NULL
+    )
+    WHERE  TRUNC(PROC_DT) BETWEEN $P{PFRDT} AND $P{PTODT}
+  GROUP BY (TRUNC(PROC_DT)),USR_SH_NM)
+  union
+   SELECT PROC_DT,USR_SH_NM,RECOM_CL,RECOM_MM,'Recom.' as REF_CLAIMED FROM
+(SELECT TRUNC(PROC_DT) AS PROC_DT,USR_SH_NM,
+
+    SUM(
+    CASE
+      WHEN ACT_ID = 30
+      THEN 1
+      ELSE 0
+    END) AS REF_CL,
+    SUM(
+    CASE
+      WHEN ACT_ID = 30
+      THEN ROUND(MM_CLAIM_AMT / 100000, 2)
+      ELSE 0
+    END) AS REF_CL_MM,
+    SUM(
+    CASE
+      WHEN ACT_ID IN (32,34)
+      THEN 1
+      ELSE 0
+    END) AS RECOM_CL,
+    SUM(
+    CASE
+      WHEN ACT_ID IN (32,34)
+      THEN ROUND(MM_CLAIM_AMT / 100000, 2)
+      ELSE 0
+    END) AS RECOM_MM
+
+  FROM
+    (SELECT MOM.OFF_NAME1       AS AGENCY_STATE,
+      AD.APP_ID                 AS PMEGP_APPLICANTION_ID,
+      AD.APP_NAME               AS APPLICANT_NAME,
+      BD.IFSC_CODE              AS IFSC_CODE,
+      BD.FB_ACNO                AS TRANSIENT_ACCNT_NO,
+      TO_CHAR(BD.APPLOAN_ACCNO) AS LOAN_ACCOUNT_NUMBER,
+      BD.MM_CLAIM_AMT           AS MARGIN_MONEY_CLAIMED_AMOUNT,
+      MRT.CO_REMARKS,MCU.USR_SH_NM,
+      TRUNC(MRT.PROC_DT)                                AS PROC_DT,
+      TRUNC(BD.MM_CLAIM_DT)                             AS MM_CLAIM_DT,
+      NVL(BAS.ACT_ID, 0)                                AS ACT_ID,
+      NVL(BAS.ACT_DESC, 'Pending for MM claim process') AS ACT_DESC,
+      NVL(BD.MM_CLAIM_AMT, 0)                           AS MM_CLAIM_AMT,
+      BBM.BR_NAME,
+      BBM.BR_ADDR,
+      BBM.EMAIL,
+      BBM.BRANCH_NAME,
+      BBM.CONT_NO,
+      BBM.DESIG,
+      BBM.CONT_NAME,
+      BD.APPRV_YN,
+      BD.PACT_ID,
+      BD.PBATCH_ID,
+      TO_CHAR(BD.BATCH_DATE, 'DD-MON-RRRR') AS BTACH_DATE,
+      BD.EDP_CERT_DT,
+      BD.PAY_STATUS,
+      BD.UTRN_NO
+    FROM APP_DETAIL AD,
+      BANK_DATAENTRY BD,
+      MAS_OFF_MAST MOM,
+      M_DISTRICT MD,
+      M_STATE MS,
+      MM_REMARKS_TRANS MRT,MMCLAIM_USER MCU,
+      BANK_APP_STATUS BAS,
+      BANK_BR_MAST BBM
+    WHERE AD.APP_ID       = BD.APP_ID
+    AND AD.OFF_CD         = MOM.OFF_CD
+    AND AD.UNIT_DIST_CD   = MD.DISTRICT_CD
+    AND MS.STATE_CD       = MD.STATE_CD
+    AND BD.REMTRID        = MRT.REMTR_ID
+    AND MRT.USER_ID       = MCU.USER_ID
+    AND BD.PACT_ID        = BAS.ACT_ID(+)
+    AND BBM.BR_IFSL_CODE  = BD.IFSC_CODE
+    AND BD.MM_CLAIM_AMT   > 0
+    AND BD.LOAN_DOCFNAME IS NOT NULL
+    )
+    WHERE TRUNC(PROC_DT) BETWEEN $P{PFRDT} AND $P{PTODT}
+  GROUP BY (TRUNC(PROC_DT)),USR_SH_NM)]]>
+	</queryString>
+	<field name="PROC_DT" class="java.sql.Timestamp"/>
+	<field name="USR_SH_NM" class="java.lang.String"/>
+	<field name="REF_CL" class="java.math.BigDecimal"/>
+	<field name="REF_CL_MM" class="java.math.BigDecimal"/>
+	<field name="REF_CLAIMED" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="39" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="572" height="39" uuid="bb63cc71-4da8-4b91-b4b6-aa7a71a8f279"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MM Claim Process Report From]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="278" y="6" width="100" height="33" uuid="1d0d7ed6-7f6d-4155-9d76-8a19d800cb63"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{PFRDT}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="378" y="6" width="82" height="33" uuid="955b6f71-4fe9-47d4-b05a-f242700160be"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[To]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="460" y="6" width="100" height="33" uuid="25fdeedc-d317-4267-ae49-6f4c9b33b9e3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{PTODT}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="23" splitType="Stretch">
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="0" width="209" height="20" uuid="207713d5-0945-47df-be85-f61bb27124a0"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="431" y="0" width="81" height="20" uuid="172a0347-df2e-466a-8700-c0e6aff3dab9"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="511" y="0" width="41" height="20" uuid="d785f44b-470a-49ad-8f1b-ef0b24c58ad4"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="830" splitType="Stretch">
+			<crosstab>
+				<reportElement x="26" y="690" width="505" height="111" uuid="9980c83e-48e2-4ce6-95f7-020c92b96f40"/>
+				<crosstabHeaderCell>
+					<cellContents>
+						<staticText>
+							<reportElement style="Crosstab Data Text" x="0" y="0" width="70" height="30" uuid="b1b4fc11-9671-4b8c-854d-214eb206be29"/>
+							<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+								<topPen lineWidth="1.0"/>
+								<leftPen lineWidth="1.0"/>
+								<bottomPen lineWidth="1.0"/>
+								<rightPen lineWidth="1.0"/>
+							</box>
+							<textElement verticalAlignment="Middle">
+								<font size="11" isBold="true"/>
+							</textElement>
+							<text><![CDATA[Process Date]]></text>
+						</staticText>
+						<staticText>
+							<reportElement style="Crosstab Data Text" x="70" y="0" width="138" height="30" uuid="4f13f181-24df-4d8a-834a-dff207ca0c70"/>
+							<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+								<topPen lineWidth="1.0"/>
+								<leftPen lineWidth="1.0"/>
+								<bottomPen lineWidth="1.0"/>
+								<rightPen lineWidth="1.0"/>
+							</box>
+							<textElement verticalAlignment="Middle">
+								<font size="11" isBold="true"/>
+							</textElement>
+							<text><![CDATA[User Detail]]></text>
+						</staticText>
+					</cellContents>
+				</crosstabHeaderCell>
+				<rowGroup name="PROC_DT" width="70" totalPosition="End">
+					<bucket class="java.sql.Timestamp">
+						<bucketExpression><![CDATA[$F{PROC_DT}]]></bucketExpression>
+					</bucket>
+					<crosstabRowHeader>
+						<cellContents backcolor="#F0F8FF" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textField pattern="dd-MMM-yy" isBlankWhenNull="true">
+								<reportElement style="Crosstab Data Text" x="0" y="0" width="70" height="25" uuid="14fd942b-fc5b-4952-a607-0d3e401b1f29"/>
+								<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+									<topPen lineWidth="1.0"/>
+									<leftPen lineWidth="1.0"/>
+									<bottomPen lineWidth="1.0"/>
+									<rightPen lineWidth="1.0"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font size="11" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{PROC_DT}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabRowHeader>
+					<crosstabTotalRowHeader>
+						<cellContents backcolor="#005FB3" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="208" height="25" forecolor="#FFFFFF" uuid="e4dad0b3-0e66-49d3-8f96-87de999379ae"/>
+								<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+									<topPen lineWidth="1.0"/>
+									<leftPen lineWidth="1.0"/>
+									<bottomPen lineWidth="1.0"/>
+									<rightPen lineWidth="1.0"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Grand Total ]]></text>
+							</staticText>
+						</cellContents>
+					</crosstabTotalRowHeader>
+				</rowGroup>
+				<rowGroup name="USER_DETAIL" width="138" totalPosition="End">
+					<bucket class="java.lang.String">
+						<bucketExpression><![CDATA[$F{USR_SH_NM}]]></bucketExpression>
+					</bucket>
+					<crosstabRowHeader>
+						<cellContents backcolor="#F0F8FF" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textField>
+								<reportElement style="Crosstab Data Text" x="0" y="0" width="138" height="25" uuid="91ea9bda-5bcc-462c-bd38-7806c60cf520"/>
+								<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+									<topPen lineWidth="1.0"/>
+									<leftPen lineWidth="1.0"/>
+									<bottomPen lineWidth="1.0"/>
+									<rightPen lineWidth="1.0"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font size="11" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{USER_DETAIL}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabRowHeader>
+					<crosstabTotalRowHeader>
+						<cellContents backcolor="#BFE1FF" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="138" height="25" uuid="4f3dfc78-07e0-4fda-b817-d63563117467"/>
+								<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+									<topPen lineWidth="1.0"/>
+									<leftPen lineWidth="1.0"/>
+									<bottomPen lineWidth="1.0"/>
+									<rightPen lineWidth="1.0"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Total ]]></text>
+							</staticText>
+						</cellContents>
+					</crosstabTotalRowHeader>
+				</rowGroup>
+				<columnGroup name="REF_CLAIMED" height="30" totalPosition="End">
+					<bucket class="java.lang.String">
+						<bucketExpression><![CDATA[$F{REF_CLAIMED}]]></bucketExpression>
+					</bucket>
+					<crosstabColumnHeader>
+						<cellContents backcolor="#F0F8FF" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textField>
+								<reportElement style="Crosstab Data Text" x="0" y="0" width="50" height="30" uuid="ce70ad2b-dc37-47a9-a314-0de03f95bfd0"/>
+								<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+									<topPen lineWidth="1.0"/>
+									<leftPen lineWidth="1.0"/>
+									<bottomPen lineWidth="1.0"/>
+									<rightPen lineWidth="1.0"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font size="11" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{REF_CLAIMED}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabColumnHeader>
+					<crosstabTotalColumnHeader>
+						<cellContents backcolor="#BFE1FF" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="104" height="30" uuid="8ea4f3fe-d31d-4efd-afff-e95dde30d2c4"/>
+								<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+									<topPen lineWidth="1.0"/>
+									<leftPen lineWidth="1.0"/>
+									<bottomPen lineWidth="1.0"/>
+									<rightPen lineWidth="1.0"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Total]]></text>
+							</staticText>
+						</cellContents>
+					</crosstabTotalColumnHeader>
+				</columnGroup>
+				<measure name="REF_CLMeasure" class="java.math.BigDecimal" calculation="Sum">
+					<measureExpression><![CDATA[$F{REF_CL}]]></measureExpression>
+				</measure>
+				<crosstabCell width="50" height="25">
+					<cellContents>
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField>
+							<reportElement style="Crosstab Data Text" x="0" y="0" width="50" height="25" uuid="afe6b5b3-167d-4771-92a0-52f46e577560"/>
+							<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+								<topPen lineWidth="1.0"/>
+								<leftPen lineWidth="1.0"/>
+								<bottomPen lineWidth="1.0"/>
+								<rightPen lineWidth="1.0"/>
+							</box>
+							<textElement verticalAlignment="Middle">
+								<font size="11" isBold="true"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{REF_CLMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="50" height="25" rowTotalGroup="PROC_DT">
+					<cellContents backcolor="#005FB3" mode="Opaque">
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField>
+							<reportElement style="Crosstab Data Text" x="0" y="0" width="50" height="25" forecolor="#FFFFFF" uuid="f36d8563-8534-49a9-aeb5-2c4811762cd0"/>
+							<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+								<topPen lineWidth="1.0"/>
+								<leftPen lineWidth="1.0"/>
+								<bottomPen lineWidth="1.0"/>
+								<rightPen lineWidth="1.0"/>
+							</box>
+							<textElement verticalAlignment="Middle">
+								<font size="11" isBold="true"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{REF_CLMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="104" columnTotalGroup="REF_CLAIMED">
+					<cellContents backcolor="#BFE1FF" mode="Opaque">
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField>
+							<reportElement style="Crosstab Data Text" x="0" y="0" width="104" height="25" uuid="7d2c89e2-f990-4725-acf8-916713d67a31"/>
+							<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+								<topPen lineWidth="1.0"/>
+								<leftPen lineWidth="1.0"/>
+								<bottomPen lineWidth="1.0"/>
+								<rightPen lineWidth="1.0"/>
+							</box>
+							<textElement verticalAlignment="Middle">
+								<font size="11" isBold="true"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{REF_CLMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="104" rowTotalGroup="PROC_DT" columnTotalGroup="REF_CLAIMED">
+					<cellContents backcolor="#005FB3" mode="Opaque">
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField>
+							<reportElement style="Crosstab Data Text" x="0" y="0" width="104" height="25" forecolor="#FFFFFF" uuid="cb0a5e25-326a-4ac5-b1e6-990f120accd4"/>
+							<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+								<topPen lineWidth="1.0"/>
+								<leftPen lineWidth="1.0"/>
+								<bottomPen lineWidth="1.0"/>
+								<rightPen lineWidth="1.0"/>
+							</box>
+							<textElement verticalAlignment="Middle">
+								<font size="11" isBold="true"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{REF_CLMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="50" height="25" rowTotalGroup="USER_DETAIL">
+					<cellContents backcolor="#BFE1FF" mode="Opaque">
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField>
+							<reportElement style="Crosstab Data Text" x="0" y="0" width="50" height="25" uuid="edd31276-712a-473f-82ee-5aa64d54cb0a"/>
+							<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+								<topPen lineWidth="1.0"/>
+								<leftPen lineWidth="1.0"/>
+								<bottomPen lineWidth="1.0"/>
+								<rightPen lineWidth="1.0"/>
+							</box>
+							<textElement verticalAlignment="Middle">
+								<font size="11" isBold="true"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{REF_CLMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="104" rowTotalGroup="USER_DETAIL" columnTotalGroup="REF_CLAIMED">
+					<cellContents backcolor="#BFE1FF" mode="Opaque">
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField>
+							<reportElement style="Crosstab Data Text" x="0" y="0" width="104" height="25" uuid="602c3119-905e-4e7d-aa20-c1536b088f9e"/>
+							<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+								<topPen lineWidth="1.0"/>
+								<leftPen lineWidth="1.0"/>
+								<bottomPen lineWidth="1.0"/>
+								<rightPen lineWidth="1.0"/>
+							</box>
+							<textElement verticalAlignment="Middle">
+								<font size="11" isBold="true"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{REF_CLMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+			</crosstab>
+			<crosstab>
+				<reportElement x="84" y="259" width="471" height="139" uuid="de2cd160-bf95-45b6-94e9-bb78f96b2114"/>
+				<crosstabHeaderCell>
+					<cellContents>
+						<staticText>
+							<reportElement style="Crosstab Data Text" x="0" y="0" width="154" height="30" uuid="1cc31c2b-0e38-4965-9ae6-c0ae6f37a92e"/>
+							<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+								<topPen lineWidth="1.0"/>
+								<leftPen lineWidth="1.0"/>
+								<bottomPen lineWidth="1.0"/>
+								<rightPen lineWidth="1.0"/>
+							</box>
+							<textElement>
+								<font size="12" isBold="true"/>
+							</textElement>
+							<text><![CDATA[User Name]]></text>
+						</staticText>
+					</cellContents>
+				</crosstabHeaderCell>
+				<rowGroup name="USER_DETAIL" width="154" totalPosition="End">
+					<bucket class="java.lang.String">
+						<bucketExpression><![CDATA[$F{USR_SH_NM}]]></bucketExpression>
+					</bucket>
+					<crosstabRowHeader>
+						<cellContents backcolor="#F0F8FF" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textField>
+								<reportElement style="Crosstab Data Text" x="0" y="0" width="154" height="25" uuid="e96011f5-e8cc-40b3-ae08-026b0caeb36f"/>
+								<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+									<topPen lineWidth="1.0"/>
+									<leftPen lineWidth="1.0"/>
+									<bottomPen lineWidth="1.0"/>
+									<rightPen lineWidth="1.0"/>
+								</box>
+								<textElement>
+									<font size="12" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{USER_DETAIL}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabRowHeader>
+					<crosstabTotalRowHeader>
+						<cellContents backcolor="#BFE1FF" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="154" height="25" uuid="aa4bdcb0-8515-49a0-b766-a4c4333e7349"/>
+								<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+									<topPen lineWidth="1.0"/>
+									<leftPen lineWidth="1.0"/>
+									<bottomPen lineWidth="1.0"/>
+									<rightPen lineWidth="1.0"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="12" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Total ]]></text>
+							</staticText>
+						</cellContents>
+					</crosstabTotalRowHeader>
+				</rowGroup>
+				<columnGroup name="REF_CLAIMED" height="30" totalPosition="End">
+					<bucket class="java.lang.String">
+						<bucketExpression><![CDATA[$F{REF_CLAIMED}]]></bucketExpression>
+					</bucket>
+					<crosstabColumnHeader>
+						<cellContents backcolor="#F0F8FF" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textField>
+								<reportElement style="Crosstab Data Text" x="0" y="0" width="64" height="30" uuid="bf540463-2290-4ee7-8a7a-5f2d4691bd70"/>
+								<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+									<topPen lineWidth="1.0"/>
+									<leftPen lineWidth="1.0"/>
+									<bottomPen lineWidth="1.0"/>
+									<rightPen lineWidth="1.0"/>
+								</box>
+								<textElement>
+									<font size="12" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{REF_CLAIMED}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabColumnHeader>
+					<crosstabTotalColumnHeader>
+						<cellContents backcolor="#BFE1FF" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="50" height="30" uuid="11789811-5aa8-44e2-860b-42e86aeeba65"/>
+								<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+									<topPen lineWidth="1.0"/>
+									<leftPen lineWidth="1.0"/>
+									<bottomPen lineWidth="1.0"/>
+									<rightPen lineWidth="1.0"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="12" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Total ]]></text>
+							</staticText>
+						</cellContents>
+					</crosstabTotalColumnHeader>
+				</columnGroup>
+				<measure name="REF_CLMeasure" class="java.math.BigDecimal" calculation="Sum">
+					<measureExpression><![CDATA[$F{REF_CL}]]></measureExpression>
+				</measure>
+				<crosstabCell width="64" height="25">
+					<cellContents>
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField>
+							<reportElement style="Crosstab Data Text" x="0" y="0" width="64" height="25" uuid="460f1a27-cf19-4a3f-a22b-d5609c855a6e"/>
+							<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+								<topPen lineWidth="1.0"/>
+								<leftPen lineWidth="1.0"/>
+								<bottomPen lineWidth="1.0"/>
+								<rightPen lineWidth="1.0"/>
+							</box>
+							<textElement>
+								<font size="12" isBold="true"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{REF_CLMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="64" height="25" rowTotalGroup="USER_DETAIL">
+					<cellContents backcolor="#BFE1FF" mode="Opaque">
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField>
+							<reportElement style="Crosstab Data Text" x="0" y="0" width="64" height="25" uuid="64f2ada3-17c7-40ea-9eb4-4acd03b216c7"/>
+							<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+								<topPen lineWidth="1.0"/>
+								<leftPen lineWidth="1.0"/>
+								<bottomPen lineWidth="1.0"/>
+								<rightPen lineWidth="1.0"/>
+							</box>
+							<textElement>
+								<font size="12" isBold="true"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{REF_CLMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="50" columnTotalGroup="REF_CLAIMED">
+					<cellContents backcolor="#BFE1FF" mode="Opaque">
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField>
+							<reportElement style="Crosstab Data Text" x="0" y="0" width="50" height="25" uuid="6330af55-f926-4c44-a0fe-33fbb6491c3c"/>
+							<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+								<topPen lineWidth="1.0"/>
+								<leftPen lineWidth="1.0"/>
+								<bottomPen lineWidth="1.0"/>
+								<rightPen lineWidth="1.0"/>
+							</box>
+							<textElement>
+								<font size="12" isBold="true"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{REF_CLMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell rowTotalGroup="USER_DETAIL" columnTotalGroup="REF_CLAIMED">
+					<cellContents backcolor="#BFE1FF" mode="Opaque">
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField>
+							<reportElement style="Crosstab Data Text" x="0" y="0" width="50" height="25" uuid="e6d03819-46d4-4553-b539-cce2570c6059"/>
+							<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+								<topPen lineWidth="1.0"/>
+								<leftPen lineWidth="1.0"/>
+								<bottomPen lineWidth="1.0"/>
+								<rightPen lineWidth="1.0"/>
+							</box>
+							<textElement>
+								<font size="12" isBold="true"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{REF_CLMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+			</crosstab>
+			<break>
+				<reportElement x="0" y="628" width="100" height="1" uuid="e7734151-b373-4e10-83cb-8aaad194f2c5"/>
+			</break>
+			<stackedBar3DChart>
+				<chart theme="default">
+					<reportElement x="0" y="0" width="555" height="259" isPrintInFirstWholeBand="true" uuid="595a57af-6a1c-4269-9d78-466335dd955d"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend position="Top"/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA[$F{REF_CLAIMED}]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{USR_SH_NM}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{REF_CL}]]></valueExpression>
+						<labelExpression><![CDATA[$F{REF_CLAIMED}]]></labelExpression>
+					</categorySeries>
+				</categoryDataset>
+				<bar3DPlot>
+					<plot labelRotation="70.0"/>
+					<itemLabel/>
+					<categoryAxisFormat labelRotation="70.0">
+						<axisFormat/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat/>
+					</valueAxisFormat>
+				</bar3DPlot>
+			</stackedBar3DChart>
+			<staticText>
+				<reportElement x="0" y="646" width="572" height="32" uuid="d399f82a-ce59-4e6f-9b8a-34e00a1b491f"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MM Claim Process Report From ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="283" y="647" width="100" height="31" uuid="9cba5945-0907-4621-9f05-b2a28a9a362c"/>
+				<textElement verticalAlignment="Middle">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{PFRDT}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="394" y="647" width="31" height="31" uuid="bace84e5-7824-4784-bac7-a043086314d3"/>
+				<textElement verticalAlignment="Middle">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[To]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="447" y="647" width="100" height="31" uuid="11045546-1334-49b7-9736-6450476a097d"/>
+				<textElement verticalAlignment="Middle">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{PTODT}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

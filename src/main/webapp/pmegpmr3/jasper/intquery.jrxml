@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="intquery" language="javascript" pageWidth="955" pageHeight="842" columnWidth="915" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d7b2f021-cc41-4d45-8fc5-433416934cfb">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="intquery" uuid="68641c78-9fc3-4be6-8065-4ea46ca46612">
+		<parameter name="BANK_NAME" class="java.lang.String">
+			<property name="BANK_NAME" value="$F{BANK_NAME}"/>
+			<parameterDescription><![CDATA[]]></parameterDescription>
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="STATE_NM" class="java.lang.String">
+			<property name="STATE_NM" value="$F{STATE_NM}"/>
+			<parameterDescription><![CDATA[]]></parameterDescription>
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[SELECT RBL.BANK_NAME,ms.state_nm,
+getfinyr(BD.LOAN_SANC_DT) AS FINYEAR,
+COUNT(*) AS APP_SANCTIONED,
+MAX(BD.RINT) AS MAX_RINT, MIN(BD.RINT) AS MIN_RINT
+FROM APP_DETAIL AD, BANK_DATAENTRY BD ,
+RBIBANKLIST RBL,M_DISTRICT MD,M_STATE MS
+WHERE AD.APP_ID=BD.APP_ID
+AND AD.UNIT_DIST_CD=MD.DISTRICT_CD
+AND MD.STATE_CD=MS.STATE_CD
+AND AD.IFSC_CODE=RBL.IFSC_CODE
+AND BD.ACT_ID=11 AND BD.RINT BETWEEN 6 AND 15
+AND RBL.BANK_NAME=$P{BANK_NAME}
+AND ms.state_nm=$P{STATE_NM}
+GROUP BY
+RBL.BANK_NAME,ms.state_nm,
+getfinyr(BD.LOAN_SANC_DT)
+order by FINYEAR desc]]>
+		</queryString>
+		<field name="BANK_NAME" class="java.lang.String"/>
+		<field name="STATE_NM" class="java.lang.String"/>
+		<field name="FINYEAR" class="java.lang.String"/>
+		<field name="APP_SANCTIONED" class="java.math.BigDecimal"/>
+		<field name="MAX_RINT" class="java.math.BigDecimal"/>
+		<field name="MIN_RINT" class="java.math.BigDecimal"/>
+		<group name="BANK_NAME">
+			<groupExpression><![CDATA[$F{BANK_NAME}]]></groupExpression>
+		</group>
+	</subDataset>
+	<queryString>
+		<![CDATA[SELECT RBL.BANK_NAME,ms.state_nm,
+getfinyr(BD.LOAN_SANC_DT) AS FINYEAR,
+COUNT(*) AS APP_SANCTIONED,
+MAX(BD.RINT) AS MAX_RINT, MIN(BD.RINT) AS MIN_RINT
+FROM APP_DETAIL AD, BANK_DATAENTRY BD ,
+RBIBANKLIST RBL,M_DISTRICT MD,M_STATE MS
+WHERE AD.APP_ID=BD.APP_ID
+AND AD.UNIT_DIST_CD=MD.DISTRICT_CD
+AND MD.STATE_CD=MS.STATE_CD
+AND AD.IFSC_CODE=RBL.IFSC_CODE
+AND BD.ACT_ID=11 AND BD.RINT BETWEEN 6 AND 15
+GROUP BY
+RBL.BANK_NAME,ms.state_nm,
+getfinyr(BD.LOAN_SANC_DT)
+ order by FINYEAR desc]]>
+	</queryString>
+	<field name="BANK_NAME" class="java.lang.String"/>
+	<field name="STATE_NM" class="java.lang.String"/>
+	<field name="FINYEAR" class="java.lang.String"/>
+	<field name="APP_SANCTIONED" class="java.math.BigDecimal"/>
+	<field name="MAX_RINT" class="java.math.BigDecimal"/>
+	<field name="MIN_RINT" class="java.math.BigDecimal"/>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<detail>
+		<band height="174">
+			<componentElement>
+				<reportElement key="table" style="table" x="0" y="0" width="915" height="174" uuid="953ce20c-12f4-4586-bae8-feed01095b37"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="intquery" uuid="458a7b73-d153-40c6-98a7-95fb7ae458f7">
+						<datasetParameter name="BANK_NAME">
+							<datasetParameterExpression><![CDATA[$F{BANK_NAME}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="STATE_NM">
+							<datasetParameterExpression><![CDATA[$F{STATE_NM}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="290" uuid="ae862c40-3950-4295-ac1c-0fe6bac2ee2b">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="290" height="30" uuid="1a2685d7-9311-4bb3-87c2-726167a22c00"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8" isBold="true"/>
+								</textElement>
+								<text><![CDATA[BANK NAME]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="290" height="30" uuid="d1f6486e-3d7e-44c9-8981-0a87868f362b"/>
+								<box leftPadding="5"/>
+								<textElement verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{BANK_NAME}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="177" uuid="6c680739-c336-40c4-a27c-5054d85937a5">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="177" height="30" uuid="fba2f3ba-1b03-4991-bd27-24446656d3af"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8" isBold="true"/>
+								</textElement>
+								<text><![CDATA[STATE NAME]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="177" height="30" uuid="42b38d32-0a42-42a4-bcf2-2d82e6fa74e0"/>
+								<box leftPadding="5"/>
+								<textElement verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{STATE_NM}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="98" uuid="eeed80eb-0313-440e-8f61-f5b71d3b9572">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="98" height="30" uuid="cc9a6ca8-73c9-4bea-99de-3a811d839ed3"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8" isBold="true"/>
+								</textElement>
+								<text><![CDATA[SANCTIONED YEAR]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="98" height="30" uuid="fdcc94b3-9abd-44b1-832d-37ccf6678eb2"/>
+								<box leftPadding="4"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{FINYEAR}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="e9becfa9-4c85-4cff-8c05-64fd21a1ce9f">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="68eb52ce-a170-4e64-bc96-5e1f0a67e567"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8" isBold="true"/>
+								</textElement>
+								<text><![CDATA[NO.OF.APPLICATION SANCTIONED]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField pattern="###0">
+								<reportElement x="0" y="0" width="90" height="30" uuid="a2a18edf-7779-42ae-a26c-0e9ed3fce4e7"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{APP_SANCTIONED}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="108" uuid="1685fb22-a400-4801-8c75-8fb6b3285799">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="108" height="30" uuid="fda3d21b-7e83-40b8-9d27-d640190e4f44"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8" isBold="true"/>
+								</textElement>
+								<text><![CDATA[MAXIMUM INTEREST(%)]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField pattern="#,##0.00;-#,##0.00">
+								<reportElement x="0" y="0" width="108" height="30" uuid="13ba2ffd-847d-4a77-9b6f-3ac6bea48a19"/>
+								<box rightPadding="5"/>
+								<textElement textAlignment="Right" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{MAX_RINT}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="99" uuid="55092263-1cb2-4c1c-ba18-251bb6487720">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="99" height="30" uuid="d51bb27c-ad53-4e0e-94e7-a84b7c46812c"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8" isBold="true"/>
+								</textElement>
+								<text><![CDATA[MINIMUM INTEREST(%)]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField pattern="#,##0.00;-#,##0.00">
+								<reportElement x="0" y="0" width="99" height="30" uuid="9703f5b7-eae6-4e22-8058-338eafb330aa"/>
+								<box rightPadding="5"/>
+								<textElement textAlignment="Right" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{MIN_RINT}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="20">
+			<textField pattern="dd/MM/yyyy h.mm a">
+				<reportElement x="740" y="0" width="100" height="20" uuid="870dd359-b63b-43e4-8eb5-bcdb0c32669e"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="100" height="20" uuid="b14971be-3a58-47fa-8221-31267b4fd272"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

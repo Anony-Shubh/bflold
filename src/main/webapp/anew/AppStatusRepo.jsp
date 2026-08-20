@@ -1,0 +1,1781 @@
+<%@ page import="javax.sql.*"%>
+<%@ page import="java.sql.*,pkgPmegpNew.DBCon"%>
+<%@ page import="java.text.*,java.util.Date,java.text.SimpleDateFormat"%>
+<%!
+  float calculatePercentage(float a,float b)
+{
+ float result=a/b * 100;
+ return result;
+}
+%>
+
+<HEAD>
+<STYLE type="text/css">
+.myButton {
+	background-color:#4e73df;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:13px;
+	padding:10px 33px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #2f6627;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+input[type=text], select, textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+label {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+}
+
+input[type=submit] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+
+input:read-only {
+  background-color: #ffff99;
+}
+
+#customers {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+   
+}
+
+
+
+#customers td, #customers th {
+    border: 1px solid #000000;
+    padding: 4px;
+	font-size:16px;
+	font-weight:bold;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+    padding-top: 6px;
+    padding-bottom: 6px;
+    text-align: left;
+    background-color: #4e73df;
+    color: white;
+}
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .col-25, .col-75, input[type=submit] {
+    width: 100%;
+    margin-top: 0;
+  }
+}
+.style1 {color: #FF0000}
+</STYLE>
+
+  
+</HEAD>
+
+<BODY>
+
+<FORM method="post">
+<% 
+String STATE_NM="";
+String STATE_CD="";
+String AGN_RECV="";
+String AGN_REJECT="";
+  String agency_up="";
+    String bank_ford_tot="";
+  String bank_ford_MM_tot="";
+  String bank_ford="";
+  String bank_ford_MM="";
+  String PRV_BANK_FORD_PEN="";
+  String PRV_BANK_FORD_PEN_MM="";
+  
+   String bank_recv_tot="";
+  String bank_recv_MM_tot="";
+  String bank_recv="";
+  String bank_recv_MM="";
+  String PRV_bank_recv="";
+  String PRV_bank_recv_MM="";
+  
+   String bank_pend_tot="";
+  String bank_pend_MM_tot="";
+  String bank_pend="";
+  String bank_pend_MM="";
+  String PRV_bank_pend="";
+  String PRV_bank_pend_MM="";
+  
+   String bank_reject_tot="";
+  String bank_reject_MM_tot="";
+  String bank_reject="";
+  String bank_reject_MM="";
+  String PRV_bank_reject="";
+  String PRV_bank_reject_MM="";
+  
+  String bank_sanc_tot="";
+  String bank_sanc_MM_tot="";
+  String bank_sanc="";
+  String bank_sanc_MM="";
+  String PRV_bank_sanc="";
+  String PRV_bank_sanc_MM="";
+  
+   String OWN_CONT_tot="";
+  String OWN_CONT_MM_tot="";
+  String OWN_CONT="";
+  String OWN_CONT_MM="";
+  String  PRV_OWN_CONT="";
+  String PRV_OWN_CONT_MM="";
+  
+  String IST_LOANSANC_tot="";
+   String  IST_LOANSANC_MM_tot="";
+  String  IST_LOANSANC_MM="";
+  String PRV_IST_LOANSANC="";
+  String IST_LOANSANC="";
+  String PRV_IST_LOANSANC_MM="";
+  
+  
+  String mm_claim_tot="";
+  String mm_claim_AMT_tot="";
+   
+  String mm_claim="";
+  String mm_claim_AMT="";
+  String PRV_mm_claim="";
+  String PRV_mm_claim_AMT="";
+  
+    String mm_rel_AMT_tot="";
+  String mm_rel_tot="";
+  String mm_rel_AMT="";
+  String mm_rel="";
+  String  PRV_mm_rel_AMT="";
+  String  PRV_mm_rel="";
+  
+    String mm_rel_AMT_tot_f="";
+  String mm_rel_tot_f="";
+  String mm_rel_AMT_f="";
+  String mm_rel_f="";
+  String  PRV_mm_rel_AMT_f="";
+  String  PRV_mm_rel_f="";
+  
+   String mm_release_tot="";
+  String mm_release_amt_tot="";
+   String rel_no="";
+    String rel_amt="";
+     String prv_rel="";
+      String pre_rel_amt="";
+  
+  
+  String  edp_cert_iss="";
+
+String wcls="";
+String srno ="";
+String rFromdt="";
+String rTodt="";
+
+String YR=request.getParameter("YR")==null?"2020-21":(String) request.getParameter("YR");
+String AGENCY=request.getParameter("Agency")==null?"":(String) request.getParameter("Agency");
+String ORG =request.getParameter("Org")==null?"":(String) request.getParameter("Org"); 
+String AGN=request.getParameter("AGN")==null?"":(String) request.getParameter("AGN");
+String vcls="";
+String Wcls="";
+ StringBuffer qrysb= new StringBuffer();
+qrysb.append("   select STATE_NM,STATE_CD,SUM(AGN_RECV) AS AGN_RECV,"      );
+qrysb.append("   SUM(AGN_REJECT) AS AGN_REJECT,"      );
+qrysb.append("   SUM(agency_up) AS agency_up ,"      );
+qrysb.append("   "      );
+qrysb.append("   SUM(bank_ford_tot) AS bank_ford_tot,"      );
+qrysb.append("     SUM(bank_ford_MM_tot) AS bank_ford_MM_tot ,  "      );
+qrysb.append("   SUM(bank_ford) AS bank_ford,"      );
+qrysb.append("     SUM(bank_ford_MM) AS bank_ford_MM ,"      );
+qrysb.append("     SUM(PRV_BANK_FORD_PEN) AS PRV_BANK_FORD_PEN,"      );
+qrysb.append("     SUM(PRV_BANK_FORD_PEN_MM) AS PRV_BANK_FORD_PEN_MM,"      );
+qrysb.append("     "      );
+qrysb.append("     SUM(bank_recv_tot) AS bank_recv_tot,"      );
+qrysb.append("     SUM(bank_recv_MM_tot) AS bank_recv_MM_tot,"      );
+qrysb.append("     SUM(bank_recv) AS bank_recv,"      );
+qrysb.append("     SUM(bank_recv_MM) AS bank_recv_MM,"      );
+qrysb.append("     SUM(PRV_bank_recv) AS PRV_bank_recv,"      );
+qrysb.append("     SUM(PRV_bank_recv_MM) AS PRV_bank_recv_MM,"      );
+qrysb.append("     "      );
+qrysb.append("     SUM(bank_pend_tot) AS bank_pend_tot,"      );
+qrysb.append("     SUM(bank_pend_mm_tot) AS bank_pend_mm_tot,"      );
+qrysb.append("     SUM(bank_pend) AS bank_pend,"      );
+qrysb.append("     SUM(bank_pend_mm) AS bank_pend_mm,"      );
+qrysb.append("     SUM(PRV_bank_pend) AS PRV_bank_pend,"      );
+qrysb.append("     SUM(PRV_bank_pend_MM) AS PRV_bank_pend_MM,"      );
+qrysb.append("     "      );
+qrysb.append("      SUM(bank_reject_tot) AS bank_reject_tot,"      );
+qrysb.append("     SUM(bank_reject_MM_tot) AS bank_reject_MM_tot,"      );
+qrysb.append("     SUM(bank_reject) AS bank_reject,"      );
+qrysb.append("     SUM(bank_reject_MM) AS bank_reject_MM,"      );
+qrysb.append("     SUM(PRV_bank_reject) AS PRV_bank_reject,"      );
+qrysb.append("     SUM(PRV_bank_reject_MM) AS PRV_bank_reject_MM,"      );
+qrysb.append("     "      );
+qrysb.append("     "      );
+qrysb.append("      SUM(bank_sanc_tot) AS bank_sanc_tot,"      );
+qrysb.append("     SUM(bank_sanc_MM_tot) AS bank_sanc_MM_tot ,"      );
+qrysb.append("     SUM(bank_sanc) AS bank_sanc,"      );
+qrysb.append("     SUM(bank_sanc_MM) AS bank_sanc_MM ,"      );
+qrysb.append("     SUM(PRV_bank_sanc) AS PRV_bank_sanc,"      );
+qrysb.append("     SUM(PRV_bank_sanc_MM) AS PRV_bank_sanc_MM ,"      );
+qrysb.append("     "      );
+qrysb.append("      SUM(OWN_CONT_tot) AS OWN_CONT_tot,"      );
+qrysb.append("     SUM(OWN_CONT_MM_tot) AS OWN_CONT_MM_tot ,"      );
+qrysb.append("     SUM(OWN_CONT) AS OWN_CONT,"      );
+qrysb.append("     SUM(OWN_CONT_MM) AS OWN_CONT_MM ,"      );
+qrysb.append("     SUM(PRV_OWN_CONT) AS PRV_OWN_CONT,"      );
+qrysb.append("     SUM(PRV_OWN_CONT_MM) AS PRV_OWN_CONT_MM,"      );
+qrysb.append("     "      );
+qrysb.append("       SUM(IST_LOANSANC_tot) AS IST_LOANSANC_tot,"      );
+qrysb.append("     SUM(IST_LOANSANC_MM_tot) AS IST_LOANSANC_MM_tot,"      );
+qrysb.append("       SUM(IST_LOANSANC) AS IST_LOANSANC,"      );
+qrysb.append("     SUM(IST_LOANSANC_MM) AS IST_LOANSANC_MM,"      );
+qrysb.append("     SUM(PRV_IST_LOANSANC) AS PRV_IST_LOANSANC ,"      );
+qrysb.append("     SUM(PRV_IST_LOANSANC_MM) AS PRV_IST_LOANSANC_MM,"      );
+qrysb.append("     "      );
+qrysb.append("     "      );
+qrysb.append("      SUM(mm_claim_tot) AS mm_claim_tot,"      );
+qrysb.append("     SUM(mm_claim_AMT_tot) AS mm_claim_AMT_tot,"      );
+qrysb.append("     SUM(mm_claim) AS mm_claim,"      );
+qrysb.append("     SUM(mm_claim_AMT) AS mm_claim_AMT,"      );
+qrysb.append("     SUM(PRV_mm_claim) AS PRV_mm_claim,"      );
+qrysb.append("     SUM(PRV_mm_claim_AMT) AS PRV_mm_claim_AMT,"      );
+qrysb.append("     "      );
+qrysb.append("     SUM(mm_rel_tot_f) AS mm_rel_tot,"      );
+qrysb.append("     SUM(mm_rel_AMT_tot_f) AS mm_rel_AMT_tot ,  "      );
+qrysb.append("     SUM(mm_rel_f) AS mm_rel,"      );
+qrysb.append("     SUM(mm_rel_AMT_f) AS mm_rel_AMT ,  "      );
+qrysb.append("     SUM(PRV_mm_rel_AMT_f) AS PRV_mm_rel_AMT ,"      );
+qrysb.append("     SUM(PRV_mm_rel_f) AS PRV_mm_rel,"      );
+qrysb.append("     "      );
+qrysb.append("     "      );
+qrysb.append("      SUM(mm_rel_tot_s) AS mm_rel_tot_s,"      );
+qrysb.append("     SUM(mm_rel_AMT_tot_s) AS mm_rel_AMT_tot_s ,  "      );
+qrysb.append("     SUM(mm_rel_s) AS mm_rel_s,"      );
+qrysb.append("     SUM(mm_rel_AMT_s) AS mm_rel_AMT_s ,  "      );
+qrysb.append("     SUM(PRV_mm_rel_AMT_s) AS PRV_mm_rel_AMT_s ,"      );
+qrysb.append("     SUM(PRV_mm_rel_s) AS PRV_mm_rel_s,"      );
+qrysb.append("     "      );
+qrysb.append("     max(mm_rel_tot_f+mm_rel_tot_s) as mm_release_tot,"      );
+qrysb.append("      max(mm_rel_AMT_tot_s+mm_rel_AMT_tot_f) as mm_release_amt_tot,"      );
+qrysb.append("       max(mm_rel_s+mm_rel_f) as rel_no,"      );
+qrysb.append("        max(mm_rel_AMT_s+mm_rel_AMT_f) as rel_amt,"      );
+qrysb.append("         max(PRV_mm_rel_AMT_s+PRV_mm_rel_AMT_f) as prv_rel,"      );
+qrysb.append("          max(PRV_mm_rel_s+PRV_mm_rel_f) as pre_rel_amt,"      );
+qrysb.append("     "      );
+qrysb.append("     SUM(edp_cert_iss) AS edp_cert_iss"      );
+qrysb.append("     "      );
+qrysb.append("   from ("      );
+qrysb.append("   (SELECT"      );
+qrysb.append("   (MS.STATE_NM) AS STATE_NM,(MS.STATE_CD) AS STATE_CD ,"      );
+qrysb.append("   SUM("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN  TRUNC(ad.ONLINE_SUBDT) BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       THEN 1"      );
+qrysb.append("       ELSE 0"      );
+qrysb.append("     END) AS AGN_RECV,"      );
+qrysb.append("    SUM("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN  TRUNC(ad.ONLINE_SUBDT) BETWEEN '01-APR-2020' AND SysDate AND ad.ACT_ID=3"      );
+qrysb.append("       THEN 1"      );
+qrysb.append("       ELSE 0"      );
+qrysb.append("     END) AS AGN_REJECT,"      );
+qrysb.append("   SUM("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN  TRUNC(ad.ONLINE_SUBDT) BETWEEN '01-APR-2020' AND SysDate AND ad.ACT_ID in(0,1,2,4)"      );
+qrysb.append("       THEN 1"      );
+qrysb.append("       ELSE 0"      );
+qrysb.append("     END) AS agency_up,"      );
+qrysb.append("      SUM("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN  ad.ACT_ID = 5 AND trunc(ad.BANK_F_DATE) BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       THEN 1"      );
+qrysb.append("       ELSE 0"      );
+qrysb.append("     END) AS bank_ford_tot,"      );
+qrysb.append("      SUM("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN  ad.ACT_ID = 5 AND trunc(ad.BANK_F_DATE) BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       THEN ROUND(mminvolve(ad.APP_ID) / 100000, 2)"      );
+qrysb.append("       ELSE 0"      );
+qrysb.append("     END) AS bank_ford_MM_tot,"      );
+qrysb.append("   "      );
+qrysb.append("     SUM("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN  TRUNC(ad.ONLINE_SUBDT) >=  '01-APR-2020' AND ad.ACT_ID = 5 AND ad.BANK_F_DATE BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       THEN 1"      );
+qrysb.append("       ELSE 0"      );
+qrysb.append("     END) AS bank_ford,"      );
+qrysb.append("      SUM("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN  TRUNC(ad.ONLINE_SUBDT) >=  '01-APR-2020' AND ad.ACT_ID = 5 AND ad.BANK_F_DATE BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       THEN ROUND(mminvolve(ad.APP_ID) / 100000, 2)"      );
+qrysb.append("       ELSE 0"      );
+qrysb.append("     END) AS bank_ford_MM,"      );
+qrysb.append("       SUM("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN ad.ACT_ID             = 5"      );
+qrysb.append("       AND TRUNC(ad.ONLINE_SUBDT) < '01-APR-2020'"      );
+qrysb.append("       AND ad.BANK_F_DATE BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       THEN 1"      );
+qrysb.append("       ELSE 0"      );
+qrysb.append("     END) AS PRV_BANK_FORD_PEN,"      );
+qrysb.append("       SUM("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN ad.ACT_ID             = 5"      );
+qrysb.append("       AND TRUNC(ad.ONLINE_SUBDT) < '01-APR-2020'"      );
+qrysb.append("       AND ad.BANK_F_DATE BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       THEN ROUND(mminvolve(ad.APP_ID) / 100000, 2)"      );
+qrysb.append("       ELSE 0"      );
+qrysb.append("     END) AS PRV_BANK_FORD_PEN_MM,"      );
+qrysb.append("     "      );
+qrysb.append("     SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN bd.ACT_ID = 8"      );
+qrysb.append("       AND ad.ACT_ID  = 5 "      );
+qrysb.append("       AND TRUNC(ad.BANK_F_DATE)  BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       THEN 1"      );
+qrysb.append("     END, 0)) AS bank_recv_tot,"      );
+qrysb.append("     "      );
+qrysb.append("        SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN bd.ACT_ID = 8"      );
+qrysb.append("       AND ad.ACT_ID  = 5 "      );
+qrysb.append("       AND TRUNC(ad.BANK_F_DATE)  BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       THEN  ROUND(mminvolve(ad.APP_ID) / 100000, 2)"      );
+qrysb.append("     END, 0)) AS bank_recv_MM_tot,"      );
+qrysb.append("     "      );
+qrysb.append("       SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN bd.ACT_ID = 8"      );
+qrysb.append("       AND ad.ACT_ID  = 5  AND TRUNC(ad.ONLINE_SUBDT) >=  '01-APR-2020'"      );
+qrysb.append("       AND TRUNC(ad.BANK_F_DATE)  BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       THEN 1"      );
+qrysb.append("     END, 0)) AS bank_recv,"      );
+qrysb.append("     "      );
+qrysb.append("        SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN bd.ACT_ID = 8"      );
+qrysb.append("       AND ad.ACT_ID  = 5  AND TRUNC(ad.ONLINE_SUBDT) >=  '01-APR-2020'"      );
+qrysb.append("       AND TRUNC(ad.BANK_F_DATE)  BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       THEN  ROUND(mminvolve(ad.APP_ID) / 100000, 2)"      );
+qrysb.append("     END, 0)) AS bank_recv_MM,"      );
+qrysb.append("     "      );
+qrysb.append("     "      );
+qrysb.append("       SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN bd.ACT_ID = 8"      );
+qrysb.append("       AND ad.ACT_ID  = 5 "      );
+qrysb.append("       AND TRUNC(ad.ONLINE_SUBDT) < '01-APR-2020'"      );
+qrysb.append("       AND TRUNC(ad.BANK_F_DATE)  BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       THEN 1"      );
+qrysb.append("     END, 0)) AS PRV_bank_recv,"      );
+qrysb.append("     "      );
+qrysb.append("       SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN bd.ACT_ID = 8"      );
+qrysb.append("       AND ad.ACT_ID  = 5 "      );
+qrysb.append("       AND TRUNC(ad.ONLINE_SUBDT) < '01-APR-2020'"      );
+qrysb.append("       AND TRUNC(ad.BANK_F_DATE)  BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       THEN ROUND(mminvolve(ad.APP_ID) / 100000, 2)"      );
+qrysb.append("     END, 0)) AS PRV_bank_recv_MM,"      );
+qrysb.append("     "      );
+qrysb.append("     --  "      );
+qrysb.append("     SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN  NVL(BD.ACT_ID,0) NOT IN (11,3)"      );
+qrysb.append("       AND ad.ACT_ID  = 5 "      );
+qrysb.append("       AND TRUNC(ad.BANK_F_DATE)  BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       THEN 1"      );
+qrysb.append("     END, 0)) AS bank_pend_tot,"      );
+qrysb.append("     "      );
+qrysb.append("        SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN  NVL(BD.ACT_ID,0) NOT IN (11,3)"      );
+qrysb.append("       AND ad.ACT_ID  = 5 "      );
+qrysb.append("       AND TRUNC(ad.BANK_F_DATE)  BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       THEN  ROUND(mminvolve(ad.APP_ID) / 100000, 2)"      );
+qrysb.append("     END, 0)) AS bank_pend_MM_tot,"      );
+qrysb.append("     "      );
+qrysb.append("       SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN  NVL(BD.ACT_ID,0) NOT IN (11,3)"      );
+qrysb.append("       AND ad.ACT_ID  = 5  AND TRUNC(ad.ONLINE_SUBDT) >=  '01-APR-2020'"      );
+qrysb.append("       AND TRUNC(ad.BANK_F_DATE)  BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       THEN 1"      );
+qrysb.append("     END, 0)) AS bank_pend,"      );
+qrysb.append("     "      );
+qrysb.append("        SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN  NVL(BD.ACT_ID,0) NOT IN (11,3)"      );
+qrysb.append("       AND ad.ACT_ID  = 5  AND TRUNC(ad.ONLINE_SUBDT) >=  '01-APR-2020'"      );
+qrysb.append("       AND TRUNC(ad.BANK_F_DATE)  BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       THEN  ROUND(mminvolve(ad.APP_ID) / 100000, 2)"      );
+qrysb.append("     END, 0)) AS bank_pend_MM,"      );
+qrysb.append("     "      );
+qrysb.append("     "      );
+qrysb.append("       SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN  NVL(BD.ACT_ID,0) NOT IN (11,3)"      );
+qrysb.append("       AND ad.ACT_ID  = 5 "      );
+qrysb.append("       AND TRUNC(ad.ONLINE_SUBDT) < '01-APR-2020'"      );
+qrysb.append("       AND TRUNC(ad.BANK_F_DATE)  BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       THEN 1"      );
+qrysb.append("     END, 0)) AS PRV_bank_pend,"      );
+qrysb.append("     "      );
+qrysb.append("       SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN  NVL(BD.ACT_ID,0) NOT IN (11,3)"      );
+qrysb.append("       AND ad.ACT_ID  = 5 "      );
+qrysb.append("       AND TRUNC(ad.ONLINE_SUBDT) < '01-APR-2020'"      );
+qrysb.append("       AND TRUNC(ad.BANK_F_DATE)  BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       THEN ROUND(mminvolve(ad.APP_ID) / 100000, 2)"      );
+qrysb.append("     END, 0)) AS PRV_bank_pend_MM,"      );
+qrysb.append("     "      );
+qrysb.append("      SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN bd.ACT_ID = 3"      );
+qrysb.append("       AND ad.ACT_ID  = 5 "      );
+qrysb.append("       AND TRUNC(ad.BANK_F_DATE)  BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       THEN 1"      );
+qrysb.append("     END, 0)) AS bank_reject_tot,"      );
+qrysb.append("     "      );
+qrysb.append("         SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN bd.ACT_ID = 3"      );
+qrysb.append("       AND ad.ACT_ID  = 5 "      );
+qrysb.append("       AND TRUNC(ad.BANK_F_DATE)  BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       THEN ROUND(mminvolve(ad.APP_ID) / 100000, 2)"      );
+qrysb.append("     END, 0)) AS bank_reject_MM_tot,"      );
+qrysb.append("     "      );
+qrysb.append("     "      );
+qrysb.append("     "      );
+qrysb.append("       SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN bd.ACT_ID = 3"      );
+qrysb.append("       AND ad.ACT_ID  = 5 AND TRUNC(ad.ONLINE_SUBDT) >=  '01-APR-2020'"      );
+qrysb.append("       AND TRUNC(ad.BANK_F_DATE)  BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       THEN 1"      );
+qrysb.append("     END, 0)) AS bank_reject,"      );
+qrysb.append("     "      );
+qrysb.append("         SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN bd.ACT_ID = 3"      );
+qrysb.append("       AND ad.ACT_ID  = 5 AND TRUNC(ad.ONLINE_SUBDT) >=  '01-APR-2020'"      );
+qrysb.append("       AND TRUNC(ad.BANK_F_DATE)  BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       THEN ROUND(mminvolve(ad.APP_ID) / 100000, 2)"      );
+qrysb.append("     END, 0)) AS bank_reject_MM,"      );
+qrysb.append("     "      );
+qrysb.append("     "      );
+qrysb.append("         SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN bd.ACT_ID = 3"      );
+qrysb.append("       AND ad.ACT_ID  = 5"      );
+qrysb.append("        AND TRUNC(ad.ONLINE_SUBDT) < '01-APR-2020'"      );
+qrysb.append("       AND TRUNC(ad.BANK_F_DATE)  BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       THEN 1"      );
+qrysb.append("     END, 0)) AS PRV_bank_reject,  "      );
+qrysb.append("     "      );
+qrysb.append("           SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN bd.ACT_ID = 3"      );
+qrysb.append("       AND ad.ACT_ID  = 5"      );
+qrysb.append("        AND TRUNC(ad.ONLINE_SUBDT) < '01-APR-2020'"      );
+qrysb.append("       AND TRUNC(ad.BANK_F_DATE)  BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       THEN  ROUND(mminvolve(ad.APP_ID) / 100000, 2)"      );
+qrysb.append("     END, 0)) AS PRV_bank_reject_MM,"      );
+qrysb.append("     "      );
+qrysb.append("      SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN bd.ACT_ID >= 11 "      );
+qrysb.append("       AND TRUNC(bd.LOAN_SANC_DT) BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       AND ad.ACT_ID = 5"      );
+qrysb.append("       THEN 1"      );
+qrysb.append("     END, 0)) AS bank_sanc_tot,"      );
+qrysb.append("     "      );
+qrysb.append("       SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN bd.ACT_ID >= 11"      );
+qrysb.append("       AND TRUNC(bd.LOAN_SANC_DT) BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       AND ad.ACT_ID = 5"      );
+qrysb.append("       THEN ROUND(MM_AMT_BANKSANC(bd.APP_ID) / 100000, 2)"      );
+qrysb.append("     END, 0)) AS bank_sanc_MM_tot,"      );
+qrysb.append("    "      );
+qrysb.append("     "      );
+qrysb.append("     "      );
+qrysb.append("     "      );
+qrysb.append("   "      );
+qrysb.append("     SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN bd.ACT_ID >= 11 AND TRUNC(ad.ONLINE_SUBDT) >=  '01-APR-2020'"      );
+qrysb.append("       AND TRUNC(bd.LOAN_SANC_DT) BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       AND ad.ACT_ID = 5"      );
+qrysb.append("       THEN 1"      );
+qrysb.append("     END, 0)) AS bank_sanc,"      );
+qrysb.append("     "      );
+qrysb.append("       SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN bd.ACT_ID >= 11 AND TRUNC(ad.ONLINE_SUBDT) >=  '01-APR-2020'"      );
+qrysb.append("       AND TRUNC(bd.LOAN_SANC_DT) BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       AND ad.ACT_ID = 5"      );
+qrysb.append("       THEN ROUND(MM_AMT_BANKSANC(bd.APP_ID) / 100000, 2)"      );
+qrysb.append("     END, 0)) AS bank_sanc_MM,"      );
+qrysb.append("     "      );
+qrysb.append("     "      );
+qrysb.append("     "      );
+qrysb.append("       SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN bd.ACT_ID >= 11 AND TRUNC(ad.ONLINE_SUBDT) < '01-APR-2020'"      );
+qrysb.append("       AND TRUNC(bd.LOAN_SANC_DT) BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       AND ad.ACT_ID = 5"      );
+qrysb.append("       THEN 1"      );
+qrysb.append("     END, 0)) AS PRV_bank_sanc,"      );
+qrysb.append("     "      );
+qrysb.append("     "      );
+qrysb.append("     "      );
+qrysb.append("       SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN bd.ACT_ID >= 11 AND TRUNC(ad.ONLINE_SUBDT) < '01-APR-2020'"      );
+qrysb.append("       AND TRUNC(bd.LOAN_SANC_DT) BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       AND ad.ACT_ID = 5"      );
+qrysb.append("       THEN ROUND(MM_AMT_BANKSANC(bd.APP_ID) / 100000, 2)"      );
+qrysb.append("     END, 0)) AS PRV_bank_sanc_MM,"      );
+qrysb.append("     "      );
+qrysb.append("       SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN bd.ACT_ID >= 11 "      );
+qrysb.append("       AND TRUNC(bd.LOAN_SANC_DT) IS NOT NULL"      );
+qrysb.append("       AND TRUNC(bd.OWN_CONT_DT) BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       AND ad.ACT_ID              = 5"      );
+qrysb.append("       THEN 1"      );
+qrysb.append("     END, 0)) AS OWN_CONT_tot,"      );
+qrysb.append("       SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN bd.ACT_ID >= 11 "      );
+qrysb.append("       AND TRUNC(bd.LOAN_SANC_DT) IS NOT NULL"      );
+qrysb.append("       AND TRUNC(bd.OWN_CONT_DT) BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       AND ad.ACT_ID              = 5"      );
+qrysb.append("       THEN ROUND(MM_AMT_BANKSANC(bd.APP_ID) / 100000, 2)"      );
+qrysb.append("     END, 0)) AS OWN_CONT_MM_tot,"      );
+qrysb.append("     "      );
+qrysb.append("     "      );
+qrysb.append("     "      );
+qrysb.append("     "      );
+qrysb.append("     SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN bd.ACT_ID >= 11 AND TRUNC(ad.ONLINE_SUBDT) >=  '01-APR-2020'"      );
+qrysb.append("       AND TRUNC(bd.LOAN_SANC_DT) IS NOT NULL"      );
+qrysb.append("       AND TRUNC(bd.OWN_CONT_DT) BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       AND ad.ACT_ID              = 5"      );
+qrysb.append("       THEN 1"      );
+qrysb.append("     END, 0)) AS OWN_CONT,"      );
+qrysb.append("       SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN bd.ACT_ID >= 11 AND TRUNC(ad.ONLINE_SUBDT) >=  '01-APR-2020'"      );
+qrysb.append("       AND TRUNC(bd.LOAN_SANC_DT) IS NOT NULL"      );
+qrysb.append("       AND TRUNC(bd.OWN_CONT_DT) BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       AND ad.ACT_ID              = 5"      );
+qrysb.append("       THEN ROUND(MM_AMT_BANKSANC(bd.APP_ID) / 100000, 2)"      );
+qrysb.append("     END, 0)) AS OWN_CONT_MM,"      );
+qrysb.append("     "      );
+qrysb.append("       SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN bd.ACT_ID >= 11 AND TRUNC(ad.ONLINE_SUBDT) < '01-APR-2020'"      );
+qrysb.append("       AND TRUNC(bd.LOAN_SANC_DT) IS NOT NULL"      );
+qrysb.append("       AND TRUNC(bd.OWN_CONT_DT) BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       AND ad.ACT_ID              = 5"      );
+qrysb.append("       THEN 1"      );
+qrysb.append("     END, 0)) AS PRV_OWN_CONT,"      );
+qrysb.append("     "      );
+qrysb.append("       SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN bd.ACT_ID >= 11 AND TRUNC(ad.ONLINE_SUBDT) < '01-APR-2020'"      );
+qrysb.append("       AND TRUNC(bd.LOAN_SANC_DT) IS NOT NULL"      );
+qrysb.append("       AND TRUNC(bd.OWN_CONT_DT) BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       AND ad.ACT_ID              = 5"      );
+qrysb.append("       THEN  ROUND(MM_AMT_BANKSANC(bd.APP_ID) / 100000, 2)"      );
+qrysb.append("     END, 0)) AS PRV_OWN_CONT_MM,"      );
+qrysb.append("     "      );
+qrysb.append("      SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN bd.ACT_ID >= 11"      );
+qrysb.append("       AND TRUNC(bd.LOAN_SANC_DT) IS NOT NULL"      );
+qrysb.append("       AND TRUNC(bd.OWN_CONT_DT) IS NOT NULL"      );
+qrysb.append("       AND TRUNC(bd.IST_LOAN_DT)  BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       AND ad.ACT_ID              = 5"      );
+qrysb.append("      "      );
+qrysb.append("       THEN 1"      );
+qrysb.append("     END, 0)) AS IST_LOANSANC_tot,"      );
+qrysb.append("     "      );
+qrysb.append("       SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN bd.ACT_ID >= 11"      );
+qrysb.append("       AND TRUNC(bd.LOAN_SANC_DT) IS NOT NULL"      );
+qrysb.append("       AND TRUNC(bd.OWN_CONT_DT) IS NOT NULL"      );
+qrysb.append("       AND TRUNC(bd.IST_LOAN_DT)  BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       AND ad.ACT_ID              = 5"      );
+qrysb.append("      "      );
+qrysb.append("       THEN ROUND(MM_AMT_BANKSANC(bd.APP_ID) / 100000, 2)"      );
+qrysb.append("     END, 0)) AS IST_LOANSANC_MM_tot,"      );
+qrysb.append("    "      );
+qrysb.append("     "      );
+qrysb.append("     "      );
+qrysb.append("     "      );
+qrysb.append("     "      );
+qrysb.append("     "      );
+qrysb.append("   "      );
+qrysb.append("     SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN bd.ACT_ID >= 11"      );
+qrysb.append("       AND TRUNC(bd.LOAN_SANC_DT) IS NOT NULL"      );
+qrysb.append("       AND TRUNC(bd.OWN_CONT_DT) IS NOT NULL"      );
+qrysb.append("       AND TRUNC(bd.IST_LOAN_DT)  BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       AND ad.ACT_ID              = 5"      );
+qrysb.append("       AND TRUNC(ad.ONLINE_SUBDT) >=  '01-APR-2020'"      );
+qrysb.append("       THEN 1"      );
+qrysb.append("     END, 0)) AS IST_LOANSANC,"      );
+qrysb.append("     "      );
+qrysb.append("       SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN bd.ACT_ID >= 11"      );
+qrysb.append("       AND TRUNC(bd.LOAN_SANC_DT) IS NOT NULL"      );
+qrysb.append("       AND TRUNC(bd.OWN_CONT_DT) IS NOT NULL"      );
+qrysb.append("       AND TRUNC(bd.IST_LOAN_DT)  BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       AND ad.ACT_ID              = 5"      );
+qrysb.append("       AND TRUNC(ad.ONLINE_SUBDT) >=  '01-APR-2020'"      );
+qrysb.append("       THEN ROUND(MM_AMT_BANKSANC(bd.APP_ID) / 100000, 2)"      );
+qrysb.append("     END, 0)) AS IST_LOANSANC_MM,"      );
+qrysb.append("    "      );
+qrysb.append("      SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN bd.ACT_ID >= 11"      );
+qrysb.append("       AND TRUNC(bd.LOAN_SANC_DT) IS NOT NULL"      );
+qrysb.append("       AND TRUNC(bd.OWN_CONT_DT) IS NOT NULL"      );
+qrysb.append("       AND TRUNC(bd.IST_LOAN_DT)  BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       AND ad.ACT_ID              = 5"      );
+qrysb.append("       AND TRUNC(ad.ONLINE_SUBDT) < '01-APR-2020'"      );
+qrysb.append("       THEN 1"      );
+qrysb.append("     END, 0)) AS PRV_IST_LOANSANC,  "      );
+qrysb.append("     "      );
+qrysb.append("        SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN bd.ACT_ID >= 11"      );
+qrysb.append("       AND TRUNC(bd.LOAN_SANC_DT) IS NOT NULL"      );
+qrysb.append("       AND TRUNC(bd.OWN_CONT_DT) IS NOT NULL"      );
+qrysb.append("       AND TRUNC(bd.IST_LOAN_DT)  BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       AND ad.ACT_ID              = 5"      );
+qrysb.append("       AND TRUNC(ad.ONLINE_SUBDT) < '01-APR-2020'"      );
+qrysb.append("       THEN  ROUND(MM_AMT_BANKSANC(bd.APP_ID) / 100000, 2)"      );
+qrysb.append("     END, 0)) AS PRV_IST_LOANSANC_MM,"      );
+qrysb.append("     "      );
+qrysb.append("       SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN bd.MM_CLAIM_AMT  > 0"      );
+qrysb.append("       AND bd.LOAN_DOCFNAME IS NOT NULL"      );
+qrysb.append("      "      );
+qrysb.append("       AND bd.ACT_ID        >= 11"      );
+qrysb.append("       AND TRUNC(bd.MM_CLAIM_DT) BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       THEN 1"      );
+qrysb.append("     END, 0)) AS mm_claim_tot,"      );
+qrysb.append("       SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN bd.MM_CLAIM_AMT  > 0"      );
+qrysb.append("       AND bd.LOAN_DOCFNAME IS NOT NULL"      );
+qrysb.append("      "      );
+qrysb.append("       AND bd.ACT_ID        >= 11"      );
+qrysb.append("       AND TRUNC(bd.MM_CLAIM_DT) BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       THEN  ROUND(bd.MM_CLAIM_AMT / 100000, 2)"      );
+qrysb.append("     END, 0)) AS mm_claim_AMT_tot,"      );
+qrysb.append("     "      );
+qrysb.append("   "      );
+qrysb.append("     SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN bd.MM_CLAIM_AMT  > 0"      );
+qrysb.append("       AND bd.LOAN_DOCFNAME IS NOT NULL"      );
+qrysb.append("       AND TRUNC(ad.ONLINE_SUBDT) >=  '01-APR-2020'"      );
+qrysb.append("       AND bd.ACT_ID        >= 11"      );
+qrysb.append("       AND TRUNC(bd.MM_CLAIM_DT) BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       THEN 1"      );
+qrysb.append("     END, 0)) AS mm_claim,"      );
+qrysb.append("       SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN bd.MM_CLAIM_AMT  > 0"      );
+qrysb.append("       AND bd.LOAN_DOCFNAME IS NOT NULL"      );
+qrysb.append("       AND TRUNC(ad.ONLINE_SUBDT) >=  '01-APR-2020'"      );
+qrysb.append("       AND bd.ACT_ID        >= 11"      );
+qrysb.append("       AND TRUNC(bd.MM_CLAIM_DT) BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       THEN  ROUND(bd.MM_CLAIM_AMT / 100000, 2)"      );
+qrysb.append("     END, 0)) AS mm_claim_AMT,"      );
+qrysb.append("       SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN bd.MM_CLAIM_AMT  > 0"      );
+qrysb.append("       AND bd.LOAN_DOCFNAME IS NOT NULL"      );
+qrysb.append("       AND TRUNC(ad.ONLINE_SUBDT) < '01-APR-2020'"      );
+qrysb.append("       AND bd.ACT_ID        >= 11"      );
+qrysb.append("       AND TRUNC(bd.MM_CLAIM_DT) BETWEEN  '01-APR-2020' AND SysDate"      );
+qrysb.append("       THEN 1"      );
+qrysb.append("     END, 0)) AS PRV_mm_claim,"      );
+qrysb.append("     "      );
+qrysb.append("      SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN bd.MM_CLAIM_AMT  > 0"      );
+qrysb.append("       AND bd.LOAN_DOCFNAME IS NOT NULL"      );
+qrysb.append("       AND TRUNC(ad.ONLINE_SUBDT) < '01-APR-2020'"      );
+qrysb.append("       AND bd.ACT_ID        >= 11"      );
+qrysb.append("       AND TRUNC(bd.MM_CLAIM_DT) BETWEEN  '01-APR-2020' AND SysDate"      );
+qrysb.append("       THEN  ROUND(bd.MM_CLAIM_AMT / 100000, 2)"      );
+qrysb.append("     END, 0)) AS PRV_mm_claim_AMT,"      );
+qrysb.append("     "      );
+qrysb.append("     "      );
+qrysb.append("     SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN   TRUNC(bd.MM_REL_DT) BETWEEN  '01-APR-2020' AND SysDate"      );
+qrysb.append("       AND bd.ACT_ID  >= 11"      );
+qrysb.append("       AND bd.PACT_ID  = 34"      );
+qrysb.append("       AND bd.LOAN_DOCFNAME  IS NOT NULL"      );
+qrysb.append("       AND bd.MM_CLAIM_DT    IS NOT NULL    THEN 1"      );
+qrysb.append("     END, 0)) AS mm_rel_tot_f,"      );
+qrysb.append("       SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN   TRUNC(bd.MM_REL_DT) BETWEEN  '01-APR-2020' AND SysDate "      );
+qrysb.append("       AND bd.ACT_ID  >= 11"      );
+qrysb.append("       AND bd.PACT_ID  = 34"      );
+qrysb.append("       AND bd.LOAN_DOCFNAME  IS NOT NULL"      );
+qrysb.append("       AND bd.MM_CLAIM_DT    IS NOT NULL    THEN ROUND(bd.MM_REL_AMT / 100000, 2)"      );
+qrysb.append("     END, 0)) AS mm_rel_AMT_tot_f,"      );
+qrysb.append("   "      );
+qrysb.append("   "      );
+qrysb.append("   "      );
+qrysb.append("   "      );
+qrysb.append("   "      );
+qrysb.append("   "      );
+qrysb.append("     SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN   TRUNC(bd.MM_REL_DT) BETWEEN  '01-APR-2020' AND SysDate AND TRUNC(ad.ONLINE_SUBDT) >= '01-APR-2020'"      );
+qrysb.append("       AND bd.ACT_ID  >= 11"      );
+qrysb.append("       AND bd.PACT_ID  = 34"      );
+qrysb.append("       AND bd.LOAN_DOCFNAME  IS NOT NULL"      );
+qrysb.append("       AND bd.MM_CLAIM_DT    IS NOT NULL    THEN 1"      );
+qrysb.append("     END, 0)) AS mm_rel_f,"      );
+qrysb.append("       SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN   TRUNC(bd.MM_REL_DT) BETWEEN  '01-APR-2020' AND SysDate AND TRUNC(ad.ONLINE_SUBDT) >= '01-APR-2020'"      );
+qrysb.append("       AND bd.ACT_ID  >= 11"      );
+qrysb.append("       AND bd.PACT_ID  = 34"      );
+qrysb.append("       AND bd.LOAN_DOCFNAME  IS NOT NULL"      );
+qrysb.append("       AND bd.MM_CLAIM_DT    IS NOT NULL    THEN ROUND(bd.MM_REL_AMT / 100000, 2)"      );
+qrysb.append("     END, 0)) AS mm_rel_AMT_f,"      );
+qrysb.append("      SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN  TRUNC(ad.ONLINE_SUBDT) < '01-APR-2020'"      );
+qrysb.append("       AND TRUNC(bd.MM_REL_DT) BETWEEN  '01-APR-2020' AND SysDate"      );
+qrysb.append("       AND bd.ACT_ID  >= 11"      );
+qrysb.append("       AND bd.PACT_ID  = 34"      );
+qrysb.append("       "      );
+qrysb.append("       THEN 1"      );
+qrysb.append("     END, 0)) AS PRV_mm_rel_f,"      );
+qrysb.append("       SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN  TRUNC(ad.ONLINE_SUBDT) < '01-APR-2020'"      );
+qrysb.append("       AND TRUNC(bd.MM_REL_DT) BETWEEN  '01-APR-2020' AND SysDate"      );
+qrysb.append("       AND bd.ACT_ID  >= 11"      );
+qrysb.append("       AND bd.PACT_ID  = 34"      );
+qrysb.append("       "      );
+qrysb.append("       THEN ROUND(bd.MM_REL_AMT / 100000, 2)"      );
+qrysb.append("     END, 0)) AS PRV_mm_rel_AMT_f,"      );
+qrysb.append("     "      );
+qrysb.append("    "      );
+qrysb.append("    0 AS mm_rel_tot_s,"      );
+qrysb.append("     0 AS mm_rel_AMT_tot_s ,  "      );
+qrysb.append("     0 AS mm_rel_s,"      );
+qrysb.append("     0 AS mm_rel_AMT_s ,  "      );
+qrysb.append("    0 AS PRV_mm_rel_AMT_s ,"      );
+qrysb.append("    0 AS PRV_mm_rel_s,"      );
+qrysb.append("     "      );
+qrysb.append("   "      );
+qrysb.append("     SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN bd.EDP_CERT_DT  BETWEEN '01-APR-2020' AND SysDate AND (bd.LOAN_SANC_DT) IS NOT NULL"      );
+qrysb.append("       AND bd.ACT_ID = 11"      );
+qrysb.append("       THEN 1"      );
+qrysb.append("     END, 0)) AS edp_cert_iss"      );
+qrysb.append("   "      );
+qrysb.append("   FROM app_detail ad,"      );
+qrysb.append("     bank_dataentry bd,"      );
+qrysb.append("     m_district dm,"      );
+qrysb.append("     mas_off_mast mom,"      );
+qrysb.append("     m_state ms,"      );
+qrysb.append("     ZONE_MAST ZM"      );
+qrysb.append("   WHERE ad.APP_ID     = bd.APP_ID(+)"      );
+qrysb.append("   AND ad.UNIT_DIST_CD = dm.DISTRICT_CD"      );
+qrysb.append("   AND dm.STATE_CD     = ms.STATE_CD"      );
+qrysb.append("   AND ad.OFF_CD       = mom.OFF_CD"      );
+qrysb.append("   AND ms.ZONE_CD      = ZM.ZONE_CD"      );
+qrysb.append("   GROUP BY  (MS.STATE_NM,MS.STATE_CD))"      );
+qrysb.append("   UNION ALL"      );
+qrysb.append("   ("      );
+qrysb.append("   "      );
+qrysb.append("   "      );
+qrysb.append("   "      );
+qrysb.append("   "      );
+qrysb.append("   "      );
+qrysb.append("   SELECT"      );
+qrysb.append("   (MS.STATE_NM) AS STATE_NM,(MS.STATE_CD) AS STATE_CD ,"      );
+qrysb.append("   SUM("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN  TRUNC(ad.ONLINE_SUBDT) BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       THEN 1"      );
+qrysb.append("       ELSE 0"      );
+qrysb.append("     END) AS AGN_RECV,"      );
+qrysb.append("    SUM("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN  TRUNC(ad.ONLINE_SUBDT) BETWEEN '01-APR-2020' AND SysDate AND ad.ACT_ID=3"      );
+qrysb.append("       THEN 1"      );
+qrysb.append("       ELSE 0"      );
+qrysb.append("     END) AS AGN_REJECT,"      );
+qrysb.append("   SUM("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN  TRUNC(ad.ONLINE_SUBDT) BETWEEN '01-APR-2020' AND SysDate AND ad.ACT_ID in(0,1,2,4)"      );
+qrysb.append("       THEN 1"      );
+qrysb.append("       ELSE 0"      );
+qrysb.append("     END) AS agency_up,"      );
+qrysb.append("      SUM("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN  ad.ACT_ID = 5 AND trunc(ad.BANK_F_DATE) BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       THEN 1"      );
+qrysb.append("       ELSE 0"      );
+qrysb.append("     END) AS bank_ford_tot,"      );
+qrysb.append("      SUM("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN  ad.ACT_ID = 5 AND trunc(ad.BANK_F_DATE) BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       THEN ROUND(mminvolve(ad.APP_ID) / 100000, 2)"      );
+qrysb.append("       ELSE 0"      );
+qrysb.append("     END) AS bank_ford_MM_tot,"      );
+qrysb.append("   "      );
+qrysb.append("     SUM("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN  TRUNC(ad.ONLINE_SUBDT) >=  '01-APR-2020' AND ad.ACT_ID = 5 AND ad.BANK_F_DATE BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       THEN 1"      );
+qrysb.append("       ELSE 0"      );
+qrysb.append("     END) AS bank_ford,"      );
+qrysb.append("      SUM("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN  TRUNC(ad.ONLINE_SUBDT) >=  '01-APR-2020' AND ad.ACT_ID = 5 AND ad.BANK_F_DATE BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       THEN ROUND(mminvolve(ad.APP_ID) / 100000, 2)"      );
+qrysb.append("       ELSE 0"      );
+qrysb.append("     END) AS bank_ford_MM,"      );
+qrysb.append("       SUM("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN ad.ACT_ID             = 5"      );
+qrysb.append("       AND TRUNC(ad.ONLINE_SUBDT) < '01-APR-2020'"      );
+qrysb.append("       AND ad.BANK_F_DATE BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       THEN 1"      );
+qrysb.append("       ELSE 0"      );
+qrysb.append("     END) AS PRV_BANK_FORD_PEN,"      );
+qrysb.append("       SUM("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN ad.ACT_ID             = 5"      );
+qrysb.append("       AND TRUNC(ad.ONLINE_SUBDT) < '01-APR-2020'"      );
+qrysb.append("       AND ad.BANK_F_DATE BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       THEN ROUND(mminvolve(ad.APP_ID) / 100000, 2)"      );
+qrysb.append("       ELSE 0"      );
+qrysb.append("     END) AS PRV_BANK_FORD_PEN_MM,"      );
+qrysb.append("     "      );
+qrysb.append("     SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN bd.ACT_ID = 8"      );
+qrysb.append("       AND ad.ACT_ID  = 5 "      );
+qrysb.append("       AND TRUNC(ad.BANK_F_DATE)  BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       THEN 1"      );
+qrysb.append("     END, 0)) AS bank_recv_tot,"      );
+qrysb.append("     "      );
+qrysb.append("        SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN bd.ACT_ID = 8"      );
+qrysb.append("       AND ad.ACT_ID  = 5 "      );
+qrysb.append("       AND TRUNC(ad.BANK_F_DATE)  BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       THEN  ROUND(mminvolve(ad.APP_ID) / 100000, 2)"      );
+qrysb.append("     END, 0)) AS bank_recv_MM_tot,"      );
+qrysb.append("     "      );
+qrysb.append("       SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN bd.ACT_ID = 8"      );
+qrysb.append("       AND ad.ACT_ID  = 5  AND TRUNC(ad.ONLINE_SUBDT) >=  '01-APR-2020'"      );
+qrysb.append("       AND TRUNC(ad.BANK_F_DATE)  BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       THEN 1"      );
+qrysb.append("     END, 0)) AS bank_recv,"      );
+qrysb.append("     "      );
+qrysb.append("        SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN bd.ACT_ID = 8"      );
+qrysb.append("       AND ad.ACT_ID  = 5  AND TRUNC(ad.ONLINE_SUBDT) >=  '01-APR-2020'"      );
+qrysb.append("       AND TRUNC(ad.BANK_F_DATE)  BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       THEN  ROUND(mminvolve(ad.APP_ID) / 100000, 2)"      );
+qrysb.append("     END, 0)) AS bank_recv_MM,"      );
+qrysb.append("     "      );
+qrysb.append("     "      );
+qrysb.append("       SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN bd.ACT_ID = 8"      );
+qrysb.append("       AND ad.ACT_ID  = 5 "      );
+qrysb.append("       AND TRUNC(ad.ONLINE_SUBDT) < '01-APR-2020'"      );
+qrysb.append("       AND TRUNC(ad.BANK_F_DATE)  BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       THEN 1"      );
+qrysb.append("     END, 0)) AS PRV_bank_recv,"      );
+qrysb.append("     "      );
+qrysb.append("       SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN bd.ACT_ID = 8"      );
+qrysb.append("       AND ad.ACT_ID  = 5 "      );
+qrysb.append("       AND TRUNC(ad.ONLINE_SUBDT) < '01-APR-2020'"      );
+qrysb.append("       AND TRUNC(ad.BANK_F_DATE)  BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       THEN ROUND(mminvolve(ad.APP_ID) / 100000, 2)"      );
+qrysb.append("     END, 0)) AS PRV_bank_recv_MM,"      );
+qrysb.append("     "      );
+qrysb.append("     --  "      );
+qrysb.append("     SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN  NVL(BD.ACT_ID,0) NOT IN (11,3)"      );
+qrysb.append("       AND ad.ACT_ID  = 5 "      );
+qrysb.append("       AND TRUNC(ad.BANK_F_DATE)  BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       THEN 1"      );
+qrysb.append("     END, 0)) AS bank_pend_tot,"      );
+qrysb.append("     "      );
+qrysb.append("        SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN  NVL(BD.ACT_ID,0) NOT IN (11,3)"      );
+qrysb.append("       AND ad.ACT_ID  = 5 "      );
+qrysb.append("       AND TRUNC(ad.BANK_F_DATE)  BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       THEN  ROUND(mminvolve(ad.APP_ID) / 100000, 2)"      );
+qrysb.append("     END, 0)) AS bank_pend_MM_tot,"      );
+qrysb.append("     "      );
+qrysb.append("       SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN  NVL(BD.ACT_ID,0) NOT IN (11,3)"      );
+qrysb.append("       AND ad.ACT_ID  = 5  AND TRUNC(ad.ONLINE_SUBDT) >=  '01-APR-2020'"      );
+qrysb.append("       AND TRUNC(ad.BANK_F_DATE)  BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       THEN 1"      );
+qrysb.append("     END, 0)) AS bank_pend,"      );
+qrysb.append("     "      );
+qrysb.append("        SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN  NVL(BD.ACT_ID,0) NOT IN (11,3)"      );
+qrysb.append("       AND ad.ACT_ID  = 5  AND TRUNC(ad.ONLINE_SUBDT) >=  '01-APR-2020'"      );
+qrysb.append("       AND TRUNC(ad.BANK_F_DATE)  BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       THEN  ROUND(mminvolve(ad.APP_ID) / 100000, 2)"      );
+qrysb.append("     END, 0)) AS bank_pend_MM,"      );
+qrysb.append("     "      );
+qrysb.append("     "      );
+qrysb.append("       SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN  NVL(BD.ACT_ID,0) NOT IN (11,3)"      );
+qrysb.append("       AND ad.ACT_ID  = 5 "      );
+qrysb.append("       AND TRUNC(ad.ONLINE_SUBDT) < '01-APR-2020'"      );
+qrysb.append("       AND TRUNC(ad.BANK_F_DATE)  BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       THEN 1"      );
+qrysb.append("     END, 0)) AS PRV_bank_pend,"      );
+qrysb.append("     "      );
+qrysb.append("       SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN  NVL(BD.ACT_ID,0) NOT IN (11,3)"      );
+qrysb.append("       AND ad.ACT_ID  = 5 "      );
+qrysb.append("       AND TRUNC(ad.ONLINE_SUBDT) < '01-APR-2020'"      );
+qrysb.append("       AND TRUNC(ad.BANK_F_DATE)  BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       THEN ROUND(mminvolve(ad.APP_ID) / 100000, 2)"      );
+qrysb.append("     END, 0)) AS PRV_bank_pend_MM,"      );
+qrysb.append("     "      );
+qrysb.append("      SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN bd.ACT_ID = 3"      );
+qrysb.append("       AND ad.ACT_ID  = 5 "      );
+qrysb.append("       AND TRUNC(ad.BANK_F_DATE)  BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       THEN 1"      );
+qrysb.append("     END, 0)) AS bank_reject_tot,"      );
+qrysb.append("     "      );
+qrysb.append("         SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN bd.ACT_ID = 3"      );
+qrysb.append("       AND ad.ACT_ID  = 5 "      );
+qrysb.append("       AND TRUNC(ad.BANK_F_DATE)  BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       THEN ROUND(mminvolve(ad.APP_ID) / 100000, 2)"      );
+qrysb.append("     END, 0)) AS bank_reject_MM_tot,"      );
+qrysb.append("     "      );
+qrysb.append("     "      );
+qrysb.append("     "      );
+qrysb.append("       SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN bd.ACT_ID = 3"      );
+qrysb.append("       AND ad.ACT_ID  = 5 AND TRUNC(ad.ONLINE_SUBDT) >=  '01-APR-2020'"      );
+qrysb.append("       AND TRUNC(ad.BANK_F_DATE)  BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       THEN 1"      );
+qrysb.append("     END, 0)) AS bank_reject,"      );
+qrysb.append("     "      );
+qrysb.append("         SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN bd.ACT_ID = 3"      );
+qrysb.append("       AND ad.ACT_ID  = 5 AND TRUNC(ad.ONLINE_SUBDT) >=  '01-APR-2020'"      );
+qrysb.append("       AND TRUNC(ad.BANK_F_DATE)  BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       THEN ROUND(mminvolve(ad.APP_ID) / 100000, 2)"      );
+qrysb.append("     END, 0)) AS bank_reject_MM,"      );
+qrysb.append("     "      );
+qrysb.append("     "      );
+qrysb.append("         SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN bd.ACT_ID = 3"      );
+qrysb.append("       AND ad.ACT_ID  = 5"      );
+qrysb.append("        AND TRUNC(ad.ONLINE_SUBDT) < '01-APR-2020'"      );
+qrysb.append("       AND TRUNC(ad.BANK_F_DATE)  BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       THEN 1"      );
+qrysb.append("     END, 0)) AS PRV_bank_reject,  "      );
+qrysb.append("     "      );
+qrysb.append("           SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN bd.ACT_ID = 3"      );
+qrysb.append("       AND ad.ACT_ID  = 5"      );
+qrysb.append("        AND TRUNC(ad.ONLINE_SUBDT) < '01-APR-2020'"      );
+qrysb.append("       AND TRUNC(ad.BANK_F_DATE)  BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       THEN  ROUND(mminvolve(ad.APP_ID) / 100000, 2)"      );
+qrysb.append("     END, 0)) AS PRV_bank_reject_MM,"      );
+qrysb.append("     "      );
+qrysb.append("      SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN bd.ACT_ID >= 11 "      );
+qrysb.append("       AND TRUNC(bd.LOAN_SANC_DT) BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       AND ad.ACT_ID = 5"      );
+qrysb.append("       THEN 1"      );
+qrysb.append("     END, 0)) AS bank_sanc_tot,"      );
+qrysb.append("     "      );
+qrysb.append("       SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN bd.ACT_ID >= 11"      );
+qrysb.append("       AND TRUNC(bd.LOAN_SANC_DT) BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       AND ad.ACT_ID = 5"      );
+qrysb.append("       THEN ROUND(MM_AMT_BANKSANC(bd.APP_ID) / 100000, 2)"      );
+qrysb.append("     END, 0)) AS bank_sanc_MM_tot,"      );
+qrysb.append("    "      );
+qrysb.append("     "      );
+qrysb.append("     "      );
+qrysb.append("     "      );
+qrysb.append("   "      );
+qrysb.append("     SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN bd.ACT_ID >= 11 AND TRUNC(ad.ONLINE_SUBDT) >=  '01-APR-2020'"      );
+qrysb.append("       AND TRUNC(bd.LOAN_SANC_DT) BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       AND ad.ACT_ID = 5"      );
+qrysb.append("       THEN 1"      );
+qrysb.append("     END, 0)) AS bank_sanc,"      );
+qrysb.append("     "      );
+qrysb.append("       SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN bd.ACT_ID >= 11 AND TRUNC(ad.ONLINE_SUBDT) >=  '01-APR-2020'"      );
+qrysb.append("       AND TRUNC(bd.LOAN_SANC_DT) BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       AND ad.ACT_ID = 5"      );
+qrysb.append("       THEN ROUND(MM_AMT_BANKSANC(bd.APP_ID) / 100000, 2)"      );
+qrysb.append("     END, 0)) AS bank_sanc_MM,"      );
+qrysb.append("     "      );
+qrysb.append("     "      );
+qrysb.append("     "      );
+qrysb.append("       SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN bd.ACT_ID >= 11 AND TRUNC(ad.ONLINE_SUBDT) < '01-APR-2020'"      );
+qrysb.append("       AND TRUNC(bd.LOAN_SANC_DT) BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       AND ad.ACT_ID = 5"      );
+qrysb.append("       THEN 1"      );
+qrysb.append("     END, 0)) AS PRV_bank_sanc,"      );
+qrysb.append("     "      );
+qrysb.append("     "      );
+qrysb.append("     "      );
+qrysb.append("       SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN bd.ACT_ID >= 11 AND TRUNC(ad.ONLINE_SUBDT) < '01-APR-2020'"      );
+qrysb.append("       AND TRUNC(bd.LOAN_SANC_DT) BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       AND ad.ACT_ID = 5"      );
+qrysb.append("       THEN ROUND(MM_AMT_BANKSANC(bd.APP_ID) / 100000, 2)"      );
+qrysb.append("     END, 0)) AS PRV_bank_sanc_MM,"      );
+qrysb.append("     "      );
+qrysb.append("       SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN bd.ACT_ID >= 11 "      );
+qrysb.append("       AND TRUNC(bd.LOAN_SANC_DT) IS NOT NULL"      );
+qrysb.append("       AND TRUNC(bd.OWN_CONT_DT) BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       AND ad.ACT_ID              = 5"      );
+qrysb.append("       THEN 1"      );
+qrysb.append("     END, 0)) AS OWN_CONT_tot,"      );
+qrysb.append("       SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN bd.ACT_ID >= 11 "      );
+qrysb.append("       AND TRUNC(bd.LOAN_SANC_DT) IS NOT NULL"      );
+qrysb.append("       AND TRUNC(bd.OWN_CONT_DT) BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       AND ad.ACT_ID              = 5"      );
+qrysb.append("       THEN ROUND(MM_AMT_BANKSANC(bd.APP_ID) / 100000, 2)"      );
+qrysb.append("     END, 0)) AS OWN_CONT_MM_tot,"      );
+qrysb.append("     "      );
+qrysb.append("     "      );
+qrysb.append("     "      );
+qrysb.append("     "      );
+qrysb.append("     SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN bd.ACT_ID >= 11 AND TRUNC(ad.ONLINE_SUBDT) >=  '01-APR-2020'"      );
+qrysb.append("       AND TRUNC(bd.LOAN_SANC_DT) IS NOT NULL"      );
+qrysb.append("       AND TRUNC(bd.OWN_CONT_DT) BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       AND ad.ACT_ID              = 5"      );
+qrysb.append("       THEN 1"      );
+qrysb.append("     END, 0)) AS OWN_CONT,"      );
+qrysb.append("       SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN bd.ACT_ID >= 11 AND TRUNC(ad.ONLINE_SUBDT) >=  '01-APR-2020'"      );
+qrysb.append("       AND TRUNC(bd.LOAN_SANC_DT) IS NOT NULL"      );
+qrysb.append("       AND TRUNC(bd.OWN_CONT_DT) BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       AND ad.ACT_ID              = 5"      );
+qrysb.append("       THEN ROUND(MM_AMT_BANKSANC(bd.APP_ID) / 100000, 2)"      );
+qrysb.append("     END, 0)) AS OWN_CONT_MM,"      );
+qrysb.append("     "      );
+qrysb.append("       SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN bd.ACT_ID >= 11 AND TRUNC(ad.ONLINE_SUBDT) < '01-APR-2020'"      );
+qrysb.append("       AND TRUNC(bd.LOAN_SANC_DT) IS NOT NULL"      );
+qrysb.append("       AND TRUNC(bd.OWN_CONT_DT) BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       AND ad.ACT_ID              = 5"      );
+qrysb.append("       THEN 1"      );
+qrysb.append("     END, 0)) AS PRV_OWN_CONT,"      );
+qrysb.append("     "      );
+qrysb.append("       SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN bd.ACT_ID >= 11 AND TRUNC(ad.ONLINE_SUBDT) < '01-APR-2020'"      );
+qrysb.append("       AND TRUNC(bd.LOAN_SANC_DT) IS NOT NULL"      );
+qrysb.append("       AND TRUNC(bd.OWN_CONT_DT) BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       AND ad.ACT_ID              = 5"      );
+qrysb.append("       THEN  ROUND(MM_AMT_BANKSANC(bd.APP_ID) / 100000, 2)"      );
+qrysb.append("     END, 0)) AS PRV_OWN_CONT_MM,"      );
+qrysb.append("     "      );
+qrysb.append("      SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN bd.ACT_ID >= 11"      );
+qrysb.append("       AND TRUNC(bd.LOAN_SANC_DT) IS NOT NULL"      );
+qrysb.append("       AND TRUNC(bd.OWN_CONT_DT) IS NOT NULL"      );
+qrysb.append("       AND TRUNC(bd.IST_LOAN_DT)  BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       AND ad.ACT_ID              = 5"      );
+qrysb.append("      "      );
+qrysb.append("       THEN 1"      );
+qrysb.append("     END, 0)) AS IST_LOANSANC_tot,"      );
+qrysb.append("     "      );
+qrysb.append("       SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN bd.ACT_ID >= 11"      );
+qrysb.append("       AND TRUNC(bd.LOAN_SANC_DT) IS NOT NULL"      );
+qrysb.append("       AND TRUNC(bd.OWN_CONT_DT) IS NOT NULL"      );
+qrysb.append("       AND TRUNC(bd.IST_LOAN_DT)  BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       AND ad.ACT_ID              = 5"      );
+qrysb.append("      "      );
+qrysb.append("       THEN ROUND(MM_AMT_BANKSANC(bd.APP_ID) / 100000, 2)"      );
+qrysb.append("     END, 0)) AS IST_LOANSANC_MM_tot,"      );
+qrysb.append("    "      );
+qrysb.append("     "      );
+qrysb.append("     "      );
+qrysb.append("     "      );
+qrysb.append("     "      );
+qrysb.append("     "      );
+qrysb.append("   "      );
+qrysb.append("     SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN bd.ACT_ID >= 11"      );
+qrysb.append("       AND TRUNC(bd.LOAN_SANC_DT) IS NOT NULL"      );
+qrysb.append("       AND TRUNC(bd.OWN_CONT_DT) IS NOT NULL"      );
+qrysb.append("       AND TRUNC(bd.IST_LOAN_DT)  BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       AND ad.ACT_ID              = 5"      );
+qrysb.append("       AND TRUNC(ad.ONLINE_SUBDT) >=  '01-APR-2020'"      );
+qrysb.append("       THEN 1"      );
+qrysb.append("     END, 0)) AS IST_LOANSANC,"      );
+qrysb.append("     "      );
+qrysb.append("       SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN bd.ACT_ID >= 11"      );
+qrysb.append("       AND TRUNC(bd.LOAN_SANC_DT) IS NOT NULL"      );
+qrysb.append("       AND TRUNC(bd.OWN_CONT_DT) IS NOT NULL"      );
+qrysb.append("       AND TRUNC(bd.IST_LOAN_DT)  BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       AND ad.ACT_ID              = 5"      );
+qrysb.append("       AND TRUNC(ad.ONLINE_SUBDT) >=  '01-APR-2020'"      );
+qrysb.append("       THEN ROUND(MM_AMT_BANKSANC(bd.APP_ID) / 100000, 2)"      );
+qrysb.append("     END, 0)) AS IST_LOANSANC_MM,"      );
+qrysb.append("    "      );
+qrysb.append("      SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN bd.ACT_ID >= 11"      );
+qrysb.append("       AND TRUNC(bd.LOAN_SANC_DT) IS NOT NULL"      );
+qrysb.append("       AND TRUNC(bd.OWN_CONT_DT) IS NOT NULL"      );
+qrysb.append("       AND TRUNC(bd.IST_LOAN_DT)  BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       AND ad.ACT_ID              = 5"      );
+qrysb.append("       AND TRUNC(ad.ONLINE_SUBDT) < '01-APR-2020'"      );
+qrysb.append("       THEN 1"      );
+qrysb.append("     END, 0)) AS PRV_IST_LOANSANC,  "      );
+qrysb.append("     "      );
+qrysb.append("        SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN bd.ACT_ID >= 11"      );
+qrysb.append("       AND TRUNC(bd.LOAN_SANC_DT) IS NOT NULL"      );
+qrysb.append("       AND TRUNC(bd.OWN_CONT_DT) IS NOT NULL"      );
+qrysb.append("       AND TRUNC(bd.IST_LOAN_DT)  BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       AND ad.ACT_ID              = 5"      );
+qrysb.append("       AND TRUNC(ad.ONLINE_SUBDT) < '01-APR-2020'"      );
+qrysb.append("       THEN  ROUND(MM_AMT_BANKSANC(bd.APP_ID) / 100000, 2)"      );
+qrysb.append("     END, 0)) AS PRV_IST_LOANSANC_MM,"      );
+qrysb.append("     "      );
+qrysb.append("       SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN bd.MM_CLAIM_AMT  > 0"      );
+qrysb.append("       AND bd.LOAN_DOCFNAME IS NOT NULL"      );
+qrysb.append("      "      );
+qrysb.append("       AND bd.ACT_ID        >= 11"      );
+qrysb.append("       AND TRUNC(bd.MM_CLAIM_DT) BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       THEN 1"      );
+qrysb.append("     END, 0)) AS mm_claim_tot,"      );
+qrysb.append("       SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN bd.MM_CLAIM_AMT  > 0"      );
+qrysb.append("       AND bd.LOAN_DOCFNAME IS NOT NULL"      );
+qrysb.append("      "      );
+qrysb.append("       AND bd.ACT_ID        >= 11"      );
+qrysb.append("       AND TRUNC(bd.MM_CLAIM_DT) BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       THEN  ROUND(bd.MM_CLAIM_AMT / 100000, 2)"      );
+qrysb.append("     END, 0)) AS mm_claim_AMT_tot,"      );
+qrysb.append("     "      );
+qrysb.append("   "      );
+qrysb.append("     SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN bd.MM_CLAIM_AMT  > 0"      );
+qrysb.append("       AND bd.LOAN_DOCFNAME IS NOT NULL"      );
+qrysb.append("       AND TRUNC(ad.ONLINE_SUBDT) >=  '01-APR-2020'"      );
+qrysb.append("       AND bd.ACT_ID        >= 11"      );
+qrysb.append("       AND TRUNC(bd.MM_CLAIM_DT) BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       THEN 1"      );
+qrysb.append("     END, 0)) AS mm_claim,"      );
+qrysb.append("       SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN bd.MM_CLAIM_AMT  > 0"      );
+qrysb.append("       AND bd.LOAN_DOCFNAME IS NOT NULL"      );
+qrysb.append("       AND TRUNC(ad.ONLINE_SUBDT) >=  '01-APR-2020'"      );
+qrysb.append("       AND bd.ACT_ID        >= 11"      );
+qrysb.append("       AND TRUNC(bd.MM_CLAIM_DT) BETWEEN '01-APR-2020' AND SysDate"      );
+qrysb.append("       THEN  ROUND(bd.MM_CLAIM_AMT / 100000, 2)"      );
+qrysb.append("     END, 0)) AS mm_claim_AMT,"      );
+qrysb.append("       SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN bd.MM_CLAIM_AMT  > 0"      );
+qrysb.append("       AND bd.LOAN_DOCFNAME IS NOT NULL"      );
+qrysb.append("       AND TRUNC(ad.ONLINE_SUBDT) < '01-APR-2020'"      );
+qrysb.append("       AND bd.ACT_ID        >= 11"      );
+qrysb.append("       AND TRUNC(bd.MM_CLAIM_DT) BETWEEN  '01-APR-2020' AND SysDate"      );
+qrysb.append("       THEN 1"      );
+qrysb.append("     END, 0)) AS PRV_mm_claim,"      );
+qrysb.append("     "      );
+qrysb.append("      SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN bd.MM_CLAIM_AMT  > 0"      );
+qrysb.append("       AND bd.LOAN_DOCFNAME IS NOT NULL"      );
+qrysb.append("       AND TRUNC(ad.ONLINE_SUBDT) < '01-APR-2020'"      );
+qrysb.append("       AND bd.ACT_ID        >= 11"      );
+qrysb.append("       AND TRUNC(bd.MM_CLAIM_DT) BETWEEN  '01-APR-2020' AND SysDate"      );
+qrysb.append("       THEN  ROUND(bd.MM_CLAIM_AMT / 100000, 2)"      );
+qrysb.append("     END, 0)) AS PRV_mm_claim_AMT,"      );
+qrysb.append("     "      );
+qrysb.append("     0,0,0,0,0,0,"      );
+qrysb.append("     SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN   TRUNC(bd.MM_REL_DT) BETWEEN  '01-APR-2020' AND SysDate"      );
+qrysb.append("       AND bd.ACT_ID  >= 11"      );
+qrysb.append("       AND bd.PACT_ID  = 34"      );
+qrysb.append("       AND bd.LOAN_DOCFNAME  IS NOT NULL"      );
+qrysb.append("       AND bd.MM_CLAIM_DT    IS NOT NULL    THEN 1"      );
+qrysb.append("     END, 0)) AS mm_rel_tot_s,"      );
+qrysb.append("       SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN   TRUNC(bd.MM_REL_DT) BETWEEN  '01-APR-2020' AND SysDate "      );
+qrysb.append("       AND bd.ACT_ID  >= 11"      );
+qrysb.append("       AND bd.PACT_ID  = 34"      );
+qrysb.append("       AND bd.LOAN_DOCFNAME  IS NOT NULL"      );
+qrysb.append("       AND bd.MM_CLAIM_DT    IS NOT NULL    THEN ROUND(bd.MM_REL_AMT / 100000, 2)"      );
+qrysb.append("     END, 0)) AS mm_rel_AMT_tot_s,"      );
+qrysb.append("   "      );
+qrysb.append("   "      );
+qrysb.append("   "      );
+qrysb.append("   "      );
+qrysb.append("   "      );
+qrysb.append("   "      );
+qrysb.append("     SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN   TRUNC(bd.MM_REL_DT) BETWEEN  '01-APR-2020' AND SysDate AND TRUNC(ad.ONLINE_SUBDT) >= '01-APR-2020'"      );
+qrysb.append("       AND bd.ACT_ID  >= 11"      );
+qrysb.append("       AND bd.PACT_ID  = 34"      );
+qrysb.append("       AND bd.LOAN_DOCFNAME  IS NOT NULL"      );
+qrysb.append("       AND bd.MM_CLAIM_DT    IS NOT NULL    THEN 1"      );
+qrysb.append("     END, 0)) AS mm_rel_s,"      );
+qrysb.append("       SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN   TRUNC(bd.MM_REL_DT) BETWEEN  '01-APR-2020' AND SysDate AND TRUNC(ad.ONLINE_SUBDT) >= '01-APR-2020'"      );
+qrysb.append("       AND bd.ACT_ID  >= 11"      );
+qrysb.append("       AND bd.PACT_ID  = 34"      );
+qrysb.append("       AND bd.LOAN_DOCFNAME  IS NOT NULL"      );
+qrysb.append("       AND bd.MM_CLAIM_DT    IS NOT NULL    THEN ROUND(bd.MM_REL_AMT / 100000, 2)"      );
+qrysb.append("     END, 0)) AS mm_rel_AMT_s,"      );
+qrysb.append("      SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN  TRUNC(ad.ONLINE_SUBDT) < '01-APR-2020'"      );
+qrysb.append("       AND TRUNC(bd.MM_REL_DT) BETWEEN  '01-APR-2020' AND SysDate"      );
+qrysb.append("       AND bd.ACT_ID  >= 11"      );
+qrysb.append("       AND bd.PACT_ID  = 34"      );
+qrysb.append("       "      );
+qrysb.append("       THEN 1"      );
+qrysb.append("     END, 0)) AS PRV_mm_rel_s,"      );
+qrysb.append("       SUM(NVL("      );
+qrysb.append("     CASE"      );
+qrysb.append("       WHEN  TRUNC(ad.ONLINE_SUBDT) < '01-APR-2020'"      );
+qrysb.append("       AND TRUNC(bd.MM_REL_DT) BETWEEN  '01-APR-2020' AND SysDate"      );
+qrysb.append("       AND bd.ACT_ID  >= 11"      );
+qrysb.append("       AND bd.PACT_ID  = 34"      );
+qrysb.append("       "      );
+qrysb.append("       THEN ROUND(bd.MM_REL_AMT / 100000, 2)"      );
+qrysb.append("     END, 0)) AS PRV_mm_rel_AMT_s,"      );
+qrysb.append("    0 AS edp_cert_iss"      );
+qrysb.append("   "      );
+qrysb.append("   FROM app_detail_SECOND ad,"      );
+qrysb.append("     bank_dataentry_SECOND bd,"      );
+qrysb.append("     m_district dm,"      );
+qrysb.append("     mas_off_mast mom,"      );
+qrysb.append("     m_state ms,"      );
+qrysb.append("     ZONE_MAST ZM"      );
+qrysb.append("   WHERE ad.APP_ID     = bd.APP_ID(+)"      );
+qrysb.append("   AND ad.UNIT_DIST_CD = dm.DISTRICT_CD"      );
+qrysb.append("   AND dm.STATE_CD     = ms.STATE_CD"      );
+qrysb.append("   AND ad.OFF_CD       = mom.OFF_CD"      );
+qrysb.append("   AND ms.ZONE_CD      = ZM.ZONE_CD"      );
+qrysb.append("   GROUP BY  (MS.STATE_NM,MS.STATE_CD))"      );
+qrysb.append("   )where state_cd='BH' GROUP BY  (STATE_NM,STATE_CD)"      );
+
+
+
+//out.print(qrysb.toString());
+DBCon db= new DBCon();
+db.connect();
+ResultSet rsMain = db.execSQL(qrysb.toString());
+ %>
+<CENTER>
+  <H3>Status of Application At various levels  For The Period From 01-apr-2020 to till date <A href="../pmegp/index.jsp" class="button" >Back</A></H3>
+</CENTER>
+
+<%= srno %>
+<TABLE align="center" cellpadding="2" cellspacing="10" id="customers">
+ <THEAD>
+    <TR>
+	 <TH bgcolor="#FCDCF4"><DIV align="center">FROM</DIV></TH>
+	 <TD><DIV align="center"></DIV></TD>
+	  <TH bgcolor="#FCDCF4"><DIV align="center">TO</DIV></TH>
+	 <TD><DIV align="center"></DIV></TD>
+	  <TH bgcolor="#FCDCF4"><DIV align="center">STATE</DIV></TH>
+	 <TD><DIV align="center"></DIV></TD>
+	  <TH bgcolor="#FCDCF4"><DIV align="center">DISTRICT</DIV></TH>
+	 <TD><DIV align="center"></DIV></TD>
+    </TR>
+	</THEAD>
+	<TBODY>
+	<TR>
+	</TR>
+	</TBODY>
+  </TABLE>
+<p>&nbsp;</p>
+<DIV id="wrapper">
+<TABLE align="center" cellpadding="2" cellspacing="10" id="customers">
+ <THEAD>
+    <TR>
+	 <TH rowspan="2" bgcolor="#FCDCF4"><DIV align="center">Sr No</DIV></TH>
+	 <TH rowspan="2" bgcolor="#FCDCF4"><DIV align="center">Particulars</DIV></TH>
+	  <TH colspan="2" bgcolor="#FCDCF4"><DIV align="center"> Current Year</DIV> </TH>
+	    <TH colspan="2" bgcolor="#FCDCF4"><DIV align="center">Previous Year </DIV></TH>
+		 <TH colspan="2" bgcolor="#FCDCF4"><DIV align="center">Total </DIV></TH>
+		  <TH rowspan="2" bgcolor="#FCDCF4"><DIV align="center">In % </DIV></TH>
+    </TR>
+    <TR>
+      <TH bgcolor="#FCDCF4">No of Prj </TH>
+      <TH bgcolor="#FCDCF4">MM Inv </TH>
+     <TH bgcolor="#FCDCF4">No of Prj </TH>
+      <TH bgcolor="#FCDCF4">MM Inv</TH>
+	    <TH bgcolor="#FCDCF4">No of Prj </TH>
+      <TH bgcolor="#FCDCF4">MM Inv</TH>
+    </TR>
+   </THEAD>
+  
+<TBODY>
+<% 
+int cnt=0;
+ while (rsMain.next()) { 
+ STATE_NM=rsMain.getString("STATE_NM")==null?"":rsMain.getString("STATE_NM");
+ STATE_CD=rsMain.getString("STATE_CD")==null?"":rsMain.getString("STATE_CD");
+ 
+ AGN_REJECT =rsMain.getString("AGN_REJECT")==null?"":rsMain.getString("AGN_REJECT");
+ agency_up =rsMain.getString("agency_up")==null?"":rsMain.getString("agency_up");
+ AGN_RECV =rsMain.getString("AGN_RECV")==null?"":rsMain.getString("AGN_RECV"); 
+ bank_ford_tot =rsMain.getString("bank_ford_tot")==null?"":rsMain.getString("bank_ford_tot");
+ bank_ford_MM_tot =rsMain.getString("bank_ford_MM_tot")==null?"":rsMain.getString("bank_ford_MM_tot");
+ bank_ford =rsMain.getString("bank_ford")==null?"":rsMain.getString("bank_ford");
+ bank_ford_MM =rsMain.getString("bank_ford_MM")==null?"":rsMain.getString("bank_ford_MM");
+ PRV_BANK_FORD_PEN =rsMain.getString("PRV_BANK_FORD_PEN")==null?"":rsMain.getString("PRV_BANK_FORD_PEN");
+ PRV_BANK_FORD_PEN_MM =rsMain.getString("PRV_BANK_FORD_PEN_MM")==null?"":rsMain.getString("PRV_BANK_FORD_PEN_MM");
+ 
+ bank_recv_tot =rsMain.getString("bank_recv_tot")==null?"":rsMain.getString("bank_recv_tot");
+ bank_recv_MM_tot =rsMain.getString("bank_recv_MM_tot")==null?"":rsMain.getString("bank_recv_MM_tot");
+ bank_recv =rsMain.getString("bank_recv")==null?"":rsMain.getString("bank_recv");
+ bank_recv_MM =rsMain.getString("bank_recv_MM")==null?"":rsMain.getString("bank_recv_MM");
+ PRV_bank_recv =rsMain.getString("PRV_bank_recv")==null?"":rsMain.getString("PRV_bank_recv");
+ PRV_bank_recv_MM =rsMain.getString("PRV_bank_recv_MM")==null?"":rsMain.getString("PRV_bank_recv_MM");
+ 
+  bank_pend_tot =rsMain.getString("bank_pend_tot")==null?"":rsMain.getString("bank_pend_tot");
+  bank_pend_MM_tot =rsMain.getString("bank_pend_MM_tot")==null?"":rsMain.getString("bank_pend_MM_tot"); 
+  bank_pend =rsMain.getString("bank_pend")==null?"":rsMain.getString("bank_pend");
+ bank_pend_MM =rsMain.getString("bank_pend_MM")==null?"":rsMain.getString("bank_pend_MM");
+ PRV_bank_pend =rsMain.getString("PRV_bank_pend")==null?"":rsMain.getString("PRV_bank_pend");
+ PRV_bank_pend_MM =rsMain.getString("PRV_bank_pend_MM")==null?"":rsMain.getString("PRV_bank_pend_MM");
+ 
+
+ bank_reject_tot =rsMain.getString("bank_reject_tot")==null?"":rsMain.getString("bank_reject_tot");
+ bank_reject_MM_tot =rsMain.getString("bank_reject_MM_tot")==null?"":rsMain.getString("bank_reject_MM_tot");
+ bank_reject =rsMain.getString("bank_reject")==null?"":rsMain.getString("bank_reject");
+ bank_reject_MM =rsMain.getString("bank_reject_MM")==null?"":rsMain.getString("bank_reject_MM");
+ PRV_bank_reject =rsMain.getString("PRV_bank_reject")==null?"":rsMain.getString("PRV_bank_reject");
+ PRV_bank_reject_MM =rsMain.getString("PRV_bank_reject_MM")==null?"":rsMain.getString("PRV_bank_reject_MM");
+ 
+  bank_sanc_tot =rsMain.getString("bank_sanc_tot")==null?"":rsMain.getString("bank_sanc_tot");
+ bank_sanc_MM_tot =rsMain.getString("bank_sanc_MM_tot")==null?"":rsMain.getString("bank_sanc_MM_tot");
+ bank_sanc =rsMain.getString("bank_sanc")==null?"":rsMain.getString("bank_sanc");
+ bank_sanc_MM =rsMain.getString("bank_sanc_MM")==null?"":rsMain.getString("bank_sanc_MM");
+ PRV_bank_sanc =rsMain.getString("PRV_bank_sanc")==null?"":rsMain.getString("PRV_bank_sanc");
+ PRV_bank_sanc_MM =rsMain.getString("PRV_bank_sanc_MM")==null?"":rsMain.getString("PRV_bank_sanc_MM");
+ 
+ 
+  OWN_CONT_tot =rsMain.getString("OWN_CONT_tot")==null?"":rsMain.getString("OWN_CONT_tot");
+ OWN_CONT_MM_tot =rsMain.getString("OWN_CONT_MM_tot")==null?"":rsMain.getString("OWN_CONT_MM_tot");
+  OWN_CONT =rsMain.getString("OWN_CONT")==null?"":rsMain.getString("OWN_CONT");
+ OWN_CONT_MM =rsMain.getString("OWN_CONT_MM")==null?"":rsMain.getString("OWN_CONT_MM");
+ PRV_OWN_CONT =rsMain.getString("PRV_OWN_CONT")==null?"":rsMain.getString("PRV_OWN_CONT");
+ PRV_OWN_CONT_MM =rsMain.getString("PRV_OWN_CONT_MM")==null?"":rsMain.getString("PRV_OWN_CONT_MM");
+ 
+ 
+   IST_LOANSANC_tot =rsMain.getString("IST_LOANSANC_tot")==null?"":rsMain.getString("IST_LOANSANC_tot");
+   IST_LOANSANC_MM_tot =rsMain.getString("IST_LOANSANC_MM_tot")==null?"":rsMain.getString("IST_LOANSANC_MM_tot");
+  IST_LOANSANC =rsMain.getString("IST_LOANSANC")==null?"":rsMain.getString("IST_LOANSANC");
+   IST_LOANSANC_MM =rsMain.getString("IST_LOANSANC_MM")==null?"":rsMain.getString("IST_LOANSANC_MM");
+ PRV_IST_LOANSANC =rsMain.getString("PRV_IST_LOANSANC")==null?"":rsMain.getString("PRV_IST_LOANSANC");
+ PRV_IST_LOANSANC_MM =rsMain.getString("PRV_IST_LOANSANC_MM")==null?"":rsMain.getString("PRV_IST_LOANSANC_MM");
+ 
+ 
+ mm_claim_tot =rsMain.getString("mm_claim_tot")==null?"":rsMain.getString("mm_claim_tot");
+ mm_claim_AMT_tot =rsMain.getString("mm_claim_AMT_tot")==null?"":rsMain.getString("mm_claim_AMT_tot");
+ mm_claim =rsMain.getString("mm_claim")==null?"":rsMain.getString("mm_claim");
+ mm_claim_AMT =rsMain.getString("mm_claim_AMT")==null?"":rsMain.getString("mm_claim_AMT");
+ PRV_mm_claim =rsMain.getString("PRV_mm_claim")==null?"":rsMain.getString("PRV_mm_claim");
+ PRV_mm_claim_AMT =rsMain.getString("PRV_mm_claim_AMT")==null?"":rsMain.getString("PRV_mm_claim_AMT");
+ 
+ 
+ mm_rel_AMT_tot =rsMain.getString("mm_rel_AMT_tot")==null?"":rsMain.getString("mm_rel_AMT_tot");
+ mm_rel_tot =rsMain.getString("mm_rel_tot")==null?"":rsMain.getString("mm_rel_tot");
+ mm_rel_AMT =rsMain.getString("mm_rel_AMT")==null?"":rsMain.getString("mm_rel_AMT");
+ mm_rel =rsMain.getString("mm_rel")==null?"":rsMain.getString("mm_rel");
+ PRV_mm_rel_AMT =rsMain.getString("PRV_mm_rel_AMT")==null?"":rsMain.getString("PRV_mm_rel_AMT");
+ 
+  PRV_mm_rel =rsMain.getString("PRV_mm_rel")==null?"":rsMain.getString("PRV_mm_rel");
+  
+  
+   mm_rel_AMT_tot_f =rsMain.getString("mm_rel_AMT_tot_f")==null?"":rsMain.getString("mm_rel_AMT_tot_f");
+ mm_rel_tot_f =rsMain.getString("mm_rel_tot_f")==null?"":rsMain.getString("mm_rel_tot_f");
+ mm_rel_AMT_f =rsMain.getString("mm_rel_AMT_f")==null?"":rsMain.getString("mm_rel_AMT_f");
+ mm_rel_f =rsMain.getString("mm_rel_f")==null?"":rsMain.getString("mm_rel_f");
+ PRV_mm_rel_AMT_f =rsMain.getString("PRV_mm_rel_AMT_f")==null?"":rsMain.getString("PRV_mm_rel_AMT_f");
+ 
+  PRV_mm_rel_f =rsMain.getString("PRV_mm_rel_f")==null?"":rsMain.getString("PRV_mm_rel_f");
+  
+  
+  
+  
+  
+     mm_release_tot= rsMain.getString("mm_release_tot")==null?"":rsMain.getString("mm_release_tot");
+   mm_release_amt_tot =rsMain.getString("mm_release_amt_tot")==null?"":rsMain.getString("mm_release_amt_tot");
+    rel_no =rsMain.getString("rel_no")==null?"":rsMain.getString("rel_no");
+     rel_amt =rsMain.getString("rel_amt")==null?"":rsMain.getString("rel_amt");
+      prv_rel =rsMain.getString("prv_rel")==null?"":rsMain.getString("prv_rel");
+       pre_rel_amt =rsMain.getString("pre_rel_amt")==null?"":rsMain.getString("pre_rel_amt");
+  
+  
+ edp_cert_iss =rsMain.getString("edp_cert_iss")==null?"":rsMain.getString("edp_cert_iss");
+
+ }
+  rsMain.close();
+
+%>
+  <TR>
+    <Th colspan="9">AGENCY LEVEL</Th>
+  </TR>
+  <TR>
+    <TD><DIV align="center">1</DIV></TD>
+     <TH bgcolor="#FCDCF4"><DIV align="center">Application Recieved </DIV></TH>
+    <TD><DIV align="center"><%= AGN_RECV %></DIV></TD>
+   
+	<TD>&nbsp;</TD>
+	<TD><DIV align="center"></DIV></TD>
+	<TD><DIV align="center">   </DIV></TD>
+	<TD><DIV align="center"> <%= AGN_RECV %>  </DIV></TD>
+	<TD><DIV align="center">   </DIV></TD>
+	<TD><DIV align="center">   </DIV></TD>
+  </TR>
+    <TR>
+    <TD><DIV align="center">2</DIV></TD>
+     <TH bgcolor="#FCDCF4"><DIV align="center">Returned By Agency </DIV></TH>
+    <TD><DIV align="center"><%= AGN_REJECT %></DIV></TD>
+   
+	<TD>&nbsp;</TD>
+	<TD><DIV align="center"></DIV></TD>
+	<TD><DIV align="center">   </DIV></TD>
+	<TD><DIV align="center"> <%= AGN_REJECT %>  </DIV></TD>
+	<TD><DIV align="center">   </DIV></TD>
+	<TD><DIV align="center">   </DIV></TD>
+  </TR>
+   <TR>
+    <TD><DIV align="center">3</DIV></TD>
+     <TH bgcolor="#FCDCF4"><DIV align="center">Under Process At Agency </DIV></TH>
+    <TD><DIV align="center"><%= agency_up %></DIV></TD>
+   
+	<TD>&nbsp;</TD>
+	<TD><DIV align="center"></DIV></TD>
+		<TD><DIV align="center">   </DIV></TD>
+	<TD><DIV align="center"><%= agency_up %>   </DIV></TD>
+	<TD><DIV align="center">   </DIV></TD>
+	<TD><DIV align="center">   </DIV></TD>
+  </TR>
+   
+    <TR>
+    <TD><DIV align="center">4</DIV></TD>
+     <TH bgcolor="#FCDCF4"><DIV align="center">Forwarded to Bank </DIV></TH>
+    <TD><DIV align="center"><%= bank_ford %></DIV></TD>
+   
+	<TD><%= bank_ford_MM %></TD>
+	<TD><DIV align="center"><%= PRV_BANK_FORD_PEN %></DIV></TD>
+		<TD><DIV align="center"> <%=PRV_BANK_FORD_PEN_MM%>  </DIV></TD>
+	<TD><DIV align="center"><%= bank_ford_tot %></DIV></TD>
+   
+	<TD><DIV align="center"><%= bank_ford_MM_tot %></DIV></TD>
+	<TD><DIV align="center"> </DIV></TD>
+  </TR>
+  <TR>
+    <Th colspan="9">BANK LEVEL</Th>
+  </TR>
+    <TR>
+    <TD><DIV align="center">5</DIV></TD>
+     <TH bgcolor="#FCDCF4"><DIV align="center">Recieved By Bank </DIV></TH>
+    <TD><DIV align="center"><%= bank_recv %></DIV></TD>  
+   
+    <TD><DIV align="center"><%= bank_recv_MM %></DIV></TD>
+ 	<TD><DIV align="center"><%= PRV_bank_recv %>   </DIV></TD>
+	<TD><DIV align="center"><%= PRV_bank_recv_MM %>   </DIV></TD>
+	 <TD><DIV align="center"><%= bank_recv_tot %></DIV></TD>  
+   
+    <TD><DIV align="center"><%= bank_recv_MM_tot %></DIV></TD>
+	 <TD><DIV align="center">   </DIV></TD>
+  </TR>
+  <TR>
+    <TD><DIV align="center">6</DIV></TD>
+     <TH bgcolor="#FCDCF4"><DIV align="center">Pending at Bank for Credit Decision </DIV></TH>
+    <TD><DIV align="center"><%= BANK_PEND %></DIV></TD>
+   
+    
+    <TD><DIV align="center"><%= BANK_PEND_MM %></DIV></TD>
+ 	<TD><DIV align="center"><%= PRV_BANK_PEND %></DIV></TD>
+   
+    
+    <TD><DIV align="center"><%= PRV_BANK_PEND_MM %></DIV></TD>
+	<TD><DIV align="center"><%= BANK_PEND_TOT %></DIV></TD>
+   
+    
+    <TD><DIV align="center"><%= BANK_PEND_MM_TOT %></DIV></TD>
+	<TD><DIV align="center">   </DIV></TD>
+  </TR>
+  <TR>
+    <TD><DIV align="center">7</DIV></TD>
+     <TH bgcolor="#FCDCF4"><DIV align="center">Rejected/Returned By Bank </DIV></TH>
+    <TD><DIV align="center"><%= bank_reject %></DIV></TD>
+   
+    
+    <TD><DIV align="center"><%= bank_reject_MM %></DIV></TD>
+ 	<TD><DIV align="center">  <%= PRV_bank_reject %> </DIV></TD>
+	<TD><DIV align="center"> <%= PRV_bank_reject_MM %>  </DIV></TD>
+	 <TD><DIV align="center"><%= bank_reject_tot %></DIV></TD>
+   
+    
+    <TD><DIV align="center"><%= bank_reject_MM_tot %></DIV></TD>
+	<TD><DIV align="center">  </DIV></TD>
+  </TR>
+  <TR>
+    <TD><DIV align="center">8</DIV></TD>
+     <TH bgcolor="#FCDCF4"><DIV align="center">Sanctioned By Bank </DIV></TH>
+    <TD ><DIV align="center"><%= BANK_SANC %></DIV></TD>
+   
+ <TD><DIV align="center"><%= bank_sanc_MM %></DIV></TD>
+ 	<TD><DIV align="center"> <%= PRV_bank_sanc %>  </DIV></TD>
+	<TD><DIV align="center"><%= PRV_bank_sanc_MM %>   </DIV></TD>
+	 <TD ><DIV align="center"><%= BANK_SANC_tot %></DIV></TD>
+   
+ <TD><DIV align="center"><%= bank_sanc_MM_tot %></DIV></TD>
+ 	
+	<TD><DIV align="center">   </DIV></TD>
+  </TR>
+  
+  
+     <TR>
+    <TD><DIV align="center">9</DIV></TD>
+     <TH bgcolor="#FCDCF4"><DIV align="center">First Loan Disbursement </DIV></TH>
+    <TD ><DIV align="center"><%= IST_LOANSANC %></DIV></TD>
+    <TD><DIV align="center"><%= IST_LOANSANC_MM %></DIV></TD>
+		<TD><DIV align="center"><%= PRV_IST_LOANSANC %>   </DIV></TD>
+	<TD><DIV align="center"><%= PRV_IST_LOANSANC_MM %>   </DIV></TD>
+	  <TD ><DIV align="center"><%= IST_LOANSANC_tot %></DIV></TD>
+    <TD><DIV align="center"><%= IST_LOANSANC_MM_tot %></DIV></TD>
+	<TD><DIV align="center">   </DIV></TD>
+  </TR> 
+   <TR>
+    <TD><DIV align="center">10</DIV></TD>
+     <TH bgcolor="#FCDCF4"><DIV align="center">Own Contribution Deposited </DIV></TH>
+    <TD><DIV align="center"><%= OWN_CONT %></DIV></TD>
+     <TD><DIV align="center"><%= OWN_CONT_MM %></DIV></TD>
+	 	<TD><DIV align="center"> <%=PRV_OWN_CONT%>  </DIV></TD>
+	<TD><DIV align="center"> <%=PRV_OWN_CONT_MM%>  </DIV></TD>
+	 <TD><DIV align="center"><%= OWN_CONT_tot %></DIV></TD>
+     <TD><DIV align="center"><%= OWN_CONT_MM _tot%></DIV></TD>
+	<TD><DIV align="center">   </DIV></TD>
+  </TR>
+  <TR>
+    <TD><DIV align="center">11</DIV></TD>
+     <TH bgcolor="#FCDCF4"><DIV align="center">EDP Completed </DIV></TH>
+    <TD ><DIV align="center"><%= edp_cert_iss %></DIV></TD>
+   
+	 <TD><DIV align="center">0</DIV></TD>
+	 	<TD><DIV align="center">   </DIV></TD>
+	   <TD colspan="2"><DIV align="center"><%= edp_cert_iss %></DIV></TD>
+	<TD><DIV align="center">   </DIV></TD>
+	<TD><DIV align="center">   </DIV></TD>
+  </TR> 
+  
+  
+   <TR>
+    <TD><DIV align="center">12</DIV></TD>
+     <TH bgcolor="#FCDCF4"><DIV align="center">Margin Money Claim </DIV></TH>
+    <TD ><DIV align="center"><%= MM_CLAIM %></DIV></TD>
+   
+	<TD><DIV align="center"><%= MM_CLAIM_AMT %></DIV></TD>
+		<TD><DIV align="center"><%=PRV_mm_claim%>   </DIV></TD>
+	<TD><DIV align="center"><%=PRV_mm_claim_AMT%>   </DIV></TD>
+	<TD ><DIV align="center"><%= MM_CLAIM_tot %></DIV></TD>
+   
+	<TD><DIV align="center"><%= MM_CLAIM_AMT_tot %></DIV></TD>
+	<TD><DIV align="center">   </DIV></TD>
+  </TR>
+   <TR>
+    <Th colspan="9">MARGIN MONEY RELEASED</Th>
+  </TR>
+    
+    <TR>
+    <TD><DIV align="center">a)</DIV></TD>
+     <TH bgcolor="#FCDCF4"><DIV align="center">First Loan </DIV></TH>
+    <TD ><DIV align="center"><%= MM_REL %></DIV></TD>
+   
+	 <TD><DIV align="center"><%= mm_rel_AMT %></DIV></TD>
+	 <TD ><DIV align="center"><%= PRV_mm_rel %></DIV></TD>
+   
+	 <TD><DIV align="center"><%= PRV_mm_rel_AMT %></DIV></TD>
+	<TD ><DIV align="center"><%= mm_rel_tot %></DIV></TD>
+   
+	 <TD><DIV align="center"><%= mm_rel_AMT_tot %></DIV></TD>
+	<TD><DIV align="center">   </DIV></TD>
+  </TR>
+  
+    <TR>
+    <TD><DIV align="center">b)</DIV></TD>
+     <TH bgcolor="#FCDCF4"><DIV align="center">Second Loan </DIV></TH>
+    <TD ><DIV align="center"><%= mm_rel_s %></DIV></TD>
+   
+	 <TD><DIV align="center"><%= mm_rel_AMT_s %></DIV></TD>
+	 	<TD><DIV align="center"><%=PRV_mm_rel_s%>   </DIV></TD>
+	<TD><DIV align="center"><%=PRV_mm_rel_AMT_s%>   </DIV></TD>
+	<TD><DIV align="center"><%=mm_rel_tot_s%>   </DIV></TD>
+	<TD><DIV align="center"><%=mm_rel_AMT_tot_s%>   </DIV></TD>
+	<TD><DIV align="center">   </DIV></TD>
+  </TR>
+  
+    <TR>
+    <TD><DIV align="center">c)</DIV></TD>
+     <TH bgcolor="#FCDCF4"><DIV align="center">Old Claim </DIV></TH>
+    <TD><DIV align="center"><%= MM_REL %></DIV></TD>
+   
+	 <TD><DIV align="center"><%= MM_REL_AVG %></DIV></TD>
+	 	<TD><DIV align="center">   </DIV></TD>
+	<TD><DIV align="center">   </DIV></TD>
+	<TD><DIV align="center">   </DIV></TD>
+	<TD><DIV align="center">   </DIV></TD>
+	 <TD><DIV align="center"></DIV></TD>
+  </TR>
+  <TR>
+    <TD><DIV align="center">13</DIV></TD>
+     <TH bgcolor="#FCDCF4"><DIV align="center">Total Margin Money Release </DIV></TH>
+    <TD><DIV align="center"><%= rel_no %></DIV></TD>
+   
+	 <TD><DIV align="center"><%= rel_amt %></DIV></TD>
+	 	<TD><DIV align="center"><%=prv_rel%>   </DIV></TD>
+	<TD><DIV align="center"><%=pre_rel_amt%>   </DIV></TD>
+	 <TD><DIV align="center"><%= mm_release_tot %></DIV></TD>
+   
+	 <TD><DIV align="center"><%= mm_release_amt_tot %></DIV></TD>
+	<TD><DIV align="center">   </DIV></TD>
+  </TR>
+    </TBODY>
+   <% 
+  db.close();
+    %>
+</TABLE>
+</DIV>
+<SCRIPT type="text/javascript">
+$(function(){
+  $('#keywords').tablesorter(); 
+});
+</SCRIPT>
+</FORM>
+</BODY>
+</HTML>
